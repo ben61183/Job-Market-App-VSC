@@ -8,9 +8,7 @@ import { Role } from '../role';
   styleUrls: ['./role.component.css']
 })
 export class RoleComponent implements OnInit {
-  
   role:Role
-
   constructor(private rolSvc: RoleService) {
     this.role.roleId = 0
     this.role.category = "default category"

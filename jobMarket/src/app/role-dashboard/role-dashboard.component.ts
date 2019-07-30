@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../role.service';
 import { Role } from '../role';
-import { RoleComponent } from '../role/role.component';
 
 @Component({
   selector: 'app-role-dashboard',
@@ -23,5 +22,14 @@ export class RoleDashboardComponent implements OnInit {
       }
     )
   }
+
+  // vacanciesOfRole(){
+  //   for(let role of this.allRoles){
+  //     // for(let vacancy of )
+  //     if(role.roleName==){
+
+  //     }
+  //   }
+  // }
 
 }
