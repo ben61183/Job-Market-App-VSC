@@ -11,7 +11,7 @@ export class RoleService {
   rootUrl:string
 
   constructor(private httpsvc:HttpClient) {
-    this.rootUrl = "http://localhost:4500/role"
+    this.rootUrl = "http://localhost:7750/role"
   }
 
   findRoleByRoleId(roleId):Observable<RoleComponent>{
@@ -23,11 +23,12 @@ export class RoleService {
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
     }
     var reqBody = "roleId="+role.roleId+"&category="+role.category+"&roleName="+role.roleName
-
     return this.httpsvc.post<RoleComponent>(this.rootUrl+"/register",reqBody,httpOptions)
   }
 
   loadAllRolesFromService():Observable<Role[]>{
     return this.httpsvc.get<Role[]>("http://localhost:7750/role/list")
   }
+
+
 }

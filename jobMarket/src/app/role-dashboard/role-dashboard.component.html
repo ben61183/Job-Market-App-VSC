@@ -1,20 +1,19 @@
 <h2>Role Dashboard</h2>
 <table id="roleTable">
-        <tr>
-            <th>Job Role</th>
-            <th>Role Category</th>
-            <th>Rank This Year</th>
-            <th>Rank Change</th>
-            <th>Median Salary This Year</th>
-            <th>Median Salary Change</th>
-            <th>Historical Permanent Ads</th>
-            <th>Live Job Vacancies</th>
-        </tr>
-        <tr *ngFor="let role of allRoles; let i = index">
-            <td><a routerLink="/role">{{role.roleName}}</a></td>
-            <td>{{role.category}}</td>
-            <!-- this doesnt work: -->
-            <!-- <td *ngFor="let vacancy of allVacancies; let j = index" *ngIf="role.roleName == vacancy.role.roleName">{{}}</td> -->
-        </tr>
-    </table>
-    <!--  -->
+    <tr>
+        <th>Job Role</th>
+        <th>Role Category</th>
+        <th>Rank This Year</th>
+        <th>Rank Change</th>
+        <th>Median Salary This Year</th>
+        <th>Median Salary Change</th>
+        <th>Historical Permanent Ads</th>
+        <th>Live Job Vacancies</th>
+    </tr>
+    <tr *ngFor="let role of allRoles; let i = index">
+        <td><a routerLink="/role" (click)="loadOneRole(role.roleId)">{{role.roleName}}</a></td>
+        <td>{{role.category}}</td>
+        <!-- this doesnt work: -->
+        <!-- <td *ngFor="let vacancy of allVacancies; let j = index" *ngIf="role.roleName == vacancy.role.roleName">{{}}</td> -->
+    </tr>
+</table>

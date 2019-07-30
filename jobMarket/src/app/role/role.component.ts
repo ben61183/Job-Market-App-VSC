@@ -7,18 +7,29 @@ import { Role } from '../role';
   templateUrl: './role.component.html',
   styleUrls: ['./role.component.css']
 })
-export class RoleComponent implements OnInit {
+export class RoleComponent implements OnInit, Role {
+  roleId:number
+  category:string
+  roleName:string
+  rankNow:number
+  medSalaryNow:number
+  numVacanciesNow:number
+  rankPrev:number
+  medSalaryPrev:number
+  numVacanciesPrev:number
   role:Role
   constructor(private rolSvc: RoleService) {
-    this.role.roleId = 0
-    this.role.category = "default category"
-    this.role.roleName = "default name"
-    this.role.rankNow = 0
-    this.role.medSalaryNow = 0
-    this.role.numVacanciesNow = 0
-    this.role.rankPrev = 0
-    this.role.medSalaryPrev = 0
-    this.role.numVacanciesPrev = 0
+    this.role={
+    roleId : 11,
+    category : "default category",
+    roleName : "default name",
+    rankNow : 0,
+    medSalaryNow : 0,
+    numVacanciesNow : 0,
+    rankPrev : 0,
+    medSalaryPrev : 0,
+    numVacanciesPrev : 0
+    }
   }
 
   ngOnInit() {
@@ -28,10 +39,8 @@ export class RoleComponent implements OnInit {
   fetchRoleFromService(){
     this.rolSvc.findRoleByRoleId(this.role.roleId).subscribe(
       response => {
-        this.role = response.role
+        this.role.roleId = response.roleId
       }
     )
   }
-
-
 }
