@@ -13,21 +13,9 @@ import { RoleComponent } from '../role/role.component';
 })
 export class RoleDashboardComponent implements OnInit {
 
-
   allRoles: Role[]
-  oneRole: Role
   constructor(private rolSvc:RoleService) {
-    this.oneRole={
-      roleId : 0,
-      category : "PARENT CATEGORY",
-      roleName : "PARENT ROLE",
-      rankNow : 0,
-      medSalaryNow : 0,
-      numVacanciesNow : 0,
-      rankPrev : 0,
-      medSalaryPrev : 0,
-      numVacanciesPrev : 0
-      }
+
   }
   
   ngOnInit() {
@@ -42,21 +30,5 @@ export class RoleDashboardComponent implements OnInit {
     )
   }
 
-  loadOneRole(role){
-    // this.rolSvc.findRoleByRoleId(role.roleId).subscribe(
-    //   response => {
-    //     this.oneRole.roleId = response.roleId
-    //   }
-    // )
-  }
-
-  // vacanciesOfRole(){
-  //   for(let role of this.allRoles){
-  //     // for(let vacancy of )
-  //     if(role.roleName==){
-
-  //     }
-  //   }
-  // }
 
 }

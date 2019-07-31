@@ -12,7 +12,7 @@ import { RoleDashboardComponent } from '../role-dashboard/role-dashboard.compone
 export class RoleComponent implements OnInit {
   
   role: Role
-  oneRoleId:number
+  oneRoleId: number
 
   // creation of inputs for parent-child link with the Role Dashboard Component
   // @Input() roleDash: RoleDashboardComponent
@@ -24,7 +24,7 @@ export class RoleComponent implements OnInit {
     this.oneRoleId = this.route.snapshot.params.roleId
 
     this.role={
-    roleId : 11,
+    roleId : 0,
     category : "category",
     roleName : "role",
     rankNow : 0,
@@ -37,16 +37,26 @@ export class RoleComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.fetchRoleFromService()
     this.role.roleId = this.oneRoleId
-    // this.role = this.rolSvc.findRoleByRoleId(this.oneRoleId)
+    this.findOneRole(this.oneRoleId)
+    
+  }
+
+  findOneRole(roleId){
+    this.rolSvc.findRoleByRoleId(roleId).subscribe(
+      response =>{
+        this.role.roleName = response.roleName
+        this.role.category = response.category
+        // this.role.medSalaryNow = response.medSalaryNow
+        // this.role.numVacanciesNow = response.numVacanciesNow
+        // this.role.rankNow = response.rankNow
+        // this.role.medSalaryPrev = response.medSalaryPrev
+        // this.role.numVacanciesPrev = response.numVacanciesPrev
+        // this.role.rankPrev = response.rankPrev
+      }
+    )
   }
   
-  fetchRoleFromService(){
-  //   this.rolSvc.findRoleByRoleId(this.role.roleId).subscribe(
-  //     response => {
-  //       this.role.roleId = response.oneRoleId
-  //     }
-  //   )
-  }
 }
+
+
