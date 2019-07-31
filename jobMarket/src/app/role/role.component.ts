@@ -1,32 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RoleService } from '../role.service';
 import { Role } from '../role';
 import { ActivatedRoute } from '@angular/router';
+import { RoleDashboardComponent } from '../role-dashboard/role-dashboard.component';
 
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
   styleUrls: ['./role.component.css']
 })
-export class RoleComponent implements OnInit, Role {
-  roleId:number
-  category:string
-  roleName:string
-  rankNow:number
-  medSalaryNow:number
-  numVacanciesNow:number
-  rankPrev:number
-  medSalaryPrev:number
-  numVacanciesPrev:number
-  role:Role
+export class RoleComponent implements OnInit {
+  
+  role: Role
+  oneRoleId:number
+
+  // creation of inputs for parent-child link with the Role Dashboard Component
+  // @Input() roleDash: RoleDashboardComponent
+  @Input('roleId') roleId: number
 
 
+  constructor(private rolSvc: RoleService, private route: ActivatedRoute) {
 
-  constructor(private rolSvc: RoleService) {
+    this.oneRoleId = this.route.snapshot.params.roleId
+
     this.role={
     roleId : 11,
-    category : "default category",
-    roleName : "default name",
+    category : "CHILD CATEGORY",
+    roleName : "CHILD ROLE",
     rankNow : 0,
     medSalaryNow : 0,
     numVacanciesNow : 0,
@@ -42,10 +42,10 @@ export class RoleComponent implements OnInit, Role {
   
 
   fetchRoleFromService(){
-    this.rolSvc.findRoleByRoleId(this.role.roleId).subscribe(
-      response => {
-        this.role.roleId = response.roleId
-      }
-    )
+    // this.rolSvc.findRoleByRoleId(this.role.roleId).subscribe(
+    //   response => {
+    //     this.role.roleId = response.role.roleId
+    //   }
+    // )
   }
 }

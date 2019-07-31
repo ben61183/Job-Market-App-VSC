@@ -12,6 +12,7 @@ import { Vacancy } from './vacancy';
 })
 export class RoleService {
   rootUrl:string
+  oneRole:Role
 
   constructor(private httpsvc:HttpClient) {
     this.rootUrl = "http://localhost:7750/role"
@@ -37,6 +38,7 @@ export class RoleService {
   loadVacanciesOfRoleFromService(roleId):Observable<Vacancy[]>{
     return this.httpsvc.get<Vacancy[]>("http://localhost:7750/vacancy/list/"+roleId)
   }
+
 
 
 }

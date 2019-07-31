@@ -11,8 +11,7 @@
         <th>Live Job Vacancies</th>
     </tr>
     <tr *ngFor="let role of allRoles; let i = index">
-        <!-- <td><a routerLink="/role/11" (click)="loadOneRole(role)">{{role.roleName}}</a></td> -->
-        <td><button (click)="loadOneRole(role)">{{role.roleName}}</button></td>
+        <td><button [routerLink]="['/role',role.roleID]">{{role.roleName}}</button></td>
         <td>{{role.category}}</td>
         <!-- this doesnt work: -->
         <!-- <td *ngFor="let vacancy of allVacancies; let j = index" *ngIf="role.roleName == vacancy.role.roleName">{{}}</td> -->
