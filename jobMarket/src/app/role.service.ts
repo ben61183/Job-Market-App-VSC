@@ -19,8 +19,8 @@ export class RoleService {
   }
 
 
-  findRoleByRoleId(roleId):Observable<RoleComponent>{
-    return this.httpsvc.get<RoleComponent>(this.rootUrl+"/find/"+roleId)
+  findRoleByRoleId(roleId):Observable<Role>{
+    return this.httpsvc.get<Role>(this.rootUrl+"/find/"+roleId)
   }
 
   updateRoleOnServer(role):Observable<RoleComponent>{

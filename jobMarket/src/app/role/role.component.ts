@@ -25,8 +25,8 @@ export class RoleComponent implements OnInit {
 
     this.role={
     roleId : 11,
-    category : "CHILD CATEGORY",
-    roleName : "CHILD ROLE",
+    category : "category",
+    roleName : "role",
     rankNow : 0,
     medSalaryNow : 0,
     numVacanciesNow : 0,
@@ -37,15 +37,16 @@ export class RoleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchRoleFromService()
+    // this.fetchRoleFromService()
+    this.role.roleId = this.oneRoleId
+    // this.role = this.rolSvc.findRoleByRoleId(this.oneRoleId)
   }
   
-
   fetchRoleFromService(){
-    // this.rolSvc.findRoleByRoleId(this.role.roleId).subscribe(
-    //   response => {
-    //     this.role.roleId = response.role.roleId
-    //   }
-    // )
+  //   this.rolSvc.findRoleByRoleId(this.role.roleId).subscribe(
+  //     response => {
+  //       this.role.roleId = response.oneRoleId
+  //     }
+  //   )
   }
 }
