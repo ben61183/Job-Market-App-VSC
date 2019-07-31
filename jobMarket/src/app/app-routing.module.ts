@@ -7,7 +7,7 @@ import { VacancyComponent } from './vacancy/vacancy.component';
 
 const routes: Routes = [
   {path: "role-dashboard", component: RoleDashboardComponent},
-  {path: "role", component: RoleComponent},
+  {path: "role/:roleId", component: RoleComponent},
   {path: "vacancy-dashboard", component: VacancyComponent},
   // {path: "login", component: UserComponent}
 ];
