@@ -18,7 +18,6 @@ export class RoleService {
     this.rootUrl = "http://localhost:7750/role"
   }
 
-
   findRoleByRoleId(roleId):Observable<Role>{
     return this.httpsvc.get<Role>(this.rootUrl+"/find/"+roleId)
   }
