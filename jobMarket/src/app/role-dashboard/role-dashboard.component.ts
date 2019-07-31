@@ -3,6 +3,7 @@ import { RoleService } from '../role.service';
 import { Role } from '../role';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-role-dashboard',
   templateUrl: './role-dashboard.component.html',
@@ -13,7 +14,7 @@ export class RoleDashboardComponent implements OnInit {
   oneRole: Role
   constructor(private rolSvc:RoleService) {
     this.oneRole={
-      roleId : 11,
+      roleId : 0,
       category : "default category",
       roleName : "default name",
       rankNow : 0,
@@ -37,8 +38,8 @@ export class RoleDashboardComponent implements OnInit {
     )
   }
 
-  loadOneRole(roleId){
-    this.rolSvc.findRoleByRoleId(roleId).subscribe(
+  loadOneRole(role){
+    this.rolSvc.findRoleByRoleId(role.roleId).subscribe(
       response => {
         this.oneRole.roleId = response.roleId
       }

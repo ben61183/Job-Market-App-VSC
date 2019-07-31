@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../role.service';
 import { Role } from '../role';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-role',
@@ -18,6 +19,9 @@ export class RoleComponent implements OnInit, Role {
   medSalaryPrev:number
   numVacanciesPrev:number
   role:Role
+
+
+
   constructor(private rolSvc: RoleService) {
     this.role={
     roleId : 11,
@@ -35,6 +39,7 @@ export class RoleComponent implements OnInit, Role {
   ngOnInit() {
     this.fetchRoleFromService()
   }
+  
 
   fetchRoleFromService(){
     this.rolSvc.findRoleByRoleId(this.role.roleId).subscribe(

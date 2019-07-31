@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RoleComponent } from './role/role.component';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import { Role } from './role';
+import { VacancyComponent } from './vacancy/vacancy.component';
+import { Vacancy } from './vacancy';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +16,7 @@ export class RoleService {
   constructor(private httpsvc:HttpClient) {
     this.rootUrl = "http://localhost:7750/role"
   }
+
 
   findRoleByRoleId(roleId):Observable<RoleComponent>{
     return this.httpsvc.get<RoleComponent>(this.rootUrl+"/find/"+roleId)
@@ -27,7 +31,11 @@ export class RoleService {
   }
 
   loadAllRolesFromService():Observable<Role[]>{
-    return this.httpsvc.get<Role[]>("http://localhost:7750/role/list")
+    return this.httpsvc.get<Role[]>(this.rootUrl+"/list/")
+  }
+
+  loadVacanciesOfRoleFromService(roleId):Observable<Vacancy[]>{
+    return this.httpsvc.get<Vacancy[]>("http://localhost:7750/vacancy/list/"+roleId)
   }
 
 
