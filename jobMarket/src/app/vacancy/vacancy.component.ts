@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Role } from '../role';
 
 @Component({
   selector: 'app-vacancy',
@@ -17,10 +18,14 @@ export class VacancyComponent implements OnInit {
   salary:number;
   title: string;
 
-  thisRole: String;
+  thisRole: Role;
+  isEditable: Boolean;
+
 
   constructor() { 
   
+  this.isEditable= false
+
   this.vacancyId=22;
   this.company="default company";
   this.description="default description";
@@ -31,14 +36,27 @@ export class VacancyComponent implements OnInit {
   this.salary=0;
   this.title="";
 
-  this.thisRole= 
-  {
-    
+  this.thisRole={
+    roleId:2,
+    category:"deafulat catagory",
+    roleName:"default role",
+    rankNow: 3,
+    medSalaryNow: 1400,
+    numVacanciesNow: 40,
+    rankPrev:4,
+    medSalaryPrev:1200,
+    numVacanciesPrev:5432
+
+  
   }
 
   }
   ngOnInit() {
 
+  }
+
+  toggleEdits(){
+    this.isEditable=!this.isEditable 
   }
 
 }

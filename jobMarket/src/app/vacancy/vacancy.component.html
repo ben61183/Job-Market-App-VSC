@@ -1,1 +1,65 @@
 <h2>Job Vacancies</h2>
+
+<table>
+    <tr>
+        <td>Vacancy ID: </td>
+        <td>{{vacancyId}}</td>
+        <!-- <td *ngIf="isEditable">
+            /*create a form group to apply validations */
+            <div class="form-group">
+            <input [(ngModel)]="empno"
+                name="empno"
+                id="empno"
+                #inputEmpno="ngModel"
+                minlength="3"
+                maxlength="8">
+
+            <span [hidden]="inputEmpno.valid || inputEmpno.pristine"
+            class="alert alert-danger">Employee should not be less than 3 digits</span>
+        </div>
+        </td> -->
+        <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit"}}</button></td>
+    </tr>
+    <tr>
+        <td>Company:</td>
+        <td *ngIf="!isEditable">{{company}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="company"></td>
+    </tr>
+    <tr>
+        <td>Description:</td>
+        <td *ngIf="!isEditable">{{description}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="description"></td>  
+    </tr>
+    <tr>
+        <td>Job Type:</td>
+        <td *ngIf="!isEditable">{{job_type}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="job_type"></td>
+    </tr>
+    <tr>
+        <td>link:</td>
+        <td *ngIf="!isEditable">{{link}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="salary"></td>  
+    </tr>
+    <tr>
+        <td>location:</td>
+        <td *ngIf="!isEditable">{{location}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="job_type"></td>
+    </tr>
+    <tr>
+        <td>post time:</td>
+        <td *ngIf="!isEditable">{{postTime}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="postTime"></td>  
+    </tr>
+    <tr>
+        <td>Salary:</td>
+        <td *ngIf="!isEditable">{{salary}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="salary"></td>  
+    </tr>
+    <tr>
+        <td>Title:</td>
+        <td *ngIf="!isEditable">{{title}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="title"></td>  
+    </tr>
+</table>
+
+    
