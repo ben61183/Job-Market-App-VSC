@@ -8,6 +8,8 @@ export interface Role {
 
   // calculated
   vacCount: number
+  vacancies: Vacancy[]
+  medChange: number
   // values for now (this year)
   rankNow: number // rank according to num this year
   sumSalaryNow: number // sum salaries this year
@@ -19,5 +21,6 @@ export interface Role {
   sumSalaryPrev: number
   medSalaryPrev: number
   numVacanciesPrev: number
-  vacancies: Vacancy[]
+
+
 }
