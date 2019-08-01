@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
+    "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "ng2-charts": "^2.3.0",
     "ng2-search-filter": "^0.5.1",
