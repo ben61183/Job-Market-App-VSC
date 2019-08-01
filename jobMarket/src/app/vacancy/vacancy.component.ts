@@ -30,7 +30,7 @@ export class VacancyComponent implements OnInit {
   
   this.isEditable= false
 
-  this.vacancyId=5;
+  this.vacancyId=828;
   this.company="default company";
   this.description="default description";
   this.job_type=false;
@@ -69,7 +69,7 @@ export class VacancyComponent implements OnInit {
     this.vacSvc.findVacancybyVacancyId(this.vacancyId).subscribe(
   
       response => {
-        this.vacancyId=  response.vacancyId
+        this.vacancyId=response.vacancyId
         this.company=response.company
         this.description=response.description
         this.job_type=response.job_type
@@ -95,7 +95,7 @@ export class VacancyComponent implements OnInit {
 
   updateVacancyDetails(){
     this.vacSvc.updateVacancyOnServer({
-      vacancyId:this.vacancyId, description:this.description,job_type:this.job_type,link:this.link,location:this.location,postTime:this.postTime,salary:this.salary,title:this.title,uploadYear:this.uploadYear
+      company:this.company, vacancyId:this.vacancyId, description:this.description,job_type:this.job_type,link:this.link,location:this.location,postTime:this.postTime,salary:this.salary,title:this.title,uploadYear:this.uploadYear
     }).subscribe(
       // response =>{
       //   this.vacSvc.updateVacancyRoleOnServer(this.vacancyId,this.selectedRole).subscribe(        

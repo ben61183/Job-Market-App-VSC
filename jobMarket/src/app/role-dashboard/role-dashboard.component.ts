@@ -52,7 +52,6 @@ export class RoleDashboardComponent implements OnInit {
       response => {
         this.allRoles = response
         for(let role of this.allRoles){
-          console.log(role)
           this.findVacanciesOfRole(role)
         }
       }
