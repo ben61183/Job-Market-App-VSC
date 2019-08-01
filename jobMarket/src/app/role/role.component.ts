@@ -37,6 +37,7 @@ export class RoleComponent implements OnInit {
     medSalaryPrev : 0,
     numVacanciesPrev : 0,
     vacCount: 0,
+    medChange: 0,
     vacancies : []
     }
   }
@@ -63,13 +64,15 @@ export class RoleComponent implements OnInit {
     this.rolSvc.loadVacanciesOfRoleFromService(roleId).subscribe(
       response => {
         this.role.vacancies = response
+        console.log(this.role.vacancies)
         this.vacancyCalculations(this.role.vacancies)
+
       }
-    )
+    ) 
   }
 
   vacancyCalculations(vacancies){
-    this.vacCount = this.role.vacancies.length
+    this.vacCount = vacancies.length
 
     for(let vac of vacancies){
       if(vac.uploadYear == 2013){ // this year (2013 is last year in db)
