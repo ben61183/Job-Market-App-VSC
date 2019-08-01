@@ -1,9 +1,9 @@
 <h2>Job Vacancies</h2>
 
-<table>
+<table *ngFor="let v of allVacancies">
     <tr>
         <td>Vacancy ID: </td>
-        <td>{{vacancyId}}</td>
+        <td>{{v.vacancyId}}</td>
         <!-- <td *ngIf="isEditable">
             /*create a form group to apply validations */
             <div class="form-group">
@@ -23,49 +23,67 @@
     </tr>
     <tr>
         <td>Company:</td>
-        <td *ngIf="!isEditable">{{company}}</td>
+        <td *ngIf="!isEditable">{{v.company}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="company"></td>
     </tr>
     <tr>
         <td>Description:</td>
-        <td *ngIf="!isEditable">{{description}}</td>
+        <td *ngIf="!isEditable">{{v.description}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="description"></td>  
     </tr>
     <tr>
         <td>Job Type:</td>
-        <td *ngIf="!isEditable">{{job_type}}</td>
+        <td *ngIf="!isEditable">{{v.job_type}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="job_type"></td>
     </tr>
     <tr>
         <td>link:</td>
-        <td *ngIf="!isEditable">{{link}}</td>
+        <td *ngIf="!isEditable">{{v.link}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="link"></td>  
     </tr>
     <tr>
         <td>location:</td>
-        <td *ngIf="!isEditable">{{location}}</td>
+        <td *ngIf="!isEditable">{{v.location}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="location"></td>
     </tr>
     <tr>
         <td>post time:</td>
-        <td *ngIf="!isEditable">{{postTime}}</td>
+        <td *ngIf="!isEditable">{{v.postTime}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="postTime"></td>  
     </tr>
     <tr>
         <td>Salary:</td>
-        <td *ngIf="!isEditable">{{salary}}</td>
+        <td *ngIf="!isEditable">{{v.salary}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="salary"></td>  
     </tr>
     <tr>
         <td>Title:</td>
-        <td *ngIf="!isEditable">{{title}}</td>
+        <td *ngIf="!isEditable">{{v.title}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="title"></td>  
     </tr>
     <tr>
         <td>Upload Year:</td>
-        <td *ngIf="!isEditable">{{uploadYear}}</td>
+        <td *ngIf="!isEditable">{{v.uploadYear}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="uploadYear"></td>
     </tr>
 </table>
+<!-- <table>
+    <table>
+        <tr>
+            <td>
+                <select name="VacanyId" #selectVacancyId
+                (change)="updateSelectedProjectId(selectProjectId.value)">
+                    <option *ngFor="let v of allVacancies" value="{{v.VacanncyId}}">
+                        {{v.vacancyId}}:{{v.title}}
+                    </option>
+                </select>
+            </td>
+            <td>
+                <input type="submit" value="Add">
+            </td>
+
+        </tr>
+    </table>
+</table> -->
 
     
