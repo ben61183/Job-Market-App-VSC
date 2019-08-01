@@ -19,6 +19,7 @@
         </div>
         </td> -->
         <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit"}}</button></td>
+        <td><button (click)="deleteVacancy()">Delete Vacancy</button></td>
     </tr>
     <tr>
         <td>Company:</td>
@@ -38,12 +39,12 @@
     <tr>
         <td>link:</td>
         <td *ngIf="!isEditable">{{link}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="salary"></td>  
+        <td *ngIf="isEditable"><input [(ngModel)]="link"></td>  
     </tr>
     <tr>
         <td>location:</td>
         <td *ngIf="!isEditable">{{location}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="job_type"></td>
+        <td *ngIf="isEditable"><input [(ngModel)]="location"></td>
     </tr>
     <tr>
         <td>post time:</td>
@@ -59,6 +60,11 @@
         <td>Title:</td>
         <td *ngIf="!isEditable">{{title}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="title"></td>  
+    </tr>
+    <tr>
+        <td>Upload Year:</td>
+        <td *ngIf="!isEditable">{{uploadYear}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="uploadYear"></td>
     </tr>
 </table>
 
