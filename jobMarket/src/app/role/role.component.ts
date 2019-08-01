@@ -15,9 +15,12 @@ export class RoleComponent implements OnInit {
   role: Role
   oneRoleId: number // id of specific role (taken from dash)
   vacCount: number // total vacancies in role
-
+  vacanciesYears: number[] = []; 
   // creation of inputs for parent-child link with the Role Dashboard Component
   @Input('roleId') roleId: number
+  vacanciesYearsList: string; 
+  lineChartYAxis: any;
+  vacanciesSalary: any[] = [];
 
 
   constructor(private rolSvc: RoleService, private route: ActivatedRoute) {
@@ -39,14 +42,30 @@ export class RoleComponent implements OnInit {
     vacCount: 0,
     medChange: 0,
     vacancies : []
+    
     }
   }
+  public lineChartLabels = []; 
+
+  public lineChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+
+  public lineChartType = "line"
+  public lineChartLegend = true
+  
+  public lineChartData = [
+    {data: [], label: 'Salary Per Year'},
+  ]
 
   ngOnInit() {
     this.role.roleId = this.oneRoleId
     this.findOneRole(this.oneRoleId)
     this.findVacanciesOfRole(this.oneRoleId)
     this.vacancyCalculations(this.role.vacancies)
+    
+    
   }
 
   findOneRole(roleId){
@@ -55,6 +74,7 @@ export class RoleComponent implements OnInit {
       response =>{
         this.role.roleName = response.roleName
         this.role.category = response.category
+        
       }
     )
   }
@@ -67,8 +87,19 @@ export class RoleComponent implements OnInit {
         console.log(this.role.vacancies)
         this.vacancyCalculations(this.role.vacancies)
 
-      }
-    ) 
+        for (var i = 0; i < response.length; i++){
+          this.vacanciesYears.push(response[i].uploadYear)
+          this.vacanciesYears.sort() 
+          
+          this.vacanciesSalary.push(response[i].salary)
+          this.vacanciesSalary.sort()
+        }
+        
+        this.lineChartLabels = this.vacanciesYears
+        this.lineChartData[0].data = this.vacanciesSalary
+        
+      } 
+    )
   }
 
   vacancyCalculations(vacancies){
@@ -83,9 +114,16 @@ export class RoleComponent implements OnInit {
         this.role.sumSalaryPrev += vac.salary
         this.role.numVacanciesPrev += 1
       }
+      
     }
+
+    
     this.role.medSalaryNow = this.role.sumSalaryNow/this.role.numVacanciesNow
     this.role.medSalaryPrev = this.role.sumSalaryPrev/this.role.numVacanciesPrev
   }
+
+  
+
+  
 }
 
