@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RoleService } from '../role.service';
+import { Role } from '../role';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chart',
@@ -6,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
-  
+  role: Role
+  oneRoleId: number 
+
   public lineChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -20,13 +25,48 @@ export class ChartComponent implements OnInit {
     {data: [100, 59, 80, 81, 56, 55, 40], label: 'Series A'},
     {data: [34, 53, 67, 19, 27, 90, 28], label: 'Series B'}
   ]
-  
 
-  constructor() { }
+  @Input('roleId') roleId: number
+
+  constructor(private rolSvc: RoleService, private route: ActivatedRoute) {
+
+    this.oneRoleId = this.route.snapshot.params.roleId
+
+    this.role={
+    roleId : 0,
+    category : "category",
+    roleName : "role",
+    rankNow : 0,
+    medSalaryNow : 0,
+    numVacanciesNow : 0,
+    rankPrev : 0,
+    medSalaryPrev : 0,
+    numVacanciesPrev : 0
+    }
+  }
 
   
 
   ngOnInit() {
+    this.role.roleId = this.oneRoleId
+    this.findOneRole(this.oneRoleId)
+  }
+
+  findOneRole(roleId){
+    this.rolSvc.findRoleByRoleId(roleId).subscribe(
+      response =>{
+        this.role.roleName = response.roleName
+        this.role.category = response.category
+
+        
+        // this.role.medSalaryNow = response.medSalaryNow
+        // this.role.numVacanciesNow = response.numVacanciesNow
+        // this.role.rankNow = response.rankNow
+        // this.role.medSalaryPrev = response.medSalaryPrev
+        // this.role.numVacanciesPrev = response.numVacanciesPrev
+        // this.role.rankPrev = response.rankPrev
+      }
+    )
   }
 
 }

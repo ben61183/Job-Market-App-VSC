@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { RoleDashboardComponent } from './role-dashboard/role-dashboard.component';
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { RoleAdminComponent } from './role-admin/role-admin.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ChartsModule } from 'ng2-charts';
     VacancyComponent,
     RoleComponent,
     RoleDashboardComponent,
-    ChartComponent
+    ChartComponent,
+    RoleAdminComponent
   ],
   imports: [
     BrowserModule,
