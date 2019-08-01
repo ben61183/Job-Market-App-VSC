@@ -29,7 +29,7 @@ export class RoleDashboardComponent implements OnInit {
       response => {
         this.allRoles = response
         for(let role of this.allRoles){
-          role.vacCount = role.vacancies.length   
+          // role.vacCount = role.vacancies.length   
           console.log(role.vacCount)
           // this.vacancyCalculations(role)
         }
