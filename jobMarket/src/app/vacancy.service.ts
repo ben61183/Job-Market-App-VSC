@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { VacancyComponent } from './vacancy/vacancy.component';
+import { Vacancy } from './vacancy';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VacancyService {
+  
 rootUrl: String
 
 constructor(private httpsvc:HttpClient) {
@@ -43,6 +45,11 @@ updateVacancyOnServer(vacancy):Observable<VacancyComponent>{
     return this.httpsvc.get<VacancyComponent>(this.rootUrl+"/delete/"+vacancyId)
 }
 
+
+loadAllVacanciesFromServer(): Observable<Vacancy[]>{
+  return this.httpsvc.get<Vacancy[]>(
+    "http://localhost:7750/vacancy/list")
+}
 
 
 }

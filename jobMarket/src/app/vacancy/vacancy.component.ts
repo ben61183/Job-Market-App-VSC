@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from '../role';
 import { VacancyService } from '../vacancy.service';
+import { Vacancy } from '../vacancy';
 
 @Component({
   selector: 'app-vacancy',
@@ -24,6 +25,7 @@ export class VacancyComponent implements OnInit {
   isEditable: Boolean;
 
   selectedRole:number;
+  allVacancies: Vacancy[];
 
 
   constructor(private vacSvc: VacancyService) { 
@@ -63,6 +65,8 @@ export class VacancyComponent implements OnInit {
   }
   ngOnInit() {
     this.fetchCurrentVacancyFromService()
+    this.loadAllVacancies()
+    
   }
 
   fetchCurrentVacancyFromService(){
@@ -95,11 +99,11 @@ export class VacancyComponent implements OnInit {
 
   updateVacancyDetails(){
     this.vacSvc.updateVacancyOnServer({
-      vacancyId:this.vacancyId, description:this.description,job_type:this.job_type,link:this.link,location:this.location,postTime:this.postTime,salary:this.salary,title:this.title,uploadYear:this.uploadYear
+      vacancyId:this.vacancyId, description:this.description,job_type:this.job_type,link:this.link,location:this.location,postTime:this.postTime,salary:this.salary,title:this.title,uploadYear:this.uploadYear,company:this.company
     }).subscribe(
-      // response =>{
+      // responseRole =>{
       //   this.vacSvc.updateVacancyRoleOnServer(this.vacancyId,this.selectedRole).subscribe(        
-          responseRole =>{
+          response =>{
             this.fetchCurrentVacancyFromService();
         }
         )
@@ -108,6 +112,13 @@ export class VacancyComponent implements OnInit {
 
   deleteVacancy(){
     this.deleteVacancybyVacancyID()
+  }
+
+  loadAllVacancies(){
+    this.vacSvc.loadAllVacanciesFromServer().subscribe(
+      response =>
+        {this.allVacancies=response}
+    )
   }
 
   toggleEdits(){
