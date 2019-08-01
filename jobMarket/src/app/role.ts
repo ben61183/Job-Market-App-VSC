@@ -1,3 +1,5 @@
+import { Vacancy } from './vacancy';
+
 export interface Role {
     // tabulated
   roleId: number
@@ -5,12 +7,17 @@ export interface Role {
   roleName: String
 
   // calculated
-  // values for now (past six months)
-  rankNow: number
-  medSalaryNow: number
-  numVacanciesNow: number
-  // values for last (previous six months)
+  vacCount: number
+  // values for now (this year)
+  rankNow: number // rank according to num this year
+  sumSalaryNow: number // sum salaries this year
+  medSalaryNow: number // med salary this year
+  numVacanciesNow: number // num salaries this year
+  
+  // values for last (previous year)
   rankPrev: number
+  sumSalaryPrev: number
   medSalaryPrev: number
   numVacanciesPrev: number
+  vacancies: Vacancy[]
 }
