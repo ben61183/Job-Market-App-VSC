@@ -3,6 +3,7 @@ import { RoleService } from '../role.service';
 import { Role } from '../role';
 import { ActivatedRoute } from '@angular/router';
 import { RoleDashboardComponent } from '../role-dashboard/role-dashboard.component';
+import { Vacancy } from '../vacancy';
 
 @Component({
   selector: 'app-role',
@@ -12,10 +13,10 @@ import { RoleDashboardComponent } from '../role-dashboard/role-dashboard.compone
 export class RoleComponent implements OnInit {
   
   role: Role
-  oneRoleId: number
+  oneRoleId: number // id of specific role (taken from dash)
+  vacCount: number // total vacancies in role
 
   // creation of inputs for parent-child link with the Role Dashboard Component
-  // @Input() roleDash: RoleDashboardComponent
   @Input('roleId') roleId: number
 
 
@@ -28,35 +29,60 @@ export class RoleComponent implements OnInit {
     category : "category",
     roleName : "role",
     rankNow : 0,
+    sumSalaryNow: 0,
     medSalaryNow : 0,
     numVacanciesNow : 0,
     rankPrev : 0,
+    sumSalaryPrev : 0,
     medSalaryPrev : 0,
-    numVacanciesPrev : 0
+    numVacanciesPrev : 0,
+    vacCount: 0,
+    vacancies : []
     }
   }
 
   ngOnInit() {
     this.role.roleId = this.oneRoleId
     this.findOneRole(this.oneRoleId)
-    
+    this.findVacanciesOfRole(this.oneRoleId)
+    this.vacancyCalculations(this.role.vacancies)
   }
 
   findOneRole(roleId){
+    console.log("find one run")
     this.rolSvc.findRoleByRoleId(roleId).subscribe(
       response =>{
         this.role.roleName = response.roleName
         this.role.category = response.category
-        // this.role.medSalaryNow = response.medSalaryNow
-        // this.role.numVacanciesNow = response.numVacanciesNow
-        // this.role.rankNow = response.rankNow
-        // this.role.medSalaryPrev = response.medSalaryPrev
-        // this.role.numVacanciesPrev = response.numVacanciesPrev
-        // this.role.rankPrev = response.rankPrev
       }
     )
   }
-  
-}
 
+  findVacanciesOfRole(roleId){
+    console.log("find vacs run")
+    this.rolSvc.loadVacanciesOfRoleFromService(roleId).subscribe(
+      response => {
+        this.role.vacancies = response
+        this.vacancyCalculations(this.role.vacancies)
+      }
+    )
+  }
+
+  vacancyCalculations(vacancies){
+    this.vacCount = this.role.vacancies.length
+
+    for(let vac of vacancies){
+      if(vac.uploadYear == 2013){ // this year (2013 is last year in db)
+        this.role.sumSalaryNow += vac.salary
+        this.role.numVacanciesNow += 1
+      }
+      if(vac.uploadYear == 2012){ // last year
+        this.role.sumSalaryPrev += vac.salary
+        this.role.numVacanciesPrev += 1
+      }
+    }
+    this.role.medSalaryNow = this.role.sumSalaryNow/this.role.numVacanciesNow
+    this.role.medSalaryPrev = this.role.sumSalaryPrev/this.role.numVacanciesPrev
+  }
+}
 

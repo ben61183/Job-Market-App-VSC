@@ -35,9 +35,8 @@ export class RoleService {
   }
 
   loadVacanciesOfRoleFromService(roleId):Observable<Vacancy[]>{
-    return this.httpsvc.get<Vacancy[]>("http://localhost:7750/vacancy/list/"+roleId)
+    return this.httpsvc.get<Vacancy[]>(this.rootUrl+"/thesevacancies/"+roleId)
   }
 
-
-
+  
 }
