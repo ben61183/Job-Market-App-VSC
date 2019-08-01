@@ -11,6 +11,9 @@ import { Vacancy } from './vacancy';
   providedIn: 'root'
 })
 export class RoleService {
+  findJobsByCategory(searchParam: any) {
+    throw new Error("Method not implemented.");
+  }
   rootUrl:string
   oneRole:Role
 
