@@ -68,6 +68,10 @@ export class RoleComponent implements OnInit {
     
   }
 
+  findJobsByCategory(searchParam){
+    this.rolSvc.findJobsByCategory(searchParam)
+  }
+
   findOneRole(roleId){
     console.log("find one run")
     this.rolSvc.findRoleByRoleId(roleId).subscribe(

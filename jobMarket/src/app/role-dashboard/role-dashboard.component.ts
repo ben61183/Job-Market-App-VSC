@@ -16,12 +16,15 @@ export class RoleDashboardComponent implements OnInit {
   oneRoleId: number // id of specific role (taken from dash)
   vacCount: number // total vacancies in role
 
+  searchParam: string
+
   allRoles: Role[]
   role: Role
   ranks: number[]
 
 
   constructor(private rolSvc:RoleService) {
+    this.searchParam = " "
     this.role={
       roleId : 0,
       category : "category",
@@ -50,7 +53,6 @@ export class RoleDashboardComponent implements OnInit {
         this.allRoles = response
         for(let role of this.allRoles){
           console.log(role)
-          console.log(role.roleId)
           this.findVacanciesOfRole(role)
         }
       }
@@ -94,18 +96,12 @@ export class RoleDashboardComponent implements OnInit {
       if(vac.uploadYear == 2013){ // this year (2013 is last year in db)
         role.sumSalaryNow = vac.salary
         role.numVacanciesNow += 1
-        console.log("sum now: "+role.sumSalaryNow)
-        console.log("num now: "+role.numVacanciesNow)
       }
       if(vac.uploadYear == 2012){ // last year
         role.sumSalaryPrev += vac.salary
         role.numVacanciesPrev += 1
-        console.log("sum prev: "+role.sumSalaryPrev)
-        console.log("num prev: "+role.numVacanciesPrev)
       }
     }
-    console.log("sum now fin: "+role.sumSalaryNow)
-    console.log("num now fin: "+role.numVacanciesNow)
     if(role.numVacanciesNow!=0){
       role.medSalaryNow = Math.floor(role.sumSalaryNow/role.numVacanciesNow)
     }
@@ -115,8 +111,6 @@ export class RoleDashboardComponent implements OnInit {
     if(role.numVacanciesPrev!=0 && role.numVacanciesNow!=0){
       role.medChange = Math.floor(100*role.medSalaryNow/role.medSalaryPrev)
     }
-    console.log("med now:"+role.medSalaryNow)
-    console.log("med prev"+role.medSalaryPrev)
   }
 
   roleCalculations(allRoles){

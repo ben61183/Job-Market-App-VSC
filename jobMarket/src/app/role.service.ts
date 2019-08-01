@@ -38,5 +38,11 @@ export class RoleService {
     return this.httpsvc.get<Vacancy[]>(this.rootUrl+"/thesevacancies/"+roleId)
   }
 
+  findJobsByCategory(searchParam):Observable<Role[]>{
+    return this.httpsvc.get<Role[]>(this.rootUrl+"/fetch_category/?searchParam="+searchParam)
+    }
+  
   
 }
+
+  

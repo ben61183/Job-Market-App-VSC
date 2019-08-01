@@ -12,6 +12,7 @@ import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { RoleAdminComponent } from './role-admin/role-admin.component';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RoleAdminComponent } from './role-admin/role-admin.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    Ng2SearchPipeModule
     
   ],
   providers: [],
