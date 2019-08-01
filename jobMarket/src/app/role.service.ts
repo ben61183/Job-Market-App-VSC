@@ -12,14 +12,14 @@ import { Vacancy } from './vacancy';
 })
 export class RoleService {
   rootUrl:string
+  oneRole:Role
 
   constructor(private httpsvc:HttpClient) {
     this.rootUrl = "http://localhost:7750/role"
   }
 
-
-  findRoleByRoleId(roleId):Observable<RoleComponent>{
-    return this.httpsvc.get<RoleComponent>(this.rootUrl+"/find/"+roleId)
+  findRoleByRoleId(roleId):Observable<Role>{
+    return this.httpsvc.get<Role>(this.rootUrl+"/find/"+roleId)
   }
 
   updateRoleOnServer(role):Observable<RoleComponent>{
@@ -35,8 +35,8 @@ export class RoleService {
   }
 
   loadVacanciesOfRoleFromService(roleId):Observable<Vacancy[]>{
-    return this.httpsvc.get<Vacancy[]>("http://localhost:7750/vacancy/list/"+roleId)
+    return this.httpsvc.get<Vacancy[]>(this.rootUrl+"/thesevacancies/"+roleId)
   }
 
-
+  
 }

@@ -8,7 +8,9 @@ import { RoleComponent } from './role/role.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RoleDashboardComponent } from './role-dashboard/role-dashboard.component';
-
+import { ChartComponent } from './chart/chart.component';
+import { ChartsModule } from 'ng2-charts';
+import { RoleAdminComponent } from './role-admin/role-admin.component';
 
 
 @NgModule({
@@ -16,13 +18,16 @@ import { RoleDashboardComponent } from './role-dashboard/role-dashboard.componen
     AppComponent,
     VacancyComponent,
     RoleComponent,
-    RoleDashboardComponent
+    RoleDashboardComponent,
+    ChartComponent,
+    RoleAdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ChartsModule
     
   ],
   providers: [],
