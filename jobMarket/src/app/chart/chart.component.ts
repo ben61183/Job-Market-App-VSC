@@ -3,6 +3,8 @@ import { RoleService } from '../role.service';
 import { Role } from '../role';
 import { ActivatedRoute } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
@@ -32,17 +34,7 @@ export class ChartComponent implements OnInit {
 
     this.oneRoleId = this.route.snapshot.params.roleId
 
-    this.role={
-    roleId : 0,
-    category : "category",
-    roleName : "role",
-    rankNow : 0,
-    medSalaryNow : 0,
-    numVacanciesNow : 0,
-    rankPrev : 0,
-    medSalaryPrev : 0,
-    numVacanciesPrev : 0
-    }
+    
   }
 
   
