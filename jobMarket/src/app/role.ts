@@ -22,11 +22,4 @@ export interface Role {
   medSalaryPrev: number
   numVacanciesPrev: number
 
-<<<<<<< HEAD
-  
-
-  
-=======
-
->>>>>>> f988d19f3144a9606f10c0b833541a3631253924
 }

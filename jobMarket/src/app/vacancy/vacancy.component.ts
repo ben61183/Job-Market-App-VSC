@@ -51,8 +51,14 @@ export class VacancyComponent implements OnInit {
     numVacanciesNow: 40,
     rankPrev:4,
     medSalaryPrev:1200,
-    numVacanciesPrev:5432
-  }
+    numVacanciesPrev:5432,
+    vacCount: 0,
+    vacancies: [],
+    medChange: 15,
+    sumSalaryNow: 1000, 
+    sumSalaryPrev:700,
+    // sum salaries this year
+   }
 
   }
   ngOnInit() {
@@ -86,7 +92,7 @@ export class VacancyComponent implements OnInit {
 
   }
 
-  
+
   updateVacancyDetails(){
     this.vacSvc.updateVacancyOnServer({
       vacancyId:this.vacancyId, description:this.description,job_type:this.job_type,link:this.link,location:this.location,postTime:this.postTime,salary:this.salary,title:this.title,uploadYear:this.uploadYear
