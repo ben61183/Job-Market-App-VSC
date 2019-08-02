@@ -16,17 +16,16 @@ export class RoleComponent implements OnInit {
   oneRoleId: number // id of specific role (taken from dash)
   vacCount: number // total vacancies in role
   vacanciesYears: number[] = []; 
-  // creation of inputs for parent-child link with the Role Dashboard Component
-  @Input('roleId') roleId: number
+
   vacanciesYearsList: string; 
   lineChartYAxis: any;
   vacanciesSalary: any[] = [];
 
-
   constructor(private rolSvc: RoleService, private route: ActivatedRoute) {
 
+    // accessing roleId from url param
     this.oneRoleId = this.route.snapshot.params.roleId
-
+    // empty role object
     this.role={
     roleId : 0,
     category : "category",
@@ -41,8 +40,8 @@ export class RoleComponent implements OnInit {
     numVacanciesPrev : 0,
     vacCount: 0,
     medChange: 0,
-    vacancies : []
-    
+    rankChange: 0,
+    vacancies : []    
     }
   }
   public lineChartLabels = []; 
@@ -68,21 +67,23 @@ export class RoleComponent implements OnInit {
     
   }
 
+  // filter jobs by category
   findJobsByCategory(searchParam){
     this.rolSvc.findJobsByCategory(searchParam)
   }
 
+  // find one role using id
   findOneRole(roleId){
     console.log("find one run")
     this.rolSvc.findRoleByRoleId(roleId).subscribe(
       response =>{
         this.role.roleName = response.roleName
         this.role.category = response.category
-        
       }
     )
   }
 
+  // access the vacancies of the loaded role
   findVacanciesOfRole(roleId){
     console.log("find vacs run")
     this.rolSvc.loadVacanciesOfRoleFromService(roleId).subscribe(
@@ -106,9 +107,11 @@ export class RoleComponent implements OnInit {
     )
   }
 
+  // perform vacancy calculations
   vacancyCalculations(vacancies){
     this.vacCount = vacancies.length
 
+    // iterate through vacancies
     for(let vac of vacancies){
       if(vac.uploadYear == 2013){ // this year (2013 is last year in db)
         this.role.sumSalaryNow += vac.salary
@@ -118,16 +121,9 @@ export class RoleComponent implements OnInit {
         this.role.sumSalaryPrev += vac.salary
         this.role.numVacanciesPrev += 1
       }
-      
     }
-
-    
     this.role.medSalaryNow = this.role.sumSalaryNow/this.role.numVacanciesNow
     this.role.medSalaryPrev = this.role.sumSalaryPrev/this.role.numVacanciesPrev
   }
-
-  
-
-  
 }
 
