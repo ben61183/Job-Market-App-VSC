@@ -3,20 +3,22 @@
 &nbsp;
 <table id="roleTable">
     <tr>
-        <th>Job Role </th>
-        <th>Role Category </th>
-        <th>Rank This Year |</th>
-        <th>Rank Change |</th>
-        <th>Median Salary This Year |</th>
-        <th>Median Salary Change |</th>
-        <th>Historical Permanent Ads |</th>
+        <th>Job Role</th>
+        <th>Role Category</th>
+        <th>Rank This Year</th>
+        <th>Rank Last Year</th>
+        <th>Rank Change</th>
+        <th>Mean Salary This Year</th>
+        <th>Mean Salary Change</th>
+        <th>Historical Permanent Ads</th>
         <th>Live Job Vacancies</th>
     </tr>
     <tr *ngFor="let role of allRoles | filter:searchText">
         <td><a [routerLink]="['/role',role.roleId]">{{role.roleName}}</a></td>
         <td>{{role.category}}</td>
-        <td></td>
-        <td></td>
+        <td>{{role.rankNow}}</td>
+        <td>{{role.rankPrev}}</td>
+        <td>{{role.rankChange}}    {{role.rankChange==0? ">" : role.rankChange>0? "^" : "v"}}</td>
         <td>£{{role.medSalaryNow}}</td>
         <td>{{role.medChange}}%</td>
         <td>{{role.vacCount}}</td>

@@ -1,13 +1,13 @@
 <h1 style = "text-align: center">{{role.roleName}}</h1>
-<h2 style = "text-align: center">{{role.category}}</h2>
+<h3 style = "text-align: center">({{role.category}})</h3>
 <table>
-    <h3>{{role.roleName}} Vacancies:</h3>
+    <h3>Current {{role.roleName}} Vacancies:</h3>
     <tr>
         <th>Vacancy</th>
         <th>Salary</th>
         <th>Year</th>
     </tr>
-    <tr><th>This Year</th></tr>
+    <!-- iterate through vacancies and show those from the last year on record -->
     <ng-container *ngFor = "let vac of role.vacancies">
         <tr *ngIf = "vac.uploadYear == 2013">
             <td><a href="{{vac.link}}">{{vac.title}}</a></td>
@@ -16,23 +16,20 @@
         </tr>
     </ng-container>
 </table>
-    <!-- <tr><th>Historical Vacancies</th></tr>
-    <tr *ngFor = "let vac of role.vacancies">
-        <td><a href="{{vac.link}}">{{vac.title}}</a></td>
-        <td>{{vac.salary}}</td>
-        <td>{{vac.uploadYear}}</td>
-    </tr> -->
 
+    <h3>{{role.roleName}} Role Statistics:</h3>
 
-<p>total ever vacancies: {{vacCount}}</p>
-<p>total current vacancies: {{role.numVacanciesNow}}</p>
-<p>total last year vacancies: {{role.numVacanciesPrev}}</p>
-
-<p>total current salary: £{{role.sumSalaryNow}}</p>
-<p>total last year salary: £{{role.sumSalaryPrev}}</p>
-
-<p>median current salary: £{{role.medSalaryNow}}</p>
-<p>median last year salary: £{{role.medSalaryPrev}}</p>
+<table>
+    <td>
+        <tr>Historical Vacancies: {{vacCount}}
+        <tr>Current Vacancies: {{role.numVacanciesNow}}</tr>
+        <tr>Last Year's Vacancies: {{role.numVacanciesPrev}}</tr>
+    </td>
+    <td>
+        <tr>Mean Salary: £{{role.medSalaryNow}}</tr>
+        <tr>Last Year's Mean Salary: £{{role.medSalaryPrev}}</tr>
+</td>
+</table>
 
 <div> 
     <div style="display: block"> 

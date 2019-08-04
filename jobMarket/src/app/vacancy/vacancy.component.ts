@@ -32,7 +32,7 @@ export class VacancyComponent implements OnInit {
   
   this.isEditable= false
 
-  this.vacancyId=5;
+  this.vacancyId=828;
   this.company="default company";
   this.description="default description";
   this.job_type=false;
@@ -59,6 +59,7 @@ export class VacancyComponent implements OnInit {
     medChange: 15,
     sumSalaryNow: 1000, 
     sumSalaryPrev:700,
+    rankChange: 0
     // sum salaries this year
    }
 
@@ -73,7 +74,7 @@ export class VacancyComponent implements OnInit {
     this.vacSvc.findVacancybyVacancyId(this.vacancyId).subscribe(
   
       response => {
-        this.vacancyId=  response.vacancyId
+        this.vacancyId=response.vacancyId
         this.company=response.company
         this.description=response.description
         this.job_type=response.job_type
@@ -95,7 +96,6 @@ export class VacancyComponent implements OnInit {
     this.selectedRole=roleId;
 
   }
-
 
   updateVacancyDetails(){
     this.vacSvc.updateVacancyOnServer({
