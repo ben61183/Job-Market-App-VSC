@@ -8,7 +8,7 @@ import { Vacancy } from './vacancy';
   providedIn: 'root'
 })
 export class VacancyService {
-  
+
 rootUrl: String
 
 constructor(private httpsvc:HttpClient) {
@@ -41,8 +41,16 @@ updateVacancyOnServer(vacancy):Observable<VacancyComponent>{
       
 //     }
 
-  deleteVacancybyVacancyId(vacancyId):Observable<VacancyComponent>{
-    return this.httpsvc.get<VacancyComponent>(this.rootUrl+"/delete/"+vacancyId)
+//   deleteVacancybyVacancyId(vacancyId):Observable<VacancyComponent>{
+//     const httpOptions = {// declare the headers for the content type
+//       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
+//     }
+//     return this.httpsvc.post<VacancyComponent>(this.rootUrl+"/delete/","vacancyId="+vacancyId,httpOptions)
+// }
+
+deleteVacancybyVacancyId(vacancyId):Observable<VacancyComponent>{
+  
+  return this.httpsvc.post<VacancyComponent>(this.rootUrl+"/delete/",vacancyId)
 }
 
 

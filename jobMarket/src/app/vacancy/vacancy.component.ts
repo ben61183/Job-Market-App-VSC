@@ -30,9 +30,9 @@ export class VacancyComponent implements OnInit {
 
   constructor(private vacSvc: VacancyService) { 
   
-  this.isEditable= false
+  this.isEditable= false;
 
-  this.vacancyId=5;
+  this.vacancyId=7;
   this.company="default company";
   this.description="default description";
   this.job_type=false;
@@ -42,6 +42,7 @@ export class VacancyComponent implements OnInit {
   this.salary=0;
   this.title="default title";
   this.uploadYear=2015;
+
 
 
   this.thisRole={
@@ -60,6 +61,7 @@ export class VacancyComponent implements OnInit {
     sumSalaryNow: 1000, 
     sumSalaryPrev:700,
     // sum salaries this year
+
    }
 
   }
@@ -83,12 +85,13 @@ export class VacancyComponent implements OnInit {
         this.salary=response.salary
         this.title=response.title
         this.uploadYear=response.uploadYear;
+
       }
     )
   }
 
-  deleteVacancybyVacancyID(){
-      this.vacSvc.findVacancybyVacancyId(this.vacancyId).subscribe()
+  deleteVacancybyVacancyID(vacancyId){
+      this.vacSvc.findVacancybyVacancyId(vacancyId).subscribe( )
   }
   
   updateSelection(roleId){
@@ -99,7 +102,9 @@ export class VacancyComponent implements OnInit {
 
   updateVacancyDetails(){
     this.vacSvc.updateVacancyOnServer({
-      vacancyId:this.vacancyId, description:this.description,job_type:this.job_type,link:this.link,location:this.location,postTime:this.postTime,salary:this.salary,title:this.title,uploadYear:this.uploadYear,company:this.company
+      vacancyId:this.vacancyId, description:this.description,job_type:this.job_type,link:this.link,
+      location:this.location,postTime:this.postTime,salary:this.salary,
+      title:this.title,uploadYear:this.uploadYear,company:this.company
     }).subscribe(
       // responseRole =>{
       //   this.vacSvc.updateVacancyRoleOnServer(this.vacancyId,this.selectedRole).subscribe(        
@@ -110,8 +115,10 @@ export class VacancyComponent implements OnInit {
       // })
   }
 
-  deleteVacancy(){
-    this.deleteVacancybyVacancyID()
+  deleteVacancy(vacancyId){
+    console.log(vacancyId);
+    this.deleteVacancybyVacancyID(vacancyId)
+    
   }
 
   loadAllVacancies(){
@@ -124,6 +131,8 @@ export class VacancyComponent implements OnInit {
   toggleEdits(){
     this.isEditable=!this.isEditable
     this.updateVacancyDetails()
+    this.loadAllVacancies()
+     
   }
 
 }
