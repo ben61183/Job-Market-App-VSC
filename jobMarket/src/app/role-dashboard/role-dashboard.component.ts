@@ -162,7 +162,7 @@ export class RoleDashboardComponent implements OnInit {
         if(rankRole.roleId==role.roleId){
           role.rankPrev = rankRole.roleRank
         }
-        role.rankChange = role.rankNow - role.rankPrev
+        role.rankChange = role.rankPrev - role.rankNow
         console.log(role.rankNow)
         console.log(role.rankPrev)
         console.log("rank change:"+role.rankChange)

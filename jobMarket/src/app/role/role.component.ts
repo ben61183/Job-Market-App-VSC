@@ -100,6 +100,10 @@ export class RoleComponent implements OnInit {
           this.vacanciesSalary.sort()
         }
         
+        // this.vacanciesYears.forEach((year,i) => {
+          // if(year!=this.vacanciesYears[i-1]){this.lineChartLabels.push(year), this.lineChartData[0].data.push(this.vacanciesSalary[i])}else{this.lineChartData[0].data[i]+=this.vacanciesSalary[i]}
+        // });
+          
         this.lineChartLabels = this.vacanciesYears
         this.lineChartData[0].data = this.vacanciesSalary
         
