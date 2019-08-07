@@ -114,6 +114,7 @@ export class NewListingComponent implements OnInit {
             this.newLocation = response.location
             this.newUploadYear = response.uploadYear
             this.newJobType = response.job_type
+            console.log(response.job_type)
             this.newPostTime = response.postTime
 
             
