@@ -44,12 +44,13 @@ updateVacancyRoleOnServer(vacancyId,roleId):Observable<VacancyComponent>{
 
     
 updateVacancySkillsOnServer(vacancyId,newSkillId):Observable<VacancyComponent>{
+  console.log("reached skill updater")
   const httpOptions= {
     headers: new HttpHeaders(
       {"Content-Type":"application/x-www-form-urlencoded"}
     )
     }
-    var reqBody="vacancyId="+vacancyId+"&newSkillId="+newSkillId
+    var reqBody="vacancyId="+vacancyId+"&skillId="+newSkillId
 
     return this.httpsvc.post<VacancyComponent>(
       this.rootUrl + "/assign/skill",reqBody,httpOptions)

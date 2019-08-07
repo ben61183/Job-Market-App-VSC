@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@an
 import { of } from 'rxjs';
 import { RoleService } from '../role.service';
 import { Role } from '../role';
+import { VacancyComponent } from '../vacancy/vacancy.component';
 
 
 @Component({
@@ -103,6 +104,7 @@ export class NewListingComponent implements OnInit {
   createNewVacancy(){
     this.vacSvc.updateVacancyOnServer({vacancyId:this.newVacancyId,title:this.newTitle,company:this.newCompany,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
       response=>{
+            console.log(this.newVacancySkills)
             console.log(response)
             this.newVacancyId = response.vacancyId
             this.newTitle = response.title
@@ -111,27 +113,26 @@ export class NewListingComponent implements OnInit {
             this.newDescription = response.description
             this.newLocation = response.location
             this.newUploadYear = response.uploadYear
-            this.newVacancySkills = response.vacancySkills
             this.newJobType = response.job_type
             this.newPostTime = response.postTime
+
             
-              this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
-                  responseRole =>{
-                  this.newRole = responseRole.thisRole
-                  })
+            this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
+                responseRole =>{
+                this.newRole = responseRole.thisRole
+            })
               
-              console.log(this.newVacancySkills)
-              console.log(this.newVacancySkills.length)
-              for(let skill of this.newVacancySkills)
-                this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(
-                  responseSkill =>{
-                    this.newVacancySkills = responseSkill.vacancySkills
-                    console.log(skill)
-                  }
+            for(let skill of this.newVacancySkills)
+              this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(
+                responseSkill =>{
+                  // this.newVacancySkills = responseSkill.vacancySkills
+                  console.log(skill)
+                }
             )
+            
       }
     )
-    // window.location.reload(); // comment out to view console
+    window.location.reload(); // comment out to view console
   }
 
   
