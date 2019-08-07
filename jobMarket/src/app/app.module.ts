@@ -31,6 +31,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { VacancyDashboardComponent } from './vacancy-dashboard/vacancy-dashboard.component';
 import { MatDialogModule, MatInputModule } from '@angular/material';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 @NgModule({
@@ -68,7 +70,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSortModule,
     MatDialogModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSelectModule
     
   ],
   providers: [],
