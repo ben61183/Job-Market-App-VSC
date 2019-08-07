@@ -80,7 +80,6 @@ export class VacancyComponent implements OnInit {
   }
 
 
-  
 
   fetchCurrentVacancyFromService(){
     this.vacSvc.findVacancybyVacancyId(this.vacancyId).subscribe(

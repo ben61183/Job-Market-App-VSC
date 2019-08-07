@@ -21,7 +21,9 @@ export class RoleComponent implements OnInit {
   vacanciesSalary: any[] = [];
   noOfVacancysData: any[] = []; 
 
-  public pieChartLabels = ["Current Vacancies", "Historical Vacancies", "Last Year Vacancies"];
+  // public pieChartLabels = ["Current Vacancies", "Historical Vacancies", "Last Year Vacancies"];
+  public pieChartLabels = ["Current Vacancies", "2012 Vacancies", "2011 Vacancies", "2010 Vacancies", "2009 Vacancies"];
+
   public pieChartData = [];
   public pieChartType = 'pie';
 
@@ -33,6 +35,10 @@ export class RoleComponent implements OnInit {
   
   keySkills: Skill[]
   primarySkill: Skill
+
+  numVacanciesTwo:number
+  numVacanciesThree:number
+  numVacanciesFour:number
 
   constructor(private rolSvc: RoleService, private route: ActivatedRoute) {
 
@@ -59,6 +65,10 @@ export class RoleComponent implements OnInit {
     rankChange: 0,
     vacancies : []
     }
+
+    this.numVacanciesTwo=0
+    this.numVacanciesThree=0
+    this.numVacanciesFour=0
   }
 
 
@@ -130,9 +140,18 @@ export class RoleComponent implements OnInit {
           this.keySkills.push(skill.skill)
         }
       }
-      if(vac.uploadYear == 2012){ // last year
+      else if(vac.uploadYear == 2012){ // last year
         this.role.sumSalaryPrev += vac.salary
         this.role.numVacanciesPrev += 1
+      }
+      else if(vac.uploadYear == 2011){ // last year
+        this.numVacanciesTwo += 1
+      }
+      else if(vac.uploadYear == 2010){ // last year
+        this.numVacanciesThree += 1
+      }
+      else if(vac.uploadYear == 2009){ // last year
+        this.numVacanciesFour += 1
       }
     }
     this.role.medSalaryNow = this.role.sumSalaryNow/this.role.numVacanciesNow
@@ -140,7 +159,10 @@ export class RoleComponent implements OnInit {
 
     //this.noOfVacancysData.push(this.role.numVacanciesNow)
     //this.noOfVacancysData.push(this.role.numVacanciesPrev)
-    this.pieChartData = [this.role.numVacanciesNow, this.vacCount, this.role.numVacanciesPrev]
+    // this.pieChartData = [this.role.numVacanciesNow, this.vacCount, this.role.numVacanciesPrev]
+
+    this.pieChartData = [this.role.numVacanciesNow, this.role.numVacanciesPrev, this.numVacanciesTwo, this.numVacanciesThree, this.numVacanciesFour]
+
     console.log(this.noOfVacancysData)
     this.primarySkill = this.keySkills.sort((a,b) => this.keySkills.filter(v => v===a).length - this.keySkills.filter(v => v===b).length).pop()
   }
