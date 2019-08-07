@@ -25,6 +25,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NewListingComponent } from './new-listing/new-listing.component';
+import { RoleDashboardDataTableComponent } from './role-dashboard-data-table/role-dashboard-data-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,7 @@ import { NewListingComponent } from './new-listing/new-listing.component';
     RoleAdminComponent,
     NavBarComponent,
     NewListingComponent,
+    RoleDashboardDataTableComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -52,7 +57,10 @@ import { NewListingComponent } from './new-listing/new-listing.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    NgbModule
+    NgbModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
     
   ],
   providers: [],
