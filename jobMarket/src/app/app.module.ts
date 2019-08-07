@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +28,12 @@ import { RoleDashboardDataTableComponent } from './role-dashboard-data-table/rol
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { VacancyDashboardComponent } from './vacancy-dashboard/vacancy-dashboard.component';
+import { MatDialogModule, MatInputModule } from '@angular/material';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+
+
 import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
@@ -43,9 +48,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
     NavBarComponent,
     NewListingComponent,
     RoleDashboardDataTableComponent,
-    VacancyDetailsComponent,
-    WelcomeComponent
+    VacancyDashboardComponent,
+    VacancyDetailsComponent
   ],
+  entryComponents: [NewListingComponent],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
@@ -64,7 +70,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
     // NgbModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule
     
   ],
   providers: [],
