@@ -93,8 +93,8 @@ export class RoleDashboardDataTableDataSource extends DataSource<RoleDashboardDa
       switch (this.sort.active) {
         case 'roleName': return compare(a.roleName, b.roleName, isAsc);
         case 'category': return compare(a.category, b.category , isAsc);
-        case 'id': return compare(+a.roleId, +b.roleId, isAsc);
-
+        //case 'vacCount': return compare(+a.roleId, +b.roleId, isAsc); 
+        //case 'sumSalaryNow': return compare(+a.sumSalaryNow, +b.sumSalaryNow, isAsc); 
         default: return 0;
       }
     });
@@ -105,3 +105,4 @@ export class RoleDashboardDataTableDataSource extends DataSource<RoleDashboardDa
 function compare(a, b, isAsc) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+

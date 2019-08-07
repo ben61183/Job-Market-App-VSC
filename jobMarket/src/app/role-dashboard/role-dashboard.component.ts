@@ -55,7 +55,7 @@ export class RoleDashboardComponent implements OnInit {
     this.rolSvc.loadAllRolesFromService().subscribe(
       response => {
         this.allRoles = response
-        
+        console.log(response)
         for(let role of this.allRoles){
           this.findVacanciesOfRole(role)
           //console.log(role)
@@ -66,7 +66,7 @@ export class RoleDashboardComponent implements OnInit {
 
   // find all vacancies from roleId via REST
   findVacanciesOfRole(role){
-    //console.log("find vacancies")
+    console.log("Ben find vacancies")
     this.rolSvc.loadVacanciesOfRoleFromService(role.roleId).subscribe(
       response => {
         role.vacancies = response
@@ -143,9 +143,9 @@ export class RoleDashboardComponent implements OnInit {
           role.rankNow = rankRole.roleRank
         }
         role.rankChange = role.rankNow - role.rankPrev
-        // console.log(role.rankNow)
-        // console.log(role.rankPrev)
-        // console.log("rank change:"+role.rankChange)
+        //console.log(role.rankNow)
+        //console.log(role.rankPrev)
+        //console.log("rank change:"+role.rankChange)
       }
     }
     this.ranks = []
