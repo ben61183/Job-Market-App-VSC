@@ -8,6 +8,7 @@ import { of } from 'rxjs';
 import { RoleService } from '../role.service';
 import { Role } from '../role';
 import { VacancyComponent } from '../vacancy/vacancy.component';
+import * as moment from 'moment'
 
 
 @Component({
@@ -39,7 +40,6 @@ export class NewListingComponent implements OnInit {
 
   allVacancies:Vacancy[]=[]
 
-
   constructor(private vacSvc: VacancyService, private skiSvc:SkillService, private rolSvc:RoleService) {  
 
     this.newVacancyId=0
@@ -49,7 +49,7 @@ export class NewListingComponent implements OnInit {
     this.newJobType=false
     this.newLink=""
     this.newLocation=""
-    this.newPostTime=""
+    this.newPostTime="00:00AM"
     this.newSalary=0
     this.newUploadYear=0
 
@@ -70,6 +70,7 @@ export class NewListingComponent implements OnInit {
       rankChange: 0,
       vacancies : []    
     }
+
 
     this.selectedRoleId=0
 
@@ -102,6 +103,8 @@ export class NewListingComponent implements OnInit {
   }
 
   createNewVacancy(){
+    console.log(this.newJobType)
+    this.dateAndTime()
     this.vacSvc.updateVacancyOnServer({vacancyId:this.newVacancyId,title:this.newTitle,company:this.newCompany,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
       response=>{
             console.log(this.newVacancySkills)
@@ -114,10 +117,8 @@ export class NewListingComponent implements OnInit {
             this.newLocation = response.location
             this.newUploadYear = response.uploadYear
             this.newJobType = response.job_type
-            console.log(response.job_type)
             this.newPostTime = response.postTime
 
-            
             this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
                 responseRole =>{
                 this.newRole = responseRole.thisRole
@@ -126,7 +127,6 @@ export class NewListingComponent implements OnInit {
             for(let skill of this.newVacancySkills)
               this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(
                 responseSkill =>{
-                  // this.newVacancySkills = responseSkill.vacancySkills
                   console.log(skill)
                 }
             )
@@ -144,5 +144,23 @@ export class NewListingComponent implements OnInit {
 
   updateRole(roleId){
     this.selectedRoleId = roleId
+  }
+
+  setJobType(result){
+    if(result){
+      this.newJobType=true
+    }
+    else if(!result){
+      this.newJobType=false
+    }
+    else{
+      this.newJobType=true
+    }
+    console.log(this.newJobType)
+  }
+
+  dateAndTime(){
+    this.newUploadYear = Number(moment(new Date()).format('YYYY'))
+    this.newPostTime = new Date().getHours()+":"+new Date().getMinutes()
   }
 }

@@ -16,7 +16,10 @@
             <td><input [(ngModel)]="newTitle" #inputName="ngModel" name="newTitle" [ngModelOptions]="{standalone: true}"></td>&nbsp;&nbsp;&nbsp;
             <td><input [(ngModel)]="newCompany" name="newCompany" [ngModelOptions]="{standalone: true}"></td>&nbsp;&nbsp;&nbsp;
             <td><input [(ngModel)]="newDescription" name="newDescription" [ngModelOptions]="{standalone: true}"></td>&nbsp;&nbsp;&nbsp;
-            <td>Permanent: <input type="radio" value="true" name="newJobType" [(ngModel)]="jobType" [ngModelOptions]="{standalone: true}"><br>Contract: <input type="radio" value="false" name="newJobType" [(ngModel)]="jobType"></td>&nbsp;&nbsp;&nbsp;
+            
+            <td>Permanent: <input type="radio" value="true" (click)="setJobType(true)" name="newJobType" ><br>
+                Contract: <input type="radio" value="false" (click)="setJobType(false)" name="newJobType" ></td>&nbsp;&nbsp;&nbsp;
+
             <td><input [(ngModel)]="newLocation" name="newLocation" [ngModelOptions]="{standalone: true}"></td>&nbsp;&nbsp;&nbsp;
             <td><input [(ngModel)]="newSalary" name="newSalary" [ngModelOptions]="{standalone: true}"></td>
             <td><input [(ngModel)]="newLink" name="newLink" [ngModelOptions]="{standalone: true}"></td>
@@ -56,17 +59,3 @@
         </tr>
         <tr><td><button (click)="createNewVacancy()">Add Vacancy</button></td></tr>
     </table>
-
-    <!-- <div [formGroup]="newVacancy">
-        <div formGroupName="newVacancy">
-        <label formArrayName="skills" *ngFor="let skill of form.controls.skills.controls; let i = index">
-            <input type="checkbox" [formControlName]="i">
-            {{skills[i].skill}}
-        </label>
-        
-        <div *ngIf="!form.valid">At least one order must be selected</div>
-        <br>
-        <button [disabled]="!form.valid">submit</button>
-        </div>
-    </div>
-</form> -->
