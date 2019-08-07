@@ -35,7 +35,6 @@ export class NewListingComponent implements OnInit {
 
   roles: Role[]
 
-  
   skills: Skill[] = [];
 
   allVacancies:Vacancy[]=[]

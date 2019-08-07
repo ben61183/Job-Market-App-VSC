@@ -89,14 +89,14 @@ findVacanciesOfRole(role){
         role.numVacanciesPrev = 0
         
         // check if there are any vacancies associated 
-        if(role.vacancies != undefined) {
-          this.vacancyCalculations(role)
-        }
+        this.vacancyCalculations(role)
+        
       }
     )
   }
 
 vacancyCalculations(role) {
+  if(role.vacancies != undefined) {
   role.vacCount = role.vacancies.length
   
   for(let vac of role.vacancies) {
@@ -117,16 +117,27 @@ vacancyCalculations(role) {
     if(role.numVacanciesPrev!=0 && role.numVacanciesNow!=0){ // calculate % change in mean
       role.medChange = Math.floor(100*role.medSalaryNow/role.medSalaryPrev)
     }
-    //console.log(role)
+  
+  }
+  // if no vacancies associated, set all calculatable values to zero
+  } else{role.vacancies.uploadYear=0
+    role.vacancies.sumSalaryNow=0
+    role.vacancies.numVacanciesNow=0
+    role.vacancies.numVacanciesPrev=0
+    role.vacancies.sumSalaryPrev=0
+    role.vacancies.medSalaryNow=0
+    role.vacancies.medSalaryPrev=0
+    role.vacancies.medChange=0
+    role.rank=0}
+
     // wait until the last role has been fetched and assigned its vacancies
-    if(role == this.allRoles[this.allRoles.length]){
+    if(role.roleId == this.allRoles[this.allRoles.length-1].roleId){
+      console.log("entered role calc if statement")
       this.roleCalculations(this.allRoles)
     }
-  }
-
-  
 }
 
+  
 
 // perform calculations on all roles
 roleCalculations(allRoles){

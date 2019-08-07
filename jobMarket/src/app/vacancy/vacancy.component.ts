@@ -81,6 +81,8 @@ export class VacancyComponent implements OnInit {
     this.loadAllSkills()
   }
 
+
+
   fetchCurrentVacancyFromService(){
     this.vacSvc.findVacancybyVacancyId(this.vacancyId).subscribe(
   
