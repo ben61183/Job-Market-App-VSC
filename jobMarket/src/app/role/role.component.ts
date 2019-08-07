@@ -2,8 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RoleService } from '../role.service';
 import { Role } from '../role';
 import { ActivatedRoute } from '@angular/router';
-import { RoleDashboardComponent } from '../role-dashboard/role-dashboard.component';
-import { Vacancy } from '../vacancy';
+import { Skill } from '../skill';
 
 @Component({
   selector: 'app-role',
@@ -15,16 +14,33 @@ export class RoleComponent implements OnInit {
   role: Role
   oneRoleId: number // id of specific role (taken from dash)
   vacCount: number // total vacancies in role
-  vacanciesYears: number[] = []; 
+  vacanciesYears: number[] = []
 
   vacanciesYearsList: string; 
   lineChartYAxis: any;
   vacanciesSalary: any[] = [];
+  noOfVacancysData: any[] = []; 
+
+  public pieChartLabels = ["Current Vacancies", "Historical Vacancies", "Last Year Vacancies"];
+  public pieChartData = [];
+  public pieChartType = 'pie';
+
+  public lineChartLabels = []; 
+  public lineChartOptions = {scaleShowVerticalLines: false, responsive: true};
+  public lineChartType = "line"
+  public lineChartLegend = true
+  public lineChartData = [{data: [], label: 'Salary Per Year'}]
+  
+  keySkills: Skill[]
+  primarySkill: Skill
 
   constructor(private rolSvc: RoleService, private route: ActivatedRoute) {
 
     // accessing roleId from url param
     this.oneRoleId = this.route.snapshot.params.roleId
+
+    this.keySkills = [];
+
     // empty role object
     this.role={
     roleId : 0,
@@ -41,30 +57,18 @@ export class RoleComponent implements OnInit {
     vacCount: 0,
     medChange: 0,
     rankChange: 0,
-    vacancies : []    
+    vacancies : []
     }
   }
-  public lineChartLabels = []; 
 
-  public lineChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
 
-  public lineChartType = "line"
-  public lineChartLegend = true
   
-  public lineChartData = [
-    {data: [], label: 'Salary Per Year'},
-  ]
 
   ngOnInit() {
     this.role.roleId = this.oneRoleId
     this.findOneRole(this.oneRoleId)
     this.findVacanciesOfRole(this.oneRoleId)
     this.vacancyCalculations(this.role.vacancies)
-    
-    
   }
 
   // filter jobs by category
@@ -74,7 +78,7 @@ export class RoleComponent implements OnInit {
 
   // find one role using id
   findOneRole(roleId){
-    console.log("find one run")
+    //console.log("find one run")
     this.rolSvc.findRoleByRoleId(roleId).subscribe(
       response =>{
         this.role.roleName = response.roleName
@@ -85,7 +89,7 @@ export class RoleComponent implements OnInit {
 
   // access the vacancies of the loaded role
   findVacanciesOfRole(roleId){
-    console.log("find vacs run")
+    //console.log("find vacs run")
     this.rolSvc.loadVacanciesOfRoleFromService(roleId).subscribe(
       response => {
         this.role.vacancies = response
@@ -100,6 +104,10 @@ export class RoleComponent implements OnInit {
           this.vacanciesSalary.sort()
         }
         
+        // this.vacanciesYears.forEach((year,i) => {
+          // if(year!=this.vacanciesYears[i-1]){this.lineChartLabels.push(year), this.lineChartData[0].data.push(this.vacanciesSalary[i])}else{this.lineChartData[0].data[i]+=this.vacanciesSalary[i]}
+        // });
+          
         this.lineChartLabels = this.vacanciesYears
         this.lineChartData[0].data = this.vacanciesSalary
         
@@ -110,12 +118,17 @@ export class RoleComponent implements OnInit {
   // perform vacancy calculations
   vacancyCalculations(vacancies){
     this.vacCount = vacancies.length
+    //this.noOfVacancysData.push(this.vacCount); //user for pie chart 
 
+    
     // iterate through vacancies
     for(let vac of vacancies){
       if(vac.uploadYear == 2013){ // this year (2013 is last year in db)
         this.role.sumSalaryNow += vac.salary
         this.role.numVacanciesNow += 1
+        for(let skill of vac.vacancySkills){
+          this.keySkills.push(skill.skill)
+        }
       }
       if(vac.uploadYear == 2012){ // last year
         this.role.sumSalaryPrev += vac.salary
@@ -124,6 +137,13 @@ export class RoleComponent implements OnInit {
     }
     this.role.medSalaryNow = this.role.sumSalaryNow/this.role.numVacanciesNow
     this.role.medSalaryPrev = this.role.sumSalaryPrev/this.role.numVacanciesPrev
+
+    //this.noOfVacancysData.push(this.role.numVacanciesNow)
+    //this.noOfVacancysData.push(this.role.numVacanciesPrev)
+    this.pieChartData = [this.role.numVacanciesNow, this.vacCount, this.role.numVacanciesPrev]
+    console.log(this.noOfVacancysData)
+    this.primarySkill = this.keySkills.sort((a,b) => this.keySkills.filter(v => v===a).length - this.keySkills.filter(v => v===b).length).pop()
   }
+    
 }
 

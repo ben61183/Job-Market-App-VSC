@@ -1,23 +1,18 @@
-<h2>Job Vacancies</h2>
 
+<<<<<<< HEAD
 <table *ngFor="let v of allVacancies"> 
+=======
+<body>
+<h2 style="text-align: center">Job Vacancies</h2>
+
+<app-new-listing></app-new-listing>
+
+<!-- above may cause issues with below -->
+<table *ngFor="let v of allVacancies">
+>>>>>>> 76692316c925a2fc618efbbf7d3e92a5bc96422c
     <tr>
         <td>Vacancy ID: </td>
         <td>{{v.vacancyId}}</td>
-        <!-- <td *ngIf="isEditable">
-            /*create a form group to apply validations */
-            <div class="form-group">
-            <input [(ngModel)]="empno"
-                name="empno"
-                id="empno"
-                #inputEmpno="ngModel"
-                minlength="3"
-                maxlength="8">
-
-            <span [hidden]="inputEmpno.valid || inputEmpno.pristine"
-            class="alert alert-danger">Employee should not be less than 3 digits</span>
-        </div>
-        </td> -->
         <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit"}}</button></td>
         <td><button (click)="deleteVacancy(v.vacancyId)">Delete Vacancy</button></td>
     </tr>
@@ -66,8 +61,14 @@
         <td *ngIf="!isEditable">{{v.uploadYear}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="v.uploadYear"></td>
     </tr>
+    <tr><th>Skills:</th></tr>
+    <tr *ngFor="let skill of v.vacancySkills">
+        <td>{{skill.skill}}</td>
+    </tr>
     <tr>&nbsp;</tr>
 </table>
+
+
 
 <!-- <table>
     <table>
@@ -88,4 +89,4 @@
     </table>
 </table> -->
 
-    
+</body>

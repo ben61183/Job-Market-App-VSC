@@ -1,5 +1,15 @@
+import { Skill } from './skill';
+
 export interface Vacancy {
-    salary: number
-    category: string
-    uploadYear: number
+    vacancyId:number;
+    company:string;
+    description:string;
+    job_type:boolean;
+    link:string;
+    location:string;
+    postTime:string;
+    salary:number;
+    title: string;
+    uploadYear: number;
+    vacancySkills: Skill[];
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Role } from '../role';
 import { VacancyService } from '../vacancy.service';
 import { Vacancy } from '../vacancy';
+import { Skill } from '../skill';
+import { SkillService } from '../skill.service';
 
 @Component({
   selector: 'app-vacancy',
@@ -9,6 +11,7 @@ import { Vacancy } from '../vacancy';
   styleUrls: ['./vacancy.component.css']
 })
 export class VacancyComponent implements OnInit {
+  
   
   vacancyId:number;
   company:string;
@@ -20,6 +23,10 @@ export class VacancyComponent implements OnInit {
   salary:number;
   title: string;
   uploadYear: number;
+  // skills associated with a vacancy
+  vacancySkills: Skill[];
+  // all skills
+  skills: Skill[] = [];
 
   thisRole: Role;
   isEditable: Boolean;
@@ -31,14 +38,18 @@ export class VacancyComponent implements OnInit {
   
 
 
-  constructor(private vacSvc: VacancyService) { 
+  constructor(private vacSvc: VacancyService, private skiSvc: SkillService) { 
   
   this.isEditable= false;
  
 
 
 
+<<<<<<< HEAD
   this.vacancyId=7;
+=======
+  this.vacancyId=828;
+>>>>>>> 76692316c925a2fc618efbbf7d3e92a5bc96422c
   this.company="default company";
   this.description="default description";
   this.job_type=false;
@@ -48,7 +59,8 @@ export class VacancyComponent implements OnInit {
   this.salary=0;
   this.title="default title";
   this.uploadYear=2015;
-
+  this.vacancySkills = [];
+  // this.skills = [];
 
 
   this.thisRole={
@@ -70,13 +82,16 @@ export class VacancyComponent implements OnInit {
     // sum salaries this year
 
    }
-
   }
+
   ngOnInit() {
     this.fetchCurrentVacancyFromService()
     this.loadAllVacancies()
-    
+    this.loadAllSkills()
   }
+
+
+  
 
   fetchCurrentVacancyFromService(){
     this.vacSvc.findVacancybyVacancyId(this.vacancyId).subscribe(
@@ -128,7 +143,11 @@ export class VacancyComponent implements OnInit {
   loadAllVacancies(){
     this.vacSvc.loadAllVacanciesFromServer().subscribe(
       response =>
-        {this.allVacancies=response}
+        {this.allVacancies=response
+          for(let vac of this.allVacancies){
+            this.loadVacancySkills(vac.vacancyId)
+          }
+        }
     )
   }
 
@@ -139,4 +158,21 @@ export class VacancyComponent implements OnInit {
      
   }
 
+  loadAllSkills(){
+    this.skiSvc.loadAllSkillsFromServer().subscribe(
+      response => {
+        this.skills = response
+      }
+    )
+  }
+
+  loadVacancySkills(vacancyId){
+    this.vacSvc.loadVacancySkillsFromServer(vacancyId).subscribe(
+      response => {
+        this.vacancySkills = response
+      }
+    )
+  }
+
+  
 }

@@ -9,8 +9,8 @@ import { RoleRank } from '../role-rank';
   selector: 'app-role-dashboard',
   templateUrl: './role-dashboard.component.html',
   styleUrls: ['./role-dashboard.component.css']
-
 })
+
 export class RoleDashboardComponent implements OnInit {
 
   oneRoleId: number // id of specific role (taken from dash)
@@ -55,8 +55,10 @@ export class RoleDashboardComponent implements OnInit {
     this.rolSvc.loadAllRolesFromService().subscribe(
       response => {
         this.allRoles = response
+        console.log(response)
         for(let role of this.allRoles){
           this.findVacanciesOfRole(role)
+          //console.log(role)
         }
       }
     )
@@ -64,7 +66,7 @@ export class RoleDashboardComponent implements OnInit {
 
   // find all vacancies from roleId via REST
   findVacanciesOfRole(role){
-    console.log("find vacancies")
+    console.log("Ben find vacancies")
     this.rolSvc.loadVacanciesOfRoleFromService(role.roleId).subscribe(
       response => {
         role.vacancies = response
@@ -93,11 +95,10 @@ export class RoleDashboardComponent implements OnInit {
 
   // perform calculations on vacancies of role
   vacancyCalculations(role){
-    console.log("vacancy calculations")
+    //console.log("vacancy calculations")
     role.vacCount = role.vacancies.length // count of vacancies
     
     for(let vac of role.vacancies){
-      console.log("vac object:"+vac)
       
       if(vac.uploadYear == 2013){ // this year (2013 is last year in db)
         role.sumSalaryNow = vac.salary // sum salaries
@@ -141,9 +142,9 @@ export class RoleDashboardComponent implements OnInit {
           role.rankNow = rankRole.roleRank
         }
         role.rankChange = role.rankNow - role.rankPrev
-        console.log(role.rankNow)
-        console.log(role.rankPrev)
-        console.log("rank change:"+role.rankChange)
+        //console.log(role.rankNow)
+        //console.log(role.rankPrev)
+        //console.log("rank change:"+role.rankChange)
       }
     }
     this.ranks = []
@@ -162,18 +163,14 @@ export class RoleDashboardComponent implements OnInit {
         if(rankRole.roleId==role.roleId){
           role.rankPrev = rankRole.roleRank
         }
-        role.rankChange = role.rankNow - role.rankPrev
-        console.log(role.rankNow)
-        console.log(role.rankPrev)
-        console.log("rank change:"+role.rankChange)
+        role.rankChange = role.rankPrev - role.rankNow
+
       }
     }
 
   }
 
   rankRoles(allRoles){
-    console.log("rank role")
-    console.log("size:"+this.ranks.length)
     this.ranks = this.ranks.sort((obj1,obj2)=>{
       if(obj1.numVacancies > obj2.numVacancies){
         return -1
@@ -182,7 +179,7 @@ export class RoleDashboardComponent implements OnInit {
       }
       return 0
     })
-    console.log("size:"+this.ranks.length)
+    // console.log("size:"+this.ranks.length)
 
     // assign ranking based on the indexes
     this.ranks.forEach((role,i)=>role.roleRank=i+1)
