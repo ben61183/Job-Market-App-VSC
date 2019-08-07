@@ -99,7 +99,6 @@ export class RoleDashboardComponent implements OnInit {
     role.vacCount = role.vacancies.length // count of vacancies
     
     for(let vac of role.vacancies){
-      //console.log("vac object:"+vac)
       
       if(vac.uploadYear == 2013){ // this year (2013 is last year in db)
         role.sumSalaryNow = vac.salary // sum salaries
@@ -164,18 +163,14 @@ export class RoleDashboardComponent implements OnInit {
         if(rankRole.roleId==role.roleId){
           role.rankPrev = rankRole.roleRank
         }
-        role.rankChange = role.rankNow - role.rankPrev
-        // console.log(role.rankNow)
-        // console.log(role.rankPrev)
-        // console.log("rank change:"+role.rankChange)
+        role.rankChange = role.rankPrev - role.rankNow
+
       }
     }
 
   }
 
   rankRoles(allRoles){
-    // console.log("rank role")
-    // console.log("size:"+this.ranks.length)
     this.ranks = this.ranks.sort((obj1,obj2)=>{
       if(obj1.numVacancies > obj2.numVacancies){
         return -1

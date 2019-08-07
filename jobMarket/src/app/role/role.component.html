@@ -1,11 +1,13 @@
 <h1 style = "text-align: center">{{role.roleName}}</h1>
 <h3 style = "text-align: center">({{role.category}})</h3>
+<h4 style = "text-align: center">Key Skill: {{primarySkill}}</h4>
 <table>
     <h3>Current {{role.roleName}} Vacancies:</h3>
     <tr>
         <th>Vacancy</th>
         <th>Salary</th>
         <th>Year</th>
+        <th>Skills</th>
     </tr>
     <!-- iterate through vacancies and show those from the last year on record -->
     <ng-container *ngFor = "let vac of role.vacancies">
@@ -13,6 +15,10 @@
             <td><a href="{{vac.link}}">{{vac.title}}</a></td>
             <td>{{vac.salary}}</td>
             <td>{{vac.uploadYear}}</td> 
+            <td *ngIf="vac.vacancySkills.length>0">{{vac.vacancySkills[0].skill}}</td>
+            <td *ngIf="vac.vacancySkills.length>1">{{vac.vacancySkills[1].skill}}</td>
+            <td *ngIf="vac.vacancySkills.length>2">{{vac.vacancySkills[2].skill}}</td>
+
         </tr>
     </ng-container>
 </table>
