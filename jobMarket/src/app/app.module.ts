@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +28,10 @@ import { RoleDashboardDataTableComponent } from './role-dashboard-data-table/rol
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { VacancyDashboardComponent } from './vacancy-dashboard/vacancy-dashboard.component';
+import { MatDialogModule, MatInputModule } from '@angular/material';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 @NgModule({
   declarations: [
@@ -40,8 +43,10 @@ import { MatSortModule } from '@angular/material/sort';
     RoleAdminComponent,
     NavBarComponent,
     NewListingComponent,
-    RoleDashboardDataTableComponent
+    RoleDashboardDataTableComponent,
+    VacancyDashboardComponent
   ],
+  entryComponents: [NewListingComponent],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
@@ -57,10 +62,12 @@ import { MatSortModule } from '@angular/material/sort';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    NgbModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule,
+    MatInputModule,
+    MatRadioModule
     
   ],
   providers: [],

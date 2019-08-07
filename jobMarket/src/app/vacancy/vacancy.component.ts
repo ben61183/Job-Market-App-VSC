@@ -4,6 +4,8 @@ import { VacancyService } from '../vacancy.service';
 import { Vacancy } from '../vacancy';
 import { Skill } from '../skill';
 import { SkillService } from '../skill.service';
+import { MatDialog } from '@angular/material';
+import { NewListingComponent } from '../new-listing/new-listing.component';
 
 @Component({
   selector: 'app-vacancy',
@@ -78,9 +80,6 @@ export class VacancyComponent implements OnInit {
     this.loadAllVacancies()
     this.loadAllSkills()
   }
-
-
-  
 
   fetchCurrentVacancyFromService(){
     this.vacSvc.findVacancybyVacancyId(this.vacancyId).subscribe(
