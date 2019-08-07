@@ -9,10 +9,6 @@
 
     </div>
     </td>
-
-
-
-
     <td *ngIf="!isEditable"> {{role.category}} </td>
     <td *ngIf="isEditable">     
     <div> 
@@ -21,7 +17,81 @@
     </div>
     </td>
 </tr>
-
-
-
 </table>
+<div><button (click)="showVacancyForm()">Update a vacancy</button></div>
+<form *ngIf="isVacancyFormVisible" (submit)="showUpdateVacancyForm()">
+    <table id="vacancyTable">
+        <tr>Select Vacancy</tr>
+        <td>
+                <select  [(ngModel)]="selectedLevel"    name="vacancyId" #selectVacancyId
+                (change)="selected()"> 
+                    <option *ngFor="let v of allVacancies" [ngValue]="v">
+                        {{v.vacancyId}}:{{v.title}}, {{v.company}}
+                    </option>
+                </select>
+        </td>
+        <td>
+                <input type="submit" value="Open">
+        </td>
+    </table>
+</form>
+
+<form *ngIf="isUpdateVacancyFormVisible">
+    <h2>Please update selected vacancy</h2>
+    <table> 
+            <tr>
+                <td>Vacancy ID: </td>
+                <td>{{selectedLevel.vacancyId}}</td>
+                <td><button (click)="toggleEdits(edit.value)" value='{{(isVacancyEditable)?"Save":"Edit"}}' #edit>{{(isVacancyEditable)?"Save":"Edit"}}</button></td>
+                <td><button (click)="deleteVacancy()">Delete Vacancy</button></td>
+            </tr>
+            <tr>
+                <td>Company:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.company}}</td>
+                <td *ngIf="isVacancyEditable"><input [(ngModel)]="company" name="company"></td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.description}}</td>
+                <td *ngIf="isVacancyEditable"><input [(ngModel)]="description" name="description"></td>  
+            </tr>
+            <tr>
+                <td>Job Type:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.job_type}}</td>
+                <td *ngIf="isVacancyEditable"><input [(ngModel)]="job_type" name="job type"></td>
+            </tr>
+            <tr>
+                <td>link:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.link}}</td>
+                <td *ngIf="isVacancyEditable"><input [(ngModel)]="link" name="link"></td>  
+            </tr>
+            <tr>
+                <td>location:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.location}}</td>
+                <td *ngIf="isVacancyEditable"><input [(ngModel)]="location" name="location"></td>
+            </tr>
+            <tr>
+                <td>post time:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.postTime}}</td>
+                <td *ngIf="isVacancyEditable"><input [(ngModel)]="postTime" name="postTime"></td>  
+            </tr>
+            <tr>
+                <td>Salary:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.salary}}</td>
+                <td *ngIf="isVacancyEditable"><input [(ngModel)]="salary" name="salary"></td>  
+            </tr>
+            <tr>
+                <td>Title:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.title}}</td>
+                <td *ngIf="isVacancyEditable"><input [(ngModel)]="title" name="title"></td>  
+            </tr>
+            <tr>
+                <td>Upload Year:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.uploadYear}}</td>
+                <td *ngIf="isVacancyEditable"><input [(ngModel)]="selectedLevel.uploadYear" name="uploadYear"></td>
+            </tr>
+            <tr>&nbsp;</tr>
+        </table>
+
+</form>
+    

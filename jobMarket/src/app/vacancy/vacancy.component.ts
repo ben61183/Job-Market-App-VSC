@@ -25,18 +25,20 @@ export class VacancyComponent implements OnInit {
   isEditable: Boolean;
 
   selectedRole:number;
+ 
   allVacancies: Vacancy[];
+
+  
 
 
   constructor(private vacSvc: VacancyService) { 
   
   this.isEditable= false;
+ 
 
-<<<<<<< HEAD
+
+
   this.vacancyId=7;
-=======
-  this.vacancyId=828;
->>>>>>> 9e577ed20cd492c99c91a5490ef1c809cb7dc29b
   this.company="default company";
   this.description="default description";
   this.job_type=false;
@@ -109,14 +111,12 @@ export class VacancyComponent implements OnInit {
       vacancyId:this.vacancyId, description:this.description,job_type:this.job_type,link:this.link,
       location:this.location,postTime:this.postTime,salary:this.salary,
       title:this.title,uploadYear:this.uploadYear,company:this.company
-    }).subscribe(
-      // responseRole =>{
-      //   this.vacSvc.updateVacancyRoleOnServer(this.vacancyId,this.selectedRole).subscribe(        
+    }).subscribe(      
           response =>{
             this.fetchCurrentVacancyFromService();
         }
         )
-      // })
+      
   }
 
   deleteVacancy(vacancyId){

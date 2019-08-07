@@ -41,17 +41,17 @@ updateVacancyOnServer(vacancy):Observable<VacancyComponent>{
       
 //     }
 
-//   deleteVacancybyVacancyId(vacancyId):Observable<VacancyComponent>{
-//     const httpOptions = {// declare the headers for the content type
-//       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
-//     }
-//     return this.httpsvc.post<VacancyComponent>(this.rootUrl+"/delete/","vacancyId="+vacancyId,httpOptions)
-// }
-
-deleteVacancybyVacancyId(vacancyId):Observable<VacancyComponent>{
-  
-  return this.httpsvc.post<VacancyComponent>(this.rootUrl+"/delete/",vacancyId)
+  deleteVacancybyVacancyId(vacancyId):Observable<VacancyComponent>{
+    // const httpOptions = {// declare the headers for the content type
+    //   headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
+    // }
+    return this.httpsvc.delete<VacancyComponent>(this.rootUrl+"/delete/"+vacancyId)
 }
+
+// deleteVacancybyVacancyId(vacancyId):Observable<VacancyComponent>{
+  
+//   return this.httpsvc.post<VacancyComponent>(this.rootUrl+"/delete/",vacancyId)
+// }
 
 
 loadAllVacanciesFromServer(): Observable<Vacancy[]>{
