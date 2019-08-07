@@ -34,6 +34,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 
 
+import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {MatSelectModule} from '@angular/material/select';
     NavBarComponent,
     NewListingComponent,
     RoleDashboardDataTableComponent,
-    VacancyDashboardComponent
+    VacancyDashboardComponent,
+    VacancyDetailsComponent
   ],
   entryComponents: [NewListingComponent],
   imports: [

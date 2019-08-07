@@ -157,10 +157,6 @@ export class RoleComponent implements OnInit {
     this.role.medSalaryNow = this.role.sumSalaryNow/this.role.numVacanciesNow
     this.role.medSalaryPrev = this.role.sumSalaryPrev/this.role.numVacanciesPrev
 
-    //this.noOfVacancysData.push(this.role.numVacanciesNow)
-    //this.noOfVacancysData.push(this.role.numVacanciesPrev)
-    // this.pieChartData = [this.role.numVacanciesNow, this.vacCount, this.role.numVacanciesPrev]
-
     this.pieChartData = [this.role.numVacanciesNow, this.role.numVacanciesPrev, this.numVacanciesTwo, this.numVacanciesThree, this.numVacanciesFour]
 
     console.log(this.noOfVacancysData)
