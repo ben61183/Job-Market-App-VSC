@@ -30,6 +30,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.compo
     NavBarComponent,
     NewListingComponent,
     RoleDashboardDataTableComponent,
-    VacancyDetailsComponent
+    VacancyDetailsComponent,
+    WelcomeComponent
   ],
   imports: [
     ReactiveFormsModule,
