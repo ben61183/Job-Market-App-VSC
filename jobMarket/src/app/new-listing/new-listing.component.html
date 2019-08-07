@@ -23,11 +23,11 @@
         </tr>
         
 
-        <!-- <tr> 
+        <tr> 
             <td>Job Type:</td>
             <td>Permanent: <input type="radio" value="true" (click)="setJobType(true)" name="newJobType" >  
                 Contract: <input type="radio" value="false" (click)="setJobType(false)" name="newJobType" ></td>&nbsp;&nbsp;&nbsp;
-        </tr>  -->
+        </tr> 
         <tr> 
             <mat-form-field class="example-full-width">
             <td><input matInput [(ngModel)]="newLocation" name="newLocation" [ngModelOptions]="{standalone: true}" placeholder="Location"></td>
@@ -45,7 +45,7 @@
             </mat-form-field>
         </tr>
         
-        <!-- <tr> 
+        <tr> 
             <td>Role:</td>
             <td><select id="role-select" [(ngModel)]="selectedRoleId">
                     <option *ngFor="let role of roles" (change)="updateRole(selectedRole.value)" #selectDept value="{{role.roleId}}">
@@ -53,8 +53,8 @@
                     </option>
                 </select>
             </td>
-        </tr>  -->
-
+        </tr> 
+<!-- 
         <mat-form-field>
                 <mat-label>Role</mat-label>
                 <mat-select>
@@ -62,7 +62,7 @@
                     {{role.roleName}}
                   </mat-option>
                 </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
     <!-- </form> -->
 </div>
     <table>

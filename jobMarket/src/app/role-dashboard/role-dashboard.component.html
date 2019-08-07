@@ -1,29 +1,4 @@
-<h2>Role Dashboard</h2>
-<input type="text" placeholder="Search" [(ngModel)]="searchText" autocomplete="off">
-&nbsp;
-<table id="roleTable">
-    <tr>
-        <th>Job Role</th>
-        <th>Category</th>
-        <th>This Years Rank</th>
-        <th>Rank Change</th>
-        <th>This Years Salary</th>
-        <th>Salary Change</th>
-        <th>Historical Ads</th>
-        <th>Live Vacancies</th>
-    </tr>
-    <tr *ngFor="let role of allRoles | filter:searchText">
-        <td><a [routerLink]="['/role',role.roleId]">{{role.roleName}}</a></td>
-        <td>{{role.category}}</td>
-        <td>{{role.rankNow}}</td>
-        <td>{{role.rankChange}} {{role.rankChange==0? ">" : role.rankChange>0? "^" : "v"}}</td>
-        <td>£{{role.medSalaryNow}}</td>
-        <td>{{role.medChange}}%</td>
-        <td>{{role.vacCount}}</td>
-        <td>{{role.numVacanciesNow}}</td>
-    </tr>
-
-    
-</table>
+<!-- <h2>Role Dashboard</h2> -->
+<!-- <input type="text" placeholder="Search" [(ngModel)]="searchText" autocomplete="off"> -->
 
 <app-role-dashboard-data-table> </app-role-dashboard-data-table>

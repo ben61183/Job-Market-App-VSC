@@ -49,7 +49,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     NewListingComponent,
     RoleDashboardDataTableComponent,
     VacancyDashboardComponent,
-    VacancyDetailsComponent
+    VacancyDetailsComponent,
+    WelcomeComponent
   ],
   entryComponents: [NewListingComponent],
   imports: [
@@ -74,7 +75,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MatDialogModule,
     MatInputModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+
     
   ],
   providers: [],
