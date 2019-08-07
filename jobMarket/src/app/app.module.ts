@@ -29,6 +29,7 @@ import { RoleDashboardDataTableComponent } from './role-dashboard-data-table/rol
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MatSortModule } from '@angular/material/sort';
     RoleAdminComponent,
     NavBarComponent,
     NewListingComponent,
-    RoleDashboardDataTableComponent
+    RoleDashboardDataTableComponent,
+    VacancyDetailsComponent
   ],
   imports: [
     ReactiveFormsModule,

@@ -51,7 +51,6 @@ export class VacancyComponent implements OnInit {
   this.title="default title";
   this.uploadYear=2015;
   this.vacancySkills = [];
-  // this.skills = [];
 
   this.thisRole={
     roleId:2,
