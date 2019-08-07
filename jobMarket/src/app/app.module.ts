@@ -35,6 +35,7 @@ import {MatSelectModule} from '@angular/material/select';
 
 
 import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.compo
     NewListingComponent,
     RoleDashboardDataTableComponent,
     VacancyDashboardComponent,
-    VacancyDetailsComponent
+    VacancyDetailsComponent,
+    WelcomeComponent
   ],
   entryComponents: [NewListingComponent],
   imports: [
@@ -73,7 +75,8 @@ import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.compo
     MatDialogModule,
     MatInputModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+
     
   ],
   providers: [],

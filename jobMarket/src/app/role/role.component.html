@@ -1,6 +1,6 @@
 <h1 style = "text-align: center">{{role.roleName}}</h1>
 <h3 style = "text-align: center">({{role.category}})</h3>
-<h4 style = "text-align: center">Key Skill: {{primarySkill}}</h4>
+<h4 style = "text-align: center" [hidden]="primarySkill==undefined">Key Skill: {{primarySkill}}</h4>
 <table>
     <h3>Current {{role.roleName}} Vacancies:</h3>
     <tr>
