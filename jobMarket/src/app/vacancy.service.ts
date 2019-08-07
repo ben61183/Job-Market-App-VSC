@@ -24,7 +24,7 @@ updateVacancyOnServer(vacancy):Observable<VacancyComponent>{
   const httpOptions = {// declare the headers for the content type
     headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
   }
-  var reqBody = "vacancyId="+vacancy.vacancyId+"&company="+vacancy.company+"&description="+vacancy.description +"&job_type="+vacancy.job_type+"&link="+vacancy.link+"&location="+vacancy.location+"&postTime="+vacancy.postTime+"&salary="+vacancy.salary+"&uploadYear="+vacancy.uploadYear+"&title="+vacancy.title;
+  var reqBody = "vacancyId="+vacancy.vacancyId+"&company="+vacancy.company+"&description="+vacancy.description +"&jobType="+vacancy.job_type+"&link="+vacancy.link+"&location="+vacancy.location+"&postTime="+vacancy.postTime+"&salary="+vacancy.salary+"&uploadYear="+vacancy.uploadYear+"&title="+vacancy.title;
   return this.httpsvc.post<VacancyComponent>(this.rootUrl+"/register",reqBody,httpOptions)
 }
 

@@ -57,7 +57,7 @@
             </tr>
             <tr>
                 <td>Job Type:</td>
-                <td *ngIf="!isVacancyEditable">{{selectedLevel.job_type}}</td>
+                <td *ngIf="!isVacancyEditable">{{(selectedLevel.jobType)?"permanent":"contract"}}</td>
                 <td *ngIf="isVacancyEditable"><input [(ngModel)]="job_type" name="job type"></td>
             </tr>
             <tr>

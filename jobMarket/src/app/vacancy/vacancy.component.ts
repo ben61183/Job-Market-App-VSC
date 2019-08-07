@@ -45,11 +45,7 @@ export class VacancyComponent implements OnInit {
 
 
 
-<<<<<<< HEAD
-  this.vacancyId=7;
-=======
   this.vacancyId=828;
->>>>>>> 76692316c925a2fc618efbbf7d3e92a5bc96422c
   this.company="default company";
   this.description="default description";
   this.job_type=false;
