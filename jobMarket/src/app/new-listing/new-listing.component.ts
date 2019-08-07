@@ -132,7 +132,7 @@ export class NewListingComponent implements OnInit {
             
       }
     )
-    //  window.location.reload(); // comment out to view console
+      window.location.reload(); // comment out to view console
   }
 
   
