@@ -1,0 +1,61 @@
+<h3>Add Vacancy</h3>
+<!-- <form (ngSubmit)="submit()"> -->
+    <table>
+
+        <tr>
+            <td>Vacancy:</td>&nbsp;&nbsp;&nbsp;
+            <td>Company:</td>&nbsp;&nbsp;&nbsp;
+            <td>Description:</td>&nbsp;&nbsp;&nbsp;
+            <td>Job Type:</td>&nbsp;&nbsp;&nbsp;
+            <td>Location:</td>&nbsp;&nbsp;&nbsp;
+            <td>Salary:</td>
+            <td>Site URL:</td>
+            <td>Role:</td>
+        </tr>
+        <tr>
+            <td><input [(ngModel)]="newTitle" #inputName="ngModel" name="newTitle" [ngModelOptions]="{standalone: true}"></td>&nbsp;&nbsp;&nbsp;
+            <td><input [(ngModel)]="newCompany" name="newCompany" [ngModelOptions]="{standalone: true}"></td>&nbsp;&nbsp;&nbsp;
+            <td><input [(ngModel)]="newDescription" name="newDescription" [ngModelOptions]="{standalone: true}"></td>&nbsp;&nbsp;&nbsp;
+            
+            <td>Permanent: <input type="radio" value="true" (click)="setJobType(true)" name="newJobType" ><br>
+                Contract: <input type="radio" value="false" (click)="setJobType(false)" name="newJobType" ></td>&nbsp;&nbsp;&nbsp;
+
+            <td><input [(ngModel)]="newLocation" name="newLocation" [ngModelOptions]="{standalone: true}"></td>&nbsp;&nbsp;&nbsp;
+            <td><input [(ngModel)]="newSalary" name="newSalary" [ngModelOptions]="{standalone: true}"></td>
+            <td><input [(ngModel)]="newLink" name="newLink" [ngModelOptions]="{standalone: true}"></td>
+            <td><select id="role-select" [(ngModel)]="selectedRoleId">
+                    <option *ngFor="let role of roles" (change)="updateRole(selectedRole.value)" #selectDept value="{{role.roleId}}">
+                        {{role.roleId}}:{{role.roleName}}
+                    </option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr><td>Required Skills:</td></tr>
+        <tr *ngFor="let s of skills; let i = index">
+            <ng-container *ngIf="i%6==0">
+                <td><button value="s.skillId" (click)="addToSkills(skills[i])" onClick="this.disabled=true">{{skills[i].skill}}</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span *ngIf="skills.length>i+1">
+                        <button value="s.skillId" (click)="addToSkills(skills[i+1])" onClick="this.disabled=true"> {{skills[i+1].skill}}</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span *ngIf="skills.length>i+2">
+                        <button value="s.skillId" (click)="addToSkills(skills[i+2])" onClick="this.disabled=true"> {{skills[i+2].skill}}</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span *ngIf="skills.length>i+3">    
+                        <button value="s.skillId" (click)="addToSkills(skills[i+3])" onClick="this.disabled=true"> {{skills[i+3].skill}}</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span *ngIf="skills.length>i+4">        
+                        <button value="s.skillId" (click)="addToSkills(skills[i+4])" onClick="this.disabled=true"> {{skills[i+4].skill}}</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span *ngIf="skills.length>i+5">            
+                        <button value="s.skillId" (click)="addToSkills(skills[i+5])" onClick="this.disabled=true"> {{skills[i+5].skill}}</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span *ngIf="skills.length>i+6">
+                        <button value="s.skillId" (click)="addToSkills(skills[i+6])" onClick="this.disabled=true"> {{skills[i+6].skill}}</button>
+                    </span>
+                    </span>
+                    </span>
+                    </span>
+                    </span>
+                    </span>
+                </td>
+            </ng-container>
+        </tr>
+        <tr><td><button (click)="createNewVacancy()">Add Vacancy</button></td></tr>
+    </table>

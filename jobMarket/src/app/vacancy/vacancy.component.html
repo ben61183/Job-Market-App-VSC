@@ -1,1 +1,71 @@
-<p>vacancy works!</p>
+<h2 style="text-align: center">Job Vacancies</h2>
+
+<app-new-listing></app-new-listing>
+
+<table *ngFor="let v of allVacancies">
+    <tr>
+        <td *ngIf="!isEditable">
+            <h2><a href="{{v.link}}">{{v.title}}</a></h2>
+            </td>
+        <td *ngIf="isEditable"><input [(ngModel)]="title"></td>  
+    </tr>
+    <tr>
+        <th>Company:</th>
+        <th *ngIf="!isEditable">{{v.company}}</th>
+        <td *ngIf="isEditable"><input [(ngModel)]="company"></td>
+    </tr>
+    <tr>
+        <td>Location:</td>
+        <td *ngIf="!isEditable">{{v.location}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="location"></td>
+    </tr>
+    <tr>
+        <td>Description:</td>
+        <td *ngIf="!isEditable">{{v.description}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="description"></td>  
+    </tr>
+    <tr>
+        <td>Job Type:</td>
+        <td *ngIf="!isEditable">{{v.jobType}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="job_type"></td>
+    </tr>
+
+    <tr>
+        <td>Post Time:</td>
+        <td *ngIf="!isEditable">{{v.postTime}} | {{v.uploadYear}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="postTime"></td>  
+    </tr>
+    <tr>
+        <td>Salary:</td>
+        <td *ngIf="!isEditable">{{v.salary}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="salary"></td>  
+    </tr>
+
+    <tr><td><a [routerLink]="['/vacancy',v.vacancyId]">More Info...</a></td></tr>
+    <tr><th>Skills:</th></tr>
+    <tr *ngFor="let skill of v.vacancySkills">
+        <td>{{skill.skill}}</td>
+    </tr>
+    <tr>&nbsp;</tr>
+</table>
+
+
+
+<!-- <table>
+    <table>
+        <tr>
+            <td>
+                <select name="VacanyId" #selectVacancyId
+                (change)="updateSelectedProjectId(selectProjectId.value)">
+                    <option *ngFor="let v of allVacancies" value="{{v.VacanncyId}}">
+                        {{v.vacancyId}}:{{v.title}}
+                    </option>
+                </select>
+            </td>
+            <td>
+                <input type="submit" value="Add">
+            </td>
+
+        </tr>
+    </table>
+</table> -->

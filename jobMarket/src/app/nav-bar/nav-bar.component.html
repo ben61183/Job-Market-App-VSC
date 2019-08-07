@@ -1,0 +1,45 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/role-dashboard">Role Dashboard</a>
+      <a mat-list-item routerLink="/vacancy-dashboard">Vacancy Dashboard</a>
+      <a mat-list-item routerLink="/role-admin">Role Admin</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>IT Job Market</span>
+      <span class="spacer"></span> 
+      <a routerLink="/role-dashboard">Role Dashboard </a>
+      <a routerLink="/vacancy-dashboard">Vacancy Dashboard </a>
+      <a routerLink="/role-admin"> Role Admin</a>
+    </mat-toolbar>
+    <ng-content> </ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- <div > 
+  <ul class="nav nav-tabs"> 
+    <li class="nav-item"> 
+      <a class="nav-link" routerLink="/role-dashboard">Role Dashboard</a> 
+    </li>
+    <li class="nav-item"> 
+    <a class="nav-link" routerLink="/vacancy-dashboard"> Vacancy Dashboard</a> 
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" routerLink="/role-admin"> Role Admin </a>
+  </li>
+  </ul>
+</div> -->

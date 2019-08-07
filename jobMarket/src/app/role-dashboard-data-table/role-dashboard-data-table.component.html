@@ -1,0 +1,58 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <tr *ngFor="let role of allRoles"> 
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Role</th>
+        <td mat-cell *matCellDef="let row"> <a [routerLink]="['/role',role.roleId]">{{row.roleName}}</a></td>
+      </tr>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+        <td mat-cell *matCellDef="let row">{{row.category}}</td>
+    </ng-container>
+    
+    <!-- Historical Ads Column -->
+    <ng-container matColumnDef="vacCount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Historical Perminant Ads</th>
+        <td mat-cell *matCellDef="let row">{{row.vacCount}}</td>
+    </ng-container>
+    
+  <!-- Mean Salary This Year  -->
+    <ng-container matColumnDef="sumSalaryNow">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Mean Salary This Year</th>
+        <td mat-cell *matCellDef="let row">£{{row.sumSalaryNow}}</td>
+    </ng-container>
+
+     <!-- Mean Salary This Year  -->
+     <ng-container matColumnDef="numVacanciesNow">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Live Job Vacancies</th>
+        <td mat-cell *matCellDef="let row">{{row.numVacanciesNow}}</td>
+    </ng-container>
+
+    <!-- Mean Salary This Year  -->
+    <ng-container matColumnDef="medChange">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Mean Salary Change</th>
+        <td mat-cell *matCellDef="let row">{{row.medChange}}%</td>
+    </ng-container>
+
+     <!-- Mean Salary This Year  -->
+     <ng-container matColumnDef="rankNow">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Rank This Year</th>
+        <td mat-cell *matCellDef="let row">{{row.rankNow}}</td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="50"
+      [pageSizeOptions]="[10, 25, 50]">
+  </mat-paginator>
+</div>
