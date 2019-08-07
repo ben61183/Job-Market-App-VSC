@@ -3,8 +3,6 @@ import { RoleService } from '../role.service';
 import { Role } from '../role';
 import { RoleRank } from '../role-rank';
 
-
-
 @Component({
   selector: 'app-role-dashboard',
   templateUrl: './role-dashboard.component.html',
@@ -42,8 +40,6 @@ export class RoleDashboardComponent implements OnInit {
       rankChange: 0,
       vacancies : []
     }
-
-
   }
   
   ngOnInit() {

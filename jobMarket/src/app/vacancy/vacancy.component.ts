@@ -56,7 +56,6 @@ export class VacancyComponent implements OnInit {
   this.title="default title";
   this.uploadYear=2015;
   this.vacancySkills = [];
-  // this.skills = [];
 
 
   this.thisRole={
@@ -87,7 +86,6 @@ export class VacancyComponent implements OnInit {
   }
 
 
-  
 
   fetchCurrentVacancyFromService(){
     this.vacSvc.findVacancybyVacancyId(this.vacancyId).subscribe(

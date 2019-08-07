@@ -1,21 +1,23 @@
-
-<body>
 <h2 style="text-align: center">Job Vacancies</h2>
 
 <app-new-listing></app-new-listing>
 
-<!-- above may cause issues with below -->
 <table *ngFor="let v of allVacancies">
     <tr>
-        <td>Vacancy ID: </td>
-        <td>{{v.vacancyId}}</td>
-        <td><button (click)="toggleEdits()">{{(isEditable)?"Save":"Edit"}}</button></td>
-        <td><button (click)="deleteVacancy(v.vacancyId)">Delete Vacancy</button></td>
+        <td *ngIf="!isEditable">
+            <h2><a href="{{v.link}}">{{v.title}}</a></h2>
+            </td>
+        <td *ngIf="isEditable"><input [(ngModel)]="title"></td>  
     </tr>
     <tr>
-        <td>Company:</td>
-        <td *ngIf="!isEditable">{{v.company}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="v.company"></td>
+        <th>Company:</th>
+        <th *ngIf="!isEditable">{{v.company}}</th>
+        <td *ngIf="isEditable"><input [(ngModel)]="company"></td>
+    </tr>
+    <tr>
+        <td>Location:</td>
+        <td *ngIf="!isEditable">{{v.location}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="location"></td>
     </tr>
     <tr>
         <td>Description:</td>
@@ -24,39 +26,22 @@
     </tr>
     <tr>
         <td>Job Type:</td>
-        <td *ngIf="!isEditable">{{v.job_type}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="v.job_type"></td>
+        <td *ngIf="!isEditable">{{v.jobType}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="job_type"></td>
     </tr>
+
     <tr>
-        <td>link:</td>
-        <td *ngIf="!isEditable">{{v.link}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="v.link"></td>  
-    </tr>
-    <tr>
-        <td>location:</td>
-        <td *ngIf="!isEditable">{{v.location}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="v.location"></td>
-    </tr>
-    <tr>
-        <td>post time:</td>
-        <td *ngIf="!isEditable">{{v.postTime}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="v.postTime"></td>  
+        <td>Post Time:</td>
+        <td *ngIf="!isEditable">{{v.postTime}} | {{v.uploadYear}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="postTime"></td>  
     </tr>
     <tr>
         <td>Salary:</td>
         <td *ngIf="!isEditable">{{v.salary}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="v.salary"></td>  
     </tr>
-    <tr>
-        <td>Title:</td>
-        <td *ngIf="!isEditable">{{v.title}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="v.title"></td>  
-    </tr>
-    <tr>
-        <td>Upload Year:</td>
-        <td *ngIf="!isEditable">{{v.uploadYear}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="v.uploadYear"></td>
-    </tr>
+
+    <tr><td><a [routerLink]="['/vacancy',v.vacancyId]">More Info...</a></td></tr>
     <tr><th>Skills:</th></tr>
     <tr *ngFor="let skill of v.vacancySkills">
         <td>{{skill.skill}}</td>
@@ -84,5 +69,3 @@
         </tr>
     </table>
 </table> -->
-
-</body>

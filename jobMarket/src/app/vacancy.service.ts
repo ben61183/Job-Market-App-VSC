@@ -80,6 +80,4 @@ loadVacancySkillsFromServer(vacancyId): Observable<Skill[]>{
     this.rootUrl+"/theseskills/"+vacancyId
   )
 }
-
-
 }
