@@ -22,7 +22,7 @@
     <tr>
         <td>Description:</td>
         <td *ngIf="!isEditable">{{v.description}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="description"></td>  
+        <td *ngIf="isEditable"><input [(ngModel)]="v.description"></td>  
     </tr>
     <tr>
         <td>Job Type:</td>
@@ -38,7 +38,7 @@
     <tr>
         <td>Salary:</td>
         <td *ngIf="!isEditable">{{v.salary}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="salary"></td>  
+        <td *ngIf="isEditable"><input [(ngModel)]="v.salary"></td>  
     </tr>
 
     <tr><td><a [routerLink]="['/vacancy',v.vacancyId]">More Info...</a></td></tr>
