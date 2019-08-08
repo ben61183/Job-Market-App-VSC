@@ -22,7 +22,7 @@ export class RoleComponent implements OnInit {
   noOfVacancysData: any[] = []; 
 
   // public pieChartLabels = ["Current Vacancies", "Historical Vacancies", "Last Year Vacancies"];
-  public pieChartLabels = ["Current Vacancies", "2012 Vacancies", "2011 Vacancies", "2010 Vacancies", "2009 Vacancies"];
+  public pieChartLabels = ["Current Vacancies", "2018 Vacancies", "2017 Vacancies", "2016 Vacancies", "2015 Vacancies"];
 
   public pieChartData = [];
   public pieChartType = 'pie';
@@ -72,7 +72,6 @@ export class RoleComponent implements OnInit {
   }
 
 
-  
 
   ngOnInit() {
     this.role.roleId = this.oneRoleId
@@ -114,12 +113,14 @@ export class RoleComponent implements OnInit {
           this.vacanciesSalary.sort()
         }
         
-        // this.vacanciesYears.forEach((year,i) => {
-          // if(year!=this.vacanciesYears[i-1]){this.lineChartLabels.push(year), this.lineChartData[0].data.push(this.vacanciesSalary[i])}else{this.lineChartData[0].data[i]+=this.vacanciesSalary[i]}
-        // });
+        // collates the average of vacancy salaries that occured in the same year.
+        this.vacanciesYears.forEach((year,i) => {
+          if(year!=this.vacanciesYears[i-1]){this.lineChartLabels.push(year), this.lineChartData[0].data.push(this.vacanciesSalary[i])}
+          else{this.lineChartData[0].data.push(this.vacanciesSalary[i])}
+        });
           
-        this.lineChartLabels = this.vacanciesYears
-        this.lineChartData[0].data = this.vacanciesSalary
+        // this.lineChartLabels = this.vacanciesYears
+        // this.lineChartData[0].data = this.vacanciesSalary
         
       } 
     )
@@ -133,24 +134,24 @@ export class RoleComponent implements OnInit {
     
     // iterate through vacancies
     for(let vac of vacancies){
-      if(vac.uploadYear == 2013){ // this year (2013 is last year in db)
+      if(vac.uploadYear == 2019){ // this year (2013 is last year in db)
         this.role.sumSalaryNow += vac.salary
         this.role.numVacanciesNow += 1
         for(let skill of vac.vacancySkills){
           this.keySkills.push(skill.skill)
         }
       }
-      else if(vac.uploadYear == 2012){ // last year
+      else if(vac.uploadYear == 2018){ // last year
         this.role.sumSalaryPrev += vac.salary
         this.role.numVacanciesPrev += 1
       }
-      else if(vac.uploadYear == 2011){ // last year
+      else if(vac.uploadYear == 2017){ // last year
         this.numVacanciesTwo += 1
       }
-      else if(vac.uploadYear == 2010){ // last year
+      else if(vac.uploadYear == 2016){ // last year
         this.numVacanciesThree += 1
       }
-      else if(vac.uploadYear == 2009){ // last year
+      else if(vac.uploadYear == 2015){ // last year
         this.numVacanciesFour += 1
       }
     }
