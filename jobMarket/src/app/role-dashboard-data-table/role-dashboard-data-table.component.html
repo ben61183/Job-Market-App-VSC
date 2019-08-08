@@ -1,11 +1,12 @@
 <div class="mat-elevation-z8">
   <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource">
-
+      
     <!-- Name Column -->
     <ng-container matColumnDef="name">
+        
       <tr *ngFor="let role of allRoles"> 
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Role</th>
-        <td mat-cell *matCellDef="let row"> <a [routerLink]="['/role',role.roleId]">{{row.roleName}}</a></td>
+        <td mat-cell *matCellDef="let row"> <a mat-tab-link [routerLink]="['/role',row.roleId]">{{row.roleName}}</a></td>
       </tr>
     </ng-container>
 
@@ -45,6 +46,22 @@
         <td mat-cell *matCellDef="let row">{{row.rankNow}}</td>
     </ng-container>
     
+    <ng-container matColumnDef="rankChange">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Rank Change</th>
+        <td mat-cell *matCellDef="let row">
+          <ng-container *ngIf="row.rankChange<0">
+              {{row.rankChange}} <mat-icon>call_received</mat-icon>
+          </ng-container>
+          <ng-container *ngIf="row.rankChange>0">
+              +{{row.rankChange}} <mat-icon>call_made</mat-icon>
+          </ng-container>
+          <ng-container *ngIf="row.rankChange==0">
+              {{row.rankChange}}  <mat-icon>arrow_forward</mat-icon>
+          </ng-container>
+          
+        </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

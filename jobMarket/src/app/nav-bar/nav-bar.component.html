@@ -20,13 +20,16 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>IT Job Market</span>
+      <span>
+        <img width="60" alt="Angular Logo" routerLink="/role-dashboard" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1024px-Circle-icons-computer.svg.png">
+        <a routerLink="/role-dashboard">IT Job Market</a></span>
       <span class="spacer"></span> 
       <a routerLink="/role-dashboard">Role Dashboard </a>
       <a routerLink="/vacancy-dashboard">Vacancy Dashboard </a>
       <a routerLink="/role-admin"> Role Admin</a>
     </mat-toolbar>
-    <ng-content> </ng-content>
+    <ng-content> 
+    </ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

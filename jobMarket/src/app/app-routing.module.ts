@@ -6,14 +6,17 @@ import { VacancyComponent } from './vacancy/vacancy.component';
 import { RoleAdminComponent} from './role-admin/role-admin.component'
 import { NewListingComponent } from './new-listing/new-listing.component';
 import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { VacancyDashboardComponent } from './vacancy-dashboard/vacancy-dashboard.component';
 
 const routes: Routes = [
   {path: "role-dashboard", component: RoleDashboardComponent},
   {path: "role/:roleId", component: RoleComponent},
-  {path: "vacancy-dashboard", component: VacancyComponent},
+  {path: "vacancy-dashboard", component: VacancyDashboardComponent},
   {path: "role-admin", component: RoleAdminComponent},
   {path: "new-listing",component: NewListingComponent},
-  {path: "vacancy/:vacancyId", component: VacancyDetailsComponent}
+  {path: "vacancy/:vacancyId", component: VacancyDetailsComponent},
+  {path: "", component: WelcomeComponent}
   // {path: "login", component: UserComponent}
 ];
 
@@ -23,3 +26,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

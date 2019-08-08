@@ -49,7 +49,7 @@ export class NewListingComponent implements OnInit {
     this.newLink=""
     this.newLocation=""
     this.newPostTime="00:00AM"
-    this.newSalary=0
+    this.newSalary=null
     this.newUploadYear=0
 
     this.newRole={
@@ -132,7 +132,7 @@ export class NewListingComponent implements OnInit {
             
       }
     )
-    window.location.reload(); // comment out to view console
+      window.location.reload(); // comment out to view console
   }
 
   
