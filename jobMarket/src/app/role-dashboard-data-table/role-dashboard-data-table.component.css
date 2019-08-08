@@ -1,3 +1,15 @@
 .full-width-table {
   width: 100%;
 }
+
+.mat-form-field {
+  padding-left: 20px;
+  font-size: 14px;
+  width: 100%;
+  padding-right: 20px;
+}
+
+.data-table {
+  margin: 20px auto; 
+}
+
