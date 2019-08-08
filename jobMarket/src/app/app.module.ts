@@ -42,9 +42,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FormsModule,
-    HttpClientModule,
-    VacancyComponent,
+    // HttpClientModule,
+    // VacancyComponent,
     UserComponent,
     RegisterComponent,
     VacancyComponent,
