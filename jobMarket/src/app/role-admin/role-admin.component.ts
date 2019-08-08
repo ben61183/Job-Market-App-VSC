@@ -63,6 +63,7 @@ export class RoleAdminComponent implements OnInit {
 
   ngOnInit() {
     this.loadAllRoles() 
+    this.showVacancyForm()
   }
 
   loadAllRoles(){
@@ -156,12 +157,13 @@ export class RoleAdminComponent implements OnInit {
   }
 
 
-    toggleEdits(edit){
+    toggleEdits(){
       this.isVacancyEditable=!this.isVacancyEditable
       console.log(this.isVacancyEditable)
       this.updateVacancyDetails()
-      if (edit=="Save"){
+      if (this.isVacancyEditable == false){
         window.location.reload()
+        
       }
     }
 

@@ -38,6 +38,8 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { VacancyDashboardDataTableComponent } from './vacancy-dashboard-data-table/vacancy-dashboard-data-table.component';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     RoleDashboardDataTableComponent,
     VacancyDashboardComponent,
     VacancyDetailsComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    VacancyDashboardDataTableComponent
   ],
   entryComponents: [NewListingComponent],
   imports: [

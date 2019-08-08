@@ -16,7 +16,6 @@
                 <input matInput [(ngModel)]="newDescription" name="newDescription" [ngModelOptions]="{standalone: true}" placeholder="Description">
             </mat-form-field>&nbsp;&nbsp;
 
-            
             <mat-form-field>
                 <mat-label>Role</mat-label>
                 <mat-select id="role-select" [(ngModel)]="selectedRoleId">
@@ -44,14 +43,6 @@
             <mat-form-field class="example-full-width">
             <td><input matInput [(ngModel)]="newLink" name="newLink" [ngModelOptions]="{standalone: true}" placeholder="Site URL"></td>
             </mat-form-field>&nbsp;&nbsp;
-        
-            <!-- <td>Role:</td>
-            <td><select id="role-select" [(ngModel)]="selectedRoleId">
-                    <option *ngFor="let role of roles" (change)="updateRole(selectedRole.value)" #selectDept value="{{role.roleId}}">
-                        {{role.roleId}}:{{role.roleName}}
-                    </option>
-                </select>
-            </td> -->
 
             <mat-radio-group aria-label="Job Type">
                 <mat-radio-button value="true" (click)="setJobType(true)" >Permanent</mat-radio-button>&nbsp;&nbsp;
