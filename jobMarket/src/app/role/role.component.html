@@ -1,8 +1,10 @@
 <h1 style = "text-align: center">{{role.roleName}}</h1>
 <h3 style = "text-align: center">({{role.category}})</h3>
 <h4 style = "text-align: center" [hidden]="primarySkill==undefined">Key Skill: {{primarySkill}}</h4>
+
+<div>
+<div class="roleTables" id="leftTable"><h3>Current {{role.roleName}} Vacancies:</h3>
 <table>
-    <h3>Current {{role.roleName}} Vacancies:</h3>
     <tr>
         <th>Vacancy</th>
         <th>Salary</th>
@@ -22,7 +24,8 @@
         </tr>
     </ng-container>
 </table>
-
+</div>
+<div class="roleTables">
     <h3>{{role.roleName}} Role Statistics:</h3>
 
 <table>
@@ -36,6 +39,8 @@
         <tr>Last Year's Mean Salary: £{{role.medSalaryPrev}}</tr>
 </td>
 </table>
+</div>
+</div>
 
 <div> 
     <div style="display: block"> 

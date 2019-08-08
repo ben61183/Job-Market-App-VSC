@@ -8,6 +8,7 @@ import { NewListingComponent } from './new-listing/new-listing.component';
 import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { VacancyDashboardComponent } from './vacancy-dashboard/vacancy-dashboard.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {path: "role-dashboard", component: RoleDashboardComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: "role-admin", component: RoleAdminComponent},
   {path: "new-listing",component: NewListingComponent},
   {path: "vacancy/:vacancyId", component: VacancyDetailsComponent},
-  {path: "", component: WelcomeComponent}
+  {path: "", component: WelcomeComponent},
+  {path: "register", component: RegisterComponent}
   // {path: "login", component: UserComponent}
 ];
 

@@ -63,10 +63,11 @@
 </div>
     <table>
     <hr> 
-        <tr><td>Required Skills:</td></tr>
+        <tr><td>Required/Preferred Skills:</td></tr>
         <tr *ngFor="let s of skills; let i = index">
             <ng-container *ngIf="i%6==0">
-                <td><button mat-raised-button value="s.skillId" (click)="addToSkills(skills[i])" onClick="this.disabled=true">{{skills[i].skill}}</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <td id="skillButtons">
+                    <button mat-raised-button value="s.skillId" (click)="addToSkills(skills[i])" onClick="this.disabled=true">{{skills[i].skill}}</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <span *ngIf="skills.length>i+1">
                         <button mat-raised-button value="s.skillId" (click)="addToSkills(skills[i+1])" onClick="this.disabled=true"> {{skills[i+1].skill}}</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <span *ngIf="skills.length>i+2">
@@ -77,16 +78,13 @@
                         <button mat-raised-button value="s.skillId" (click)="addToSkills(skills[i+4])" onClick="this.disabled=true"> {{skills[i+4].skill}}</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <span *ngIf="skills.length>i+5">            
                         <button mat-raised-button value="s.skillId" (click)="addToSkills(skills[i+5])" onClick="this.disabled=true"> {{skills[i+5].skill}}</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span *ngIf="skills.length>i+6">
-                        <button mat-raised-button value="s.skillId" (click)="addToSkills(skills[i+6])" onClick="this.disabled=true"> {{skills[i+6].skill}}</button>
-                    </span>
                     </span>
                     </span>
                     </span>
                     </span>
                     </span>
                 </td>
-            </ng-container>
+            </ng-container><td></td>
         </tr>
         <hr> 
         <tr><td><button mat-raised-button color="accent" (click)="createNewVacancy()">Add Vacancy</button></td></tr>
