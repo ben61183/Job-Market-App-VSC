@@ -1,3 +1,11 @@
 .full-width-table {
   width: 100%;
 }
+
+i.icon-red {
+  color: rgb(243, 60, 60);
+}
+
+i.icon-green{
+  color: rgb(50, 179, 50)
+}
