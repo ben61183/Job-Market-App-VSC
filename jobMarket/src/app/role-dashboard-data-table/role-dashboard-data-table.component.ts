@@ -29,6 +29,9 @@ export class RoleDashboardDataTableComponent implements OnInit {
   role: Role
   ranks: RoleRank[] = []// object for creating ranked roles
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 constructor(private rolSvc:RoleService, private router: Router) {
     this.searchParam = " "
     this.role={

@@ -72,7 +72,6 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    // NgbModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
