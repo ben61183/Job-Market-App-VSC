@@ -20,7 +20,7 @@ export class RoleDashboardDataTableComponent implements OnInit {
   dataSource: MatTableDataSource<Role>;
   
   
-  displayedColumns = ['name','rankNow',  'category', 'sumSalaryNow', 'medChange', 'vacCount', 'numVacanciesNow', 'rankChange']
+  displayedColumns = ['name','rankNow', 'rankChange',  'category', 'sumSalaryNow', 'medChange', 'vacCount', 'numVacanciesNow']
 
   oneRoleId: number // id of specific role (taken from dash)
   vacCount: number // total vacancies in role
@@ -178,7 +178,7 @@ roleCalculations(allRoles){
       if(rankRole.roleId==role.roleId){
         role.rankPrev = rankRole.roleRank
       }
-      role.rankChange = role.rankNow - role.rankPrev
+      role.rankChange = role.rankPrev - role.rankNow
       // console.log(role.rankNow)
       // console.log(role.rankPrev)
       // console.log("rank change:"+role.rankChange)
