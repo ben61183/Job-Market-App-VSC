@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VacancyComponent } from './vacancy/vacancy.component';
+import { UserComponent } from './user/user.component';
+import { RegisterComponent } from './register/register.component';
 import { RoleComponent } from './role/role.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -40,6 +42,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
 @NgModule({
   declarations: [
     AppComponent,
+    FormsModule,
+    HttpClientModule,
+    VacancyComponent,
+    UserComponent,
+    RegisterComponent,
     VacancyComponent,
     RoleComponent,
     RoleDashboardComponent,
