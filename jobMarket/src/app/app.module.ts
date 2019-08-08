@@ -44,8 +44,6 @@ import { VacancyDashboardDataTableComponent } from './vacancy-dashboard-data-tab
 @NgModule({
   declarations: [
     AppComponent,
-    // HttpClientModule,
-    // VacancyComponent,
     UserComponent,
     RegisterComponent,
     VacancyComponent,
@@ -77,7 +75,6 @@ import { VacancyDashboardDataTableComponent } from './vacancy-dashboard-data-tab
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    // NgbModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,

@@ -1,0 +1,47 @@
+table{
+    width:100%;
+    margin: 0 auto;
+    padding: 10 10 10 10;
+    font-size: 16px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+#skillTable{
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+    float: inherit;
+}
+
+#skillTable button{
+    margin: 10px 10px 10px 10px;
+}
+
+#mySkills{
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+    
+}
+
+#savedVacancies{
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    float: left
+}
+
+.applied{
+    /* margin: auto; */
+    /* width: 300px; */
+    /* padding: 20%; */
+    float: left
+}
+
+.unapplied{
+    margin: auto;
+    /* width: 30%; */
+    /* padding: 10px; */
+    float: right
+}

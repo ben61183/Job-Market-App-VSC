@@ -2,6 +2,13 @@
   width: 100%;
 }
 
+i.icon-red {
+  color: rgb(243, 60, 60);
+}
+
+i.icon-green{
+  color: rgb(50, 179, 50)
+}
 .mat-form-field {
   padding-left: 20px;
   font-size: 14px;
