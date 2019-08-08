@@ -11,7 +11,7 @@ export class RegisterService {
 rootUrl: String
 
 constructor(private httpsvc:HttpClient){
-  this.rootUrl="http://localhost:7750/register"
+  this.rootUrl="http://localhost:7750/user"
 }
 
 findUserByUserId(userId):Observable<RegisterComponent>{

@@ -14,3 +14,8 @@
 h1,h3,h4,h5,p {
     text-align: center
 }
+#description{
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}

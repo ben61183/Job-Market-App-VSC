@@ -9,6 +9,7 @@ import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.compo
 import { WelcomeComponent } from './welcome/welcome.component';
 import { VacancyDashboardComponent } from './vacancy-dashboard/vacancy-dashboard.component';
 import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   {path: "role-dashboard", component: RoleDashboardComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: "new-listing",component: NewListingComponent},
   {path: "vacancy/:vacancyId", component: VacancyDetailsComponent},
   {path: "", component: WelcomeComponent},
-  {path: "register", component: RegisterComponent}
+  {path: "register", component: RegisterComponent},
+  {path: "user/:userId", component: UserComponent}
   // {path: "login", component: UserComponent}
 ];
 
