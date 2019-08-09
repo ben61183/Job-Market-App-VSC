@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
   signUp(){
     if (this.confirmPassword==this.password){
       this.addUserDetails();
-      window.location.reload()
+      // window.location.reload()
     } else{
       this.isError=false;
       console.log(this.isError)

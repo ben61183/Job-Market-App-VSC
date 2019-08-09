@@ -18,7 +18,9 @@ findUserByUserId(userId):Observable<RegisterComponent>{
   return this.httpsvc.get<RegisterComponent>(this.rootUrl+"/find/"+userId)
 }
 
-findUser
+// findUserByUsername(username):Observable<RegisterComponent>{
+
+// }
 
 updateUserOnServer(register):Observable<RegisterComponent>{
   const httpOptions={ //declare the headers for the content type

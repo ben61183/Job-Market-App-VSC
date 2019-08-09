@@ -84,7 +84,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MatDialogModule,
     MatInputModule,
     MatRadioModule,
-    MatSelectModule,
+    MatSelectModule
 
     
   ],
