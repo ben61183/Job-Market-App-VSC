@@ -1,0 +1,24 @@
+<h1>Login using into MastekJobs Account</h1>
+
+       
+<app-welcome></app-welcome>
+<form>
+        <table id="loginTable">
+                <tr>
+                    <th>Username:</th>
+                    <td><input [(ngModel)]="username" name="username"></td>
+                </tr> 
+                <tr>
+                    <th>Password:</th>
+                    <td><input [(ngModel)]="password" name="password"></td>
+                </tr>
+                <tr>
+                    <input type="submit" value="login">
+            </tr>
+            </table>
+
+            <div *ngIf="!isError">username cannot be found</div>
+            <div *ngIf="!isUniqueEmail">username and password</div>
+            <div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
+
+</form>

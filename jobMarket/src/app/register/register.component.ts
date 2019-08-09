@@ -21,12 +21,18 @@ export class RegisterComponent implements OnInit {
   isPassCheck:boolean
   isUsernameCheck: boolean
   isEmailCheck: boolean
+  isUniqueEmail: boolean
+  isUniqueUsername: boolean
 
   allUsers: User[];
 
   constructor(private regSvc:RegisterService) {
     this.isPassMatch
     this.isError=true
+    this.isEmailCheck
+    this.isUniqueEmail=true
+    this.isUniqueUsername=true
+
     this.isPassCheck=false;
     this.isUsernameCheck=false;
     this.isEmailCheck=false;
@@ -90,6 +96,8 @@ export class RegisterComponent implements OnInit {
         if (user.username==this.username){
           console.log("username is matching")
           return this.isUsernameCheck=true
+        } else{
+          this.isUniqueUsername=false;
         }
         
       }
@@ -100,6 +108,8 @@ export class RegisterComponent implements OnInit {
       if (user.email==this.email){
 
         return this.isEmailCheck=true
+      } else{
+        this.isUniqueEmail=false
       }
       
     }
