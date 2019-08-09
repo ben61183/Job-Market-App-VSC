@@ -1,27 +1,28 @@
 <h1>Register Account</h1>
+<form (submit)="signUp()">
+        <table>
 <app-welcome></app-welcome>
-<form>
         <table id="registerTable">
                 <tr>
                     <th>Username:</th>
-                    <td><input [(ngModel)]="username"></td>  
                 </tr> 
                 <tr>
                     <th>Password:</th>
-                    <td><input [(ngModel)]="password"></td>
+                    <td><input [(ngModel)]="password" name="password"></td>
                 </tr>
                 <tr>
                     <td>Confirm Password:</td>
-                    <td><input [(ngModel)]="password"></td>
+                    <td><input [(ngModel)]="confirmPassword" name="password"></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input [(ngModel)]="email"></td>  
+                    <td><input [(ngModel)]="email" name="email"></td>  
                 </tr>
                 <tr>
-                    <td>Job Type:</td>
-                    <td><input [(ngModel)]="jobType"></td>
-                </tr>
+                    <input type="submit" value="Register">
+            </tr>
             </table>
+
+            <div *ngIf="!isError">Passwords do no match</div>
 
 </form>

@@ -18,6 +18,8 @@ findUserByUserId(userId):Observable<RegisterComponent>{
   return this.httpsvc.get<RegisterComponent>(this.rootUrl+"/find/"+userId)
 }
 
+findUser
+
 updateUserOnServer(register):Observable<RegisterComponent>{
   const httpOptions={ //declare the headers for the content type
     headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})

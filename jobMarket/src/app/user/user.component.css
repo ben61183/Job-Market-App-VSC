@@ -9,7 +9,7 @@ table{
 
 #skillTable{
     margin: auto;
-    width: 80%;
+    width: 90%;
     padding: 10px;
     float: inherit;
 }
@@ -18,30 +18,35 @@ table{
     margin: 10px 10px 10px 10px;
 }
 
-#mySkills{
-    margin: auto;
-    width: 70%;
-    padding: 10px;
-    
-}
 
 #savedVacancies{
     margin: auto;
     width: 100%;
     padding: 10px;
-    float: left
+    float: inherit;
 }
 
 .applied{
-    /* margin: auto; */
-    /* width: 300px; */
-    /* padding: 20%; */
-    float: left
+    float: right;
+    display: flex;
+    font-size: 16px
+}
+
+.applied mat-chip{
+background: rgb(255, 79, 79)
 }
 
 .unapplied{
-    margin: auto;
-    /* width: 30%; */
-    /* padding: 10px; */
-    float: right
+    float: left;
+    display: flex;
+    font-size: 16px
+}
+
+.unapplied mat-chip{
+    background: rgb(82, 79, 255)
+    }
+
+
+h3{
+    text-align: center
 }

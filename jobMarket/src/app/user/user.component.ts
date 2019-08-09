@@ -96,7 +96,6 @@ export class UserComponent implements OnInit {
 
   // delete a skill from user
   deleteFromSkills(skill){
-    // this.userSkills.splice(skill)
     this.useSvc.deleteUserSkillsFromService(this.userId,skill.skillId).subscribe()
     this.skillsCheck()
     // window.location.reload();
@@ -110,10 +109,14 @@ export class UserComponent implements OnInit {
     this.antiSkills.forEach((aSkill,i) => {
       for(let uSkill of this.userSkills){
         if(aSkill.skillId==uSkill.skillId){
-          console.log("del")
           delete this.antiSkills[i]
         }
     }})
     }
+
+  deleteFromVacancies(vacancyId){
+    this.useSvc.deleteVacancyFromService(this.userId,vacancyId)
+    // window.location.reload()
+  }
 
 }

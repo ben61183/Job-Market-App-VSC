@@ -35,4 +35,15 @@ export class UserService {
     var reqBody = "userId="+userId+"&skillId="+skillId
     return this.httpsvc.post<UserComponent>(this.rootUrl+"/delete/skill",reqBody,httpOptions)
   }
+
+  deleteVacancyFromService(userId,vacancyId){
+    const httpOptions = {// declare the headers for the content type
+      headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
+    }
+    console.log(userId)
+    console.log(vacancyId)
+    var reqBody = "userId="+userId+"&vacancyId="+vacancyId
+    console.log(reqBody)
+    return this.httpsvc.post<UserComponent>(this.rootUrl+"/delete/vacancy",reqBody,httpOptions)
+  }
 }
