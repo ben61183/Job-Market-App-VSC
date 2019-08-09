@@ -89,7 +89,7 @@ import { CompanyComponent } from './company/company.component';
     MatDialogModule,
     MatInputModule,
     MatRadioModule,
-    MatSelectModule,
+    MatSelectModule
 
     
   ],
