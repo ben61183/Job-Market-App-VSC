@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { RegisterComponent } from './register/register.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
-import { userInfo } from 'os';
 
 @Injectable({
   providedIn: 'root'
