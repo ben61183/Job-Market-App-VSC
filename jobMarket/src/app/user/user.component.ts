@@ -43,6 +43,7 @@ export class UserComponent implements OnInit {
     console.log(this.userId)
     this.findUser(this.userId)
     this.loadAllSkills()
+
   }
 
   findUser(userId){

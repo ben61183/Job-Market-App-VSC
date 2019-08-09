@@ -3,6 +3,7 @@ import { Role } from '../role';
 import { RoleService } from '../role.service';
 import { VacancyService } from '../vacancy.service';
 import { Vacancy } from '../vacancy';
+import { Company } from '../company';
 
 @Component({
   selector: 'app-role-admin',
@@ -10,13 +11,13 @@ import { Vacancy } from '../vacancy';
   styleUrls: ['./role-admin.component.css']
 })
 export class RoleAdminComponent implements OnInit {
-    allRoles: Role[]
-    roleID: number
-    category: string
-    role_name: string
-    isEditable: boolean
-    vacancyId:number;
-  company:string;
+  allRoles: Role[]
+  roleID: number
+  category: string
+  role_name: string
+  isEditable: boolean
+  vacancyId:number;
+  company:Company;
   description:string;
   job_type:boolean;
   link:string;
@@ -50,7 +51,7 @@ export class RoleAdminComponent implements OnInit {
     this.isVacancyEditable=false;
 
     this.vacancyId=7;
-    this.company="default company";
+    this.company={companyId:0,linkedIn:"",hqLocation:"",companyName:""};
     this.description="default description";
     this.job_type=false;
     this.link="default website";
@@ -113,7 +114,7 @@ export class RoleAdminComponent implements OnInit {
     
         response => {
           this.vacancyId=response.vacancyId
-          this.company=response.company
+          this.company=response.thisCompany
           this.description=response.description
           this.job_type=response.job_type
           this.link=response.link
@@ -135,7 +136,7 @@ export class RoleAdminComponent implements OnInit {
       }).subscribe(     
         response => {
           this.vacancyId=response.vacancyId
-          this.company=response.company
+          this.company=response.thisCompany
           this.description=response.description
           this.job_type=response.job_type
           this.link=response.link

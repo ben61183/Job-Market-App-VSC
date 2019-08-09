@@ -1,8 +1,9 @@
 import { Skill } from './skill' 
+import { Company } from './company';
 
 export interface Vacancy {
     vacancyId:number;
-    company:string;
+    thisCompany:Company;
     description:string;
     job_type:boolean;
     link:string;

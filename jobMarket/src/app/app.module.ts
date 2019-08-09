@@ -45,6 +45,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { VacancyDashboardDataTableComponent } from './vacancy-dashboard-data-table/vacancy-dashboard-data-table.component';
 import { AddRoleComponent } from './add-role/add-role.component';
 import { EditRoleComponent } from './edit-role/edit-role.component';
+import { CompanyComponent } from './company/company.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { EditRoleComponent } from './edit-role/edit-role.component';
     WelcomeComponent,
     VacancyDashboardDataTableComponent,
     AddRoleComponent,
-    EditRoleComponent
+    EditRoleComponent,
+    CompanyComponent
   ],
   entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent],
   imports: [
@@ -91,7 +93,7 @@ import { EditRoleComponent } from './edit-role/edit-role.component';
     MatDialogModule,
     MatInputModule,
     MatRadioModule,
-    MatSelectModule,
+    MatSelectModule
 
     
   ],

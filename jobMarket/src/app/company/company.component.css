@@ -1,0 +1,50 @@
+table{
+    width:100%;
+    margin: 0 auto;
+    padding: 10 10 10 10;
+    font-size: 16px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+h1,h2,h3,h4,a{
+    text-align: center
+}
+
+#linkedIn{
+    width: 50px
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50px
+}
+
+.mainB{
+    margin: 10px 10px 10px 10px;
+    font-size: 20px;
+    
+}
+
+.flex-container{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap
+}
+
+.vacancyTable{
+    margin: 20px;
+    width: 90%;
+    padding: 40px;
+    text-align: center;
+
+}
+
+.optionButtons {
+    font-size: 14px;
+    margin:auto;
+
+}

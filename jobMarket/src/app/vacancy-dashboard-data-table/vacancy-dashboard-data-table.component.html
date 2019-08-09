@@ -3,19 +3,19 @@
 </mat-form-field>
 
 <div class="mat-elevation-z8 data-table">
-  <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource">
+  <table mat-table class="full-width-table" matSort aria-label="Elements" id="vacancyDash" [dataSource]="dataSource">
 
     <!-- Title Column -->
     <ng-container matColumnDef="company">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Company</th>
-        <td mat-cell *matCellDef="let vac">{{vac.company}}</td>
+        <td mat-cell *matCellDef="let vac">{{vac.thisCompany.companyName}}</td>
       
     </ng-container>
 
     <!-- Description Column -->
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-      <td mat-cell *matCellDef="let vac">{{vac.description}}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="vacancyDashDescription">Description</th>
+      <td mat-cell *matCellDef="let vac" class="vacancyDashDescription">{{vac.description}}</td>
     </ng-container>
 
     <!-- Location Column -->
@@ -26,7 +26,7 @@
 
       <ng-container matColumnDef="title">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
-          <td mat-cell *matCellDef="let vac"><a mat-tab-link [routerLink]="['/vacancy',vac.vacancyId]">{{vac.title}}</a></td>
+          <td mat-cell *matCellDef="let vac"><button mat-raised-button (click)="openVacancy(vac.vacancyId)">{{vac.title}}</button></td>
       </ng-container>
 
       <ng-container matColumnDef="uploadYear">
@@ -36,7 +36,7 @@
 
       <ng-container matColumnDef="salary">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary</th>
-          <td mat-cell *matCellDef="let vac">{{vac.salary}}</td>
+          <td mat-cell *matCellDef="let vac">£{{vac.salary}}</td>
       </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>

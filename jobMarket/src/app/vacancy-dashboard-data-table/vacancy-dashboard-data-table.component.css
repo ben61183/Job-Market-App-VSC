@@ -2,7 +2,19 @@
   width: 100%;
 }
 
+.full-width-table td{
+  width: 40px;
+  padding-left: 10px;
+  padding-right: 10px
+}
+
 .crudButton {
   margin-left: 32px;
   margin-top: 5px; 
 }
+
+.vacancyDashDescription{
+  overflow: hidden;
+  width: 60px;
+}
+
