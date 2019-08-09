@@ -1,19 +1,30 @@
 #skillTable{
-    width:100%;
-    margin: 0 auto;
+    width:80%;
+    /* margin: 0 auto; */
     padding: 10 10 10 10;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center
+}
+
+button{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center
+
 }
 
 #skillTable td{
     text-align: center;
     font-size: 18px;
-    padding-left: 2%;
-    padding-right: 2%
+    /* padding-left: 2%;
+    padding-right: 2%; */
 }
 
-h1,h3,h4,h5,p {
+h1,h3,h4,h5,p,td,tr,button {
     text-align: center
 }
+
 #description{
     margin: auto;
     width: 60%;

@@ -6,6 +6,7 @@ import { Skill } from '../skill';
 import { SkillService } from '../skill.service';
 import { MatDialog } from '@angular/material';
 import { NewListingComponent } from '../new-listing/new-listing.component';
+import { Company } from '../company';
 
 @Component({
   selector: 'app-vacancy',
@@ -16,7 +17,7 @@ export class VacancyComponent implements OnInit {
   
   
   vacancyId:number;
-  company:string;
+  company:Company;
   description:string;
   job_type:boolean;
   link:string;
@@ -48,7 +49,7 @@ export class VacancyComponent implements OnInit {
 
 
   this.vacancyId=828;
-  this.company="default company";
+  this.company={companyName:"",hqLocation:"",linkedIn:"",companyId:0};
   this.description="default description";
   this.job_type=false;
   this.link="default website";
@@ -94,7 +95,7 @@ export class VacancyComponent implements OnInit {
   
       response => {
         this.vacancyId=response.vacancyId
-        this.company=response.company
+        this.company=response.thisCompany
         this.description=response.description
         this.job_type=response.job_type
         this.link=response.link

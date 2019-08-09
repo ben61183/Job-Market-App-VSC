@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../register.service';
 import { User } from '../user';
+import { UserIdService } from '../user-id.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [UserIdService]
+
 })
+
 export class RegisterComponent implements OnInit {
 
   userId:number
@@ -26,7 +30,9 @@ export class RegisterComponent implements OnInit {
 
   allUsers: User[];
 
-  constructor(private regSvc:RegisterService) {
+  myUserId:number
+
+  constructor(private regSvc:RegisterService, private uidSer:UserIdService) {
     this.isPassMatch
     this.isError=true
     this.isEmailCheck
@@ -42,10 +48,14 @@ export class RegisterComponent implements OnInit {
     this.password="";
     this.email="";
     this.confirmPassword=""
+
+
+    this.myUserId=0
     
    }
   
   ngOnInit() {
+    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
   }
 
   addUserDetails(){
@@ -56,8 +66,8 @@ export class RegisterComponent implements OnInit {
           this.password = response.password
           this.email = response.email
           console.log(response)
+          this.uidSer.changeUserId(this.userId)
           })
-          
   } 
   
   passwordCheck(){

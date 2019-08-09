@@ -44,6 +44,8 @@ import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.compo
 import { WelcomeComponent } from './welcome/welcome.component';
 import { VacancyDashboardDataTableComponent } from './vacancy-dashboard-data-table/vacancy-dashboard-data-table.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
+import { CompanyComponent } from './company/company.component';
+
 
 
 @NgModule({
@@ -63,7 +65,8 @@ import { UserloginComponent } from './userlogin/userlogin.component';
     VacancyDetailsComponent,
     WelcomeComponent,
     VacancyDashboardDataTableComponent,
-    UserloginComponent
+    UserloginComponent,
+    CompanyComponent
   ],
   entryComponents: [NewListingComponent],
   imports: [
