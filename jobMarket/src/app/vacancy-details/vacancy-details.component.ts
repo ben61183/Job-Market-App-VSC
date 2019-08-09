@@ -3,6 +3,7 @@ import { Skill } from '../skill';
 import { VacancyService } from '../vacancy.service';
 import { SkillService } from '../skill.service';
 import { ActivatedRoute } from '@angular/router';
+import { VacancyIdService } from '../vacancy-id.service';
 
 @Component({
   selector: 'app-vacancy-details',
@@ -23,7 +24,8 @@ export class VacancyDetailsComponent implements OnInit {
   uploadYear: number;
   vacancySkills: Skill[]
 
-  constructor(private vacSvc: VacancyService, private skiSvc: SkillService, private route: ActivatedRoute) {
+  constructor(private vacSvc: VacancyService, private skiSvc: SkillService, private route: ActivatedRoute,
+    private vidSvc:VacancyIdService) {
     this.vacancyId = this.route.snapshot.params.vacancyId;
     this.company="default company";
     this.description="default description";
@@ -38,6 +40,7 @@ export class VacancyDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.vidSvc.currentVacancyId.subscribe(myVacancyId=>this.vacancyId=myVacancyId)
     this.fetchCurrentVacancyFromService()
   }
 

@@ -1,0 +1,10 @@
+<h1>{{companyName}}</h1>
+<h3>{{hqLocation}}</h3>
+<a href="{{linkedIn}}"><img id="linkedIn" src="https://www.shareicon.net/data/512x512/2015/09/23/106002_logo_512x512.png"></a>
+<h2>My Listed Vacancies</h2>
+<table id="vacancyTable"><td *ngFor="let vacancy of companyVacancies">
+    <tr><h3><a href="{{vacancy.link}}">{{vacancy.title}}</a></h3></tr>
+    <tr>{{vacancy.location}}</tr>
+    <tr>{{vacancy.salary}}</tr>
+    <tr>{{vacancy.postTime}} | {{vacancy.uploadYear}}</tr>
+</td></table>

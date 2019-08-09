@@ -2,6 +2,7 @@
 <h3>{{company}}</h3>
 <h4>{{location}} | £{{salary}}/annum</h4>
 <h5><a href="{{link}}">Apply Here</a></h5>
-<table id="skillTable"><td *ngFor="let skill of vacancySkills"><tr>{{skill.skill}}</tr></td></table>
+<table id="skillTable"><td *ngFor="let skill of vacancySkills">{{skill.skill}}</td></table>
+<button mat-raised-button>Add</button>
 <div id="description"><p>{{description}}</p></div>
 <p>{{uploadYear}} | {{postTime}}</p>

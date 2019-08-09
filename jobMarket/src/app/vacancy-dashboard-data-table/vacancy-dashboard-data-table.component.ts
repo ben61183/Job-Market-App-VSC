@@ -2,13 +2,15 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialog } from '@angular/material';
 
 import { VacancyDashboardDataTableDataSource, VacancyDashboardDataTableItem } from './vacancy-dashboard-data-table-datasource';
 
 import { VacancyService } from '../vacancy.service';
 import { Vacancy} from '../vacancy';
 import { Router } from '@angular/router';
+import { VacancyDetailsComponent } from '../vacancy-details/vacancy-details.component';
+import { VacancyIdService } from '../vacancy-id.service';
 
 @Component({
   selector: 'app-vacancy-dashboard-data-table',
@@ -31,10 +33,11 @@ export class VacancyDashboardDataTableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  constructor(private vacSvc:VacancyService, private router: Router) {
+  constructor(private vacSvc:VacancyService, private router: Router, public dialog: MatDialog,
+    private vidSvc:VacancyIdService) {
     this.vacancy={
       vacancyId: 0,
-      company: "company",
+      company: {companyId:0,linkedIn:"",hqLocation:"",companyName:""},
       description: "description",
       job_type: true,
       link: "link",
@@ -57,9 +60,19 @@ export class VacancyDashboardDataTableComponent implements OnInit {
         this.allVacancy = response
         this.dataSource.data = response
         console.log(response)
+        for(let vacancy of this.allVacancy){
+          if(vacancy.description.length>100){
+            vacancy.description = vacancy.description.slice(0,100)+"..."
+          }
+        }
       }
     )
   }
 
+  openVacancy(vacancyId){
+    console.log(vacancyId)
+    this.vidSvc.changeVacancyId(vacancyId)
+    this.dialog.open(VacancyDetailsComponent);
+  }
   
 }

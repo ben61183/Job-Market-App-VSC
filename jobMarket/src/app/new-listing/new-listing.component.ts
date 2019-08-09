@@ -9,6 +9,9 @@ import { RoleService } from '../role.service';
 import { Role } from '../role';
 import { VacancyComponent } from '../vacancy/vacancy.component';
 import * as moment from 'moment'
+import { CompanyComponent } from '../company/company.component';
+import { Company } from '../company';
+import { CompanyService } from '../company.service';
 
 
 @Component({
@@ -20,7 +23,7 @@ export class NewListingComponent implements OnInit {
 
   newVacancyId: number
   newTitle: string
-  newCompany: string
+  newCompany: Company
   newDescription:string;
   newJobType:boolean;
   newLink:string;
@@ -32,18 +35,15 @@ export class NewListingComponent implements OnInit {
   newRole: Role
 
   selectedRoleId:number
-
   roles: Role[]
-
   skills: Skill[] = [];
-
   allVacancies:Vacancy[]=[]
 
-  constructor(private vacSvc: VacancyService, private skiSvc:SkillService, private rolSvc:RoleService) {  
+  constructor(private vacSvc: VacancyService, private skiSvc:SkillService, private rolSvc:RoleService,
+    private comSvc:CompanyService) {  
 
     this.newVacancyId=0
     this.newTitle=""
-    this.newCompany=""
     this.newDescription=""
     this.newJobType=false
     this.newLink=""
@@ -51,6 +51,12 @@ export class NewListingComponent implements OnInit {
     this.newPostTime="00:00AM"
     this.newSalary=null
     this.newUploadYear=0
+    this.newCompany={
+      companyId:0,
+      companyName:"default",
+      hqLocation:"default",
+      linkedIn:"linkedin.com",
+    }
 
     this.newRole={
       roleId : 0,
@@ -110,7 +116,6 @@ export class NewListingComponent implements OnInit {
             console.log(response)
             this.newVacancyId = response.vacancyId
             this.newTitle = response.title
-            this.newCompany = response.company
             this.newLink = response.link
             this.newDescription = response.description
             this.newLocation = response.location
@@ -122,6 +127,11 @@ export class NewListingComponent implements OnInit {
                 responseRole =>{
                 this.newRole = responseRole.thisRole
             })
+            this.comSvc.addVacancyToCompanyOnService(this.newCompany.companyId,this.newVacancyId).subscribe(
+              responseComp=>{
+                this.newCompany=responseComp
+              }
+            )
               
             for(let skill of this.newVacancySkills)
               this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(
