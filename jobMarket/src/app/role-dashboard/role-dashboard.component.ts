@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../role.service';
 import { Role } from '../role';
 import { RoleRank } from '../role-rank';
+import { MatDialog } from '@angular/material';
+import { AddRoleComponent } from '../add-role/add-role.component';
+import { EditRoleComponent } from '../edit-role/edit-role.component';
 
 @Component({
   selector: 'app-role-dashboard',
@@ -20,7 +23,7 @@ export class RoleDashboardComponent implements OnInit {
   role: Role
   ranks: RoleRank[] = []// object for creating ranked roles
 
-  constructor(private rolSvc:RoleService) {
+  constructor(private rolSvc:RoleService, public dialog: MatDialog) {
     this.searchParam = " "
     // empty role object
     this.role={
@@ -44,6 +47,14 @@ export class RoleDashboardComponent implements OnInit {
   
   ngOnInit() {
     this.loadAllRoles()
+  }
+
+  openAddRole() {
+    this.dialog.open(AddRoleComponent);
+  }
+
+  openEditRole() {
+    this.dialog.open(EditRoleComponent);
   }
 
   // load all roles via REST

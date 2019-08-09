@@ -12,6 +12,9 @@ import { Skill } from '../skill';
 export class RoleComponent implements OnInit {
   
   role: Role
+  roleId: number
+  category: string
+  roleName: string 
   oneRoleId: number // id of specific role (taken from dash)
   vacCount: number // total vacancies in role
   vacanciesYears: number[] = []

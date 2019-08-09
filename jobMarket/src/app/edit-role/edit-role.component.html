@@ -1,0 +1,44 @@
+<div *ngIf="!isEditRoleFormVisible"> 
+
+<mat-form-field >
+        <mat-label>Select A Role</mat-label>
+        <mat-select [(ngModel)]="selectedRole" (ngModelChange)="selected()" name="roleId">
+          <mat-option *ngFor="let role of roles" [value]="role">
+            {{role.roleName}} - {{role.category}}
+          </mat-option>
+        </mat-select>
+</mat-form-field>
+
+<button mat-raised-button color="accent" type="submit" (click)="showUpdateRoleForm()">Edit</button>
+</div>
+
+<table *ngIf="isEditRoleFormVisible"> 
+<tr> 
+    <td>
+        <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label> 
+        <input matInput [(ngModel)]="newRoleName" name="newRoleName">
+        </mat-form-field>&nbsp;
+    </td>
+    <td> 
+        <mat-form-field class="example-full-width">
+                <mat-label>Category</mat-label> 
+                <input matInput [(ngModel)]="newCategory" name="newCategory">
+        </mat-form-field>
+    </td>
+</tr>
+
+<tr> 
+    <td> 
+        <button (click)="updateRole()" mat-raised-button color="primary" value="roleId" #edit> 
+            Save 
+        </button> &nbsp;
+        </td>
+    <td> 
+        <button (click)="deleteRole()" mat-raised-button color="warn"> 
+            Delete
+        </button>
+    </td>
+</tr>
+
+</table>

@@ -84,7 +84,6 @@ export class RoleAdminComponent implements OnInit {
       category: this.category,
       role_name: this.role_name
     }).subscribe(
-      
     )
   }
 

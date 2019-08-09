@@ -43,6 +43,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { VacancyDashboardDataTableComponent } from './vacancy-dashboard-data-table/vacancy-dashboard-data-table.component';
+import { AddRoleComponent } from './add-role/add-role.component';
+import { EditRoleComponent } from './edit-role/edit-role.component';
 
 
 @NgModule({
@@ -61,9 +63,11 @@ import { VacancyDashboardDataTableComponent } from './vacancy-dashboard-data-tab
     VacancyDashboardComponent,
     VacancyDetailsComponent,
     WelcomeComponent,
-    VacancyDashboardDataTableComponent
+    VacancyDashboardDataTableComponent,
+    AddRoleComponent,
+    EditRoleComponent
   ],
-  entryComponents: [NewListingComponent],
+  entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent],
   imports: [
     MatChipsModule,
     OverlayModule,

@@ -1,0 +1,16 @@
+<h3> Add Role </h3>
+
+<tr>
+        <td> 
+            <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="newRoleName"  placeholder="Role Name" #inputName="ngModel" name="newRoleName" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>&nbsp;&nbsp; 
+          
+            <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="newCategory" placeholder="Category" #inputName="ngModel" name="newCategory" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+        </td>
+</tr>
+
+<hr> 
+    <button mat-raised-button color="accent" (click)="createNewRole()">Add Role</button>
