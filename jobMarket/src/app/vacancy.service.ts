@@ -16,16 +16,16 @@ constructor(private httpsvc:HttpClient) {
   this.rootUrl= "http://localhost:7750/vacancy"
 }
 
-findVacancybyVacancyId(vacancyId):Observable<VacancyComponent>{
-  return this.httpsvc.get<VacancyComponent>(this.rootUrl+"/find/"+vacancyId)
+findVacancybyVacancyId(vacancyId):Observable<Vacancy>{
+  return this.httpsvc.get<Vacancy>(this.rootUrl+"/find/"+vacancyId)
 }
 
-updateVacancyOnServer(vacancy):Observable<VacancyComponent>{
+updateVacancyOnServer(vacancy):Observable<Vacancy>{
   const httpOptions = {// declare the headers for the content type
     headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
   }
-  var reqBody = "vacancyId="+vacancy.vacancyId+"&company="+vacancy.company+"&description="+vacancy.description +"&jobType="+vacancy.job_type+"&link="+vacancy.link+"&location="+vacancy.location+"&postTime="+vacancy.postTime+"&salary="+vacancy.salary+"&uploadYear="+vacancy.uploadYear+"&title="+vacancy.title;
-  return this.httpsvc.post<VacancyComponent>(this.rootUrl+"/register",reqBody,httpOptions)
+  var reqBody = "vacancyId="+vacancy.vacancyId+"&description="+vacancy.description +"&jobType="+vacancy.job_type+"&link="+vacancy.link+"&location="+vacancy.location+"&postTime="+vacancy.postTime+"&salary="+vacancy.salary+"&uploadYear="+vacancy.uploadYear+"&title="+vacancy.title;
+  return this.httpsvc.post<Vacancy>(this.rootUrl+"/register",reqBody,httpOptions)
 }
 
 updateVacancyRoleOnServer(vacancyId,roleId):Observable<VacancyComponent>{
@@ -70,14 +70,15 @@ updateVacancySkillsOnServer(vacancyId,newSkillId):Observable<VacancyComponent>{
 // }
 
 
-loadAllVacanciesFromServer(): Observable<Vacancy[]>{
-  return this.httpsvc.get<Vacancy[]>(
-    "http://localhost:7750/vacancy/list")
-}
+  loadAllVacanciesFromServer(): Observable<Vacancy[]>{
+    return this.httpsvc.get<Vacancy[]>(
+      "http://localhost:7750/vacancy/list")
+  }
 
-loadVacancySkillsFromServer(vacancyId): Observable<Skill[]>{
-  return this.httpsvc.get<Skill[]>(
-    this.rootUrl+"/theseskills/"+vacancyId
-  )
-}
+  loadVacancySkillsFromServer(vacancyId): Observable<Skill[]>{
+    return this.httpsvc.get<Skill[]>(
+      this.rootUrl+"/theseskills/"+vacancyId
+    )
+  }
+
 }

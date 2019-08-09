@@ -3,7 +3,7 @@ import { Company } from './company';
 
 export interface Vacancy {
     vacancyId:number;
-    company:Company;
+    thisCompany:Company;
     description:string;
     job_type:boolean;
     link:string;

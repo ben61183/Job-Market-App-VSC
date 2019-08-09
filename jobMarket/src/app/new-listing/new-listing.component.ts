@@ -110,7 +110,7 @@ export class NewListingComponent implements OnInit {
   createNewVacancy(){
     console.log(this.newJobType)
     this.dateAndTime()
-    this.vacSvc.updateVacancyOnServer({vacancyId:this.newVacancyId,title:this.newTitle,company:this.newCompany,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
+    this.vacSvc.updateVacancyOnServer({vacancyId:this.newVacancyId,title:this.newTitle,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
       response=>{
             console.log(this.newVacancySkills)
             console.log(response)
@@ -132,7 +132,7 @@ export class NewListingComponent implements OnInit {
                 this.newCompany=responseComp
               }
             )
-              
+            
             for(let skill of this.newVacancySkills)
               this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(
                 responseSkill =>{

@@ -10,7 +10,7 @@
             </mat-form-field>&nbsp;&nbsp; 
           
             <mat-form-field class="example-full-width">
-                <input matInput [(ngModel)]="newCompany" name="newCompany" [ngModelOptions]="{standalone: true}" placeholder="Company">
+                <input matInput readonly [(ngModel)]="newCompany" name="newCompany" [ngModelOptions]="{standalone: true}" placeholder="{{company.companyName}}">
                 </mat-form-field>&nbsp;&nbsp;
        
             <mat-form-field class="example-full-width">

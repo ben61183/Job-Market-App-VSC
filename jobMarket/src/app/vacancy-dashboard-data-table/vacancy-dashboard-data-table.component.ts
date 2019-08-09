@@ -37,7 +37,7 @@ export class VacancyDashboardDataTableComponent implements OnInit {
     private vidSvc:VacancyIdService) {
     this.vacancy={
       vacancyId: 0,
-      company: {companyId:0,linkedIn:"",hqLocation:"",companyName:""},
+      thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:""},
       description: "description",
       job_type: true,
       link: "link",
@@ -59,11 +59,10 @@ export class VacancyDashboardDataTableComponent implements OnInit {
       response => {
         this.allVacancy = response
         this.dataSource.data = response
-        console.log(response)
         for(let vacancy of this.allVacancy){
           if(vacancy.description.length>100){
             vacancy.description = vacancy.description.slice(0,100)+"..."
-          }
+          } // a vacancy MUST be owned by a company, otherwise errors
         }
       }
     )
@@ -73,6 +72,7 @@ export class VacancyDashboardDataTableComponent implements OnInit {
     console.log(vacancyId)
     this.vidSvc.changeVacancyId(vacancyId)
     this.dialog.open(VacancyDetailsComponent);
+
   }
   
 }
