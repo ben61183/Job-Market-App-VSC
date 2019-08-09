@@ -1,31 +1,25 @@
-<h2 style="text-align: center">{{username}}'s Profile</h2>
+<h1 style="text-align: center">{{username}}'s Profile</h1>
 
-<h3>My Skills</h3>
-<p>Purple skills have been selected</p>
-<!-- no longer needed -->
-<!-- <div id="mySkills">
-<table>
-    <tr *ngFor="let skill of userSkills">
-        <td>{{skill.skill}}</td>
-    </tr>
-</table>
-</div> -->
+<h3>Skills</h3>
 <div id="skillTable">
-    <span *ngFor="let aS of antiSkills; let i = index">
-    <div class="unapplied">
-        <span id="skillButtons" *ngIf="(aS!=undefined);else skillApplied">
-            <button mat-raised-button value="aS.skillId" color="warn" (click)="addToSkills(aS)" 
-                onClick="this.disabled=true">{{aS.skill}}</button>  
-        </span>
-    </div>
-        <div class="applied">
-            <span skillApplied *ngIf="(userSkills[i]!=undefined)">
-                <button mat-raised-button class="applied" value="userSkills[i].skillId" color="primary" 
-                    (click)="deleteFromSkills(userSkills[i])">{{userSkills[i].skill}}</button>  
+        <mat-chip-list #chipList>
+        <span *ngFor="let aS of antiSkills; let i = index">
+        <div class="unapplied">
+            <span id="skillButtons" *ngIf="(aS!=undefined);else skillApplied">
+                <mat-chip value="aS.skillId" color="accent" (click)="addToSkills(aS)" 
+                    onClick="this.disabled=true">{{aS.skill}}</mat-chip>  
             </span>
         </div>
-    </span>
+        <div class="applied">
+            <span skillApplied *ngIf="(userSkills[i]!=undefined)">
+                <mat-chip color="primary" class="applied" value="userSkills[i].skillId">
+                    {{userSkills[i].skill}}<mat-icon matChipRemove (click)="deleteFromSkills(userSkills[i])">cancel</mat-icon></mat-chip>  
+            </span>
+        </div>
+        </span>
+    </mat-chip-list>
 </div>
+
 <div id="savedVacancies">
 <h3>My Saved Vacancies</h3>
 <table>
@@ -43,7 +37,8 @@
                     <td>{{vacSkill.skill}}</td>
                 </span>
             </span>
-            </tr>
+        </tr>
+        <tr><button mat-raised-button (click)="deleteFromVacancies(savedVacancies[i].vacancyId)">Drop</button></tr>
     </td>
 </table>
 </div>

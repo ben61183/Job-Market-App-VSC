@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { OverlayModule} from '@angular/cdk/overlay';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +36,8 @@ import { VacancyDashboardComponent } from './vacancy-dashboard/vacancy-dashboard
 import { MatDialogModule, MatInputModule } from '@angular/material';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
+
 
 
 import { VacancyDetailsComponent } from './vacancy-details/vacancy-details.component';
@@ -58,6 +62,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
   ],
   entryComponents: [NewListingComponent],
   imports: [
+    MatChipsModule,
+    OverlayModule,
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
