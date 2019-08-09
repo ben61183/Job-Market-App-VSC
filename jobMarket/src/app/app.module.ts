@@ -45,7 +45,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { VacancyDashboardDataTableComponent } from './vacancy-dashboard-data-table/vacancy-dashboard-data-table.component';
 import { AddRoleComponent } from './add-role/add-role.component';
 import { EditRoleComponent } from './edit-role/edit-role.component';
+import { UserloginComponent } from './userlogin/userlogin.component';
 import { CompanyComponent } from './company/company.component';
+
 
 
 @NgModule({
@@ -67,6 +69,7 @@ import { CompanyComponent } from './company/company.component';
     VacancyDashboardDataTableComponent,
     AddRoleComponent,
     EditRoleComponent,
+    UserloginComponent,
     CompanyComponent
   ],
   entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent],
