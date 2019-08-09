@@ -29,6 +29,9 @@ export class RoleDashboardDataTableComponent implements OnInit {
   role: Role
   ranks: RoleRank[] = []// object for creating ranked roles
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 constructor(private rolSvc:RoleService, private router: Router) {
     this.searchParam = " "
     this.role={
@@ -100,11 +103,11 @@ vacancyCalculations(role) {
   role.vacCount = role.vacancies.length
   
   for(let vac of role.vacancies) {
-    if (vac.uploadYear == 2013) {
+    if (vac.uploadYear == 2019) {
       role.sumSalaryNow = vac.salary
       role.numVacanciesNow += 1
     }
-    if(vac.uploadYear == 2012){ // last year
+    if(vac.uploadYear == 2018){ // last year
       role.sumSalaryPrev += vac.salary
       role.numVacanciesPrev += 1
     }

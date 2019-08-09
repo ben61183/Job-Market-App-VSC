@@ -1,6 +1,10 @@
-<div class="mat-elevation-z8">
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<div class="mat-elevation-z8 data-table">
   <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource">
-      
+
     <!-- Name Column -->
     <ng-container matColumnDef="name">
         
@@ -50,10 +54,10 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Rank Change</th>
         <td mat-cell *matCellDef="let row">
           <ng-container *ngIf="row.rankChange<0">
-              {{row.rankChange}} <mat-icon>call_received</mat-icon>
+              {{row.rankChange}} <i class="large material-icons icon-red">call_received</i>
           </ng-container>
           <ng-container *ngIf="row.rankChange>0">
-              +{{row.rankChange}} <mat-icon>call_made</mat-icon>
+              +{{row.rankChange}} <i class="large material-icons icon-green">call_made</i>
           </ng-container>
           <ng-container *ngIf="row.rankChange==0">
               {{row.rankChange}}  <mat-icon>arrow_forward</mat-icon>

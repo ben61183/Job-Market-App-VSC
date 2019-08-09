@@ -13,8 +13,8 @@
     </tr>
     <!-- iterate through vacancies and show those from the last year on record -->
     <ng-container *ngFor = "let vac of role.vacancies">
-        <tr *ngIf = "vac.uploadYear == 2013">
-            <td><a href="{{vac.link}}">{{vac.title}}</a></td>
+        <tr *ngIf = "vac.uploadYear == 2019">
+            <td><a [routerLink]="['/vacancy',vac.vacancyId]">{{vac.title}}</a></td>
             <td>{{vac.salary}}</td>
             <td>{{vac.uploadYear}}</td> 
             <td *ngIf="vac.vacancySkills.length>0">{{vac.vacancySkills[0].skill}}</td>

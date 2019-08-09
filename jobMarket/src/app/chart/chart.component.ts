@@ -37,8 +37,6 @@ export class ChartComponent implements OnInit {
     
   }
 
-  
-
   ngOnInit() {
     this.role.roleId = this.oneRoleId
     this.findOneRole(this.oneRoleId)
