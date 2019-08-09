@@ -20,7 +20,9 @@ const routes: Routes = [
   {path: "vacancy/:vacancyId", component: VacancyDetailsComponent},
   {path: "", component: WelcomeComponent},
   {path: "register", component: RegisterComponent},
-  {path: "user/:userId", component: UserComponent}
+  {path: "user/:userId", component: UserComponent},
+  {path: "vacancy/:vacancyId", component: VacancyComponent}
+  
   // {path: "login", component: UserComponent}
 ];
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NewListingComponent } from '../new-listing/new-listing.component';
+import { RoleAdminComponent } from '../role-admin/role-admin.component';
 
 @Component({
   selector: 'app-vacancy-dashboard',
@@ -13,6 +14,10 @@ export class VacancyDashboardComponent{
 
   openAddVacancy() {
     this.dialog.open(NewListingComponent);
+  }
+
+  openEditVacancy() {
+    this.dialog.open(RoleAdminComponent);
   }
 
 
