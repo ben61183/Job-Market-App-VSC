@@ -1,76 +1,131 @@
-<div><button (click)="showVacancyForm()">Update a vacancy</button></div>
-<form *ngIf="isVacancyFormVisible" (submit)="showUpdateVacancyForm()">
-    <table id="vacancyTable">
-        <tr>Select Vacancy</tr>
-        <td>
-                <select  [(ngModel)]="selectedLevel"    name="vacancyId" #selectVacancyId
-                (change)="selected()"> 
-                    <option *ngFor="let v of allVacancies" [ngValue]="v">
-                        {{v.vacancyId}}:{{v.title}}, {{v.company}}
-                    </option>
-                </select>
-        </td>
-        <td>
-                <input type="submit" value="Open">
-        </td>
+<!-- <form *ngIf="isVacancyFormVisible" (submit)="showUpdateVacancyForm()"> -->
+    <table id="vacancyTable" *ngIf="!isVacancyEditable">
+             <tr>Select Vacancy</tr>
+            <td>
+                    <select  [(ngModel)]="selectedLevel" name="vacancyId" #selectVacancyId
+                    (change)="selected()"> 
+                        <option *ngFor="let v of allVacancies" [ngValue]="v">
+                            {{v.vacancyId}}:{{v.title}}, {{v.company}}
+                        </option>
+                    </select>
+            </td> 
+
+       
+        <!-- <mat-form-field>
+            <mat-label>Select A Vacancy</mat-label>
+            <mat-select [(ngModel)]="selectedLevel">
+                <mat-option *ngFor="let v of allVacancies" value="{{v.vacancyId}}" (change)="selected(v.vacancyId)">
+                        {{v.title}}, {{v.company}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+          
+        <tr> <button mat-raised-button color="accent" type="submit" value="Open" (click)="showUpdateVacancyForm()" *ngIf="!isUpdateVacancyFormVisible" >Open</button> 
+        </tr>
     </table>
-</form>
+<!-- </form>  -->
 
 <form *ngIf="isUpdateVacancyFormVisible">
-    <h2>Please update selected vacancy</h2>
+        <hr>  
     <table> 
-            <tr>
-                <td>Vacancy ID: </td>
-                <td>{{selectedLevel.vacancyId}}</td>
-                <td><button (click)="toggleEdits(edit.value)" value='{{(isVacancyEditable)?"Save":"Edit"}}' #edit>{{(isVacancyEditable)?"Save":"Edit"}}</button></td>
-                <td><button (click)="deleteVacancy()">Delete Vacancy</button></td>
-            </tr>
-            <tr>
-                <td>Company:</td>
+            
+            <tr> 
+                <!-- <td>Vacancy ID:</td>
+                <td>{{selectedLevel.vacancyId}}</td> -->
+                
+                <td *ngIf="!isVacancyEditable">Company:</td>
                 <td *ngIf="!isVacancyEditable">{{selectedLevel.company}}</td>
-                <td *ngIf="isVacancyEditable"><input [(ngModel)]="company" name="company"></td>
-            </tr>
-            <tr>
-                <td>Description:</td>
-                <td *ngIf="!isVacancyEditable">{{selectedLevel.description}}</td>
-                <td *ngIf="isVacancyEditable"><input [(ngModel)]="description" name="description"></td>  
-            </tr>
-            <tr>
-                <td>Job Type:</td>
-                <td *ngIf="!isVacancyEditable">{{(selectedLevel.jobType)?"permanent":"contract"}}</td>
-                <td *ngIf="isVacancyEditable"><input [(ngModel)]="job_type" name="job type"></td>
-            </tr>
-            <tr>
-                <td>link:</td>
-                <td *ngIf="!isVacancyEditable">{{selectedLevel.link}}</td>
-                <td *ngIf="isVacancyEditable"><input [(ngModel)]="link" name="link"></td>  
-            </tr>
-            <tr>
-                <td>location:</td>
-                <td *ngIf="!isVacancyEditable">{{selectedLevel.location}}</td>
-                <td *ngIf="isVacancyEditable"><input [(ngModel)]="location" name="location"></td>
-            </tr>
-            <tr>
-                <td>post time:</td>
-                <td *ngIf="!isVacancyEditable">{{selectedLevel.postTime}}</td>
-                <td *ngIf="isVacancyEditable"><input [(ngModel)]="postTime" name="postTime"></td>  
-            </tr>
-            <tr>
-                <td>Salary:</td>
-                <td *ngIf="!isVacancyEditable">{{selectedLevel.salary}}</td>
-                <td *ngIf="isVacancyEditable"><input [(ngModel)]="salary" name="salary"></td>  
-            </tr>
-            <tr>
-                <td>Title:</td>
+                <td *ngIf="isVacancyEditable">
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Company</mat-label> 
+                    <input matInput [(ngModel)]="company" name="company">
+                    </mat-form-field>   
+                </td>&nbsp;
+
+                <td *ngIf="!isVacancyEditable">Title:</td>
                 <td *ngIf="!isVacancyEditable">{{selectedLevel.title}}</td>
-                <td *ngIf="isVacancyEditable"><input [(ngModel)]="title" name="title"></td>  
+                <td *ngIf="isVacancyEditable">
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Job Title</mat-label> 
+                    <input matInput [(ngModel)]="title" name="title"> 
+                    </mat-form-field>
+                </td>  
+            </tr> 
+
+            <tr> 
+                <td *ngIf="!isVacancyEditable">Description:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.description}}</td>
+                <td *ngIf="isVacancyEditable">
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Description</mat-label>
+                    <input matInput [(ngModel)]="description" name="description">
+                    </mat-form-field>
+                </td>  &nbsp;
+             
+                <td *ngIf="!isVacancyEditable">Job Type:</td>
+                <td *ngIf="!isVacancyEditable">{{(selectedLevel.jobType)?"permanent":"contract"}}</td>
+                <td *ngIf="isVacancyEditable">
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Job Type</mat-label> 
+                    <input matInput [(ngModel)]="job_type" name="job type">
+                    </mat-form-field>
+                </td>
+            </tr> 
+            <tr> 
+                <td *ngIf="!isVacancyEditable">Link:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.link}}</td>
+                <td *ngIf="isVacancyEditable">
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Link</mat-label> 
+                    <input matInput [(ngModel)]="link" name="link">
+                    </mat-form-field>
+                </td>  &nbsp;
+        
+                <td *ngIf="!isVacancyEditable">Location:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.location}}</td>
+                <td *ngIf="isVacancyEditable">
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Location</mat-label> 
+                    <input matInput [(ngModel)]="location" name="location">
+                    </mat-form-field>
+                </td>
             </tr>
             <tr>
-                <td>Upload Year:</td>
+                <td *ngIf="!isVacancyEditable">Post Time:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.postTime}}</td>
+                <td *ngIf="isVacancyEditable">
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Post Time</mat-label> 
+                    <input matInput [(ngModel)]="postTime" name="postTime">
+                    </mat-form-field>
+                </td>  &nbsp;
+           
+                <td *ngIf="!isVacancyEditable">Salary:</td>
+                <td *ngIf="!isVacancyEditable">{{selectedLevel.salary}}</td>
+                <td *ngIf="isVacancyEditable">
+                    <mat-form-field class="example-full-width">
+                            <mat-label>Salay</mat-label> 
+                    <input matInput [(ngModel)]="salary" name="salary">
+                    </mat-form-field>
+                </td>  
+            </tr>
+            <tr>
+                <td *ngIf="!isVacancyEditable">Upload Year:</td>
                 <td *ngIf="!isVacancyEditable">{{selectedLevel.uploadYear}}</td>
-                <td *ngIf="isVacancyEditable"><input [(ngModel)]="selectedLevel.uploadYear" name="uploadYear"></td>
+                <td *ngIf="isVacancyEditable">
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Upload Year</mat-label> 
+                    <input matInput [(ngModel)]="selectedLevel.uploadYear" name="uploadYear">
+                    </mat-form-field>
+                </td>
             </tr>
             <tr>&nbsp;</tr>
+            <hr> 
+            <tr>    
+                    <td><button (click)="toggleEdits()" mat-raised-button color="primary"  value='{{(isVacancyEditable)?"Save":"Edit"}}' #edit>{{(isVacancyEditable)?"Save":"Edit"}}</button></td>
+
+                    <td><button mat-raised-button color="warn" (click)="deleteVacancy()">Delete Vacancy</button></td>
+                </tr>
         </table>
 
 </form>
