@@ -11,12 +11,14 @@ export class RegisterService {
 rootUrl: String
 
 constructor(private httpsvc:HttpClient){
-  this.rootUrl="http://localhost:7750/register"
+  this.rootUrl="http://localhost:7750/userdetails/user"
 }
 
 findUserByUserId(userId):Observable<RegisterComponent>{
   return this.httpsvc.get<RegisterComponent>(this.rootUrl+"/find/"+userId)
 }
+
+findUser
 
 updateUserOnServer(register):Observable<RegisterComponent>{
   const httpOptions={ //declare the headers for the content type
