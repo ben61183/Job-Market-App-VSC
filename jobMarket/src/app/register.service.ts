@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RegisterComponent } from './register/register.component';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,18 @@ findUserByUserId(userId):Observable<RegisterComponent>{
   return this.httpsvc.get<RegisterComponent>(this.rootUrl+"/find/"+userId)
 }
 
-// findUserByUsername(username):Observable<RegisterComponent>{
+loadAllUsersFromServer(): Observable<User[]>{
+  return this.httpsvc.get<User[]>(
+    "http://localhost:7750/user/userlist")
+}
 
-// }
+findUserByUsername(username):Observable<RegisterComponent>{
+  return this.httpsvc.get<RegisterComponent>(this.rootUrl+"/find/username/"+username)
+}
+
+findUserByEmail(email):Observable<RegisterComponent>{
+  return this.httpsvc.get<RegisterComponent>(this.rootUrl+"/find/email/"+email)
+}
 
 updateUserOnServer(register):Observable<RegisterComponent>{
   const httpOptions={ //declare the headers for the content type

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../register.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-register',
@@ -17,10 +18,18 @@ export class RegisterComponent implements OnInit {
   isUserFormVisible:boolean
   isPassMatch:boolean
   isError:boolean
+  isPassCheck:boolean
+  isUsernameCheck: boolean
+  isEmailCheck: boolean
+
+  allUsers: User[];
 
   constructor(private regSvc:RegisterService) {
     this.isPassMatch
     this.isError=true
+    this.isPassCheck=false;
+    this.isUsernameCheck=false;
+    this.isEmailCheck=false;
 
     this.userId=1;
     this.username="";
@@ -45,38 +54,67 @@ export class RegisterComponent implements OnInit {
           
   } 
   
-  signUp(){
+  passwordCheck(){
     if (this.confirmPassword==this.password){
+          return this.isPassCheck=true;
+        } else{
+          this.isError=false;
+          console.log(this.isError)
+        }
+  }
+
+  loadAllUsers(){
+    this.regSvc.loadAllUsersFromServer().subscribe(
+      response =>
+      {this.allUsers=response
+       
+      })
+  }
+
+
+
+  fetchCurrentUserByUsername(username){
+    this.regSvc.findUserByUsername(this.username).subscribe(
+  
+      response => {
+        this.userId=response.userId
+        this.username=response.username
+        this.password=response.password
+        this.email=response.email
+      }
+    )
+  }
+
+  uniqueUsernameCheck(){
+      for(let user of this.allUsers){
+        if (user.username==this.username){
+          console.log("username is matching")
+          return this.isUsernameCheck=true
+        }
+        
+      }
+  }
+
+  uniqueEmailCheck(){
+    for(let user of this.allUsers){
+      if (user.email==this.email){
+
+        return this.isEmailCheck=true
+      }
+      
+    }
+}
+
+
+  signUp(){
+    this.passwordCheck()
+    this.uniqueUsernameCheck()
+    this.uniqueEmailCheck()
+    if(this.isPassCheck==true && this.isUsernameCheck==true && this.isEmailCheck==true){
       this.addUserDetails();
-      // window.location.reload()
-    } else{
-      this.isError=false;
-      console.log(this.isError)
+
     }
     
   }
-
-        
-
-  // addUser(username, password, email){
-  //   username=username.value; 
-  //   password=password.value;
-  //   email=email.value;
-  //   console.log('Registering User: addUser');
-  //   console.log(username,password,email);
-
-    // if(username.length<2){
-    //   this.isUserFormValid=false;
-    //   this.invalidFormMessage='Product Name must be greater than 2 characters';
-    // } else{
-    //   this.userSvc.registerUser(username,password,email)
-    //    .subsribe
-    //    (response => {
-    //      console.log('registered user')
-    //    });
-       
-    //    this.isUserFormValid=true;
-    //    this.invalidFormMessage="";
-    // }
 
 }
