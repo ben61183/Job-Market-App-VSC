@@ -60,17 +60,25 @@ export class UserloginComponent implements OnInit {
   credentialCheck(){
     for(let user of this.allUsers){
       if (user.username==this.username && user.password==this.password){
-
-        return this.isLoginValid=true
+        this.userId=user.userId
+        console.log(this.userId)
+        this.isLoginValid=true
       } else{
         this.isError=true
+      
       }
     }
   }  
-  logInUser(userId){
+  logInUser(){
+    // this.isError=false
+    this.credentialCheck()
+    if(this.isLoginValid==true){
+      console.log("save user id locally")
+    this.uidSer.changeUserId(this.userId)
+    
+    } 
     // change user id in uid service, will effect whole application
-    this.uidSer.changeUserId(userId)
-    console.log(userId)
+    
   }
 
   logInCompany(companyId){
