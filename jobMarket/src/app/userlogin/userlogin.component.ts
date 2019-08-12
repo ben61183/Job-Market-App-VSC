@@ -69,7 +69,7 @@ export class UserloginComponent implements OnInit {
     }
   }  
   logInUser(){
-    // this.isError=false
+    this.isError=false
     this.credentialCheck()
     if(this.isLoginValid==true){
       console.log("save user id locally")

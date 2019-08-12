@@ -2,7 +2,8 @@
 
        
 <!-- <app-welcome></app-welcome> -->
-<form>
+<form >
+    <!-- //(submit)="logInUser()" -->
         <table id="loginTable">
                 <tr>
                     <th>Username:</th>
@@ -10,10 +11,11 @@
                 </tr> 
                 <tr>
                     <th>Password:</th>
-                    <td><input [(ngModel)]="password" name="password"></td>
+                    <td><input [(ngModel)]="password" name="password" type="password" ></td>
                 </tr>
                 <tr>
-                    <button (click)="logInUser(userId)" value="login">Login</button>
+                    <button (click)="logInUser()" value="login">Login</button>
+                    <!-- <input type="submit" value="Add"> -->
             </tr>
             </table>
 
