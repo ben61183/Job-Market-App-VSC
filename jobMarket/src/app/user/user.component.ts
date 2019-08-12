@@ -36,7 +36,8 @@ export class UserComponent implements OnInit {
 
   myUserId:number
 
-
+  // used to ensure user can edit their page
+  userPrivilege:boolean
 
   constructor(private useSvc: UserService, private skiSvc: SkillService, private route: ActivatedRoute,
     private uidSer:UserIdService) {
@@ -46,6 +47,7 @@ export class UserComponent implements OnInit {
     this.num=0
     this.numSkills=[]
     this.skills=[]
+    this.userPrivilege=false
   }
 
   ngOnInit() {
@@ -53,7 +55,10 @@ export class UserComponent implements OnInit {
     this.findUser(this.userId)
     this.loadAllSkills()
     this.myUserId = this.uidSer.getUserId()
-
+    // compare logged in id with id in url
+    if(this.myUserId==this.userId){
+      this.userPrivilege=true
+    }
   }
 
   findUser(userId){
