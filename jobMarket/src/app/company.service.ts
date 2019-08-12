@@ -14,6 +14,18 @@ export class CompanyService {
     this.rootUrl="http://localhost:7750/company"
   }
 
+  updateCompanyOnServer(company):Observable<CompanyComponent>{
+    const httpOptions = {// declare the headers for the content type
+      headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
+    }
+
+    var reqBody = "companyName="+company.companyName+"&hqLocation="+ company.hqLocation+"&linkedIn=" + company.linkedIn + "&companyUsername=" + company.companyUsername + "&companyPassword=" + company.companyPassword
+
+    // console.log(this.rootUrl+"/register", reqBody, httpOptions) 
+
+    return this.httpsvc.post<CompanyComponent>(this.rootUrl+"/register", reqBody, httpOptions)
+  }
+
   fetchCompanyFromService(companyId):Observable<Company>{
     return this.httpsvc.get<Company>(this.rootUrl+"/find/"+companyId)
   }

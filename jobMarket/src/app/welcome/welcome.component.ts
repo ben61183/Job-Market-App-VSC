@@ -4,6 +4,7 @@ import { CompanyIdService } from '../company-id.service';
 import { MatDialog } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import { UserRegisterLoginComponent } from '../user-register-login/user-register-login.component';
+import { CompanyRegisterLoginComponent } from '../company-register-login/company-register-login.component';
 
 @Component({
   selector: 'app-welcome',
@@ -22,7 +23,12 @@ export class WelcomeComponent implements OnInit {
     this.cidSer.currentCompanyId.subscribe(myCompanyId=>this.myCompanyId=myCompanyId)
   }
 
-  openUser  () {
+  openUser() {
     this.dialog.open(UserRegisterLoginComponent);
   }
+
+  openCompany() {
+    this.dialog.open(CompanyRegisterLoginComponent)
+  }
+
 }

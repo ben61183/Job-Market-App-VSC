@@ -59,10 +59,12 @@ export class NewListingComponent implements OnInit {
     this.newSalary=0
     this.newUploadYear=0
     this.newCompany={
-      companyId:251,
+      companyId:1,
       companyName:"default",
       hqLocation:"default",
       linkedIn:"linkedin.com",
+      password: "",
+      username: ""
     }
     this.newVacancySkills=[]
 

@@ -1,0 +1,26 @@
+<tr>
+        <td> 
+            <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="newCompanyName"  placeholder="Company Name"  name="newCompanyName" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+            <br> 
+            <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="hqLocation" placeholder="Location"  name="hqLocation" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+            <br> 
+            <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="linkedIn" placeholder="Linked In"  name="linkedIn" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+            <br> 
+            <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="username" placeholder="Username"  name="username" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+            <br> 
+            <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="password" placeholder="Password"  name="password" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+        </td>
+</tr>
+
+<hr> 
+    <button mat-raised-button color="accent" (click)="createNewCompany()">Register Company</button>
