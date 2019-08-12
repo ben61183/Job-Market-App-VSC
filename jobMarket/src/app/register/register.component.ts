@@ -56,10 +56,8 @@ export class RegisterComponent implements OnInit {
    }
   
   ngOnInit() {
-    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
-    this.loadAllUsers()
-
-    
+    this.myUserId = this.uidSer.getUserId()
+    this.loadAllUsers()    
   }
 
   addUserDetails(){

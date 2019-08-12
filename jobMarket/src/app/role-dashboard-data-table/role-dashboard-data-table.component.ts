@@ -66,8 +66,8 @@ ngOnInit() {
     this.dataSource = new MatTableDataSource(); 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort; 
-    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
-    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
+    this.myUserId = this.uidSer.getUserId()
+    this.myCompanyId = this.cidSer.getCompanyId()
     // load all roles via REST
     this.rolSvc.loadAllRolesFromService().subscribe(
       response => {

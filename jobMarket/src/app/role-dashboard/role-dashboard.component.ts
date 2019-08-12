@@ -56,8 +56,8 @@ export class RoleDashboardComponent implements OnInit {
   
   ngOnInit() {
     this.loadAllRoles()
-    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
-    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
+    this.myUserId = this.uidSer.getUserId()
+    this.myCompanyId = this.cidSer.getCompanyId()
   }
 
   openAddRole() {

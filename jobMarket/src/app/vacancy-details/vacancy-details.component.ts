@@ -45,8 +45,8 @@ export class VacancyDetailsComponent implements OnInit {
   ngOnInit() {
     this.vidSvc.currentVacancyId.subscribe(myVacancyId=>this.vacancy.vacancyId=myVacancyId)
     this.fetchCurrentVacancyFromService()
-    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
-    this.cidSer.currentCompanyId.subscribe(myCompanyId=>this.myCompanyId=myCompanyId)
+    this.myUserId = this.uidSer.getUserId()
+    this.myCompanyId = this.cidSer.getCompanyId()
   }
 
   fetchCurrentVacancyFromService(){

@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserIdService {
-
   private userIdSource = new BehaviorSubject(-1);
   currentUserId = this.userIdSource.asObservable();
   
@@ -14,7 +13,7 @@ export class UserIdService {
   constructor() { }
 
   getUserId(){
-    console.log("local store:"+localStorage.getItem("userId"))
+    console.log("user local store:"+localStorage.getItem("userId"))
     // return the userId as a number
     return Number(localStorage.getItem("userId"))
   }
