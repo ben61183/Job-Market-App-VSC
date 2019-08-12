@@ -29,7 +29,7 @@ export class RoleService {
     const httpOptions = {// declare the headers for the content type
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
     }
-    var reqBody = "roleId="+role.roleId+"&category="+role.category+"&roleName="+role.roleName
+    var reqBody = "category="+role.category+"&roleName="+role.roleName
     return this.httpsvc.post<RoleComponent>(this.rootUrl+"/register",reqBody,httpOptions)
   }
 
@@ -47,6 +47,12 @@ export class RoleService {
   findJobsByCategory(searchParam):Observable<Role[]>{
     return this.httpsvc.get<Role[]>(this.rootUrl+"/fetch_category/?searchParam="+searchParam)
     }
+
+  //delete role by roleId
+  deleteRoleByRoleId(roleId):Observable<RoleComponent>{
+    console.log(this.rootUrl+"/delete/"+roleId)
+    return this.httpsvc.delete<RoleComponent>(this.rootUrl+"/delete/"+roleId)
+  }
 }
 
   

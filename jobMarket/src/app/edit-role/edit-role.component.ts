@@ -53,20 +53,26 @@ export class EditRoleComponent implements OnInit {
     )
   }
 
-  updateRole(roleId) {
+  updateRole() {
     this.roleSvc.updateRoleOnServer({
       roleId: this.newRoleId,
       category: this.newCategory,
       roleName: this.newRoleName
-    }).subscribe(
+      
+    } ).subscribe(
       response => {
         this.newRoleId = response.roleId
         this.newCategory = response.category
         this.newRoleName = response.roleName
-        console.log(response)
-      }
+        
+     }
     )
-      // window.location.reload()
+      window.location.reload()
+  }
+
+  deleteRole() {
+    this.roleSvc.deleteRoleByRoleId(this.newRoleId).subscribe()
+    window.location.reload()
   }
 
 }

@@ -8,10 +8,11 @@
             <mat-form-field class="example-full-width">
             <input [(ngModel)]="newTitle" matInput placeholder="Job Title" #inputName="ngModel" name="newTitle" [ngModelOptions]="{standalone: true}">
             </mat-form-field>&nbsp;&nbsp; 
-          
-            <mat-form-field class="example-full-width">
+            
+            <!-- No Longer used as company is now an entity  -->
+            <!-- <mat-form-field class="example-full-width">
                 <input matInput readonly [(ngModel)]="newCompany" name="newCompany" [ngModelOptions]="{standalone: true}" placeholder="{{company.companyName}}">
-                </mat-form-field>&nbsp;&nbsp;
+                </mat-form-field>&nbsp;&nbsp; -->
        
             <mat-form-field class="example-full-width">
                 <input matInput [(ngModel)]="newDescription" name="newDescription" [ngModelOptions]="{standalone: true}" placeholder="Description">
@@ -20,8 +21,7 @@
             <mat-form-field class="example-full-width">
                     <td><input matInput [(ngModel)]="newLocation" name="newLocation" [ngModelOptions]="{standalone: true}" placeholder="Location"></td>
             </mat-form-field>&nbsp;&nbsp;
-        </td> 
-        <td> 
+      
                 <mat-form-field class="example-full-width">
                 <td><input matInput [(ngModel)]="newSalary" name="newSalary" [ngModelOptions]="{standalone: true}" placeholder="Salary"></td>
                 </mat-form-field>&nbsp;&nbsp;

@@ -24,7 +24,6 @@ const routes: Routes = [
   {path: "user/:userId", component: UserComponent},
   {path: "vacancy/:vacancyId", component: VacancyComponent},
   {path: "company/:companyId",component:CompanyComponent}
-  
   // {path: "login", component: UserComponent}
 ];
 

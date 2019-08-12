@@ -64,7 +64,6 @@ ngOnInit() {
     this.rolSvc.loadAllRolesFromService().subscribe(
       response => {
         this.allRoles = response
-        console.log(response) 
         this.dataSource.data = response
         for(let role of this.allRoles){
           this.findVacanciesOfRole(role)
@@ -137,7 +136,6 @@ vacancyCalculations(role) {
 
     // wait until the last role has been fetched and assigned its vacancies
     if(role.roleId == this.allRoles[this.allRoles.length-1].roleId){
-      console.log("entered role calc if statement")
       this.roleCalculations(this.allRoles)
     }
 }

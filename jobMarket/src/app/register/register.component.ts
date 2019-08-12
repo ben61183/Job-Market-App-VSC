@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   isUniqueEmail: boolean
   isUniqueUsername: boolean
 
-  allUsers: User[];
+  allUsers;
 
   myUserId:number
 
@@ -56,6 +56,7 @@ export class RegisterComponent implements OnInit {
   
   ngOnInit() {
     this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
+    this.loadAllUsers() 
   }
 
   addUserDetails(){
@@ -82,10 +83,11 @@ export class RegisterComponent implements OnInit {
   loadAllUsers(){
     this.regSvc.loadAllUsersFromServer().subscribe(
       response =>
-      {this.allUsers=response
-       
+      {//this.allUsers=response
+       console.log(response)
       })
   }
+
 
 
 
@@ -127,13 +129,13 @@ export class RegisterComponent implements OnInit {
 
 
   signUp(){
-    this.passwordCheck()
-    this.uniqueUsernameCheck()
-    this.uniqueEmailCheck()
-    if(this.isPassCheck==true && this.isUsernameCheck==true && this.isEmailCheck==true){
+      this.passwordCheck()
+    //this.uniqueUsernameCheck()
+    // this.uniqueEmailCheck()
+    //if(this.isPassCheck==true && this.isUsernameCheck==true && this.isEmailCheck==true){
       this.addUserDetails();
-
-    }
+      console.log(this.allUsers)
+    //}
     
   }
 

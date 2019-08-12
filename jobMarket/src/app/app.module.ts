@@ -16,7 +16,6 @@ import { RoleDashboardComponent } from './role-dashboard/role-dashboard.componen
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { RoleAdminComponent } from './role-admin/role-admin.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,8 +46,9 @@ import { AddRoleComponent } from './add-role/add-role.component';
 import { EditRoleComponent } from './edit-role/edit-role.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
 import { CompanyComponent } from './company/company.component';
-
-
+import { MatNativeDateModule } from '@angular/material/core';
+import { UserRegisterLoginComponent } from './user-register-login/user-register-login.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -70,13 +70,13 @@ import { CompanyComponent } from './company/company.component';
     AddRoleComponent,
     EditRoleComponent,
     UserloginComponent,
-    CompanyComponent
+    CompanyComponent,
+    UserRegisterLoginComponent
   ],
-  entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent],
+  entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent, UserRegisterLoginComponent],
   imports: [
     MatChipsModule,
     OverlayModule,
-    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -96,9 +96,9 @@ import { CompanyComponent } from './company/company.component';
     MatDialogModule,
     MatInputModule,
     MatRadioModule,
-    MatSelectModule
-
-    
+    MatSelectModule,
+    MatNativeDateModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

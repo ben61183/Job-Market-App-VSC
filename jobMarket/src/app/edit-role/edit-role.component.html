@@ -1,5 +1,7 @@
+<tr> 
 <div *ngIf="!isEditRoleFormVisible"> 
 
+<td>
 <mat-form-field >
         <mat-label>Select A Role</mat-label>
         <mat-select [(ngModel)]="selectedRole" (ngModelChange)="selected()" name="roleId">
@@ -7,23 +9,26 @@
             {{role.roleName}} - {{role.category}}
           </mat-option>
         </mat-select>
-</mat-form-field>
-
-<button mat-raised-button color="accent" type="submit" (click)="showUpdateRoleForm()">Edit</button>
+        </mat-form-field>
+</td>
+<div style="text-align:center;"> 
+    <button mat-raised-button color="accent" type="submit" (click)="showUpdateRoleForm()">Edit</button>
 </div>
+</div>
+</tr>
 
 <table *ngIf="isEditRoleFormVisible"> 
-<tr> 
+<tr>
     <td>
         <mat-form-field class="example-full-width">
         <mat-label>Name</mat-label> 
-        <input matInput [(ngModel)]="newRoleName" name="newRoleName">
+        <input matInput [(ngModel)]="newRoleName" name="newRoleName" #rname>
         </mat-form-field>&nbsp;
     </td>
     <td> 
         <mat-form-field class="example-full-width">
                 <mat-label>Category</mat-label> 
-                <input matInput [(ngModel)]="newCategory" name="newCategory">
+                <input matInput [(ngModel)]="newCategory" name="newCategory" #rcategory>
         </mat-form-field>
     </td>
 </tr>

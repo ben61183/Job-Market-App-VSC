@@ -153,7 +153,7 @@ export class RoleAdminComponent implements OnInit {
     deleteVacancy(){
       this.vacSvc.deleteVacancybyVacancyId(this.vacancyId).subscribe(
       )
-      window.location.reload()
+      //window.location.reload()
   }
 
 
@@ -162,7 +162,7 @@ export class RoleAdminComponent implements OnInit {
       console.log(this.isVacancyEditable)
       this.updateVacancyDetails()
       if (this.isVacancyEditable == false){
-        window.location.reload()
+        // window.location.reload()
         
       }
     }
