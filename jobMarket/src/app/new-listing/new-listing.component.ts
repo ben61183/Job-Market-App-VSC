@@ -103,7 +103,7 @@ export class NewListingComponent implements OnInit {
     ngOnInit() {
     this.loadAllSkills()
     this.loadAllRoles()
-    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
+    this.myCompanyId = this.cidSer.getCompanyId()
   }
 
   loadAllSkills(){

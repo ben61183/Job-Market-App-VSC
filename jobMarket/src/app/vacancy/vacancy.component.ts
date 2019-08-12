@@ -94,8 +94,8 @@ export class VacancyComponent implements OnInit {
     this.fetchCurrentVacancyFromService()
     this.loadAllVacancies()
     this.loadAllSkills()
-    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
-    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
+    this.myUserId = this.uidSer.getUserId()
+    this.myCompanyId = this.cidSer.getCompanyId()
 
   }
 

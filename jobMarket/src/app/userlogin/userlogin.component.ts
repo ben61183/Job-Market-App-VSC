@@ -43,9 +43,8 @@ export class UserloginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
-    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
-
+    this.myUserId = this.uidSer.getUserId()
+    this.myCompanyId = this.cidSer.getCompanyId()
     this.loadAllUsers()
   }
 
@@ -77,15 +76,22 @@ export class UserloginComponent implements OnInit {
     this.uidSer.changeUserId(this.userId)
     
     } 
+  }
     // change user id in uid service, will effect whole application
-    
+  
+
+  // change user id in uid service, will effect whole application
+  logInUserService(userId){
+    this.cidSer.logOutCompany()
+    this.uidSer.changeUserId(userId)
+    console.log("userId:"+userId)
   }
 
   logInCompany(companyId){
-    // this.cidSer.changeCompanyId(companyId)
+    this.uidSer.logOutUser()
+    this.cidSer.changeCompanyId(companyId)
+    console.log("companyId"+companyId)
   }
-
-  
 
   login(){
     this.isError=false

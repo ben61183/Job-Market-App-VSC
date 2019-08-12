@@ -32,7 +32,7 @@
       <span *ngIf="myCompanyId!=-1">
         <a routerLink="/company/251"> My Company Profile</a>
       </span>
-      <button mat-button (click)="logOut()" ><mat-icon>power_settings_new</mat-icon></button>
+      <button mat-button (click)="logOut()" routerLink="/"><mat-icon>power_settings_new</mat-icon></button>
     </mat-toolbar>
     <ng-content> 
     </ng-content>
