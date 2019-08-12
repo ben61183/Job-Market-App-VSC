@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../register.service';
 import { User } from '../user';
 import { UserIdService } from '../user-id.service';
+import { CompanyIdService } from '../company-id.service';
 
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [UserIdService]
+  providers: [UserIdService,CompanyIdService]
 
 })
 
@@ -29,7 +30,7 @@ export class RegisterComponent implements OnInit {
   isUniqueEmail: boolean
   isUniqueUsername: boolean
 
-  allUsers: User[];
+  allUsers;
 
   myUserId:number
 
@@ -58,6 +59,7 @@ export class RegisterComponent implements OnInit {
     this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
     this.loadAllUsers()
 
+    
   }
 
   addUserDetails(){
@@ -68,6 +70,7 @@ export class RegisterComponent implements OnInit {
           this.password = response.password
           this.email = response.email
           this.uidSer.changeUserId(this.userId)
+          console.log(response)
           })
   } 
   
@@ -87,6 +90,7 @@ export class RegisterComponent implements OnInit {
       console.log(response)
       })
   }
+
 
 
 
@@ -143,6 +147,7 @@ export class RegisterComponent implements OnInit {
       this.addUserDetails();
       window.location.reload();
     }
+
     
   }
 

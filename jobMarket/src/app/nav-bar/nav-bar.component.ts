@@ -2,11 +2,15 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
+import { UserIdService } from '../user-id.service';
+import { CompanyIdService } from '../company-id.service';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css']  ,
+  providers: [UserIdService,CompanyIdService]
+
 })
 export class NavBarComponent {
 
@@ -16,6 +20,15 @@ export class NavBarComponent {
       share()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  myUserId:number
+  myCompanyId:number
+  
+  constructor(private breakpointObserver: BreakpointObserver, private uidSer:UserIdService,
+    private cidSer:CompanyIdService) {}
+  
 
+  ngOnInit() {
+    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
+    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
+  }
 }
