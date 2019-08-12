@@ -21,6 +21,8 @@ export class UserComponent implements OnInit {
   email: string
   userSkills: Skill[] = []
 
+  // edit user
+  isEditable:boolean
   // used to mark skills not added by user
   antiSkills: Skill[] = []
   // used to collect vacancies saved by user
@@ -48,6 +50,7 @@ export class UserComponent implements OnInit {
     this.numSkills=[]
     this.skills=[]
     this.userPrivilege=false
+    this.isEditable = false
   }
 
   ngOnInit() {
@@ -135,4 +138,12 @@ export class UserComponent implements OnInit {
     // window.location.reload()
   }
 
+  toggleEdits(){
+    this.isEditable = !this.isEditable
+    this.updateUserInService()
+  }
+
+  updateUserInService(){
+    
+  }
 }
