@@ -38,6 +38,7 @@ export class UserloginComponent implements OnInit {
   logInUser(userId){
     // change user id in uid service, will effect whole application
     this.uidSer.changeUserId(userId)
+    console.log(userId)
   }
 
   logInCompany(companyId){

@@ -25,4 +25,9 @@ export class WelcomeComponent implements OnInit {
   openUser  () {
     this.dialog.open(UserRegisterLoginComponent);
   }
+
+  // delete this function
+  logInUser(id){
+    this.uidSer.changeUserId(id)
+  }
 }

@@ -26,12 +26,9 @@
       <span class="spacer"></span> 
       <a routerLink="/role-dashboard">Role Dashboard </a>
       <a routerLink="/vacancy-dashboard">Vacancy Dashboard </a>
-      <!-- <span *ngIf="true"> insert if statement to check user/admin -->
-        <!-- <a routerLink="/role-admin"> Role Admin</a> -->
-      <!-- </span> -->
-      <!-- CHECK FOR USER/COMPANY/ADMIN -->
         <a routerLink="/user/1"> My Profile</a>
         <a routerLink="/company/251"> My Profile</a>
+        <button mat-button (click)="logOut()" ><mat-icon>power_settings_new</mat-icon></button>
     </mat-toolbar>
     <ng-content> 
     </ng-content>

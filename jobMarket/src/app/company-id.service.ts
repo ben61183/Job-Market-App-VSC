@@ -13,6 +13,7 @@ export class CompanyIdService {
 
   changeCompanyId(myCompanyId: number) {
     this.companyIdSource.next(myCompanyId)
+    console.log(myCompanyId)
   }
 
   logOutCompany(){

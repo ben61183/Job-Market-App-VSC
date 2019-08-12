@@ -31,4 +31,10 @@ export class NavBarComponent {
     this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
     this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
   }
+
+  logOut(){
+    this.uidSer.changeUserId(-1)
+    this.cidSer.changeCompanyId(-1)
+    window.location.reload()
+  }
 }

@@ -23,7 +23,7 @@ export class VacancyDashboardComponent{
   }
 
   ngOnInit(){
-    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
+    this.myUserId = this.uidSer.getUserId()
     this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
 
   }

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { OverlayModule} from '@angular/cdk/overlay';
 
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VacancyComponent } from './vacancy/vacancy.component';
