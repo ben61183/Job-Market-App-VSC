@@ -4,6 +4,7 @@ import { User } from '../user';
 import { UserIdService } from '../user-id.service';
 import { CompanyIdService } from '../company-id.service';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -36,7 +37,6 @@ export class RegisterComponent implements OnInit {
   constructor(private regSvc:RegisterService, private uidSer:UserIdService) {
     this.isPassMatch
     this.isError=true
-    this.isEmailCheck
     this.isUniqueEmail=true
     this.isUniqueUsername=true
 
@@ -57,7 +57,9 @@ export class RegisterComponent implements OnInit {
   
   ngOnInit() {
     this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
-    this.loadAllUsers() 
+    this.loadAllUsers()
+
+    
   }
 
   addUserDetails(){
@@ -67,6 +69,7 @@ export class RegisterComponent implements OnInit {
           this.username = response.username
           this.password = response.password
           this.email = response.email
+          this.uidSer.changeUserId(this.userId)
           console.log(response)
           })
   } 
@@ -76,15 +79,15 @@ export class RegisterComponent implements OnInit {
           return this.isPassCheck=true;
         } else{
           this.isError=false;
-          console.log(this.isError)
+          
         }
   }
 
   loadAllUsers(){
     this.regSvc.loadAllUsersFromServer().subscribe(
       response =>
-      {//this.allUsers=response
-       console.log(response)
+      {this.allUsers=response
+      console.log(response)
       })
   }
 
@@ -104,24 +107,28 @@ export class RegisterComponent implements OnInit {
   }
 
   uniqueUsernameCheck(){
+      // this.loadAllUsers()
       for(let user of this.allUsers){
-        if (user.username==this.username){
-          console.log("username is matching")
+        if (user.username!=this.username){
           return this.isUsernameCheck=true
         } else{
-          this.isUniqueUsername=false;
+          return this.isUniqueUsername=false
+          
         }
-        
-      }
   }
+}
 
+
+  
   uniqueEmailCheck(){
+    // this.loadAllUsers()
     for(let user of this.allUsers){
-      if (user.email==this.email){
-
+      if (user.email!=this.email){
+        
         return this.isEmailCheck=true
       } else{
-        this.isUniqueEmail=false
+        return this.isUniqueEmail=false
+        
       }
       
     }
@@ -129,13 +136,18 @@ export class RegisterComponent implements OnInit {
 
 
   signUp(){
-      this.passwordCheck()
-    //this.uniqueUsernameCheck()
-    // this.uniqueEmailCheck()
-    //if(this.isPassCheck==true && this.isUsernameCheck==true && this.isEmailCheck==true){
+    this.isError=true
+    this.isUniqueEmail=true
+    this.isUniqueUsername=true
+    this.passwordCheck()
+    // this.loadAllUsers()
+    this.uniqueUsernameCheck()
+    this.uniqueEmailCheck()
+    if(this.isPassCheck==true && this.isEmailCheck==true && this.isUsernameCheck==true){
       this.addUserDetails();
-      console.log(this.allUsers)
-    //}
+      window.location.reload();
+    }
+
     
   }
 
