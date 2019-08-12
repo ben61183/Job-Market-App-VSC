@@ -29,7 +29,7 @@ export class VacancyDetailsComponent implements OnInit {
     private vidSvc:VacancyIdService, private uidSer:UserIdService, private cidSer:CompanyIdService) {
       this.vacancy={
         vacancyId: this.route.snapshot.params.vacancyId,
-        thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:""},
+        thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:"", password:"", username:""},
         description: "description",
         job_type: true,
         link: "link",
@@ -38,7 +38,8 @@ export class VacancyDetailsComponent implements OnInit {
         salary: 0,
         title: "title",
         uploadYear: 2019,
-        vacancySkills: []
+        vacancySkills: [],
+        
       }
   }
 

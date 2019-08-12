@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
    }
   
   ngOnInit() {
-    this.myUserId = this.uidSer.getUserId()
+    // this.myUserId = this.uidSer.getUserId()
     this.loadAllUsers()    
   }
 
@@ -145,7 +145,6 @@ export class RegisterComponent implements OnInit {
       this.addUserDetails();
       window.location.reload();
     }
-
     
   }
 

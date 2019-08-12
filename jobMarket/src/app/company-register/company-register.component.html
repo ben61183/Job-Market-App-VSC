@@ -1,0 +1,35 @@
+<div style="text-align:center"> 
+<tr>
+        <td> 
+            <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="newCompanyName"  placeholder="Company Name"  name="newCompanyName" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+            <br> 
+            <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="hqLocation" placeholder="Location"  name="hqLocation" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+            <br> 
+            <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="linkedIn" placeholder="Linked In"  name="linkedIn" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+            <br> 
+            <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="newUsername" placeholder="Username"  name="newUsername" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+            <br> 
+            <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="newPassword" placeholder="Password"  name="newPassword" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+            <br> 
+            <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="confirmPassword" placeholder="Confirm Password"  name="confirmPassword" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
+        </td>
+</tr>   
+
+<div *ngIf="!isError">Passwords do no match</div>
+<div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
+
+<hr> 
+    <button mat-raised-button color="accent" (click)="signUp()">Register Company</button>
+</div>

@@ -5,15 +5,24 @@
     <img width="100" alt="Angular Logo" routerLink="/role-dashboard" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1024px-Circle-icons-computer.svg.png">
 </div>
 <h4 style="text-align:center">The Only Place to Search the IT Job Market.</h4>
-<h2>{{myUserId}} | {{myCompanyId}}</h2>
 
 <div style="text-align:center"> 
 <hr> 
+<span *ngIf="myUserId==-1 && myCompanyId==-1">
 <button mat-raised-button (click)="openUser()">User</button><br><br>  
 <button mat-raised-button>Company</button><br><br>  
 <button mat-raised-button>Admin</button>
+</span>
+<span *ngIf="myUserId==-1 && myCompanyId!=-1">
+<h2>You are logged in as {{myCompanyName}}</h2>
+<h4>Add vacancies, view role statistics and edit your company profile!</h4>
+</span>
+<span *ngIf="myUserId!=-1">
+<h2>You are logged in as {{myUsername}}</h2>
+<h4>Save jobs, view role statistics and edit your user profile!</h4>
+</span>
+<span *ngIf="myUserId==0 && myCompanyId==-1">
+<h2>You are logged in as an Admin</h2>
+<h4>You have full priveleges across the site.</h4>
+</span>
 </div>
-<button (click)="logInUser(1)">change user</button>
-<button (click)="logInCompany(251)">change company</button>
-
-

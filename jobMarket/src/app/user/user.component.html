@@ -1,6 +1,42 @@
 <h1 style="text-align: center">{{username}}'s Profile</h1>
-
 <h3>Skills</h3>
+<table id="details">
+    <tr>
+    <td *ngIf="!isEditable">Username:</td>
+    <td *ngIf="!isEditable">{{username}}</td>
+    <td *ngIf="isEditable">
+        <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label> 
+        <input matInput [(ngModel)]="username" name="username"> 
+        </mat-form-field>
+    </td>
+    </tr>
+    <tr>
+    <td *ngIf="!isEditable">Email:</td>
+    <td *ngIf="!isEditable">{{email}}</td>
+    <td *ngIf="isEditable">
+        <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label> 
+        <input matInput [(ngModel)]="email" name="email"> 
+        </mat-form-field>
+    </td>
+    </tr>
+    <tr>
+    <td *ngIf="!isEditable">Password:</td>
+    <td *ngIf="!isEditable">{{password}}</td>
+    <td *ngIf="isEditable">
+        <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label> 
+        <input matInput [(ngModel)]="password" name="password"> 
+        </mat-form-field>
+    </td>
+    </tr>
+    <tr><td><button (click)="toggleEdits()" mat-raised-button color="primary"  value='{{(isEditable)?"Save":"Edit"}}' #edit>{{(isEditable)?"Save":"Edit"}}</button></td></tr>
+
+
+
+
+</table>
 <div id="skillTable">
         <mat-chip-list #chipList>
         <span *ngFor="let aS of antiSkills; let i = index">
@@ -45,3 +81,5 @@
     </span>
 </table>
 </div>
+
+

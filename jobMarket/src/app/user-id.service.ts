@@ -29,6 +29,12 @@ export class UserIdService {
     // console.log(this.currentUserId)
   }
 
+  // admin given userId = 0
+  logInAdmin(){
+    console.log("admin login")
+    this.changeUserId(0)
+  }
+
   logOutUser(){
     this.changeUserId(-1)
   }

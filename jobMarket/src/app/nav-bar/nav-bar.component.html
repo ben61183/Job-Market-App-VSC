@@ -27,10 +27,10 @@
       <a routerLink="/role-dashboard">Role Dashboard </a>
       <a routerLink="/vacancy-dashboard">Vacancy Dashboard </a>
       <span *ngIf="myUserId!=-1">
-        <a routerLink="/user/1"> My User Profile</a>
+        <a routerLink="/user/{{myUserId}}"> My User Profile</a>
       </span>
       <span *ngIf="myCompanyId!=-1">
-        <a routerLink="/company/251"> My Company Profile</a>
+        <a routerLink="/company/{{myCompanyId}}"> My Company Profile</a>
       </span>
       <button mat-button (click)="logOut()" routerLink="/"><mat-icon>power_settings_new</mat-icon></button>
     </mat-toolbar>
