@@ -3,7 +3,7 @@
             <mat-label>Select A Vacancy</mat-label>
             <mat-select [(ngModel)]="selectedLevel" (ngModelChange)="selected()">
                 <mat-option *ngFor="let v of allVacancies" [value]="v">
-                        {{v.title}}, {{v.company}}
+                        {{v.title}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -64,10 +64,18 @@
                 <td *ngIf="!isVacancyEditable">Job Type:</td>
                 <td *ngIf="!isVacancyEditable">{{(selectedLevel.jobType)?"permanent":"contract"}}</td>
                 <td *ngIf="isVacancyEditable">
-                    <mat-form-field class="example-full-width">
-                    <mat-label>Job Type</mat-label> 
-                    <input matInput [(ngModel)]="job_type" name="job type">
-                    </mat-form-field> &nbsp;
+                    <span *ngIf="selectedLevel.jobType">
+                    <mat-radio-group aria-label="Job Type">
+                        <mat-radio-button value="true" (click)="setJobType(true)" checked="checked">Permanent</mat-radio-button>&nbsp;&nbsp;
+                        <mat-radio-button value="false" (click)="setJobType(false)">Contract</mat-radio-button>
+                    </mat-radio-group>
+                    </span>
+                    <span *ngIf="!selectedLevel.jobType">
+                        <mat-radio-group aria-label="Job Type">
+                            <mat-radio-button value="true" (click)="setJobType(true)" >Permanent</mat-radio-button>&nbsp;&nbsp;
+                            <mat-radio-button value="false" (click)="setJobType(false)" checked="checked">Contract</mat-radio-button>
+                        </mat-radio-group>
+                    </span>
                 </td>
             </tr> 
             <tr> 
@@ -119,4 +127,4 @@
         </table>
 
 </form>
-    
+<p *ngIf="!valid">{{validError}}</p>

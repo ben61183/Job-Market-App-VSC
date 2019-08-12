@@ -45,6 +45,10 @@ export class NewListingComponent implements OnInit {
 
   myCompanyId:number
 
+  // used for validation
+  valid:boolean
+  validError:string
+
   
   constructor(private vacSvc: VacancyService, private skiSvc:SkillService, private rolSvc:RoleService,
     private comSvc:CompanyService, private cidSer:CompanyIdService) {  
@@ -52,11 +56,11 @@ export class NewListingComponent implements OnInit {
     this.newVacancyId=0
     this.newTitle=""
     this.newDescription=""
-    this.newJobType=false
+    this.newJobType=null
     this.newLink=""
     this.newLocation=""
     this.newPostTime="00:00AM"
-    this.newSalary=0
+    this.newSalary=null
     this.newUploadYear=0
     this.newCompany={
       companyId:251,
@@ -90,6 +94,9 @@ export class NewListingComponent implements OnInit {
     this.skills=[]
     this.roles=[]
 
+    this.valid=true
+    this.validError=""
+
     }
 
      
@@ -117,6 +124,12 @@ export class NewListingComponent implements OnInit {
   createNewVacancy(){
     console.log(this.newJobType)
     this.dateAndTime()
+    // reset validity
+    this.valid=true
+    this.validError=""
+
+    this.validationChecks()
+    if(this.valid){
     this.vacSvc.updateVacancyOnServer({thisCompany:this.newCompany, vacancyId:this.newVacancyId,title:this.newTitle,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
       response=>{
             console.log(this.newVacancySkills)
@@ -155,6 +168,35 @@ export class NewListingComponent implements OnInit {
       }
     )
       window.location.reload(); // comment out to view console
+    }
+  }
+
+  // check validity of fields
+  validationChecks(){
+    if(this.newSalary != Number(this.newSalary) || this.newSalary == null || this.newSalary == 0){
+      this.valid = false
+      this.validError+="Invalid Salary. Numbers only"
+    }
+    if(this.newDescription == "" || this.newDescription == null){
+      this.valid = false
+      this.validError+=" Invalid/Empty Description."
+    }
+    if(this.newLocation == "" || this.newLocation == null){
+      this.valid = false
+      this.validError+=" Invalid/Empty Location."
+    }
+    if(this.newTitle == "" || this.newTitle == null){
+      this.valid = false
+      this.validError+=" Invalid/Empty Job Title."
+    }
+    if(this.selectedRoleId == 0 || this.selectedRoleId == null){
+      this.valid = false
+      this.validError+=" Choose a Role."
+    }
+    if(this.newJobType == null){
+      this.valid = false
+      this.validError+=" Choose Contract/Permanent."
+    }
   }
 
   

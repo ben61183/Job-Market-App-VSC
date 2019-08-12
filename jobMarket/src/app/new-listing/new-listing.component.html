@@ -53,4 +53,5 @@
     </span>
 <hr> 
     <button mat-raised-button color="accent" (click)="createNewVacancy()">Add Vacancy</button>
+    <p *ngIf="!valid">{{validError}}</p>
 </div>

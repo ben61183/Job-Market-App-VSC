@@ -8,7 +8,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Role</th>
-        <td mat-cell *matCellDef="let row"> <a mat-tab-link [routerLink]="['/role',row.roleId]">{{row.roleName}}</a></td>
+        <td mat-cell *matCellDef="let row"> <a [routerLink]="['/role',row.roleId]">{{row.roleName}}</a></td>
     
     </ng-container>
 
