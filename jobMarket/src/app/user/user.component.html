@@ -1,5 +1,4 @@
 <h1 style="text-align: center">{{username}}'s Profile</h1>
-<span *ngIf="userPrivilege">
 <h3>Skills</h3>
 <table id="details">
     <tr>
@@ -82,50 +81,3 @@
     </span>
 </table>
 </div>
-</span>
-
-<span *ngIf="!userPrivilege">
-    <h3>Skills</h3>
-    <div id="skillTable">
-            <mat-chip-list #chipList>
-            <span *ngFor="let aS of antiSkills; let i = index">
-            <div class="unapplied">
-                <span id="skillButtons" *ngIf="(aS!=undefined);else skillApplied">
-                    <mat-chip value="aS.skillId" color="accent">{{aS.skill}}</mat-chip>  
-                </span>
-            </div>
-            <div class="applied">
-                <span skillApplied *ngIf="(userSkills[i]!=undefined)">
-                    <mat-chip color="primary" class="applied" value="userSkills[i].skillId">
-                        {{userSkills[i].skill}}</mat-chip>  
-                </span>
-            </div>
-            </span>
-        </mat-chip-list>
-    </div>
-
-    <div id="savedVacancies">
-    <h3>My Saved Vacancies</h3>
-    <table>
-        <td>
-        </td>
-        <span *ngFor="let vacancy of savedVacancies, let i = index">
-        <td>
-            <tr><a [routerLink]="['/vacancy',vacancy.vacancyId]"><h4>{{vacancy.title}}</h4></a></tr>
-            <tr><a href="{{vacancy.link}}">Apply</a></tr>
-            <tr>{{vacancy.company}}</tr>
-            <tr>{{vacancy.description}}</tr>
-            <tr>{{numShared[i]}}/{{numSkills[i]}} common skills</tr>
-            <tr><strong>Common Skills:</strong></tr>
-            <tr *ngFor="let vacSkill of vacancy.vacancySkills">
-                <span *ngFor="let skill of userSkills">
-                    <span *ngIf="skill.skillId==vacSkill.skillId">
-                        <td>{{vacSkill.skill}}</td>
-                    </span>
-                </span>
-            </tr>
-        </td>
-        </span>
-    </table>
-    </div>
-</span>

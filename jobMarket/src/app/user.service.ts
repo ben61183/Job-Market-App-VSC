@@ -27,6 +27,14 @@ export class UserService {
     var reqBody = "userId="+userId+"&skillId="+skillId
     return this.httpsvc.post<UserComponent>(this.rootUrl+"/assign/skill",reqBody,httpOptions)
   }
+  
+  updateUserVacanciesInService(userId,vacancyId):Observable<UserComponent>{
+    const httpOptions = {// declare the headers for the content type
+      headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
+    }
+    var reqBody = "userId="+userId+"&vacancyId="+vacancyId
+    return this.httpsvc.post<UserComponent>(this.rootUrl+"/assign/vacancy",reqBody,httpOptions)
+  }
 
   deleteUserSkillsFromService(userId,skillId):Observable<UserComponent>{
     const httpOptions = {// declare the headers for the content type
