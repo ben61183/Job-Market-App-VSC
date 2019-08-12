@@ -46,4 +46,9 @@ export class WelcomeComponent implements OnInit {
     console.log("neither loaded")
   }
 
+  logInCompany(id){
+    this.uidSer.changeUserId(-1)
+    this.cidSer.changeCompanyId(id)
+  }
+
 }
