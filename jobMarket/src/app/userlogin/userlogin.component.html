@@ -13,12 +13,11 @@
                     <td><input [(ngModel)]="password" name="password"></td>
                 </tr>
                 <tr>
-                    <input type="submit" value="login">
+                    <button (click)="login()" value="login">Login</button>
             </tr>
             </table>
 
-            <div *ngIf="!isError">username cannot be found</div>
-            <div *ngIf="!isUniqueEmail">username and password</div>
-            <div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
+            <div *ngIf="isError">login credentials could not be found</div>
+            
 
 </form>
