@@ -3,5 +3,6 @@ export interface Company {
     companyName:string
     hqLocation:string
     linkedIn:string
-    
+    username: string
+    password: string 
 }

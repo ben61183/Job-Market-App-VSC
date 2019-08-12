@@ -89,5 +89,4 @@ export class UserloginComponent implements OnInit {
     console.log("companyId"+companyId)
     
   }
-
 }

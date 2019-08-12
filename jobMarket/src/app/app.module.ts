@@ -48,6 +48,9 @@ import { CompanyComponent } from './company/company.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UserRegisterLoginComponent } from './user-register-login/user-register-login.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { CompanyRegisterLoginComponent } from './company-register-login/company-register-login.component';
+import { CompanyRegisterComponent } from './company-register/company-register.component';
+import { CompanyLoginComponent } from './company-login/company-login.component';
 
 @NgModule({
   declarations: [
@@ -70,9 +73,12 @@ import { MatTabsModule } from '@angular/material/tabs';
     EditRoleComponent,
     UserloginComponent,
     CompanyComponent,
-    UserRegisterLoginComponent
+    UserRegisterLoginComponent,
+    CompanyRegisterLoginComponent,
+    CompanyRegisterComponent,
+    CompanyLoginComponent
   ],
-  entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent, UserRegisterLoginComponent],
+  entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent, UserRegisterLoginComponent, CompanyRegisterLoginComponent],
   imports: [
     MatChipsModule,
     OverlayModule,

@@ -25,7 +25,7 @@ export class VacancyDashboardDataTableComponent implements OnInit {
 
   dataSource: MatTableDataSource<Vacancy>;
 
-  displayedColumns = ['title', 'description', 'location', 'uploadYear', 'salary'];
+  displayedColumns = ['title', 'company', 'description', 'location', 'uploadYear', 'salary'];
   allVacancy: Vacancy[]
   vacancy: Vacancy
 
@@ -37,7 +37,7 @@ export class VacancyDashboardDataTableComponent implements OnInit {
     private vidSvc:VacancyIdService) {
     this.vacancy={
       vacancyId: 0,
-      thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:""},
+      thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:"", password: "", username: ""},
       description: "description",
       job_type: true,
       link: "link",

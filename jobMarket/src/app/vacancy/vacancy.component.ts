@@ -57,7 +57,7 @@ export class VacancyComponent implements OnInit {
 
 
   this.vacancyId=828;
-  this.company={companyName:"",hqLocation:"",linkedIn:"",companyId:0};
+  this.company={companyName:"",hqLocation:"",linkedIn:"",companyId:0, password: "", username: ""};
   this.description="default description";
   this.job_type=false;
   this.link="default website";

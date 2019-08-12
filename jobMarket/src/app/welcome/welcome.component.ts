@@ -4,6 +4,7 @@ import { CompanyIdService } from '../company-id.service';
 import { MatDialog } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import { UserRegisterLoginComponent } from '../user-register-login/user-register-login.component';
+import { CompanyRegisterLoginComponent } from '../company-register-login/company-register-login.component';
 import { CompanyService } from '../company.service';
 import { UserService } from '../user.service';
 
@@ -34,6 +35,10 @@ export class WelcomeComponent implements OnInit {
     this.dialog.open(UserRegisterLoginComponent);
   }
 
+  openCompany() {
+    this.dialog.open(CompanyRegisterLoginComponent)
+  }
+  
   loadNames(){
     if(this.myUserId!=-1){
       this.useSer.findUserByUserId(this.myUserId).subscribe(response=>this.myUsername=response.username)
