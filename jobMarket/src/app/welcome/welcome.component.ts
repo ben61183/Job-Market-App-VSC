@@ -4,6 +4,8 @@ import { CompanyIdService } from '../company-id.service';
 import { MatDialog } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import { UserRegisterLoginComponent } from '../user-register-login/user-register-login.component';
+import { CompanyService } from '../company.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-welcome',
@@ -15,24 +17,33 @@ export class WelcomeComponent implements OnInit {
 
   myUserId:number
   myCompanyId:number
-  constructor(public dialog: MatDialog,private uidSer:UserIdService, private cidSer:CompanyIdService) { }
+  myUsername:string
+  myCompanyName:string
 
-  ngOnInit() {  
-    this.myUserId = this.uidSer.getUserId()
-    this.myCompanyId = this.cidSer.getCompanyId()
+  constructor(public dialog: MatDialog,private uidSer:UserIdService, private cidSer:CompanyIdService,
+    private comSer:CompanyService, private useSer:UserService) {
+      this.myUserId=uidSer.getUserId()
+      this.myCompanyId=cidSer.getCompanyId()
+    }
+
+  ngOnInit() {
+    this.loadNames()
   }
 
-  openUser  () {
+  openUser() {
     this.dialog.open(UserRegisterLoginComponent);
   }
 
-  // delete this function
-  logInUser(id){
-    this.uidSer.changeUserId(id)
+  loadNames(){
+    if(this.myUserId!=-1){
+      this.useSer.findUserByUserId(this.myUserId).subscribe(response=>this.myUsername=response.username)
+      console.log(this.myUsername)
+    }
+    if(this.myCompanyId!=-1){
+      this.comSer.fetchCompanyFromService(this.myCompanyId).subscribe(response=>this.myCompanyName=response.companyName)
+      console.log(this.myCompanyName)
+    }
+    console.log("neither loaded")
   }
 
-  // delete this function
-  logInCompany(id){
-    this.cidSer.changeCompanyId(id)
-  }
 }

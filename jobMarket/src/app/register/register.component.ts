@@ -145,7 +145,6 @@ export class RegisterComponent implements OnInit {
       this.addUserDetails();
       window.location.reload();
     }
-
     
   }
 

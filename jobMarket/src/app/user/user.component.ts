@@ -6,6 +6,7 @@ import { Vacancy } from '../vacancy';
 import { SkillService } from '../skill.service';
 import { UserIdService } from '../user-id.service';
 import { CompanyIdService } from '../company-id.service';
+import { RegisterService } from '../register.service';
 
 @Component({
   selector: 'app-user',
@@ -42,7 +43,7 @@ export class UserComponent implements OnInit {
   userPrivilege:boolean
 
   constructor(private useSvc: UserService, private skiSvc: SkillService, private route: ActivatedRoute,
-    private uidSer:UserIdService) {
+    private uidSer:UserIdService, private regSvc:RegisterService) {
     // accessing userId from url param
     this.userId = this.route.snapshot.params.userId
     this.numShared = []
@@ -140,10 +141,26 @@ export class UserComponent implements OnInit {
 
   toggleEdits(){
     this.isEditable = !this.isEditable
-    this.updateUserInService()
+    if(!this.isEditable){
+      this.updateUserInService()
+    }
   }
 
   updateUserInService(){
-    
+    this.regSvc.updateUserOnServer({userId:this.userId,username:this.username,password:this.password,email:this.email}).subscribe(
+      response=>{
+        this.userId=response.userId,
+        this.username=response.username,
+        this.password=response.password,
+        this.email=response.email
+        for(let skill of this.userSkills){
+          this.useSvc.updateUserSkillsInService(this.userId,skill.skillId).subscribe()
+        }
+        // for(let vacancy of this.savedVacancies){
+        //   this.useSvc.
+        // }
+        window.location.reload()
+      }
+    )
   }
 }
