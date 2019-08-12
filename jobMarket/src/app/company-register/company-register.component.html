@@ -19,8 +19,16 @@
             <mat-form-field class="example-full-width">
                     <input matInput [(ngModel)]="password" placeholder="Password"  name="password" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>&nbsp;&nbsp; 
+            <br> 
+            <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="confirmPassword" placeholder="Confirm Password"  name="confirmPassword" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>&nbsp;&nbsp; 
         </td>
-</tr>
+</tr>   
+
+<div *ngIf="!isError">Passwords do no match</div>
+<div *ngIf="!isUniqueEmail">Email is already registered. Please enter a new email</div>
+<div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
 
 <hr> 
-    <button mat-raised-button color="accent" (click)="createNewCompany()">Register Company</button>
+    <button mat-raised-button color="accent" (click)="signUp()">Register Company</button>

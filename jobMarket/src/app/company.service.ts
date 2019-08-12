@@ -42,4 +42,11 @@ export class CompanyService {
     return this.httpsvc.post<Company>(this.rootUrl+"/assign/vacancy",reqBody,httpOptions)
   }
 
+
+  loadAllCompanysFromServer(): Observable<Company[]> {
+    return this.httpsvc.get<Company[]>(
+      this.rootUrl + "/list"
+    )
+  }
+
 }

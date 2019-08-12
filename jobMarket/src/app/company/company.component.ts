@@ -22,6 +22,8 @@ export class CompanyComponent implements OnInit {
   companyName:string
   hqLocation:string
   linkedIn:string
+  username: string
+  password: string 
   companyVacancies:Vacancy[]
 
   oneVacancy:Vacancy
@@ -45,6 +47,8 @@ export class CompanyComponent implements OnInit {
         this.companyName=response.companyName
         this.hqLocation=response.hqLocation
         this.linkedIn=response.linkedIn
+        this.username=response.username
+        this.password=response.password
       }
     )
     this.comSvc.fetchVacanciesOfCompanyFromService(companyId).subscribe(
