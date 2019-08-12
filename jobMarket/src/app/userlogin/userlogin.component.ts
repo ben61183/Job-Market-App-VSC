@@ -42,7 +42,7 @@ export class UserloginComponent implements OnInit {
   }
 
   logInCompany(companyId){
-    this.cidSer.changeCompanyId(companyId)
+    // this.cidSer.changeCompanyId(companyId)
   }
 
 }

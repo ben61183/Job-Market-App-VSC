@@ -10,7 +10,6 @@ export class UserIdService {
   currentUserId = this.userIdSource.asObservable();
   
   userId:number
-  companyId:number
 
   constructor() { }
 
