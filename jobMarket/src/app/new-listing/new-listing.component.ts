@@ -56,7 +56,7 @@ export class NewListingComponent implements OnInit {
     this.newLink=""
     this.newLocation=""
     this.newPostTime="00:00AM"
-    this.newSalary=null
+    this.newSalary=0
     this.newUploadYear=0
     this.newCompany={
       companyId:251,
@@ -64,6 +64,7 @@ export class NewListingComponent implements OnInit {
       hqLocation:"default",
       linkedIn:"linkedin.com",
     }
+    this.newVacancySkills=[]
 
     this.newRole={
       roleId : 0,
@@ -83,10 +84,8 @@ export class NewListingComponent implements OnInit {
       vacancies : []    
     }
 
-
     this.selectedRoleId=0
 
-    this.newVacancySkills=[]
 
     this.skills=[]
     this.roles=[]
@@ -118,7 +117,7 @@ export class NewListingComponent implements OnInit {
   createNewVacancy(){
     console.log(this.newJobType)
     this.dateAndTime()
-    this.vacSvc.updateVacancyOnServer({company:this.newCompany,vacancyId:this.newVacancyId,title:this.newTitle,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
+    this.vacSvc.updateVacancyOnServer({thisCompany:this.newCompany, vacancyId:this.newVacancyId,title:this.newTitle,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
       response=>{
             console.log(this.newVacancySkills)
             console.log(response)
@@ -130,17 +129,21 @@ export class NewListingComponent implements OnInit {
             this.newUploadYear = response.uploadYear
             this.newJobType = response.job_type
             this.newPostTime = response.postTime
-            this.newCompany = response.thisCompany
+            this.newSalary = response.salary
 
-            this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
-                responseRole =>{
-                this.newRole = responseRole.thisRole
-            })
             this.comSvc.addVacancyToCompanyOnService(this.newCompany.companyId,this.newVacancyId).subscribe(
               responseComp=>{
                 this.newCompany=responseComp
+                console.log(responseComp)
               }
             )
+
+            this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
+              responseVac =>{
+              this.newRole = responseVac.thisRole
+              console.log("response role:"+responseVac.thisRole.roleName)
+              console.log("this.newrole"+this.newRole.roleName)
+          })
             
             for(let skill of this.newVacancySkills)
               this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(
@@ -151,7 +154,7 @@ export class NewListingComponent implements OnInit {
             
       }
     )
-      window.location.reload(); // comment out to view console
+      // window.location.reload(); // comment out to view console
   }
 
   
