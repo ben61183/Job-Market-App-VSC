@@ -7,12 +7,16 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class UserIdService {
-  private userIdSource = new BehaviorSubject(99);
+  private userIdSource = new BehaviorSubject(-1);
   currentUserId = this.userIdSource.asObservable();
   
   constructor() { }
 
   changeUserId(myUserId: number) {
     this.userIdSource.next(myUserId)
+  }
+
+  logOutUser(){
+    this.changeUserId(-1)
   }
 }

@@ -4,11 +4,15 @@ import { UserService } from '../user.service';
 import { Skill } from '../skill';
 import { Vacancy } from '../vacancy';
 import { SkillService } from '../skill.service';
+import { UserIdService } from '../user-id.service';
+import { CompanyIdService } from '../company-id.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css']  ,
+  providers: [UserIdService,CompanyIdService]
+
 })
 export class UserComponent implements OnInit {
   userId: number
@@ -30,7 +34,12 @@ export class UserComponent implements OnInit {
   // all skills in db
   skills:Skill[]
 
-  constructor(private useSvc: UserService, private skiSvc: SkillService, private route: ActivatedRoute) {
+  myUserId:number
+
+
+
+  constructor(private useSvc: UserService, private skiSvc: SkillService, private route: ActivatedRoute,
+    private uidSer:UserIdService) {
     // accessing userId from url param
     this.userId = this.route.snapshot.params.userId
     this.numShared = []
@@ -43,6 +52,7 @@ export class UserComponent implements OnInit {
     console.log(this.userId)
     this.findUser(this.userId)
     this.loadAllSkills()
+    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
 
   }
 

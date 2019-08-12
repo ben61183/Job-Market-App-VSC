@@ -6,6 +6,8 @@ import { Role } from '../role';
 import { RoleRank } from '../role-rank';
 import { RoleService } from '../role.service';
 import { Router } from '@angular/router';
+import { UserIdService } from '../user-id.service';
+import { CompanyIdService } from '../company-id.service';
 
 @Component({
   selector: 'app-role-dashboard-data-table',
@@ -34,7 +36,12 @@ export class RoleDashboardDataTableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-constructor(private rolSvc:RoleService, private router: Router) {
+  myUserId:number
+
+  myCompanyId:number
+
+constructor(private rolSvc:RoleService, private router: Router, private uidSer:UserIdService,
+  private cidSer:CompanyIdService) {
     this.searchParam = " "
     this.role={
     roleId : 0,
@@ -59,7 +66,8 @@ ngOnInit() {
     this.dataSource = new MatTableDataSource(); 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort; 
-
+    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
+    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
     // load all roles via REST
     this.rolSvc.loadAllRolesFromService().subscribe(
       response => {

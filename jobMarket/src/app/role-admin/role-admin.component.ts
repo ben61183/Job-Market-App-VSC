@@ -154,6 +154,8 @@ export class RoleAdminComponent implements OnInit {
       this.vacSvc.deleteVacancybyVacancyId(this.vacancyId).subscribe(
       )
       window.location.reload()
+      alert("Vacancy "+this.title+" deleted!")
+
   }
 
 

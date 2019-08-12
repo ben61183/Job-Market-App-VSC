@@ -5,11 +5,15 @@ import { RoleRank } from '../role-rank';
 import { MatDialog } from '@angular/material';
 import { AddRoleComponent } from '../add-role/add-role.component';
 import { EditRoleComponent } from '../edit-role/edit-role.component';
+import { UserIdService } from '../user-id.service';
+import { CompanyIdService } from '../company-id.service';
 
 @Component({
   selector: 'app-role-dashboard',
   templateUrl: './role-dashboard.component.html',
-  styleUrls: ['./role-dashboard.component.css']
+  styleUrls: ['./role-dashboard.component.css']  ,
+  providers: [UserIdService,CompanyIdService]
+
 })
 
 export class RoleDashboardComponent implements OnInit {
@@ -23,7 +27,12 @@ export class RoleDashboardComponent implements OnInit {
   role: Role
   ranks: RoleRank[] = []// object for creating ranked roles
 
-  constructor(private rolSvc:RoleService, public dialog: MatDialog) {
+  myUserId:number
+  myCompanyId:number
+
+
+  constructor(private rolSvc:RoleService, public dialog: MatDialog, private uidSer:UserIdService,
+    private cidSer:CompanyIdService) {
     this.searchParam = " "
     // empty role object
     this.role={
@@ -47,6 +56,8 @@ export class RoleDashboardComponent implements OnInit {
   
   ngOnInit() {
     this.loadAllRoles()
+    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
+    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
   }
 
   openAddRole() {

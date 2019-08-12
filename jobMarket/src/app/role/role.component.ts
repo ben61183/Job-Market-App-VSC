@@ -3,11 +3,15 @@ import { RoleService } from '../role.service';
 import { Role } from '../role';
 import { ActivatedRoute } from '@angular/router';
 import { Skill } from '../skill';
+import { UserIdService } from '../user-id.service';
+import { CompanyIdService } from '../company-id.service';
 
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
-  styleUrls: ['./role.component.css']
+  styleUrls: ['./role.component.css']  ,
+  providers: [UserIdService,CompanyIdService]
+
 })
 export class RoleComponent implements OnInit {
   
@@ -43,7 +47,12 @@ export class RoleComponent implements OnInit {
   numVacanciesThree:number
   numVacanciesFour:number
 
-  constructor(private rolSvc: RoleService, private route: ActivatedRoute) {
+  myUserId:number
+
+  myCompanyId:number
+
+  constructor(private rolSvc: RoleService, private route: ActivatedRoute,private uidSer:UserIdService,
+    private cidSer:CompanyIdService) {
 
     // accessing roleId from url param
     this.oneRoleId = this.route.snapshot.params.roleId
@@ -81,6 +90,9 @@ export class RoleComponent implements OnInit {
     this.findOneRole(this.oneRoleId)
     this.findVacanciesOfRole(this.oneRoleId)
     this.vacancyCalculations(this.role.vacancies)
+    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
+    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
+
   }
 
   // filter jobs by category
