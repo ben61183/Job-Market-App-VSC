@@ -36,5 +36,8 @@ export class NavBarComponent {
   logOut(){
     this.uidSer.changeUserId(-1)
     this.cidSer.changeCompanyId(-1)
+    if(window.location.href=="http://localhost:4500/"){
+      window.location.reload()
+    }
   }
 }

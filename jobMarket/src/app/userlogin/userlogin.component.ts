@@ -65,16 +65,16 @@ export class UserloginComponent implements OnInit {
         this.userId=user.userId
         console.log(this.userId)
         this.isLoginValid=true
+        this.isError=false
       } else{
         this.isError=true
-      
       }
     }
   }  
 
   // change user id in uid service, will effect whole application
   logInUser(){
-    // this.isError=false
+    this.isError=false
     this.credentialCheck()
     if(this.isLoginValid==true){
       this.cidSer.logOutCompany()

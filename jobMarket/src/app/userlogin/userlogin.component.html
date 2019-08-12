@@ -1,7 +1,3 @@
-<!-- <h1>Login using into MastekJobs Account</h1> -->
-
-       
-<!-- <app-welcome></app-welcome> -->
 <form>
         <table id="loginTable">
                 <tr>
@@ -13,11 +9,10 @@
                     <td><input [(ngModel)]="password" name="password"></td>
                 </tr>
                 <tr>
-                    <button (click)="logInUser(userId)" value="login">Login</button>
+                    <button (click)="logInUser()" value="login">Login</button>
             </tr>
             </table>
 
-            <div *ngIf="isError">login credentials could not be found</div>
-            
-
 </form>
+
+<div *ngIf="isError">login credentials could not be found</div>
