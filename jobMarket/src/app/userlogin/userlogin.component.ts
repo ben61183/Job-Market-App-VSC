@@ -3,6 +3,9 @@ import { RegisterService } from '../register.service';
 import { User } from '../user';
 import { UserIdService } from '../user-id.service';
 import { CompanyIdService } from '../company-id.service';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
+import { CompanyService } from '../company.service';
 
 
 @Component({
@@ -24,14 +27,14 @@ export class UserloginComponent implements OnInit {
   allUsers: User[];
 
 
-  
-
   myUserId:number
+  myUsername:string
 
   myCompanyId:number
+  myCompanyName:string
 
-
-  constructor(private usrSvc: RegisterService, private uidSer:UserIdService, private cidSer:CompanyIdService) { 
+  constructor(private usrSvc: RegisterService, private uidSer:UserIdService, private cidSer:CompanyIdService,
+    private router:Router, private useSer:UserService, private comSer:CompanyService) { 
 
     this.isLoginValid=false;
     this.isError=false;
@@ -67,30 +70,25 @@ export class UserloginComponent implements OnInit {
       
       }
     }
-  }
+  }  
 
+  // change user id in uid service, will effect whole application
   logInUser(){
     // this.isError=false
     this.credentialCheck()
     if(this.isLoginValid==true){
-      console.log("save user id locally")
-    this.uidSer.changeUserId(this.userId)
-    
-    } 
-  }
-    // change user id in uid service, will effect whole application
-  
-
-  // change user id in uid service, will effect whole application
-  logInUserService(userId){
-    this.cidSer.logOutCompany()
-    this.uidSer.changeUserId(userId)
-    console.log("userId:"+userId)
+      this.cidSer.logOutCompany()
+      this.uidSer.changeUserId(this.userId)
+      console.log("logged in as userId:"+this.userId)
+      this.useSer.findUserByUserId(this.userId).subscribe(response=>{this.myUsername=response.username, console.log("username:"+this.myUsername)})
+      window.location.reload()
+    }
   }
 
   logInCompany(companyId){
     this.uidSer.logOutUser()
     this.cidSer.changeCompanyId(companyId)
     console.log("companyId"+companyId)
+    
   }
 }

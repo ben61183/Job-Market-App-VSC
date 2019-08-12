@@ -50,3 +50,12 @@ background: rgb(255, 79, 79)
 h3{
     text-align: center
 }
+
+#details{
+    width:20%;
+    margin: 0 auto;
+    padding: 10 10 10 10;
+    font-size: 16px;
+    padding-left: 2%;
+    padding-right: 2%;
+}

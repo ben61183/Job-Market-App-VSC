@@ -36,6 +36,5 @@ export class NavBarComponent {
   logOut(){
     this.uidSer.changeUserId(-1)
     this.cidSer.changeCompanyId(-1)
-    window.location.reload()
   }
 }
