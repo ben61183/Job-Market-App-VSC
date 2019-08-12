@@ -164,7 +164,7 @@ export class RoleAdminComponent implements OnInit {
       console.log(this.isVacancyEditable)
       this.updateVacancyDetails()
       if (this.isVacancyEditable == false){
-        window.location.reload()
+        // window.location.reload()
         
       }
     }

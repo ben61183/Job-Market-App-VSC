@@ -25,7 +25,7 @@ export class VacancyDashboardDataTableComponent implements OnInit {
 
   dataSource: MatTableDataSource<Vacancy>;
 
-  displayedColumns = ['title', 'company', 'description', 'location', 'uploadYear', 'salary'];
+  displayedColumns = ['title', 'description', 'location', 'uploadYear', 'salary'];
   allVacancy: Vacancy[]
   vacancy: Vacancy
 

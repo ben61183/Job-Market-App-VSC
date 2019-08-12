@@ -7,7 +7,7 @@ import { RoleService } from '../role.service';
   templateUrl: './add-role.component.html',
   styleUrls: ['./add-role.component.css']
 })
-export class AddRoleComponent implements OnInit {
+export class AddRoleComponent {
 
   newRoleId: number
   newCategory: string
@@ -20,19 +20,15 @@ export class AddRoleComponent implements OnInit {
     this.newRoleName=" "
   }
 
-  ngOnInit() {
-  }
-
- 
-
+  
   createNewRole() {
     this.rolSvc.updateRoleOnServer({
       roleid:this.newRoleId, roleName:this.newRoleName, category:this.newCategory}).subscribe(
         response=>{
           console.log(response)
-          this.newRoleId = response.roleId
-          this.newRoleName = response.roleName
-          this.newCategory = response.category
+          // this.newRoleId = response.roleId
+          // this.newRoleName = response.roleName
+          // this.newCategory = response.category
         }
       )
       window.location.reload(); //reload the page once a new roles added
