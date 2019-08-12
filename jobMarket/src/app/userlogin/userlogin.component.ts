@@ -67,7 +67,8 @@ export class UserloginComponent implements OnInit {
       
       }
     }
-  }  
+  }
+
   logInUser(){
     // this.isError=false
     this.credentialCheck()
@@ -91,13 +92,5 @@ export class UserloginComponent implements OnInit {
     this.uidSer.logOutUser()
     this.cidSer.changeCompanyId(companyId)
     console.log("companyId"+companyId)
-  }
-
-  login(){
-    this.isError=false
-    this.credentialCheck()
-    if(this.isLoginValid=true){
-      console.log("route to main page")
-    } 
   }
 }
