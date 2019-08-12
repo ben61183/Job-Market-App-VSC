@@ -6,11 +6,15 @@ import { MatDialog } from '@angular/material';
 import { VacancyDetailsComponent } from '../vacancy-details/vacancy-details.component';
 import { VacancyIdService } from '../vacancy-id.service';
 import { VacancyService } from '../vacancy.service';
+import { UserIdService } from '../user-id.service';
+import { CompanyIdService } from '../company-id.service';
 
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
-  styleUrls: ['./company.component.css']
+  styleUrls: ['./company.component.css'],
+  providers: [UserIdService,CompanyIdService]
+
 })
 export class CompanyComponent implements OnInit {
 
@@ -21,16 +25,17 @@ export class CompanyComponent implements OnInit {
   companyVacancies:Vacancy[]
 
   oneVacancy:Vacancy
-
+  myCompanyId:number
 
   constructor(private route: ActivatedRoute, private comSvc:CompanyService, public dialog: MatDialog,
-    public vidSvc:VacancyIdService, private vacSvc:VacancyService) {
+    public vidSvc:VacancyIdService, private vacSvc:VacancyService, private cidSer:CompanyIdService) {
     this.companyId = this.route.snapshot.params.companyId
   }
 
   ngOnInit() {
     console.log(this.companyId)
     this.fetchCompanyFromService(this.companyId)
+    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
   }
 
   fetchCompanyFromService(companyId){

@@ -32,7 +32,6 @@ updateVacancyRoleOnServer(vacancyId,roleId):Observable<VacancyComponent>{
   const httpOptions= {
     headers: new HttpHeaders(
       {"Content-Type":"application/x-www-form-urlencoded"}
-
     )
     }
     var reqBody="vacancyId="+vacancyId+"&roleId="+roleId

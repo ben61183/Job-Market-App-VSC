@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../register.service';
 import { User } from '../user';
 import { UserIdService } from '../user-id.service';
+import { CompanyIdService } from '../company-id.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [UserIdService]
+  providers: [UserIdService,CompanyIdService]
 
 })
 
@@ -67,7 +68,6 @@ export class RegisterComponent implements OnInit {
           this.password = response.password
           this.email = response.email
           console.log(response)
-          this.uidSer.changeUserId(this.userId)
           })
   } 
   

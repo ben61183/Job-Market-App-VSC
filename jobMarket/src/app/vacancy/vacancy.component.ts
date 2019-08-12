@@ -7,11 +7,15 @@ import { SkillService } from '../skill.service';
 import { MatDialog } from '@angular/material';
 import { NewListingComponent } from '../new-listing/new-listing.component';
 import { Company } from '../company';
+import { UserIdService } from '../user-id.service';
+import { CompanyIdService } from '../company-id.service';
 
 @Component({
   selector: 'app-vacancy',
   templateUrl: './vacancy.component.html',
-  styleUrls: ['./vacancy.component.css']
+  styleUrls: ['./vacancy.component.css']  ,
+  providers: [UserIdService,CompanyIdService]
+
 })
 export class VacancyComponent implements OnInit {
   
@@ -39,9 +43,13 @@ export class VacancyComponent implements OnInit {
   allVacancies: Vacancy[];
 
   
+  myUserId:number
+
+  myCompanyId:number
 
 
-  constructor(private vacSvc: VacancyService, private skiSvc: SkillService) { 
+  constructor(private vacSvc: VacancyService, private skiSvc: SkillService,
+    private uidSer:UserIdService, private cidSer:CompanyIdService) { 
   
   this.isEditable= false;
  
@@ -86,6 +94,9 @@ export class VacancyComponent implements OnInit {
     this.fetchCurrentVacancyFromService()
     this.loadAllVacancies()
     this.loadAllSkills()
+    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
+    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
+
   }
 
 

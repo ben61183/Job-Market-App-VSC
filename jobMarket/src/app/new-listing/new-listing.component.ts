@@ -12,12 +12,16 @@ import * as moment from 'moment'
 import { CompanyComponent } from '../company/company.component';
 import { Company } from '../company';
 import { CompanyService } from '../company.service';
+import { CompanyIdService } from '../company-id.service';
+import { UserIdService } from '../user-id.service';
 
 
 @Component({
   selector: 'app-new-listing',
   templateUrl: './new-listing.component.html',
-  styleUrls: ['./new-listing.component.css']
+  styleUrls: ['./new-listing.component.css']  ,
+  providers: [UserIdService,CompanyIdService]
+
 })
 export class NewListingComponent implements OnInit {
 
@@ -39,8 +43,11 @@ export class NewListingComponent implements OnInit {
   skills: Skill[] = [];
   allVacancies:Vacancy[]=[]
 
+  myCompanyId:number
+
+  
   constructor(private vacSvc: VacancyService, private skiSvc:SkillService, private rolSvc:RoleService,
-    private comSvc:CompanyService) {  
+    private comSvc:CompanyService, private cidSer:CompanyIdService) {  
 
     this.newVacancyId=0
     this.newTitle=""
@@ -49,14 +56,15 @@ export class NewListingComponent implements OnInit {
     this.newLink=""
     this.newLocation=""
     this.newPostTime="00:00AM"
-    this.newSalary=null
+    this.newSalary=0
     this.newUploadYear=0
     this.newCompany={
-      companyId:0,
+      companyId:251,
       companyName:"default",
       hqLocation:"default",
       linkedIn:"linkedin.com",
     }
+    this.newVacancySkills=[]
 
     this.newRole={
       roleId : 0,
@@ -76,10 +84,8 @@ export class NewListingComponent implements OnInit {
       vacancies : []    
     }
 
-
     this.selectedRoleId=0
 
-    this.newVacancySkills=[]
 
     this.skills=[]
     this.roles=[]
@@ -90,6 +96,7 @@ export class NewListingComponent implements OnInit {
     ngOnInit() {
     this.loadAllSkills()
     this.loadAllRoles()
+    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
   }
 
   loadAllSkills(){
@@ -110,7 +117,7 @@ export class NewListingComponent implements OnInit {
   createNewVacancy(){
     console.log(this.newJobType)
     this.dateAndTime()
-    this.vacSvc.updateVacancyOnServer({vacancyId:this.newVacancyId,title:this.newTitle,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
+    this.vacSvc.updateVacancyOnServer({thisCompany:this.newCompany, vacancyId:this.newVacancyId,title:this.newTitle,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
       response=>{
             console.log(this.newVacancySkills)
             console.log(response)
@@ -122,16 +129,21 @@ export class NewListingComponent implements OnInit {
             this.newUploadYear = response.uploadYear
             this.newJobType = response.job_type
             this.newPostTime = response.postTime
+            this.newSalary = response.salary
 
-            this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
-                responseRole =>{
-                this.newRole = responseRole.thisRole
-            })
             this.comSvc.addVacancyToCompanyOnService(this.newCompany.companyId,this.newVacancyId).subscribe(
               responseComp=>{
                 this.newCompany=responseComp
+                console.log(responseComp)
               }
             )
+
+            this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
+              responseVac =>{
+              this.newRole = responseVac.thisRole
+              console.log("response role:"+responseVac.thisRole.roleName)
+              console.log("this.newrole"+this.newRole.roleName)
+          })
             
             for(let skill of this.newVacancySkills)
               this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(

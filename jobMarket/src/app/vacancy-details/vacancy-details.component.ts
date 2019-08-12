@@ -7,18 +7,26 @@ import { VacancyIdService } from '../vacancy-id.service';
 import { Company } from '../company';
 import { Vacancy } from '../vacancy';
 import { MatDialog } from '@angular/material';
+import { UserIdService } from '../user-id.service';
+import { CompanyIdService } from '../company-id.service';
 
 @Component({
   selector: 'app-vacancy-details',
   templateUrl: './vacancy-details.component.html',
-  styleUrls: ['./vacancy-details.component.css']
+  styleUrls: ['./vacancy-details.component.css']  ,
+  providers: [UserIdService,CompanyIdService]
+
 })
 export class VacancyDetailsComponent implements OnInit {
 
   vacancy:Vacancy;
 
+  myUserId:number
+  myCompanyId:number
+
+
   constructor(private vacSvc: VacancyService, private skiSvc: SkillService, private route: ActivatedRoute,
-    private vidSvc:VacancyIdService) {
+    private vidSvc:VacancyIdService, private uidSer:UserIdService, private cidSer:CompanyIdService) {
       this.vacancy={
         vacancyId: this.route.snapshot.params.vacancyId,
         thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:""},
@@ -37,6 +45,8 @@ export class VacancyDetailsComponent implements OnInit {
   ngOnInit() {
     this.vidSvc.currentVacancyId.subscribe(myVacancyId=>this.vacancy.vacancyId=myVacancyId)
     this.fetchCurrentVacancyFromService()
+    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
+    this.cidSer.currentCompanyId.subscribe(myCompanyId=>this.myCompanyId=myCompanyId)
   }
 
   fetchCurrentVacancyFromService(){
