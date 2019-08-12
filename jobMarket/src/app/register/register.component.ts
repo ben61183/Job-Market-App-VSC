@@ -35,13 +35,12 @@ export class RegisterComponent implements OnInit {
   constructor(private regSvc:RegisterService, private uidSer:UserIdService) {
     this.isPassMatch
     this.isError=true
-    this.isEmailCheck
     this.isUniqueEmail=true
     this.isUniqueUsername=true
 
     this.isPassCheck=false;
-    this.isUsernameCheck=false;
-    this.isEmailCheck=false;
+    this.isUsernameCheck=true;
+    this.isEmailCheck=true;
 
     this.userId=1;
     this.username="";
@@ -56,6 +55,7 @@ export class RegisterComponent implements OnInit {
   
   ngOnInit() {
     this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
+    this.loadAllUsers()
   }
 
   addUserDetails(){
@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
     this.regSvc.loadAllUsersFromServer().subscribe(
       response =>
       {this.allUsers=response
-       
+       console.log(response)
       })
   }
 
@@ -102,25 +102,23 @@ export class RegisterComponent implements OnInit {
   }
 
   uniqueUsernameCheck(){
+      // this.loadAllUsers()
       for(let user of this.allUsers){
         if (user.username==this.username){
           console.log("username is matching")
           return this.isUsernameCheck=true
-        } else{
-          this.isUniqueUsername=false;
-        }
-        
-      }
+        } 
   }
+}
 
+
+  
   uniqueEmailCheck(){
+    // this.loadAllUsers()
     for(let user of this.allUsers){
       if (user.email==this.email){
-
         return this.isEmailCheck=true
-      } else{
-        this.isUniqueEmail=false
-      }
+      } 
       
     }
 }
@@ -128,11 +126,14 @@ export class RegisterComponent implements OnInit {
 
   signUp(){
     this.passwordCheck()
-    this.uniqueUsernameCheck()
+    // this.loadAllUsers()
+    // this.uniqueUsernameCheck()
     this.uniqueEmailCheck()
-    if(this.isPassCheck==true && this.isUsernameCheck==true && this.isEmailCheck==true){
+    if(this.isPassCheck==true && this.isEmailCheck==false &&this.isUsernameCheck==false){
       this.addUserDetails();
-
+      window.location.reload();
+    }else{
+      this.isUniqueEmail=false
     }
     
   }

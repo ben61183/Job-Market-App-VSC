@@ -2,7 +2,7 @@
 
        
 <app-welcome></app-welcome>
-<form (submit)="signUp()">
+<form >
         <table id="registerTable">
                 <tr>
                     <th>Username:</th>
@@ -21,12 +21,12 @@
                     <td><input [(ngModel)]="email" name="email"></td>  
                 </tr>
                 <tr>
-                    <input type="submit" value="Register">
+                    <button (click)="signUp()" value="Register">signUp</button>
             </tr>
             </table>
 
             <div *ngIf="!isError">Passwords do no match</div>
-            <div *ngIf="!isUniqueEmail">Email is already registered. Please enter a new email</div>
+            <div *ngIf="!isEmailCheck">Email is already registered. Please enter a new email</div>
             <div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
 
 </form>

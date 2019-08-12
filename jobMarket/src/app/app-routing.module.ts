@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RoleDashboardComponent } from './role-dashboard/role-dashboard.component';
 import { RoleComponent } from './role/role.component';
@@ -11,6 +11,8 @@ import { VacancyDashboardComponent } from './vacancy-dashboard/vacancy-dashboard
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { CompanyComponent } from './company/company.component';
+import { UserloginComponent } from './userlogin/userlogin.component';
+import { componentFactoryName } from '@angular/compiler';
 
 const routes: Routes = [
   {path: "role-dashboard", component: RoleDashboardComponent},
@@ -23,7 +25,8 @@ const routes: Routes = [
   {path: "register", component: RegisterComponent},
   {path: "user/:userId", component: UserComponent},
   {path: "vacancy/:vacancyId", component: VacancyComponent},
-  {path: "company/:companyId",component:CompanyComponent}
+  {path: "company/:companyId",component:CompanyComponent},
+  {path: "user-login", component:UserloginComponent}
   
   // {path: "login", component: UserComponent}
 ];
