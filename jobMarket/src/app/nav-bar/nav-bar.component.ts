@@ -28,7 +28,14 @@ export class NavBarComponent {
   
 
   ngOnInit() {
-    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
-    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
+    this.myUserId = this.uidSer.getUserId()
+    this.myCompanyId = this.cidSer.getCompanyId()
+    console.log(this.myCompanyId)
+  }
+
+  logOut(){
+    this.uidSer.changeUserId(-1)
+    this.cidSer.changeCompanyId(-1)
+    window.location.reload()
   }
 }

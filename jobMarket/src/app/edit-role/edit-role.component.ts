@@ -15,13 +15,17 @@ export class EditRoleComponent implements OnInit {
   roles: Role[]
   selectedRole; 
   isEditRoleFormVisible: boolean; 
+  valid:boolean
+  validError:string
 
   constructor(private roleSvc:RoleService) { 
     this.newRoleId = -1; 
     this.newCategory = "";
     this.newRoleName = ""; 
     this.selectedRole = 0; 
-    this.isEditRoleFormVisible = false; 
+    this.isEditRoleFormVisible = false;
+    this.valid=true
+    this.validError=""
   }
 
   ngOnInit() {
@@ -54,6 +58,10 @@ export class EditRoleComponent implements OnInit {
   }
 
   updateRole() {
+    this.valid=true
+    this.validError=""
+    this.validationChecks()
+    if(this.valid){
     this.roleSvc.updateRoleOnServer({
       roleId: this.newRoleId,
       category: this.newCategory,
@@ -68,11 +76,24 @@ export class EditRoleComponent implements OnInit {
      }
     )
       window.location.reload()
+    }
   }
 
   deleteRole() {
     this.roleSvc.deleteRoleByRoleId(this.newRoleId).subscribe()
     window.location.reload()
+  }
+
+  // check validity of fields
+  validationChecks(){
+    if(this.newCategory == null || this.newCategory == ""){
+      this.valid = false
+      this.validError+="Select a Category."
+    }
+    if(this.newRoleName == null || this.newRoleName == ""){
+      this.valid = false
+      this.validError+=" Enter a Role."
+    }
   }
 
 }

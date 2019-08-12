@@ -14,14 +14,23 @@ export class AddRoleComponent {
   newRoleName: string 
   roles: Role[] 
 
+  valid:boolean
+  validError:string
+
   constructor(private rolSvc: RoleService) { 
     this.newRoleId=0
-    this.newCategory=" "
-    this.newRoleName=" "
+    this.newCategory=""
+    this.newRoleName=""
+    
+    this.valid=true
+    this.validError=""
   }
 
-  
   createNewRole() {
+    this.valid=true
+    this.validError=""
+    this.validationChecks()
+    if(this.valid){
     this.rolSvc.updateRoleOnServer({
       roleid:this.newRoleId, roleName:this.newRoleName, category:this.newCategory}).subscribe(
         response=>{
@@ -32,5 +41,18 @@ export class AddRoleComponent {
         }
       )
       window.location.reload(); //reload the page once a new roles added
+    }
+  }
+
+  // check validity of fields
+  validationChecks(){
+    if(this.newCategory == null || this.newCategory == ""){
+      this.valid = false
+      this.validError+="Select a Category."
+    }
+    if(this.newRoleName == null || this.newRoleName == ""){
+      this.valid = false
+      this.validError+=" Enter a Role."
+    }
   }
 }

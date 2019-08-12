@@ -37,7 +37,7 @@ export class CompanyComponent implements OnInit {
   ngOnInit() {
     console.log(this.companyId)
     this.fetchCompanyFromService(this.companyId)
-    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
+    this.myCompanyId = this.cidSer.getCompanyId()
   }
 
   fetchCompanyFromService(companyId){

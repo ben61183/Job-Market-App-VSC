@@ -13,11 +13,11 @@
             </mat-form-field>&nbsp;&nbsp; 
             <br> 
             <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="username" placeholder="Username"  name="username" [ngModelOptions]="{standalone: true}" >
+                    <input matInput [(ngModel)]="newUsername" placeholder="Username"  name="newUsername" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>&nbsp;&nbsp; 
             <br> 
             <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="password" placeholder="Password"  name="password" [ngModelOptions]="{standalone: true}" >
+                    <input matInput [(ngModel)]="newPassword" placeholder="Password"  name="newPassword" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>&nbsp;&nbsp; 
             <br> 
             <mat-form-field class="example-full-width">
@@ -27,7 +27,6 @@
 </tr>   
 
 <div *ngIf="!isError">Passwords do no match</div>
-<div *ngIf="!isUniqueEmail">Email is already registered. Please enter a new email</div>
 <div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
 
 <hr> 

@@ -19,8 +19,8 @@ export class WelcomeComponent implements OnInit {
   constructor(public dialog: MatDialog,private uidSer:UserIdService, private cidSer:CompanyIdService) { }
 
   ngOnInit() {  
-    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
-    this.cidSer.currentCompanyId.subscribe(myCompanyId=>this.myCompanyId=myCompanyId)
+    // this.myUserId = this.uidSer.getUserId()
+    // this.myCompanyId = this.cidSer.getCompanyId()
   }
 
   openUser() {

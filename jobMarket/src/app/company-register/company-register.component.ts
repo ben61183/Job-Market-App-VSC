@@ -12,8 +12,8 @@ export class CompanyRegisterComponent implements OnInit{
   newCompanyName: string;
   hqLocation:string
   linkedIn:string
-  username: string
-  password: string 
+  newUsername: string
+  newPassword: string 
   confirmPassword: string 
 
   isUserFormVisible:boolean
@@ -41,8 +41,8 @@ export class CompanyRegisterComponent implements OnInit{
     this.newCompanyName = "";
     this.hqLocation = ""; 
     this.linkedIn = "";
-    this.username = ""; 
-    this.password = "";  
+    this.newUsername = ""; 
+    this.newPassword = "";  
   }
 
   ngOnInit() {
@@ -52,29 +52,28 @@ export class CompanyRegisterComponent implements OnInit{
   loadAllCompanys() {
     this.companySvc.loadAllCompanysFromServer().subscribe(
       response => 
-      {this.allCompanys=response
-      console.log(this.allCompanys)
-      }
+      {this.allCompanys=response}
     )
   }
 
   createNewCompany() {
     this.companySvc.updateCompanyOnServer({
-      companyId: this.companyId, companyName: this.newCompanyName, hqLocation: this.hqLocation, linkedIn: this.linkedIn, username: this.username, password: this.password}).subscribe(
+      companyId: this.companyId, companyName: this.newCompanyName, hqLocation: this.hqLocation, linkedIn: this.linkedIn, companyUsername: this.newUsername, companyPassword: this.newPassword}).subscribe(
         response=>{
           this.companyId = response.companyId
           this.newCompanyName = response.companyName
           this.hqLocation = response.hqLocation
           this.linkedIn = response.linkedIn
-          this.username = response.username
-          this.password = response.password
+          this.newUsername = response.username
+          this.newPassword = response.password
         }
       )
-      window.location.reload();
+      console.log(this.newUsername)
+      // window.location.reload();
   }
 
   passwordCheck() {
-    if (this.confirmPassword==this.password){
+    if (this.confirmPassword==this.newPassword){
       return this.isPassCheck=true;
     } else{
       this.isError=false;
@@ -83,12 +82,12 @@ export class CompanyRegisterComponent implements OnInit{
 
   uniqueUsernameCheck() {
     for (let company of this.allCompanys){
-      if (company.username!=this.username){
+      if (company.username!=this.newUsername){
         return this.isUsernameCheck=true
       } else {
-        console.log("This.Username " + this.username)
+        console.log("This.Username " + this.newUsername)
         console.log("Company.username" + company.username)
-        return this.isUsernameCheck=false
+        return this.isUniqueUsername=false
       }
     }
   }

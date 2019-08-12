@@ -90,8 +90,8 @@ export class RoleComponent implements OnInit {
     this.findOneRole(this.oneRoleId)
     this.findVacanciesOfRole(this.oneRoleId)
     this.vacancyCalculations(this.role.vacancies)
-    this.uidSer.currentUserId.subscribe(myUserId => this.myUserId = myUserId)
-    this.cidSer.currentCompanyId.subscribe(myCompanyId => this.myCompanyId = myCompanyId)
+    this.myUserId = this.uidSer.getUserId()
+    this.myCompanyId = this.cidSer.getCompanyId()
 
   }
 
