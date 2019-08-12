@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
 import { RegisterService } from '../register.service';
+import { User } from '../user';
+
 
 @Component({
   selector: 'app-userlogin',
@@ -13,13 +14,19 @@ export class UserloginComponent implements OnInit {
   username:string
   password:string
 
-  allUsers=[]
-
   isLoginValid: boolean
+  isError: boolean
+
+  allUsers: User[];
+
+
   
 
 
   constructor(private usrSvc: RegisterService) { 
+
+    this.isLoginValid=false;
+    this.isError=false;
 
     this.userId=1;
     this.username="";
@@ -28,13 +35,14 @@ export class UserloginComponent implements OnInit {
 
   ngOnInit() {
 
+    this.loadAllUsers()
   }
 
   loadAllUsers(){
     this.usrSvc.loadAllUsersFromServer().subscribe(
       response =>
       {this.allUsers=response
-       
+       console.log(response)
       })
   }
 
@@ -44,16 +52,17 @@ export class UserloginComponent implements OnInit {
 
         return this.isLoginValid=true
       } else{
-        this.isLoginValid=false
+        this.isError=true
       }
     }
 
   }
 
   login(){
+    this.isError=false
     this.credentialCheck()
     if(this.isLoginValid=true){
-
-    }
+      console.log("route to main page")
+    } 
   }
 }
