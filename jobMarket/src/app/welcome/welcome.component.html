@@ -9,9 +9,11 @@
 <div style="text-align:center"> 
 <hr> 
 <span *ngIf="myUserId==-1 && myCompanyId==-1">
-<button mat-raised-button (click)="openUser()">User</button><br><br>  
-<button mat-raised-button (click)="openCompany()">Company</button><br><br>  
-<button mat-raised-button (click)="logInAsAdmin()">Admin</button>
+<div color="primary" class="front-button"> 
+    <button mat-raised-button (click)="openUser()">User</button><br><br>  
+    <button mat-raised-button (click)="openCompany()">Company</button><br><br>  
+    <button mat-raised-button (click)="logInAsAdmin()">Admin</button>
+</div>
 </span>
 <span *ngIf="myUserId==-1 && myCompanyId!=-1">
 <h2>You are logged in as {{myCompanyName}}</h2>
