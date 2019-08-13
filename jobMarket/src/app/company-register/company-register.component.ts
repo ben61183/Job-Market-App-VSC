@@ -69,7 +69,7 @@ export class CompanyRegisterComponent implements OnInit{
         }
       )
       console.log(this.newUsername)
-      // window.location.reload();
+      window.location.reload();
   }
 
   passwordCheck() {
