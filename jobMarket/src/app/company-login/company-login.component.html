@@ -1,11 +1,11 @@
 <mat-form-field  class="example-full-width">
-        <input style="text-align:center" matInput [(ngModel)]="companyUsername" placeholder="Username"  name="companyUsername" [ngModelOptions]="{standalone: true}" >
+        <input matInput [(ngModel)]="companyUsername" placeholder="Username"  name="companyUsername" [ngModelOptions]="{standalone: true}" >
 </mat-form-field>&nbsp;&nbsp; 
 <br> 
 <mat-form-field class="example-full-width">
-        <input matInput [(ngModel)]="companyPassword" placeholder="Password"  name="companyPassword" [ngModelOptions]="{standalone: true}" >
+        <input matInput type="password" [(ngModel)]="companyPassword" placeholder="Password"  name="companyPassword" [ngModelOptions]="{standalone: true}" >
 </mat-form-field>&nbsp;&nbsp; 
 <hr> 
 <button mat-raised-button color="accent" (click)="companyLogIn()">Log In</button>
 
-<p *ngIf="isError">Username or Email are incorrect</p>
+<p *ngIf="noError==false">Username or Email are incorrect</p>

@@ -75,13 +75,14 @@ export class CompanyComponent implements OnInit {
         this.vacSvc.findVacancybyVacancyId(vacancyId).subscribe(
           response=>{
             this.oneVacancy=response
-            this.oneVacancy.title+=" FILLED"
             this.oneVacancy.description="POSITION NOW FILLED."
-            this.vacSvc.updateVacancyOnServer(this.oneVacancy).subscribe()
-            for(let skill of this.vacancySkills){
-              this.vacSvc.updateVacancySkillsOnServer(this.oneVacancy.vacancyId,skill.skillId).subscribe()
-            }
-            this.comSvc.addVacancyToCompanyOnService(this.companyId,this.oneVacancy.vacancyId).subscribe()
+            this.vacSvc.updateVacancyOnServer(this.oneVacancy).subscribe(response=>
+              {
+                for(let skill of this.vacancySkills){
+                  this.vacSvc.updateVacancySkillsOnServer(this.oneVacancy.vacancyId,skill.skillId).subscribe()
+                }
+                this.comSvc.addVacancyToCompanyOnService(this.companyId,this.oneVacancy.vacancyId).subscribe()
+              })
           }
         )})
   }

@@ -7,6 +7,9 @@ import { SkillService } from '../skill.service';
 import { UserIdService } from '../user-id.service';
 import { CompanyIdService } from '../company-id.service';
 import { RegisterService } from '../register.service';
+import { MatDialog } from '@angular/material';
+import { VacancyIdService } from '../vacancy-id.service';
+import { VacancyDetailsComponent } from '../vacancy-details/vacancy-details.component';
 
 @Component({
   selector: 'app-user',
@@ -41,9 +44,12 @@ export class UserComponent implements OnInit {
 
   // used to ensure user can edit their page
   userPrivilege:boolean
+  // current password for verification
+  currentPassword:string
 
   constructor(private useSvc: UserService, private skiSvc: SkillService, private route: ActivatedRoute,
-    private uidSer:UserIdService, private regSvc:RegisterService) {
+    private uidSer:UserIdService, private regSvc:RegisterService, public dialog: MatDialog,
+    public vidSvc:VacancyIdService) {
     // accessing userId from url param
     this.userId = this.route.snapshot.params.userId
     this.numShared = []
@@ -52,6 +58,8 @@ export class UserComponent implements OnInit {
     this.skills=[]
     this.userPrivilege=false
     this.isEditable = false
+
+    this.currentPassword = this.password
   }
 
   ngOnInit() {
@@ -68,7 +76,7 @@ export class UserComponent implements OnInit {
   findUser(userId){
     this.useSvc.findUserByUserId(this.userId).subscribe(
       response=>{
-        this.username=response.username
+        this.username=response.username.slice(0,1).toUpperCase()+response.username.slice(1,-1)+response.username.slice(-1)
         this.password=response.password
         this.email=response.email
         this.userSkills=response.userSkills
@@ -118,10 +126,16 @@ export class UserComponent implements OnInit {
   deleteFromSkills(skill){
     this.useSvc.deleteUserSkillsFromService(this.userId,skill.skillId).subscribe()
     this.skillsCheck()
-    // window.location.reload();
+    window.location.reload();
   }
 
-  // check if skills are already added to user, if so they are not displayed as buttons
+  deleteFromVacancies(vacancyId){
+    this.useSvc.deleteVacancyFromService(this.userId,vacancyId).subscribe()
+    window.location.reload()
+  }
+
+
+  // check if skills are already added to user, if so they are not displayed as addable
   skillsCheck(){
     this.antiSkills=this.skills
     console.log("anti:"+this.antiSkills+this.antiSkills.length)
@@ -134,11 +148,6 @@ export class UserComponent implements OnInit {
     }})
     }
 
-  deleteFromVacancies(vacancyId){
-    this.useSvc.deleteVacancyFromService(this.userId,vacancyId)
-    // window.location.reload()
-  }
-
   toggleEdits(){
     this.isEditable = !this.isEditable
     if(!this.isEditable){
@@ -147,6 +156,7 @@ export class UserComponent implements OnInit {
   }
 
   updateUserInService(){
+    if(this.password==this.currentPassword){
     this.regSvc.updateUserOnServer({userId:this.userId,username:this.username,password:this.password,email:this.email}).subscribe(
       response=>{
         this.userId=response.userId,
@@ -162,5 +172,14 @@ export class UserComponent implements OnInit {
         window.location.reload()
       }
     )
+    } else{
+      console.log("incorrect password")
+    }
+  }
+
+  openVacancy(vacancyId){
+    console.log(vacancyId)
+    this.vidSvc.changeVacancyId(vacancyId)
+    this.dialog.open(VacancyDetailsComponent);
   }
 }
