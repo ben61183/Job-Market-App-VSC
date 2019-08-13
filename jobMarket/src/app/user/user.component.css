@@ -34,13 +34,12 @@ background: rgb(97, 132, 230)
 .unapplied{
     float: left;
     display: flex;
-    font-size: 16px
+    font-size: 18px;
 }
 
 .unapplied mat-chip{
     background: rgb(214, 214, 214)
     }
-
 
 h3{
     text-align: center;
@@ -64,9 +63,9 @@ h3{
     text-align: center;
     border-spacing: 10px;
     border-collapse: separate;
-    table-layout: fixed;
+    /* table-layout: fixed;
     height:200px;
-    /* width: auto */
+    width: auto */
 }
 
 .eachVacancy{

@@ -1,7 +1,9 @@
 <br>
 <span *ngIf="myCompanyId!=-1 || myUserId==0">
 <button class="crudButton" mat-raised-button (click)="openAddVacancy()">Add New Vacancy</button>
+</span>
+<span *ngIf="myUserId==0">
 <button class="crudButton" mat-raised-button (click)="openEditVacancy()">Edit Vacancy</button>
 </span>
-<br> 
+<br>
 <app-vacancy-dashboard-data-table> </app-vacancy-dashboard-data-table>

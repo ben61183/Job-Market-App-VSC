@@ -51,6 +51,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CompanyRegisterLoginComponent } from './company-register-login/company-register-login.component';
 import { CompanyRegisterComponent } from './company-register/company-register.component';
 import { CompanyLoginComponent } from './company-login/company-login.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { CompanyLoginComponent } from './company-login/company-login.component';
   ],
   entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent, UserRegisterLoginComponent, CompanyRegisterLoginComponent],
   imports: [
+    MatMenuModule,
     MatChipsModule,
     OverlayModule,
     BrowserModule,

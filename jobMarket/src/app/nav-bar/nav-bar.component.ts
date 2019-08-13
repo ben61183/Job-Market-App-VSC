@@ -4,13 +4,13 @@ import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { UserIdService } from '../user-id.service';
 import { CompanyIdService } from '../company-id.service';
+import { ThemeService } from '../theme.service';
 
 @Component({
-  selector: 'app-nav-bar',
+  selector: 'app-nav-bar', 
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']  ,
   providers: [UserIdService,CompanyIdService]
-
 })
 export class NavBarComponent {
 
@@ -23,10 +23,10 @@ export class NavBarComponent {
   myUserId:number
   myCompanyId:number
   
-  constructor(private breakpointObserver: BreakpointObserver, private uidSer:UserIdService,
-    private cidSer:CompanyIdService) {}
   
-
+  constructor(private breakpointObserver: BreakpointObserver, private uidSer:UserIdService,
+    private cidSer:CompanyIdService, private theSer:ThemeService) {}
+  
   ngOnInit() {
     this.myUserId = this.uidSer.getUserId()
     this.myCompanyId = this.cidSer.getCompanyId()
@@ -40,8 +40,9 @@ export class NavBarComponent {
       window.location.reload()
     }
   }
-
+  
+  // themeing of light/dark
   changeTheme() {
-    
+    this.theSer.changeTheme()
   }
 }

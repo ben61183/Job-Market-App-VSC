@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThemeService } from './theme.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,10 @@ export class AppComponent {
   title = 'IT Job Market';
   otherTheme: boolean = false;
 
-  changeTheme() {
-    this.otherTheme = !this.otherTheme
+  constructor(private theSer:ThemeService) { }
+
+  ngOnInit(){
+    this.otherTheme=this.theSer.getTheme()
     console.log(this.otherTheme)
   }
 }
-
-

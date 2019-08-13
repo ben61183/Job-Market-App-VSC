@@ -38,4 +38,5 @@ export class UserIdService {
   logOutUser(){
     this.changeUserId(-1)
   }
+
 }
