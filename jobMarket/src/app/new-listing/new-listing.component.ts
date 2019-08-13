@@ -163,22 +163,26 @@ export class NewListingComponent implements OnInit {
               responseComp=>{
                 this.newCompany=responseComp
                 console.log("company added:"+responseComp)
+                
+                this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
+                  responseVac =>{
+                  this.newRole = responseVac.thisRole
+                  console.log("response role:"+responseVac.thisRole.roleName)
+                  console.log("this.newrole"+this.newRole.roleName)
+
+                  for(let skill of this.newVacancySkills)
+                  this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(
+                    responseSkill =>{
+                      console.log(skill)
+                    }
+                )
+              })
+                
+                
               }
             )
 
-            this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
-              responseVac =>{
-              this.newRole = responseVac.thisRole
-              console.log("response role:"+responseVac.thisRole.roleName)
-              console.log("this.newrole"+this.newRole.roleName)
-          })
             
-            for(let skill of this.newVacancySkills)
-              this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(
-                responseSkill =>{
-                  console.log(skill)
-                }
-            )
             
       }
     )
