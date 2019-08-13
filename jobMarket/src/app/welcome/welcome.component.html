@@ -11,13 +11,13 @@
 <span *ngIf="myUserId==-1 && myCompanyId==-1">
 <button mat-raised-button (click)="openUser()">User</button><br><br>  
 <button mat-raised-button>Company</button><br><br>  
-<button mat-raised-button>Admin</button>
+<button mat-raised-button (click)="logInAsAdmin()">Admin</button>
 </span>
 <span *ngIf="myUserId==-1 && myCompanyId!=-1">
 <h2>You are logged in as {{myCompanyName}}</h2>
 <h4>Add vacancies, view role statistics and edit your company profile!</h4>
 </span>
-<span *ngIf="myUserId!=-1">
+<span *ngIf="myUserId!=-1 && myUserId!=0">
 <h2>You are logged in as {{myUsername}}</h2>
 <h4>Save jobs, view role statistics and edit your user profile!</h4>
 </span>

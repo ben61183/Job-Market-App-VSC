@@ -8,11 +8,22 @@
             <mat-form-field class="example-full-width">
             <input [(ngModel)]="newTitle" matInput placeholder="Job Title" #inputName="ngModel" name="newTitle" [ngModelOptions]="{standalone: true}">
             </mat-form-field>&nbsp;&nbsp; 
-          
+<!--           
+            <span *ngIf="myCompanyId!=-1">
             <mat-form-field class="example-full-width">
                 <input matInput readonly [(ngModel)]="newCompany.companyId" name="newCompanyName" [ngModelOptions]="{standalone: true}" placeholder="{{newCompany.companyName}}">
                 </mat-form-field>&nbsp;&nbsp;
-       
+            </span> -->
+            <span *ngIf="myUserId==0">
+                <mat-form-field>
+                        <mat-label>Company</mat-label>
+                            <mat-select id="company-select" [(ngModel)]="selectedCompanyId">
+                                    <mat-option *ngFor="let com of allCompanies" value="{{com.companyId}}" (change)="updateCompany(selectedCompanyId.value)">
+                                            {{com.companyName}} | {{com.hqLocation}}
+                                    </mat-option>
+                            </mat-select>
+                    </mat-form-field>&nbsp;&nbsp;
+            </span>
             <mat-form-field class="example-full-width">
                 <input matInput [(ngModel)]="newDescription" name="newDescription" [ngModelOptions]="{standalone: true}" placeholder="Description">
             </mat-form-field>&nbsp;&nbsp;
