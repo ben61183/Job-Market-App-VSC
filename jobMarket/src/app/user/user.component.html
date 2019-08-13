@@ -1,5 +1,4 @@
 <h1 style="text-align: center">{{username}}'s Profile</h1>
-<h3>Skills</h3>
 <table id="details">
     <tr>
     <td *ngIf="!isEditable">Username:</td>
@@ -22,8 +21,14 @@
     </td>
     </tr>
     <tr>
-    <td *ngIf="!isEditable">Password:</td>
-    <td *ngIf="!isEditable">{{password}}</td>
+        <td *ngIf="isEditable">
+            <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label> 
+            <input matInput [(ngModel)]="currentPassword" name="password"> 
+            </mat-form-field>
+        </td>
+        </tr>
+    <tr>
     <td *ngIf="isEditable">
         <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label> 
@@ -32,11 +37,10 @@
     </td>
     </tr>
     <tr><td><button (click)="toggleEdits()" mat-raised-button color="primary"  value='{{(isEditable)?"Save":"Edit"}}' #edit>{{(isEditable)?"Save":"Edit"}}</button></td></tr>
-
-
-
-
 </table>
+<hr width="80%">
+
+<h3>Skills</h3>
 <div id="skillTable">
         <mat-chip-list #chipList>
         <span *ngFor="let aS of antiSkills; let i = index">
@@ -56,15 +60,20 @@
     </mat-chip-list>
 </div>
 
-<div id="savedVacancies">
+<hr width="80%">
+
 <h3>My Saved Vacancies</h3>
-<table>
+
+<div id="savedVacancies">
     <td>
     </td>
     <span *ngFor="let vacancy of savedVacancies, let i = index">
+    <div class="eachVacancy">
+    <table class="vacancies">
     <td>
-        <tr><a [routerLink]="['/vacancy',vacancy.vacancyId]"><h4>{{vacancy.title}}</h4></a></tr>
-        <tr><a href="{{vacancy.link}}">Apply</a></tr>
+        <tr><button mat-button (click)="openVacancy(vacancy.vacancyId)"><h4>{{vacancy.title}}</h4></button></tr>
+        <tr *ngIf="vacancy.description!='POSITION NOW FILLED.'"><a href="{{vacancy.link}}">Apply</a></tr>
+        <tr *ngIf="vacancy.description=='POSITION NOW FILLED.'"><mat-icon>warning</mat-icon></tr>
         <tr>{{vacancy.company}}</tr>
         <tr>{{vacancy.description}}</tr>
         <tr>{{numShared[i]}}/{{numSkills[i]}} common skills</tr>
@@ -76,10 +85,11 @@
                 </span>
             </span>
         </tr>
-        <tr><button mat-raised-button (click)="deleteFromVacancies(savedVacancies[i].vacancyId)">Drop</button></tr>
+        <tr><button mat-raised-button (click)="deleteFromVacancies(vacancy.vacancyId)">Drop</button></tr>
     </td>
+    </table>
+    </div>
     </span>
-</table>
 </div>
 
 

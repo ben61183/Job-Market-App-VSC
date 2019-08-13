@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Skill } from '../skill';
 import { UserIdService } from '../user-id.service';
 import { CompanyIdService } from '../company-id.service';
+import { MatDialog } from '@angular/material';
+import { VacancyIdService } from '../vacancy-id.service';
+import { VacancyDetailsComponent } from '../vacancy-details/vacancy-details.component';
 
 @Component({
   selector: 'app-role',
@@ -52,7 +55,7 @@ export class RoleComponent implements OnInit {
   myCompanyId:number
 
   constructor(private rolSvc: RoleService, private route: ActivatedRoute,private uidSer:UserIdService,
-    private cidSer:CompanyIdService) {
+    private cidSer:CompanyIdService, public dialog: MatDialog, private vidSvc:VacancyIdService) {
 
     // accessing roleId from url param
     this.oneRoleId = this.route.snapshot.params.roleId
@@ -179,5 +182,12 @@ export class RoleComponent implements OnInit {
     this.primarySkill = this.keySkills.sort((a,b) => this.keySkills.filter(v => v===a).length - this.keySkills.filter(v => v===b).length).pop()
   }
     
+  openVacancy(vacancyId){
+    console.log(vacancyId)
+    this.vidSvc.changeVacancyId(vacancyId)
+    this.dialog.open(VacancyDetailsComponent);
+
+  }
+
 }
 

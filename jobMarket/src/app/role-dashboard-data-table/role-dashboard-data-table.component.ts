@@ -31,6 +31,8 @@ export class RoleDashboardDataTableComponent implements OnInit {
   role: Role
   ranks: RoleRank[] = []// object for creating ranked roles
 
+  jobType:boolean
+
   //used to search 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -60,6 +62,8 @@ constructor(private rolSvc:RoleService, private router: Router, private uidSer:U
     rankChange: 0,
     vacancies : []
     }
+
+    this.jobType=null
   }
   
 ngOnInit() {
@@ -79,6 +83,7 @@ ngOnInit() {
       }
     )
   }
+
 
 // find all vacancies from roleId via REST
 findVacanciesOfRole(role){

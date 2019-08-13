@@ -8,6 +8,7 @@ import { VacancyIdService } from '../vacancy-id.service';
 import { VacancyService } from '../vacancy.service';
 import { UserIdService } from '../user-id.service';
 import { CompanyIdService } from '../company-id.service';
+import { Skill } from '../skill';
 
 @Component({
   selector: 'app-company',
@@ -24,7 +25,8 @@ export class CompanyComponent implements OnInit {
   linkedIn:string
   username: string
   password: string 
-  companyVacancies:Vacancy[]
+  companyVacancies:Vacancy[]=[]
+  vacancySkills:Skill[]=[]
 
   oneVacancy:Vacancy
   myCompanyId:number
@@ -66,16 +68,28 @@ export class CompanyComponent implements OnInit {
   }
   
   setFilled(vacancyId){
-    this.vacSvc.findVacancybyVacancyId(vacancyId).subscribe(
-      response=>{
+    this.vacSvc.findVacancybyVacancyId(vacancyId).subscribe(response=>
+      {
         this.oneVacancy=response
-        this.oneVacancy.title+=" FILLED"
-        this.vacSvc.updateVacancyOnServer(vacancyId)
-      }
-    )
+        this.vacancySkills = this.oneVacancy.vacancySkills
+        this.vacSvc.findVacancybyVacancyId(vacancyId).subscribe(
+          response=>{
+            this.oneVacancy=response
+            this.oneVacancy.description="POSITION NOW FILLED."
+            this.vacSvc.updateVacancyOnServer(this.oneVacancy).subscribe(response=>
+              {
+                for(let skill of this.vacancySkills){
+                  this.vacSvc.updateVacancySkillsOnServer(this.oneVacancy.vacancyId,skill.skillId).subscribe()
+                }
+                this.comSvc.addVacancyToCompanyOnService(this.companyId,this.oneVacancy.vacancyId).subscribe()
+              })
+          }
+        )})
   }
 
   setDeleted(vacancyId){
     this.vacSvc.deleteVacancybyVacancyId(vacancyId).subscribe()
+    window.location.reload()
   }
+  
 }

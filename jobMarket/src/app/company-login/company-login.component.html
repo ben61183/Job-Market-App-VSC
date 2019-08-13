@@ -1,5 +1,5 @@
 <mat-form-field  class="example-full-width">
-        <input style="text-align:center" matInput [(ngModel)]="companyUsername" placeholder="Username"  name="companyUsername" [ngModelOptions]="{standalone: true}" >
+        <input matInput [(ngModel)]="companyUsername" placeholder="Username"  name="companyUsername" [ngModelOptions]="{standalone: true}" >
 </mat-form-field>&nbsp;&nbsp; 
 <br> 
 <mat-form-field class="example-full-width">
@@ -8,4 +8,4 @@
 <hr> 
 <button mat-raised-button color="accent" (click)="companyLogIn()">Log In</button>
 
-<p *ngIf="isError">Username or Email are incorrect</p>
+<p *ngIf="noError==false">Username or Email are incorrect</p>

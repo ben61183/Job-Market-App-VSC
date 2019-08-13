@@ -63,9 +63,26 @@ export class VacancyDashboardDataTableComponent implements OnInit {
           if(vacancy.description.length>100){
             vacancy.description = vacancy.description.slice(0,100)+"..."
           } // a vacancy MUST be owned by a company, otherwise errors
+          console.log(vacancy.thisCompany.companyName)
         }
       }
     )
+  }
+
+  setJobType(result){
+    if(result){
+      this.vacancy.job_type=true
+    }
+    else if(!result){
+      this.vacancy.job_type=false
+    }
+    else{
+      this.vacancy.job_type=null
+    }
+    console.log(this.vacancy.job_type)
+    this.dataSource.filter=String(this.vacancy.job_type)
+    this.dataSource.filterPredicate =
+      (data: Vacancy, filter: string) => !filter || data.job_type == Boolean(filter);
   }
 
   openVacancy(vacancyId){

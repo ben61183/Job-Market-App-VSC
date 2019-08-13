@@ -1,5 +1,10 @@
 <mat-form-field >
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    <mat-radio-group aria-label="Job Type">
+        <mat-radio-button value="null" (click)="setJobType(null)" checked="checked">All</mat-radio-button>
+        <mat-radio-button value="true" (click)="setJobType(true)" >Permanent</mat-radio-button>&nbsp;&nbsp;
+        <mat-radio-button value="false" (click)="setJobType(false)">Contract</mat-radio-button>
+    </mat-radio-group>
 </mat-form-field>
 
 <div class="mat-elevation-z8 data-table">

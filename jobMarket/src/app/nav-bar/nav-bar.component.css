@@ -26,3 +26,11 @@ mat-toolbar a {
   color: white;
   text-decoration: none; 
 }
+
+mat-icon{
+  font-size: 30px;
+  text-align: center;
+  margin: auto;
+  vertical-align: middle;
+  line-height: 24px;
+}

@@ -40,7 +40,7 @@ export class WelcomeComponent implements OnInit {
   }
   
   loadNames(){
-    if(this.myUserId!=-1){
+    if(this.myUserId!=-1 && this.myUserId!=0){
       this.useSer.findUserByUserId(this.myUserId).subscribe(response=>this.myUsername=response.username)
       console.log(this.myUsername)
     }
@@ -54,6 +54,11 @@ export class WelcomeComponent implements OnInit {
   logInCompany(id){
     this.uidSer.changeUserId(-1)
     this.cidSer.changeCompanyId(id)
+  }
+
+  logInAsAdmin(){
+    this.uidSer.logInAdmin()
+    window.location.reload()
   }
 
 }

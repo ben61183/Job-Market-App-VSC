@@ -25,14 +25,14 @@
         <img width="60" alt="Angular Logo" routerLink="/role-dashboard" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1024px-Circle-icons-computer.svg.png">
         <a routerLink="/role-dashboard">IT Job Market</a></span>
       <span class="spacer"></span> 
-      <a routerLink="/role-dashboard">Role Dashboard </a>
-      <a routerLink="/vacancy-dashboard">Vacancy Dashboard </a>
-      <span *ngIf="myUserId!=-1">
-        <a routerLink="/user/{{myUserId}}"> My User Profile</a>
+      <a routerLink="/role-dashboard">Role</a>
+      <a routerLink="/vacancy-dashboard">Vacancy</a>
+      <span *ngIf="myUserId!=-1 && myUserId!=0">
+        <button mat-button routerLink="/user/{{myUserId}}"><mat-icon>account_circle</mat-icon></button>
       </span>
       <span *ngIf="myCompanyId!=-1">
-        <a routerLink="/company/{{myCompanyId}}"> My Company Profile</a>
-      </span>
+          <button mat-button routerLink="/company/{{myCompanyId}}"><mat-icon>account_circle</mat-icon></button>
+        </span>
       <button mat-button (click)="logOut()" routerLink="/"><mat-icon>power_settings_new</mat-icon></button>
       
     </mat-toolbar>
