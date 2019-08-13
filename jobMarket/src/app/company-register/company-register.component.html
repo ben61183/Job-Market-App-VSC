@@ -24,12 +24,14 @@
             <mat-form-field class="example-full-width">
                     <input matInput [(ngModel)]="confirmPassword" type="password" placeholder="Confirm Password"  name="confirmPassword" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>&nbsp;&nbsp; 
+            <hr>
+            <button mat-raised-button color="accent" (click)="signUp()">Register Company</button>
+
         </td>
 </tr>   
 
 <div *ngIf="!isError">Passwords do no match</div>
 <div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
 
-<hr> 
-    <button mat-raised-button color="accent" (click)="signUp()">Register Company</button>
+ 
 </div>

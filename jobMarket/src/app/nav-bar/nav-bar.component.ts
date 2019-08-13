@@ -40,4 +40,8 @@ export class NavBarComponent {
       window.location.reload()
     }
   }
+
+  changeTheme() {
+    
+  }
 }

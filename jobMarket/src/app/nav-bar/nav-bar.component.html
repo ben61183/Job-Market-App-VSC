@@ -8,6 +8,7 @@
       <a mat-list-item routerLink="/role-dashboard">Role Dashboard</a>
       <a mat-list-item routerLink="/vacancy-dashboard">Vacancy Dashboard</a>
       <a mat-list-item routerLink="/user/userId">My Profile</a>
+       
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -33,22 +34,9 @@
           <button mat-button routerLink="/company/{{myCompanyId}}"><mat-icon>account_circle</mat-icon></button>
         </span>
       <button mat-button (click)="logOut()" routerLink="/"><mat-icon>power_settings_new</mat-icon></button>
+      
     </mat-toolbar>
     <ng-content> 
     </ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<!-- <div > 
-  <ul class="nav nav-tabs"> 
-    <li class="nav-item"> 
-      <a class="nav-link" routerLink="/role-dashboard">Role Dashboard</a> 
-    </li>
-    <li class="nav-item"> 
-    <a class="nav-link" routerLink="/vacancy-dashboard"> Vacancy Dashboard</a> 
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" routerLink="/role-admin"> Role Admin </a>
-  </li>
-  </ul>
-</div> -->

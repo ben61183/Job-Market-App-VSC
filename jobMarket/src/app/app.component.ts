@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'IT Job Market';
+  otherTheme: boolean = false;
+
+  changeTheme() {
+    this.otherTheme = !this.otherTheme
+    console.log(this.otherTheme)
+  }
 }
 
 

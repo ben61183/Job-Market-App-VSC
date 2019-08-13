@@ -1,4 +1,4 @@
-<form >
+<!-- <form >
         <table id="registerTable">
                 <tr>
                     <th>Username:</th>
@@ -27,4 +27,37 @@
             <div *ngIf="!isUniqueEmail">Email is already registered. Please enter a new email</div>
             <div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
 
+</form> -->
+
+<form>
+    <table id="registerTable">
+    <tr> 
+    <td> 
+        <mat-form-field  class="example-full-width">
+            <input matInput [(ngModel)]="username" placeholder="Username"  name="username" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>&nbsp;&nbsp; 
+    
+    <br> 
+        
+        <mat-form-field  class="example-full-width">
+            <input matInput [(ngModel)]="password" placeholder="Password"  name="password" [ngModelOptions]="{standalone: true}" type="password">
+        </mat-form-field>&nbsp;&nbsp; 
+    
+    <br> 
+        <mat-form-field  class="example-full-width">
+            <input matInput [(ngModel)]="confirmPassword" placeholder="Confirm Password"  name="password" [ngModelOptions]="{standalone: true}" type="password">
+        </mat-form-field>&nbsp;&nbsp; 
+    <br> 
+        <mat-form-field  class="example-full-width">
+            <input matInput [(ngModel)]="email" placeholder="Email"  name="email" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>   
+    <hr> 
+        <button mat-raised-button color="accent" (click)="signUp()">Log In</button>
+    </td>
+    </tr>
+    </table>
 </form>
+
+<div *ngIf="!isError">Passwords do no match</div>
+<div *ngIf="!isUniqueEmail">Email is already registered. Please enter a new email</div>
+<div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
