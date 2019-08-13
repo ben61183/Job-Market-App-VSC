@@ -23,21 +23,22 @@
     <tr>
         <td *ngIf="isEditable">
             <mat-form-field class="example-full-width">
-            <mat-label>Password</mat-label> 
-            <input matInput [(ngModel)]="currentPassword" name="password"> 
+            <mat-label>Current Password</mat-label> 
+            <input matInput [(ngModel)]="currentPassword" name="currentPassword"> 
             </mat-form-field>
         </td>
         </tr>
     <tr>
     <td *ngIf="isEditable">
         <mat-form-field class="example-full-width">
-        <mat-label>Password</mat-label> 
-        <input matInput [(ngModel)]="password" name="password"> 
+        <mat-label>New Password</mat-label> 
+        <input matInput [(ngModel)]="newPassword" name="newPassword"> 
         </mat-form-field>
     </td>
     </tr>
     <tr><td><button (click)="toggleEdits()" mat-raised-button color="primary"  value='{{(isEditable)?"Save":"Edit"}}' #edit>{{(isEditable)?"Save":"Edit"}}</button></td></tr>
 </table>
+<p *ngIf="passwordError" style="text-align: center">Incorrect password entered.</p>
 <hr width="80%">
 
 <h3>Skills</h3>
