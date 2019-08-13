@@ -1,3 +1,7 @@
 #registerTable{
     text-align:center
 }
+
+.example-full-width {
+    width: 100%;
+  }

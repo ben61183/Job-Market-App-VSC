@@ -10,7 +10,7 @@
 <hr> 
 <span *ngIf="myUserId==-1 && myCompanyId==-1">
 <button mat-raised-button (click)="openUser()">User</button><br><br>  
-<button mat-raised-button>Company</button><br><br>  
+<button mat-raised-button (click)="openCompany()">Company</button><br><br>  
 <button mat-raised-button>Admin</button>
 </span>
 <span *ngIf="myUserId==-1 && myCompanyId!=-1">
@@ -26,4 +26,4 @@
 <h4>You have full priveleges across the site.</h4>
 </span>
 </div>
-<button (click)="logInCompany(251)">company log</button>
+<button (click)="logInCompany(315)">company log</button>

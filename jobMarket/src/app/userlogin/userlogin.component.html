@@ -1,18 +1,16 @@
 <form>
         <table id="loginTable">
-                <tr>
-                    <th>Username:</th>
-                    <td><input [(ngModel)]="username" name="username"></td>
-                </tr> 
-                <tr>
-                    <th>Password:</th>
-                    <td><input [(ngModel)]="password" name="password"></td>
-                </tr>
-                <tr>
-                    <button (click)="logInUser()" value="login">Login</button>
-            </tr>
-            </table>
-
+<mat-form-field  class="example-full-width">
+        <input style="text-align:center" matInput [(ngModel)]="username" placeholder="Username"  name="username" [ngModelOptions]="{standalone: true}" >
+</mat-form-field>
+<br> 
+<mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="password" placeholder="Password"  name="password" [ngModelOptions]="{standalone: true}" type="password">
+</mat-form-field>
+<hr> 
+<button mat-raised-button color="accent" (click)="logInUser()">Log In</button>
+</table>
 </form>
 
-<div *ngIf="noError == false">login credentials could not be found</div>
+<div *ngIf="noError == false">Username Or Password Are Incorrect</div>
+

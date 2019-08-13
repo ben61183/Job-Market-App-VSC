@@ -1,14 +1,9 @@
-<app-nav-bar> 
-<!-- <div style="text-align:center">
-  <h1>
-    {{ title }}
-  </h1>
-  <img width="100" alt="Angular Logo" routerLink="/role-dashboard" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1024px-Circle-icons-computer.svg.png">
-</div>
-<h2 style="text-align:center">The Only Place to Search the IT Job Market.</h2> -->
-
-<div>
+<app-nav-bar [class.theme-alternate]="otherTheme"> 
+  
+<div >
   <router-outlet></router-outlet>
+  <button (click)="changeTheme()" mat-raised-button>Change Theme</button>
 </div>
+
 
 </app-nav-bar>
