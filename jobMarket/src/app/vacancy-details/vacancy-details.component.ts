@@ -77,6 +77,7 @@ export class VacancyDetailsComponent implements OnInit {
   
       response => {
         this.vacancy=response;
+        this.vacancy.link = "http://"+response.link
         // this.vacancy.company=response.thisCompany
         this.loadVacancySkills(this.vacancy.vacancyId)
         console.log("company:"+response.thisCompany)
