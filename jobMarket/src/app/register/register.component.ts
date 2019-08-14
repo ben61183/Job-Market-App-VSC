@@ -57,7 +57,8 @@ export class RegisterComponent implements OnInit {
   
   ngOnInit() {
     // this.myUserId = this.uidSer.getUserId()
-    this.loadAllUsers()    
+    this.loadAllUsers() 
+    // console.log(this.allUsers)   
   }
 
   addUserDetails(){
@@ -85,7 +86,7 @@ export class RegisterComponent implements OnInit {
     this.regSvc.loadAllUsersFromServer().subscribe(
       response =>
       {this.allUsers=response
-      console.log(response)
+      console.log("users:"+response)
       })
   }
 
@@ -105,27 +106,28 @@ export class RegisterComponent implements OnInit {
   }
 
   uniqueUsernameCheck(){
-      // this.loadAllUsers()
+    this.regSvc.loadAllUsersFromServer().subscribe(
+      response =>
+      {this.allUsers=response
+      console.log("users:"+response)
       for(let user of this.allUsers){
+        console.log("hello")
+        // console.log(user)
         if (user.username!=this.username){
-          return this.isUsernameCheck=true
+          this.isUsernameCheck=true
         } else{
-          return this.isUniqueUsername=false
+          this.isUniqueUsername=false
           
         }
-  }
-}
+      }})}
 
-
-  
   uniqueEmailCheck(){
     // this.loadAllUsers()
     for(let user of this.allUsers){
       if (user.email!=this.email){
-        
-        return this.isEmailCheck=true
+        this.isEmailCheck=true
       } else{
-        return this.isUniqueEmail=false
+        this.isUniqueEmail=false
         
       }
       
@@ -143,7 +145,7 @@ export class RegisterComponent implements OnInit {
     this.uniqueEmailCheck()
     if(this.isPassCheck==true && this.isEmailCheck==true && this.isUsernameCheck==true){
       this.addUserDetails();
-      window.location.reload();
+      // window.location.reload();
     }
     
   }

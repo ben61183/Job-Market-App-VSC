@@ -4,6 +4,7 @@ import { RoleService } from '../role.service';
 import { VacancyService } from '../vacancy.service';
 import { Vacancy } from '../vacancy';
 import { Company } from '../company';
+import { CompanyIdService } from '../company-id.service';
 
 @Component({
   selector: 'app-role-admin',
@@ -42,9 +43,13 @@ export class RoleAdminComponent implements OnInit {
 
   valid:boolean
   validError:string
+  
+  myCompanyId:number
+
+  myVacancies:Vacancy[]=[]
 
 
-  constructor(private roleSvc:RoleService, private vacSvc:VacancyService) { 
+  constructor(private roleSvc:RoleService, private vacSvc:VacancyService, private cidSer:CompanyIdService) { 
     this.roleID = 1
     this.category = "Programming Languages"
     this.role_name = "Python"
@@ -66,11 +71,13 @@ export class RoleAdminComponent implements OnInit {
 
     this.valid=true
     this.validError=""
+
   }
 
   ngOnInit() {
     this.loadAllRoles() 
     this.showVacancyForm()
+    this.myCompanyId=this.cidSer.getCompanyId()
   }
 
   loadAllRoles(){
@@ -101,7 +108,12 @@ export class RoleAdminComponent implements OnInit {
   loadAllVacancies(){
     this.vacSvc.loadAllVacanciesFromServer().subscribe(
       response =>
-        {this.allVacancies=response}
+        {this.allVacancies=response
+        for(let vac of this.allVacancies){
+          if (vac.thisCompany.companyId == this.myCompanyId){
+            this.myVacancies.push(vac)
+          }
+        }}
     )
   }
 

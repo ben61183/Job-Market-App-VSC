@@ -22,7 +22,7 @@ export class RoleDashboardDataTableComponent implements OnInit {
   dataSource: MatTableDataSource<Role>;
   
   
-  displayedColumns = ['name','rankNow', 'rankChange',  'category', 'sumSalaryNow', 'medChange', 'vacCount', 'numVacanciesNow']
+  displayedColumns = ['name','rankNow', 'rankChange', 'sumSalaryNow', 'medChange', 'vacCount', 'numVacanciesNow']
 
   oneRoleId: number // id of specific role (taken from dash)
   vacCount: number // total vacancies in role

@@ -25,7 +25,6 @@ export class CompanyService {
 
     var reqBody = "companyName="+company.companyName+"&hqLocation="+ company.hqLocation+"&linkedIn=" + company.linkedIn + "&companyUsername=" + company.companyUsername + "&companyPassword=" + company.companyPassword + "&companyEmail=" + company.email
 
-    // console.log(this.rootUrl+"/register", reqBody, httpOptions) 
 
     return this.httpsvc.post<CompanyComponent>(this.rootUrl+"/register", reqBody, httpOptions)
   }

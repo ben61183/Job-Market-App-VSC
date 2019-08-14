@@ -3,3 +3,17 @@ button{
     padding: 15px 32px; 
     width: 75%;
 }
+
+#back{
+    background-image: url("https://conversionxl.com/wp-content/uploads/2018/09/coding-language.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    color: white
+}
+
+.dashButtons{
+    width:20%;
+    padding: 20px;
+    margin:40px
+}

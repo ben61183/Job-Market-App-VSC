@@ -28,7 +28,7 @@ table{
 }
 
 .applied mat-chip{
-background: rgb(97, 132, 230)
+background: rgb(79, 116, 218)
 }
 
 .unapplied{
@@ -38,7 +38,7 @@ background: rgb(97, 132, 230)
 }
 
 .unapplied mat-chip{
-    background: rgb(214, 214, 214)
+    background: rgb(177, 177, 177)
     }
 
 h3{
@@ -82,4 +82,22 @@ h3{
     float: inherit;
     display: flex;
     flex-wrap: wrap;
+}
+
+#back{
+    background-image: url("https://conversionxl.com/wp-content/uploads/2018/09/coding-language.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    color: white;
+    text-align: center
+}
+
+hr{
+    border-color: rgb(200, 227, 238);
+    width: 80%
+}
+
+#editDiv{
+    text-align: center;
 }
