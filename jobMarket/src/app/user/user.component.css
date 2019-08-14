@@ -83,3 +83,14 @@ h3{
     display: flex;
     flex-wrap: wrap;
 }
+
+.textAlign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+button {
+    text-align: center;
+}

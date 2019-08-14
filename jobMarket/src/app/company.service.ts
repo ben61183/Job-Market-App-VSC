@@ -23,9 +23,9 @@ export class CompanyService {
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
     }
 
-    var reqBody = "companyName="+company.companyName+"&hqLocation="+ company.hqLocation+"&linkedIn=" + company.linkedIn + "&companyUsername=" + company.companyUsername + "&companyPassword=" + company.companyPassword + "&companyEmail=" + company.email
+    var reqBody = "companyName="+company.companyName+"&hqLocation="+ company.hqLocation+"&linkedIn=" + company.linkedIn + "&companyUsername=" + company.companyUsername + "&companyPassword=" + company.companyPassword + "&companyEmail=" + company.email + "&companyId=" + company.companyId 
 
-    // console.log(this.rootUrl+"/register", reqBody, httpOptions) 
+    console.log(this.rootUrl+"/register", reqBody, httpOptions) 
 
     return this.httpsvc.post<CompanyComponent>(this.rootUrl+"/register", reqBody, httpOptions)
   }

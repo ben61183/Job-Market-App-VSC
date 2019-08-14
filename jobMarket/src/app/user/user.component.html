@@ -1,4 +1,6 @@
+<br>
 <h1 style="text-align: center">{{username}}'s Profile</h1>
+<br>    
 <table id="details">
     <tr>
     <td *ngIf="!isEditable">Username:</td>
@@ -36,7 +38,7 @@
         </mat-form-field>
     </td>
     </tr>
-    <tr><td><button (click)="toggleEdits()" mat-raised-button color="primary"  value='{{(isEditable)?"Save":"Edit"}}' #edit>{{(isEditable)?"Save":"Edit"}}</button></td></tr>
+    <tr><td><button style="text-align: center" (click)="displayEditUser()" mat-raised-button color="accent"  value='{{(isEditable)?"Save":"Edit"}}' #edit>{{(isEditable)?"Save":"Edit"}}</button></td></tr>
 </table>
 <p *ngIf="passwordError" style="text-align: center">Incorrect password entered.</p>
 <hr width="80%">

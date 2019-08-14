@@ -58,6 +58,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     // this.myUserId = this.uidSer.getUserId()
     this.loadAllUsers()    
+    console.log(this.allUsers)
   }
 
   addUserDetails(){
@@ -143,7 +144,7 @@ export class RegisterComponent implements OnInit {
     this.uniqueEmailCheck()
     if(this.isPassCheck==true && this.isEmailCheck==true && this.isUsernameCheck==true){
       this.addUserDetails();
-      window.location.reload();
+      //window.location.reload();
     }
     
   }

@@ -66,7 +66,7 @@ export class CompanyRegisterComponent implements OnInit{
           this.newCompanyName = response.companyName
           this.hqLocation = response.hqLocation
           this.linkedIn = response.linkedIn
-          this.newUsername = response.username
+          this.newUsername = response.companyUsername
           this.newPassword = response.password
           this.email = response.email
         }
