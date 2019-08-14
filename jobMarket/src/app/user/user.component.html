@@ -1,6 +1,11 @@
+<div id="back">
+    <br>
+    <h2 style="text-align: center">Your Profile</h2>
+    <h4>Hi {{username}}!</h4>
+    <br>
+</div>
 <br>
-<h1 style="text-align: center">{{username}}'s Profile</h1>
-<br>    
+<div id="editDiv">
 <table id="details">
     <tr>
     <td *ngIf="!isEditable">Username:</td>
@@ -40,6 +45,9 @@
     </tr>
     <tr><td><button style="text-align: center" (click)="displayEditUser()" mat-raised-button color="accent"  value='{{(isEditable)?"Save":"Edit"}}' #edit>{{(isEditable)?"Save":"Edit"}}</button></td></tr>
 </table>
+<br>
+   
+</div>
 <p *ngIf="passwordError" style="text-align: center">Incorrect password entered.</p>
 <hr width="80%">
 

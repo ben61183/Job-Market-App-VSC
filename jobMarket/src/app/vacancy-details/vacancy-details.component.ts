@@ -24,6 +24,8 @@ export class VacancyDetailsComponent implements OnInit {
 
   myUserId:number
   myCompanyId:number
+
+  myUserVacancies:Vacancy[]
   
   saved:boolean
 
@@ -45,14 +47,28 @@ export class VacancyDetailsComponent implements OnInit {
         vacancySkills: [], 
       }
       this.saved=false
+      this.myUserVacancies=[]
   }
 
   ngOnInit() {
+    console.log("vacancy clicked")
     this.saved=false
     this.vidSvc.currentVacancyId.subscribe(myVacancyId=>this.vacancy.vacancyId=myVacancyId)
     this.fetchCurrentVacancyFromService()
     this.myUserId = this.uidSer.getUserId()
     this.myCompanyId = this.cidSer.getCompanyId()
+    this.useSvc.findUserByUserId(this.myUserId).subscribe(
+      response=>{
+        this.myUserVacancies=response.savedVacancies
+        for(let uVac of this.myUserVacancies){
+          if(uVac.vacancyId==this.vacancy.vacancyId){
+            console.log("already saved")
+            this.saved=true
+          } else{
+            this.saved=false
+          }
+        }})
+    
   }
 
   fetchCurrentVacancyFromService(){

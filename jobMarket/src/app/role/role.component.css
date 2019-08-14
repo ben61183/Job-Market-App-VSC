@@ -12,7 +12,7 @@ table{
 #customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 75%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto; 
   }
@@ -33,3 +33,17 @@ table{
     background-color: rgb(167, 173, 167);
     color: white;
   }
+
+hr{
+  border-color: rgb(200, 227, 238);
+  width: 80%
+}
+
+.chart{
+  width: 70%;
+  display: flexbox;
+  margin: auto;
+  text-align: center;
+  background-color: rgb(192, 192, 192);
+  padding: 20px
+}

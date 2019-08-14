@@ -54,7 +54,6 @@ export class NewListingComponent implements OnInit {
   validError:string
 
 
-  
   constructor(private vacSvc: VacancyService, private skiSvc:SkillService, private rolSvc:RoleService,
     private comSvc:CompanyService, private cidSer:CompanyIdService, private uidSer:UserIdService) {  
 

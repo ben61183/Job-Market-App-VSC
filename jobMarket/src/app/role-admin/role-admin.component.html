@@ -1,4 +1,5 @@
     <table id="vacancyTable" *ngIf="!isVacancyEditable">
+        <span *ngIf="myCompanyId==-1">
         <mat-form-field>
             <mat-label>Select A Vacancy</mat-label>
             <mat-select [(ngModel)]="selectedLevel" (ngModelChange)="selected()">
@@ -7,6 +8,17 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+        </span>
+        <span *ngIf="myCompanyId!=-1">
+            <mat-form-field>
+                <mat-label>Select A Vacancy</mat-label>
+                <mat-select [(ngModel)]="selectedLevel" (ngModelChange)="selected()">
+                    <mat-option *ngFor="let v of myVacancies" [value]="v">
+                            {{v.title}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            </span>
         <div style="text-align:center;"> 
         <button mat-raised-button color="accent" type="submit" value="Open" (click)="showUpdateVacancyForm()" *ngIf="!isUpdateVacancyFormVisible" >Edit</button> 
         
@@ -19,18 +31,6 @@
     <table> 
             
             <tr> 
-                <!-- <td>Vacancy ID:</td>
-                <td>{{selectedLevel.vacancyId}}</td> -->
-                
-                <!-- No longer used as company is now an entity 
-                <td *ngIf="!isVacancyEditable">Company:</td>
-                <td *ngIf="!isVacancyEditable">{{selectedLevel.company}}</td>
-                <td *ngIf="isVacancyEditable">
-                    <mat-form-field class="example-full-width">
-                    <mat-label>Company</mat-label> 
-                    <input matInput [(ngModel)]="company" name="company">
-                    </mat-form-field>   
-                </td>&nbsp; -->
 
                 <td *ngIf="!isVacancyEditable">Title:</td>
                 <td *ngIf="!isVacancyEditable">{{selectedLevel.title}}</td>

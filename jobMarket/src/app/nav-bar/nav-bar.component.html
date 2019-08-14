@@ -4,11 +4,15 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/role-dashboard">Role Dashboard</a>
-      <a mat-list-item routerLink="/vacancy-dashboard">Vacancy Dashboard</a>
-      <a mat-list-item routerLink="/user/userId">My Profile</a>
-      
+    <mat-nav-list id="sideMenu">
+      <a mat-list-item routerLink="/role-dashboard">Role</a>
+      <a mat-list-item routerLink="/vacancy-dashboard">Vacancy</a>
+      <span *ngIf="myUserId!=-1 && myUserId!=0">
+        <a mat-list-item routerLink="/user/{{myUserId}}"><mat-icon>account_circle</mat-icon>User Details</a>
+      </span>
+      <span *ngIf="myCompanyId!=-1">
+        <a mat-list-item routerLink="/company/{{myCompanyId}}"><mat-icon>account_circle</mat-icon>User Details</a>
+      </span>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -23,7 +27,7 @@
       </button>
       <span>
         <img width="60" alt="Angular Logo" id="logo" routerLink="/role-dashboard" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1024px-Circle-icons-computer.svg.png">
-        <a routerLink="/role-dashboard">IT Job Market</a></span>
+        <a routerLink="/role-dashboard">TechJobs</a></span>
       <span class="spacer"></span> 
       <a routerLink="/role-dashboard">Role</a>
       <a routerLink="/vacancy-dashboard">Vacancy</a>

@@ -1,8 +1,21 @@
 <h1 style = "text-align: center">{{role.roleName}}</h1>
-<h3 style = "text-align: center">({{role.category}})</h3>
+<h3 style = "text-align: center">Category:{{role.category}}</h3>
 <h4 style = "text-align: center" [hidden]="primarySkill==undefined">Key Skill: {{primarySkill}}</h4>
 <br>
 <div>
+<div class="chart"> 
+    <h3>Vacancies For the Last Five Years</h3>
+        <div style="display: block"> 
+            <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"> 
+            </canvas>
+        </div>
+    </div>
+<br>
+<hr>
+<br>
 <table id="customers">
     <tr>
         <th>Vacancy</th>
@@ -22,8 +35,6 @@
     </ng-container>
 </table>
 </div>
-<br> 
-
 
 <table id="customers">
     <tr>
@@ -43,8 +54,11 @@
 </table>
 
 <br> 
-<hr> 
-<div> 
+<hr>
+<br>
+
+<div class="chart"> 
+    <h3>Mean Salaries Through Time</h3>
     <div style="display: block"> 
         <canvas baseChart 
             [datasets]="lineChartData" 
@@ -56,12 +70,3 @@
     </div>
 </div>
 
-<div> 
-    <div style="display: block"> 
-        <canvas baseChart
-            [data]="pieChartData"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"> 
-        </canvas>
-    </div>
-</div>
