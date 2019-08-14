@@ -1,61 +1,25 @@
-<!-- <form >
-        <table id="registerTable">
-                <tr>
-                    <th>Username:</th>
-                    <td><input [(ngModel)]="username" name="username"></td>
-                </tr> 
-                <tr>
-                    <th>Password:</th>
-                    <td><input [(ngModel)]="password" type="password" name="password"></td>
-                </tr>
-                <tr>
-                    <td>Confirm Password:</td>
-                    <td><input [(ngModel)]="confirmPassword" type="password" name="password"></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input [(ngModel)]="email" name="email"></td>  
-                </tr>
-                <tr>
-                 <button (click)="signUp()" value="Register">signUp</button>
-
-                   
-            </tr>
-            </table>
-
-            <div *ngIf="!isError">Passwords do no match</div>
-            <div *ngIf="!isUniqueEmail">Email is already registered. Please enter a new email</div>
-            <div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
-
-</form> -->
-
 <form>
-    <table id="registerTable">
-    <tr> 
-    <td> 
+    <div class="registerTable">
+   
         <mat-form-field  class="example-full-width">
             <input matInput [(ngModel)]="username" placeholder="Username"  name="username" [ngModelOptions]="{standalone: true}">
-        </mat-form-field>&nbsp;&nbsp; 
-    
-    <br> 
-        
+        </mat-form-field>
+
         <mat-form-field  class="example-full-width">
             <input matInput [(ngModel)]="password" placeholder="Password"  name="password" [ngModelOptions]="{standalone: true}" type="password">
-        </mat-form-field>&nbsp;&nbsp; 
-    
-    <br> 
+        </mat-form-field>
+
         <mat-form-field  class="example-full-width">
             <input matInput [(ngModel)]="confirmPassword" placeholder="Confirm Password"  name="password" [ngModelOptions]="{standalone: true}" type="password">
-        </mat-form-field>&nbsp;&nbsp; 
-    <br> 
+        </mat-form-field>
+        
         <mat-form-field  class="example-full-width">
             <input matInput [(ngModel)]="email" placeholder="Email"  name="email" [ngModelOptions]="{standalone: true}">
         </mat-form-field>   
     <hr> 
-        <button mat-raised-button color="accent" (click)="signUp()">Log In</button>
-    </td>
-    </tr>
-    </table>
+        <button mat-raised-button color="accent" (click)="signUp()">Register</button>
+   
+</div>
 </form>
 
 <div *ngIf="!isError">Passwords do no match</div>

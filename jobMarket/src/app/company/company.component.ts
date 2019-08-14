@@ -25,6 +25,7 @@ export class CompanyComponent implements OnInit {
   linkedIn:string
   username: string
   password: string 
+  email: string 
   companyVacancies:Vacancy[]=[]
   vacancySkills:Skill[]=[]
 

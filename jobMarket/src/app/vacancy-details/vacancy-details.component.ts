@@ -33,7 +33,7 @@ export class VacancyDetailsComponent implements OnInit {
     private useSvc:UserService) {
       this.vacancy={
         vacancyId: this.route.snapshot.params.vacancyId,
-        thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:"", password:"", username:""},
+        thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:"", password:"", username:"", email: ""},
         description: "description",
         job_type: true,
         link: "link",
