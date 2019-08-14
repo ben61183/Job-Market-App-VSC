@@ -55,6 +55,8 @@ import { CompanyLoginComponent } from './company-login/company-login.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { CompanyEditComponent } from './company-edit/company-edit.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 
 @NgModule({
@@ -82,10 +84,12 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     CompanyRegisterLoginComponent,
     CompanyRegisterComponent,
     CompanyLoginComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    CompanyEditComponent,
+    UserEditComponent
   ],
   entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent, UserRegisterLoginComponent, CompanyRegisterLoginComponent,
-    AdminLoginComponent],
+    AdminLoginComponent, CompanyEditComponent, UserEditComponent],
   imports: [
     MatMenuModule,
     MatCheckboxModule,

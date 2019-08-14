@@ -84,6 +84,14 @@ h3{
     flex-wrap: wrap;
 }
 
+.textAlign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
 #back{
     background-image: url("https://conversionxl.com/wp-content/uploads/2018/09/coding-language.jpg");
     background-repeat: no-repeat;

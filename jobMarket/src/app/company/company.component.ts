@@ -9,6 +9,7 @@ import { VacancyService } from '../vacancy.service';
 import { UserIdService } from '../user-id.service';
 import { CompanyIdService } from '../company-id.service';
 import { Skill } from '../skill';
+import { CompanyEditComponent } from '../company-edit/company-edit.component';
 
 @Component({
   selector: 'app-company',
@@ -23,7 +24,7 @@ export class CompanyComponent implements OnInit {
   companyName:string
   hqLocation:string
   linkedIn:string
-  username: string
+  companyUsername: string
   password: string 
   email: string 
   companyVacancies:Vacancy[]=[]
@@ -50,7 +51,7 @@ export class CompanyComponent implements OnInit {
         this.companyName=response.companyName
         this.hqLocation=response.hqLocation
         this.linkedIn="http://"+response.linkedIn
-        this.username=response.username
+        this.companyUsername=response.username
         this.password=response.password
       }
     )
@@ -93,4 +94,8 @@ export class CompanyComponent implements OnInit {
     window.location.reload()
   }
   
+  editCompany() {
+    this.dialog.open(CompanyEditComponent)
+  }
+
 }

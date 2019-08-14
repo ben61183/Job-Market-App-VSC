@@ -10,6 +10,7 @@ import { RegisterService } from '../register.service';
 import { MatDialog } from '@angular/material';
 import { VacancyIdService } from '../vacancy-id.service';
 import { VacancyDetailsComponent } from '../vacancy-details/vacancy-details.component';
+import { UserEditComponent } from '../user-edit/user-edit.component';
 
 @Component({
   selector: 'app-user',
@@ -93,6 +94,9 @@ export class UserComponent implements OnInit {
     )
   }
 
+  displayEditUser() {
+    this.dialog.open(UserEditComponent)
+  }
 
   // compare the skills assigned to user with those assigned to vacancy
   compareSkills(userSkills,vacancies){

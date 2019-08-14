@@ -55,5 +55,16 @@ export class UserService {
     return this.httpsvc.post<UserComponent>(this.rootUrl+"/delete/vacancy",reqBody,httpOptions)
   }
 
+  updateUserOnServer(user):Observable<UserComponent>{
+    const httpOptions = {// declare the headers for the content type
+      headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
+    }
+
+    var reqBody = "username=" + user.username + "&password=" + user.password + "&email=" + user.email + "&userId=" + user.userId
+
+    console.log(this.rootUrl+"/register", reqBody, httpOptions)
+
+    return this.httpsvc.post<UserComponent>(this.rootUrl+"/register", reqBody, httpOptions)
+  }
 
 }

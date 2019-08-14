@@ -1,0 +1,30 @@
+<div class="editUser"> 
+<mat-form-field class="example-full-width">
+    <mat-label>Username</mat-label> 
+    <input matInput [(ngModel)]="username" name="username"> 
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label> 
+    <input matInput [(ngModel)]="email " name="email"> 
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+    <mat-label>Old Password</mat-label> 
+    <input matInput [(ngModel)]="old_password" name="old_password" type="password"> 
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+    <mat-label>New Password</mat-label> 
+    <input matInput [(ngModel)]="new_password" name="new_password" type="password"> 
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+    <mat-label>Confirm New Password</mat-label> 
+    <input matInput [(ngModel)]="confirm_new_password" name="confirm_new_password" type="password"> 
+</mat-form-field>
+
+<button mat-raised-button (click)="clickSave()"> Save </button>
+<br> 
+<p *ngIf="!passwordsMatch">Password Is Incorrect Or New Passwords Dont Match</p>
+</div>

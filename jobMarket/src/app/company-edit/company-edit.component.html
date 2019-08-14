@@ -1,0 +1,44 @@
+<div class="editCompany"> 
+<mat-form-field class="example-full-width">
+    <mat-label>Company Name</mat-label> 
+    <input matInput [(ngModel)]="name" name="name"> 
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label> 
+    <input matInput [(ngModel)]="email" name="email"> 
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+    <mat-label>HQ Location</mat-label> 
+    <input matInput [(ngModel)]="location" name="location"> 
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+    <mat-label>Linked In URL</mat-label> 
+    <input matInput [(ngModel)]="linkedIn" name="linkedIn"> 
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+    <mat-label>Old Password</mat-label> 
+    <input matInput [(ngModel)]="old_password" name="old_password" type="password"> 
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+    <mat-label>New Password</mat-label> 
+    <input matInput [(ngModel)]="new_password" name="new_password" type="password"> 
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+    <mat-label>Confirm New Password</mat-label> 
+    <input matInput [(ngModel)]="confirm_new_password" name="confirm_new_password" type="password"> 
+</mat-form-field>
+
+<hr> 
+
+<button mat-raised-button (click)="clickSave()"> Save </button>
+
+</div>
+
+<p *ngIf="!passwordsMatch">Password Is Incorrect Or New Passwords Dont Match</p>
+
