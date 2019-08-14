@@ -54,7 +54,7 @@ export class RoleAdminComponent implements OnInit {
     this.isVacancyEditable=false;
 
     this.vacancyId=7;
-    this.company={companyId:0,linkedIn:"",hqLocation:"",companyName:"", password: "", username: ""};
+    this.company={companyId:0,linkedIn:"",hqLocation:"",companyName:"", password: "", username: "", email: ""};
     this.description="default description";
     this.job_type=false;
     this.link="default website";

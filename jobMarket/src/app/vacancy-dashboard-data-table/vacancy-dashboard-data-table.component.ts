@@ -37,7 +37,7 @@ export class VacancyDashboardDataTableComponent implements OnInit {
     private vidSvc:VacancyIdService) {
     this.vacancy={
       vacancyId: 0,
-      thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:"", password: "", username: ""},
+      thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:"", password: "", username: "", email: ""},
       description: "description",
       job_type: true,
       link: "link",

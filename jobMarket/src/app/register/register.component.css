@@ -1,7 +1,10 @@
-#registerTable{
-    text-align:center
+.registerTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.example-full-width {
-    width: 100%;
-  }
+button {
+    text-align: center;
+}

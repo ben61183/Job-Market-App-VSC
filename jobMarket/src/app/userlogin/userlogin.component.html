@@ -1,16 +1,17 @@
-<form>
-        <table id="loginTable">
-<mat-form-field  class="example-full-width">
-        <input style="text-align:center" matInput [(ngModel)]="username" placeholder="Username"  name="username" [ngModelOptions]="{standalone: true}" >
-</mat-form-field>
-<br> 
-<mat-form-field class="example-full-width">
-        <input matInput [(ngModel)]="password" placeholder="Password"  name="password" [ngModelOptions]="{standalone: true}" type="password">
-</mat-form-field>
+<div class="userLogin">
+        
+        <mat-form-field  class="example-full-width">
+                <input  matInput [(ngModel)]="username" placeholder="Username"  name="username" [ngModelOptions]="{standalone: true}" >
+        </mat-form-field> 
+
+        <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="password" placeholder="Password"  name="password" [ngModelOptions]="{standalone: true}" type="password">
+        </mat-form-field>
+
 <hr> 
-<button mat-raised-button color="accent" (click)="logInUser()">Log In</button>
-</table>
-</form>
+
+        <button mat-raised-button color="accent" (click)="logInUser()">Log In</button>
+</div>
 
 <div *ngIf="noError == false">Username Or Password Are Incorrect</div>
 

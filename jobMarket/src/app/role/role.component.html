@@ -1,47 +1,49 @@
 <h1 style = "text-align: center">{{role.roleName}}</h1>
 <h3 style = "text-align: center">({{role.category}})</h3>
 <h4 style = "text-align: center" [hidden]="primarySkill==undefined">Key Skill: {{primarySkill}}</h4>
-
+<br>
 <div>
-<div class="roleTables" id="leftTable"><h3>Current {{role.roleName}} Vacancies:</h3>
-<table>
+<table id="customers">
     <tr>
         <th>Vacancy</th>
         <th>Salary</th>
-        <th>Year</th>
-        <th>Skills</th>
+        <!-- <th>Year</th> -->
+        <!-- <th>Skills</th> -->
     </tr>
     <!-- iterate through vacancies and show those from the last year on record -->
     <ng-container *ngFor = "let vac of role.vacancies">
         <tr *ngIf = "vac.uploadYear == 2019">
             <td><button mat-button (click)="openVacancy(vac.vacancyId)">{{vac.title}}</button></td>
             <td>{{vac.salary}}</td>
-            <td>{{vac.uploadYear}}</td> 
-            <td *ngIf="vac.vacancySkills.length>0">{{vac.vacancySkills[0].skill}}</td>
-            <td *ngIf="vac.vacancySkills.length>1">{{vac.vacancySkills[1].skill}}</td>
-            <td *ngIf="vac.vacancySkills.length>2">{{vac.vacancySkills[2].skill}}</td>
-
+            <!-- <td>{{vac.uploadYear}}</td>  -->
+            <!-- <td *ngIf="vac.vacancySkills.length>0">{{vac.vacancySkills[0].skill}}</td>
+            <td *ngIf="vac.vacancySkills.length>1">{{vac.vacancySkills[1].skill}}</td> -->
         </tr>
     </ng-container>
 </table>
 </div>
-<div class="roleTables">
-    <h3>{{role.roleName}} Role Statistics:</h3>
+<br> 
 
-<table>
-    <td>
-        <tr>Historical Vacancies: {{vacCount}}
-        <tr>Current Vacancies: {{role.numVacanciesNow}}</tr>
-        <tr>Last Year's Vacancies: {{role.numVacanciesPrev}}</tr>
-    </td>
-    <td>
-        <tr>Mean Salary: £{{role.medSalaryNow}}</tr>
-        <tr>Last Year's Mean Salary: £{{role.medSalaryPrev}}</tr>
-</td>
+
+<table id="customers">
+    <tr>
+        <th>Historical Vacancies</th>
+        <th>Current Vacancies</th>
+        <th>Last Year's Vacancies</th>
+        <th>Mean Salary</th>
+        <th>Last Year's Mean Salary</th>
+    </tr>
+    <tr>
+        <td>{{vacCount}}</td>
+        <td>{{role.numVacanciesNow}}</td>
+        <td>{{role.numVacanciesPrev}}</td>
+        <td>£{{role.medSalaryNow}}</td>
+        <td>£{{role.medSalaryPrev}}</td>
+    </tr>
 </table>
-</div>
-</div>
 
+<br> 
+<hr> 
 <div> 
     <div style="display: block"> 
         <canvas baseChart 
