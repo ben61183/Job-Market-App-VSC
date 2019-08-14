@@ -36,7 +36,7 @@ updateUserOnServer(register):Observable<RegisterComponent>{
   const httpOptions={ //declare the headers for the content type
     headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
   }
-   var reqBody = "userId="+register.userId+"&username="+register.username+"&password="+register.password +"&email="+register.email;
+   var reqBody = "username="+register.username+"&password="+register.password +"&email="+register.email;
   return this.httpsvc.post<RegisterComponent>(this.rootUrl+"/register",reqBody,httpOptions)
 }
 }
