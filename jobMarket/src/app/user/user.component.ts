@@ -93,6 +93,7 @@ export class UserComponent implements OnInit {
     )
   }
 
+
   // compare the skills assigned to user with those assigned to vacancy
   compareSkills(userSkills,vacancies){
     vacancies.forEach((vacancy,i) => {

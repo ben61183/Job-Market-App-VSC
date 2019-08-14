@@ -45,7 +45,7 @@
     </tr>
 </table>
 <br>
-    <button id="edits" (click)="toggleEdits()" mat-raised-button color="primary"  value='{{(isEditable)?"Save":"Edit"}}' #edit>{{(isEditable)?"Save":"Edit"}}</button>
+    <button id="edits" (click)="displayEditUser()" mat-raised-button color="accent"  value='{{(isEditable)?"Save":"Edit"}}' #edit>{{(isEditable)?"Save":"Edit"}}</button>
 </div>
 <p *ngIf="passwordError" style="text-align: center">Incorrect password entered.</p>
 <hr width="80%">
