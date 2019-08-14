@@ -35,6 +35,7 @@ import { MatDialogModule, MatInputModule } from '@angular/material';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -52,6 +53,9 @@ import { CompanyRegisterLoginComponent } from './company-register-login/company-
 import { CompanyRegisterComponent } from './company-register/company-register.component';
 import { CompanyLoginComponent } from './company-login/company-login.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+
 
 @NgModule({
   declarations: [
@@ -77,11 +81,15 @@ import {MatMenuModule} from '@angular/material/menu';
     UserRegisterLoginComponent,
     CompanyRegisterLoginComponent,
     CompanyRegisterComponent,
-    CompanyLoginComponent
+    CompanyLoginComponent,
+    AdminLoginComponent
   ],
-  entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent, UserRegisterLoginComponent, CompanyRegisterLoginComponent],
+  entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent, UserRegisterLoginComponent, CompanyRegisterLoginComponent,
+    AdminLoginComponent],
   imports: [
     MatMenuModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
     MatChipsModule,
     OverlayModule,
     BrowserModule,

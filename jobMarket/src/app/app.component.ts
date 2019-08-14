@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ThemeService } from './theme.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +8,23 @@ import { ThemeService } from './theme.service';
 export class AppComponent {
   title = 'IT Job Market';
   otherTheme: boolean = false;
-
-  constructor(private theSer:ThemeService) { }
+  dark:boolean
 
   ngOnInit(){
-    this.otherTheme=this.theSer.getTheme()
-    console.log(this.otherTheme)
+    this.dark = Boolean(localStorage.getItem("dark"))
+    if(localStorage.getItem("dark")=="true"){
+      this.dark=true
+    } else if(localStorage.getItem("dark")=="false"){
+      this.dark=false
+    }
+    console.log("appcomaft"+this.dark)
+    console.log("appstore"+localStorage.getItem("dark"))
+    console.log(localStorage.getItem("one"))
   }
+
+  // changeTheme() {
+  //   this.otherTheme = !this.otherTheme
+  //   console.log("appComponent:"+this.otherTheme)
+  //   localStorage.setItem("dark",String(this.dark))
+  // }
 }

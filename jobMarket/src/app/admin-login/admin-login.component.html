@@ -1,0 +1,8 @@
+<mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="inputPassword" placeholder="Password"  name="inputPassword" [ngModelOptions]="{standalone: true}" type="password">
+</mat-form-field>&nbsp;&nbsp; 
+<hr> 
+<button mat-raised-button color="accent" (click)="adminLogIn()">Log In</button>
+
+<p *ngIf="isLoginValid==false && badCountLeft>0">Admin Password is incorrect. Tries left before lockout: {{badCountLeft}}.</p>
+<p *ngIf="isLoginValid==false && badCountLeft<=0">Out of tries. Please try again tomorrow.</p>

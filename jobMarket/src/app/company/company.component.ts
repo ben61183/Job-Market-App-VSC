@@ -48,7 +48,7 @@ export class CompanyComponent implements OnInit {
         this.companyId=response.companyId
         this.companyName=response.companyName
         this.hqLocation=response.hqLocation
-        this.linkedIn=response.linkedIn
+        this.linkedIn="http://"+response.linkedIn
         this.username=response.username
         this.password=response.password
       }

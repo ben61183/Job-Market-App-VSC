@@ -7,6 +7,7 @@ import { UserRegisterLoginComponent } from '../user-register-login/user-register
 import { CompanyRegisterLoginComponent } from '../company-register-login/company-register-login.component';
 import { CompanyService } from '../company.service';
 import { UserService } from '../user.service';
+import { AdminLoginComponent } from '../admin-login/admin-login.component';
 
 @Component({
   selector: 'app-welcome',
@@ -56,9 +57,9 @@ export class WelcomeComponent implements OnInit {
     this.cidSer.changeCompanyId(id)
   }
 
-  logInAsAdmin(){
-    this.uidSer.logInAdmin()
-    window.location.reload()
+
+  openAsAdmin(){
+    this.dialog.open(AdminLoginComponent)
   }
 
 }

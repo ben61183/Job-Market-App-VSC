@@ -22,7 +22,8 @@ export class NavBarComponent {
 
   myUserId:number
   myCompanyId:number
-  
+
+  dark:boolean
   
   constructor(private breakpointObserver: BreakpointObserver, private uidSer:UserIdService,
     private cidSer:CompanyIdService, private theSer:ThemeService) {}
@@ -31,6 +32,17 @@ export class NavBarComponent {
     this.myUserId = this.uidSer.getUserId()
     this.myCompanyId = this.cidSer.getCompanyId()
     console.log(this.myCompanyId)
+    if(this.dark==undefined || this.dark==null){
+      localStorage.setItem("dark","false")
+    }
+    
+    if(localStorage.getItem("dark")=="true"){
+      this.dark=true
+    } else if(localStorage.getItem("dark")=="false"){
+      this.dark=false
+    }
+    console.log("dark"+this.dark)
+    localStorage.setItem("one","twothree")
   }
 
   logOut(){
@@ -43,6 +55,16 @@ export class NavBarComponent {
   
   // themeing of light/dark
   changeTheme() {
-    this.theSer.changeTheme()
+    console.log("PREDARK:"+this.dark)
+    console.log("PRESTORE"+localStorage.getItem("dark"))
+    this.dark = !this.dark
+    console.log("DARK:"+this.dark)
+    if(this.dark){
+    localStorage.setItem("dark","true")
+    } else if(!this.dark){
+      localStorage.setItem("dark","false")
+    }
+    
+    console.log("STORE:"+localStorage.getItem("dark"))
   }
 }
