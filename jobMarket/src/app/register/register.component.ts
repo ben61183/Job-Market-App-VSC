@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit {
   isEmailCheck: boolean
   isUniqueEmail: boolean
   isUniqueUsername: boolean
+  isErrorShort:boolean
 
   allUsers;
 
@@ -39,10 +40,12 @@ export class RegisterComponent implements OnInit {
     this.isError=true
     this.isUniqueEmail=true
     this.isUniqueUsername=true
+    this.isErrorShort=true
 
     this.isPassCheck=false;
     this.isUsernameCheck=false;
     this.isEmailCheck=false;
+    
 
     this.userId=1;
     this.username="";
@@ -79,6 +82,10 @@ export class RegisterComponent implements OnInit {
           this.isError=false;
           
         }
+    if (this.password.length <6){
+      this.isErrorShort=false;
+
+    }
   }
 
   loadAllUsers(){

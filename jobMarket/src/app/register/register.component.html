@@ -24,7 +24,9 @@
             </table>
 
             <div *ngIf="!isError">Passwords do no match</div>
+            <div *ngIf="!isErrorShort">Passwords needs 6 characters</div>
             <div *ngIf="!isUniqueEmail">Email is already registered. Please enter a new email</div>
             <div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
+
 
 </form>

@@ -45,7 +45,8 @@ export class WelcomeComponent implements OnInit {
       console.log(this.myUsername)
     }
     if(this.myCompanyId!=-1){
-      this.comSer.fetchCompanyFromService(this.myCompanyId).subscribe(response=>this.myCompanyName=response.companyName)
+      this.comSer.fetchCompanyFromService(this.myCompanyId).subscribe
+      (response=>this.myCompanyName=response.companyName)
       console.log(this.myCompanyName)
     }
     console.log("neither loaded")
