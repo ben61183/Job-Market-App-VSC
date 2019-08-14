@@ -3,7 +3,7 @@
 <span *ngIf="vacancy.thisCompany.companyId==myCompanyId"><h5>(My Vacancy)</h5></span>
 <h4>{{vacancy.location}} | £{{vacancy.salary}}/annum</h4>
 <span *ngIf="vacancy.description!='POSITION NOW FILLED.'">
-    <h5><a href="{{link}}">Apply Here</a></h5>
+    <h5><a href="{{vacancy.link}}">Apply Here</a></h5>
 </span>
 <span *ngIf="vacancy.description=='POSITION NOW FILLED.'">
         <h5><mat-icon>warning</mat-icon></h5>
