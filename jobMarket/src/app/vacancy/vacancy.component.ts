@@ -57,7 +57,7 @@ export class VacancyComponent implements OnInit {
 
 
   this.vacancyId=828;
-  this.company={companyName:"",hqLocation:"",linkedIn:"",companyId:0, password: "", username: ""};
+  this.company={companyName:"",hqLocation:"",linkedIn:"",companyId:0, password: "", username: "", email: ""};
   this.description="default description";
   this.job_type=false;
   this.link="default website";
@@ -120,10 +120,7 @@ export class VacancyComponent implements OnInit {
     )
   }
 
-  deleteVacancybyVacancyID(vacancyId){
-      this.vacSvc.findVacancybyVacancyId(vacancyId).subscribe( )
-  }
-  
+
   updateSelection(roleId){
     this.selectedRole=roleId;
 
@@ -143,8 +140,8 @@ export class VacancyComponent implements OnInit {
   }
 
   deleteVacancy(vacancyId){
-    console.log(vacancyId);
-    this.deleteVacancybyVacancyID(vacancyId)
+    console.log("delete:"+vacancyId);
+    this.vacSvc.deleteVacancybyVacancyId(vacancyId)
     
   }
 

@@ -1,3 +1,10 @@
-#registerTable{
-    text-align:center
+.registerTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+button {
+    text-align: center;
 }

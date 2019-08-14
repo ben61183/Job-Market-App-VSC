@@ -10,8 +10,12 @@
 button{
     margin-left: auto;
     margin-right: auto;
-    text-align: center
+    text-align: center;
+    position: relative;
+}
 
+#buttons{
+    text-align: center
 }
 
 #skillTable td{

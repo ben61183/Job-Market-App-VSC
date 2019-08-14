@@ -1,8 +1,12 @@
 <h1>{{vacancy.title}}</h1>
-<h3>{{vacancy.thisCompany.companyName}}</h3> <!-- not showing -->
+<h3>{{vacancy.thisCompany.companyName}}</h3>
+<span *ngIf="vacancy.thisCompany.companyId==myCompanyId"><h5>(My Vacancy)</h5></span>
 <h4>{{vacancy.location}} | £{{vacancy.salary}}/annum</h4>
 <h5><a href="{{link}}">Apply Here</a></h5>
 <table id="skillTable"><td *ngFor="let skill of vacancy.vacancySkills">{{skill.skill}}</td></table>
-<button mat-raised-button>Add</button>
+<div id="buttons">
+<span *ngIf="myUserId!=-1 && myUserId!=0 && !saved"><button mat-raised-button (click)="saveVacancyToUser(vacancy.vacancyId)"><mat-icon>favorite_border</mat-icon></button></span>
+<span *ngIf="myUserId!=-1 && myUserId!=0 && saved"><button mat-raised-button (click)="saveVacancyToUser(vacancy.vacancyId)"><mat-icon>favorite</mat-icon></button></span>
+</div>
 <div id="description"><p>{{vacancy.description}}</p></div>
 <p>{{vacancy.uploadYear}} | {{vacancy.postTime}}</p>

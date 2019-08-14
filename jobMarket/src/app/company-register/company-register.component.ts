@@ -15,6 +15,7 @@ export class CompanyRegisterComponent implements OnInit{
   newUsername: string
   newPassword: string 
   confirmPassword: string 
+  email: string 
 
   isUserFormVisible:boolean
   isPassMatch:boolean
@@ -43,6 +44,7 @@ export class CompanyRegisterComponent implements OnInit{
     this.linkedIn = "";
     this.newUsername = ""; 
     this.newPassword = "";  
+    this.email = "";
   }
 
   ngOnInit() {
@@ -58,7 +60,7 @@ export class CompanyRegisterComponent implements OnInit{
 
   createNewCompany() {
     this.companySvc.updateCompanyOnServer({
-      companyId: this.companyId, companyName: this.newCompanyName, hqLocation: this.hqLocation, linkedIn: this.linkedIn, companyUsername: this.newUsername, companyPassword: this.newPassword}).subscribe(
+      companyId: this.companyId, companyName: this.newCompanyName, hqLocation: this.hqLocation, linkedIn: this.linkedIn, companyUsername: this.newUsername, companyPassword: this.newPassword, email: this.email}).subscribe(
         response=>{
           this.companyId = response.companyId
           this.newCompanyName = response.companyName
@@ -66,10 +68,12 @@ export class CompanyRegisterComponent implements OnInit{
           this.linkedIn = response.linkedIn
           this.newUsername = response.username
           this.newPassword = response.password
+          this.email = response.email
         }
       )
       console.log(this.newUsername)
-      // window.location.reload();
+      console.log(this.email)
+      //window.location.reload();
   }
 
   passwordCheck() {

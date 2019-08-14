@@ -37,7 +37,7 @@ export class VacancyDashboardDataTableComponent implements OnInit {
     private vidSvc:VacancyIdService) {
     this.vacancy={
       vacancyId: 0,
-      thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:"", password: "", username: ""},
+      thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:"", password: "", username: "", email: ""},
       description: "description",
       job_type: true,
       link: "link",
@@ -63,10 +63,12 @@ export class VacancyDashboardDataTableComponent implements OnInit {
           if(vacancy.description.length>100){
             vacancy.description = vacancy.description.slice(0,100)+"..."
           } // a vacancy MUST be owned by a company, otherwise errors
+          console.log(vacancy.thisCompany.companyName)
         }
       }
     )
   }
+
 
   openVacancy(vacancyId){
     console.log(vacancyId)

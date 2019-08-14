@@ -7,6 +7,7 @@ import { UserRegisterLoginComponent } from '../user-register-login/user-register
 import { CompanyRegisterLoginComponent } from '../company-register-login/company-register-login.component';
 import { CompanyService } from '../company.service';
 import { UserService } from '../user.service';
+import { AdminLoginComponent } from '../admin-login/admin-login.component';
 
 @Component({
   selector: 'app-welcome',
@@ -40,7 +41,7 @@ export class WelcomeComponent implements OnInit {
   }
   
   loadNames(){
-    if(this.myUserId!=-1){
+    if(this.myUserId!=-1 && this.myUserId!=0){
       this.useSer.findUserByUserId(this.myUserId).subscribe(response=>this.myUsername=response.username)
       console.log(this.myUsername)
     }
@@ -50,6 +51,16 @@ export class WelcomeComponent implements OnInit {
       console.log(this.myCompanyName)
     }
     console.log("neither loaded")
+  }
+
+  logInCompany(id){
+    this.uidSer.changeUserId(-1)
+    this.cidSer.changeCompanyId(id)
+  }
+
+
+  openAsAdmin(){
+    this.dialog.open(AdminLoginComponent)
   }
 
 }

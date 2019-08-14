@@ -10,9 +10,11 @@
     <tr>{{vacancy.salary}}</tr>
     <tr>{{vacancy.postTime}} | {{vacancy.uploadYear}}</tr>
     <tr><a href="{{vacancy.link}}">View site</a></tr>
-    <tr><button class="optionButtons" mat-raised-button (click)="setFilled(vacancy.vacancyId)">Filled</button>
-        <button class="optionButtons" mat-raised-button (click)="setDeleted(vacancy.vacancyId)">Delete</button></tr>
+    
+        <tr><span *ngIf="vacancy.description != 'POSITION NOW FILLED.'">
+            <button class="optionButtons" mat-raised-button (click)="setFilled(vacancy.vacancyId)">Filled</button>
+        </span>
+            <button class="optionButtons" mat-raised-button (click)="setDeleted(vacancy.vacancyId)">Delete</button></tr>
 </td></table>
 </span>
 </div>
-

@@ -8,6 +8,7 @@
       <a mat-list-item routerLink="/role-dashboard">Role Dashboard</a>
       <a mat-list-item routerLink="/vacancy-dashboard">Vacancy Dashboard</a>
       <a mat-list-item routerLink="/user/userId">My Profile</a>
+      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -21,34 +22,26 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>
-        <img width="60" alt="Angular Logo" routerLink="/role-dashboard" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1024px-Circle-icons-computer.svg.png">
+        <img width="60" alt="Angular Logo" id="logo" routerLink="/role-dashboard" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1024px-Circle-icons-computer.svg.png">
         <a routerLink="/role-dashboard">IT Job Market</a></span>
       <span class="spacer"></span> 
-      <a routerLink="/role-dashboard">Role Dashboard </a>
-      <a routerLink="/vacancy-dashboard">Vacancy Dashboard </a>
-      <span *ngIf="myUserId!=-1">
-        <a routerLink="/user/{{myUserId}}"> My User Profile</a>
-      </span>
-      <span *ngIf="myCompanyId!=-1">
-        <a routerLink="/company/{{myCompanyId}}"> My Company Profile</a>
-      </span>
-      <button mat-button (click)="logOut()" routerLink="/"><mat-icon>power_settings_new</mat-icon></button>
+      <a routerLink="/role-dashboard">Role</a>
+      <a routerLink="/vacancy-dashboard">Vacancy</a>
+      
+      <!-- <button mat-button (click)="logOut()" routerLink="/"><mat-icon>power_settings_new</mat-icon></button> -->
+      <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+        <mat-menu #menu="matMenu" >
+          <span *ngIf="myUserId!=-1 && myUserId!=0">
+            <button mat-menu-item routerLink="/user/{{myUserId}}"><mat-icon>account_circle</mat-icon>User Details</button>
+          </span>
+          <span *ngIf="myCompanyId!=-1">
+              <button mat-menu-item routerLink="/company/{{myCompanyId}}"><mat-icon>account_circle</mat-icon>User Details</button>
+          </span>
+          <button mat-menu-item disabled><mat-icon>brightness_6</mat-icon>Darkmode<mat-slide-toggle (change)="changeTheme()" checked="dark" [(ngModel)]="dark"></mat-slide-toggle></button>
+          <button mat-menu-item (click)="logOut()" routerLink="/"><mat-icon>power_settings_new</mat-icon>Log Out</button>
+        </mat-menu>
     </mat-toolbar>
     <ng-content> 
     </ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<!-- <div > 
-  <ul class="nav nav-tabs"> 
-    <li class="nav-item"> 
-      <a class="nav-link" routerLink="/role-dashboard">Role Dashboard</a> 
-    </li>
-    <li class="nav-item"> 
-    <a class="nav-link" routerLink="/vacancy-dashboard"> Vacancy Dashboard</a> 
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" routerLink="/role-admin"> Role Admin </a>
-  </li>
-  </ul>
-</div> -->

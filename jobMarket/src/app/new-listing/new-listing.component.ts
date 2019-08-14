@@ -39,19 +39,24 @@ export class NewListingComponent implements OnInit {
   newRole: Role
 
   selectedRoleId:number
+  selectedCompanyId:number
+
   roles: Role[]
   skills: Skill[] = [];
   allVacancies:Vacancy[]=[]
+  allCompanies:Company[]=[]
 
   myCompanyId:number
+  myUserId:number
 
   // used for validation
   valid:boolean
   validError:string
 
+
   
   constructor(private vacSvc: VacancyService, private skiSvc:SkillService, private rolSvc:RoleService,
-    private comSvc:CompanyService, private cidSer:CompanyIdService) {  
+    private comSvc:CompanyService, private cidSer:CompanyIdService, private uidSer:UserIdService) {  
 
     this.newVacancyId=0
     this.newTitle=""
@@ -68,7 +73,8 @@ export class NewListingComponent implements OnInit {
       hqLocation:"default",
       linkedIn:"linkedin.com",
       password: "",
-      username: ""
+      username: "",
+      email: ""
     }
     this.newVacancySkills=[]
 
@@ -91,7 +97,7 @@ export class NewListingComponent implements OnInit {
     }
 
     this.selectedRoleId=0
-
+    this.selectedCompanyId=0
 
     this.skills=[]
     this.roles=[]
@@ -106,6 +112,8 @@ export class NewListingComponent implements OnInit {
     this.loadAllSkills()
     this.loadAllRoles()
     this.myCompanyId = this.cidSer.getCompanyId()
+    this.comSvc.getAllCompanies().subscribe(response=>this.allCompanies=response)
+    this.myUserId = this.uidSer.getUserId()
   }
 
   loadAllSkills(){
@@ -132,7 +140,7 @@ export class NewListingComponent implements OnInit {
 
     this.validationChecks()
     if(this.valid){
-    this.vacSvc.updateVacancyOnServer({thisCompany:this.newCompany, vacancyId:this.newVacancyId,title:this.newTitle,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
+    this.vacSvc.updateVacancyOnServer({vacancyId:this.newVacancyId,title:this.newTitle,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
       response=>{
             console.log(this.newVacancySkills)
             console.log(response)
@@ -146,26 +154,35 @@ export class NewListingComponent implements OnInit {
             this.newPostTime = response.postTime
             this.newSalary = response.salary
 
+            if(this.myUserId==0){
+              this.newCompany.companyId=this.selectedCompanyId
+              console.log("admin. company id:"+this.newCompany.companyId)
+            } else{
+              this.newCompany.companyId=this.myCompanyId
+            }
             this.comSvc.addVacancyToCompanyOnService(this.newCompany.companyId,this.newVacancyId).subscribe(
               responseComp=>{
                 this.newCompany=responseComp
-                console.log(responseComp)
+                console.log("company added:"+responseComp)
+                this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
+                  responseVac =>{
+                  this.newRole = responseVac.thisRole
+                  console.log("response role:"+responseVac.thisRole.roleName)
+                  console.log("this.newrole"+this.newRole.roleName)
+    
+                  for(let skill of this.newVacancySkills)
+                  this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(
+                    responseSkill =>{
+                      console.log(skill)
+                    }
+                )
+              })
               }
             )
 
-            this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
-              responseVac =>{
-              this.newRole = responseVac.thisRole
-              console.log("response role:"+responseVac.thisRole.roleName)
-              console.log("this.newrole"+this.newRole.roleName)
-          })
             
-            for(let skill of this.newVacancySkills)
-              this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(
-                responseSkill =>{
-                  console.log(skill)
-                }
-            )
+            
+            
             
       }
     )
@@ -209,6 +226,12 @@ export class NewListingComponent implements OnInit {
 
   updateRole(roleId){
     this.selectedRoleId = roleId
+  }
+
+  updateCompany(companyId){
+    // this.comSvc.fetchCompanyFromService(companyId).subscribe(response=>{this.newCompany=response})
+    this.selectedCompanyId=companyId
+    console.log(this.selectedCompanyId)
   }
 
   setJobType(result){

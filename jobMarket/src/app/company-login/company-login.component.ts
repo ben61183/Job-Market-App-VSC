@@ -16,7 +16,7 @@ export class CompanyLoginComponent implements OnInit {
   companyPassword: string 
 
   isLoginValid: boolean 
-  isError: boolean 
+  noError: boolean 
   allCompanys: Company[]
   
   myUserId: number
@@ -24,7 +24,7 @@ export class CompanyLoginComponent implements OnInit {
 
   constructor(private compSvc: CompanyService, private uidSer:UserIdService, private cidSer:CompanyIdService) {
     this.isLoginValid = false; 
-    this.isError = false; 
+    this.noError = null; 
 
     this.companyId = -1; 
     this.companyUsername=""; 
@@ -51,9 +51,9 @@ export class CompanyLoginComponent implements OnInit {
         this.companyId=company.companyId
         console.log(this.companyId)
         this.isLoginValid=true
-      } else{
-        this.isError=true
-      
+        this.noError=true
+      } else if(this.noError==null){
+        this.noError=false
       }
     }
   }
@@ -62,7 +62,9 @@ export class CompanyLoginComponent implements OnInit {
     this.checkCredentials() 
     if(this.isLoginValid==true) {
       console.log("Company ID saved locally")
+      this.uidSer.logOutUser()
       this.cidSer.changeCompanyId(this.companyId)
+      window.location.reload()
     }
   }
   

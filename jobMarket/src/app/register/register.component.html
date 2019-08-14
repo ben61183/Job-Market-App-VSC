@@ -1,35 +1,30 @@
-<form >
-        <table id="registerTable">
-                <tr>
-                    <th>Username:</th>
-                    <td><input [(ngModel)]="username" name="username"></td>
-                </tr> 
-                <tr>
-                    <th>Password:</th>
-                    <td><input [(ngModel)]="password" name="password" type="password"></td>
-                </tr>
-                <tr>
-                    <td>Confirm Password:</td>
-                    <td><input [(ngModel)]="confirmPassword" name="password" type="password"></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input [(ngModel)]="email" name="email"></td>  
-                </tr>
-                <tr>
-                 <button (click)="signUp()" value="Register">signUp</button>
+<form>
+    <div class="registerTable">
+   
+        <mat-form-field  class="example-full-width">
+            <input matInput [(ngModel)]="username" placeholder="Username"  name="username" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
 
-                   
-            </tr>
-            </table>
+        <mat-form-field  class="example-full-width">
+            <input matInput [(ngModel)]="password" placeholder="Password"  name="password" [ngModelOptions]="{standalone: true}" type="password">
+        </mat-form-field>
 
-            <div *ngIf="isError == true">Passwords do no match</div>
-            <div *ngIf="isErrorShort == true">Passwords needs atleast 6 characters</div>
-            <div *ngIf="isUniqueEmail == false">Email is already registered. Please enter a new email</div>
-            <div *ngIf="isEmailError == true">Please enter valid e-mail</div>
-            <div *ngIf="isUniqueUsername == false">Username is taken. Please enter a new username</div>
-            <div *ngIf="isUserErrorShort == true">Username needs 8 characters</div>
-
-
-
+        <mat-form-field  class="example-full-width">
+            <input matInput [(ngModel)]="confirmPassword" placeholder="Confirm Password"  name="password" [ngModelOptions]="{standalone: true}" type="password">
+        </mat-form-field>
+        
+        <mat-form-field  class="example-full-width">
+            <input matInput [(ngModel)]="email" placeholder="Email"  name="email" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>   
+    <hr> 
+        <button mat-raised-button color="accent" (click)="signUp()">Register</button>
+   
+</div>
 </form>
+
+<div *ngIf="isError == true">Passwords do no match</div>
+<div *ngIf="isErrorShort == true">Passwords needs atleast 6 characters</div>
+<div *ngIf="isUniqueEmail == false">Email is already registered. Please enter a new email</div>
+<div *ngIf="isEmailError == true">Please enter valid e-mail</div>
+<div *ngIf="isUniqueUsername == false">Username is taken. Please enter a new username</div>
+<div *ngIf="isUserErrorShort == true">Username needs 8 characters</div>

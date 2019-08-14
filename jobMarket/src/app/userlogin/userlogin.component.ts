@@ -22,7 +22,7 @@ export class UserloginComponent implements OnInit {
   password:string
 
   isLoginValid: boolean
-  isError: boolean
+  noError: boolean
 
   allUsers: User[];
 
@@ -37,8 +37,7 @@ export class UserloginComponent implements OnInit {
     private router:Router, private useSer:UserService, private comSer:CompanyService) { 
 
     this.isLoginValid=false;
-    this.isError=false;
-  
+    this.noError=null;
 
     this.userId=1;
     this.username="";
@@ -65,16 +64,15 @@ export class UserloginComponent implements OnInit {
         this.userId=user.userId
         console.log(this.userId)
         this.isLoginValid=true
-      } else{
-        this.isError=true
-      
+        this.noError=true
+      } else if(this.noError==null){
+        this.noError=false
       }
     }
   }  
 
   // change user id in uid service, will effect whole application
   logInUser(){
-    this.isError=false
     this.credentialCheck()
     if(this.isLoginValid==true){
       this.cidSer.logOutCompany()
