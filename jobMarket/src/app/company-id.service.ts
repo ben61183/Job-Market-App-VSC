@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+// company service to maintain logged in company
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +13,14 @@ export class CompanyIdService {
 
   constructor() { }
 
+  // get company id from local storage
   getCompanyId(){
     console.log("company local store:"+localStorage.getItem("companyId"))
     // return the myCompanyId as a number
     return Number(localStorage.getItem("companyId"))
   }
 
+  // save company id locally
   changeCompanyId(myCompanyId: number) {
     console.log("companyId passed:"+myCompanyId)
     this.companyIdSource.next(myCompanyId)
@@ -29,6 +32,7 @@ export class CompanyIdService {
     // console.log(this.currentUserId)
   }
 
+  // set id to logout
   logOutCompany(){
     this.changeCompanyId(-1)
   }

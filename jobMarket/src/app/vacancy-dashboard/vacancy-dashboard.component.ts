@@ -13,8 +13,8 @@ import { CompanyIdService } from '../company-id.service';
 })
 export class VacancyDashboardComponent{
 
+  // my ids from login
   myUserId:number
-
   myCompanyId:number
 
 
@@ -23,15 +23,18 @@ export class VacancyDashboardComponent{
   }
 
   ngOnInit(){
+    // get my ids
     this.myUserId = this.uidSer.getUserId()
     this.myCompanyId = this.cidSer.getCompanyId()
 
   }
 
+  // open add vacancy component
   openAddVacancy() {
     this.dialog.open(NewListingComponent);
   }
 
+  // open edit vacancy component
   openEditVacancy() {
     this.dialog.open(RoleAdminComponent);
   }

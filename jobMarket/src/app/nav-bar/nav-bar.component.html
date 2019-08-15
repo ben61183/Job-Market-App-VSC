@@ -39,7 +39,7 @@
             <button mat-menu-item routerLink="/user/{{myUserId}}"><mat-icon>account_circle</mat-icon>User Details</button>
           </span>
           <span *ngIf="myCompanyId!=-1">
-              <button mat-menu-item routerLink="/company/{{myCompanyId}}"><mat-icon>account_circle</mat-icon>User Details</button>
+              <button mat-menu-item routerLink="/company/{{myCompanyId}}"><mat-icon>account_circle</mat-icon>Company Details</button>
           </span>
           <button mat-menu-item disabled><mat-icon>brightness_6</mat-icon>Darkmode<mat-slide-toggle (change)="changeTheme()" checked="dark" [(ngModel)]="dark"></mat-slide-toggle></button>
           <button mat-menu-item (click)="logOut()" routerLink="/"><mat-icon>power_settings_new</mat-icon>Log Out</button>

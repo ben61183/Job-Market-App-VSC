@@ -1,7 +1,6 @@
 <h2 style="text-align: center">Job Vacancies</h2>
 
 <app-vacancy-dashboard></app-vacancy-dashboard>
-
 <table *ngFor="let v of allVacancies">
     <tr>
         <td *ngIf="!isEditable">
@@ -37,7 +36,7 @@
     </tr>
     <tr>
         <td>Salary:</td>
-        <td *ngIf="!isEditable">{{v.salary}}</td>
+        <td *ngIf="!isEditable">£{{v.salary}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="v.salary"></td>  
     </tr>
 
@@ -48,4 +47,3 @@
     </tr>
     <tr>&nbsp;</tr>
 </table>
-

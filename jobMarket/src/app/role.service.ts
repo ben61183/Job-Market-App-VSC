@@ -53,5 +53,3 @@ export class RoleService {
     return this.httpsvc.delete<RoleComponent>(this.rootUrl+"/delete/"+roleId)
   }
 }
-
-  

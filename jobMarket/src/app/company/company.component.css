@@ -34,15 +34,21 @@ img{
     margin-right: auto;
     display: flex;
     flex-wrap: wrap;
-    text-align: justify
+    text-align: justify;
+    width: 80%;
+    
 }
 
 .vacancyTable{
     margin: 20px;
     width: 90%;
-    padding: 40px;
+    padding: 20px;
     text-align: center;
-
+    border: 2px solid rgb(214, 214, 214);
+    margin: 5px;
+    position: relative;
+    border-spacing: 10px;
+    border-collapse: separate;
 }
 
 .optionButtons {
@@ -52,7 +58,7 @@ img{
 }
 
 hr{
-    border-color: bisque
+    border-color: white
 }
 
 h4,h3,h2,h1{

@@ -2,6 +2,7 @@
 <h3>{{vacancy.thisCompany.companyName}}</h3>
 <span *ngIf="vacancy.thisCompany.companyId==myCompanyId"><h5>(My Vacancy)</h5></span>
 <h4>{{vacancy.location}} | £{{vacancy.salary}}/annum</h4>
+<!-- check if vacancy description marked as filled, can no longer apply -->
 <span *ngIf="vacancy.description!='POSITION NOW FILLED.'">
     <h5><a href="{{vacancy.link}}">Apply Here</a></h5>
 </span>
@@ -10,11 +11,11 @@
 </span>
 <table id="skillTable"><td *ngFor="let skill of vacancy.vacancySkills">{{skill.skill}}</td></table>
 <div id="buttons">
+<!-- show savable button only if vacancy not currently saved to user -->
 <span *ngIf="myUserId!=-1 && myUserId!=0">
     <span *ngIf="!saved"><button mat-raised-button (click)="saveVacancyToUser(vacancy.vacancyId)">
         <mat-icon>favorite_border</mat-icon></button>
     </span>
-    
 <span *ngIf="saved"><button mat-raised-button disabled>
     <mat-icon>favorite</mat-icon></button>
 </span>

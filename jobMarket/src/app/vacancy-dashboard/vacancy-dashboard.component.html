@@ -1,12 +1,12 @@
 <div id="back">
     <br>
-    <h2>Vacancy Dashboard</h2>
+        <h2>Vacancy Dashboard</h2>
     <br>
 </div>
+<!-- only show add/edit vacancy to admins and companies -->
 <span *ngIf="myCompanyId!=-1 || myUserId==0">
-<br>
-<button class="crudButton" mat-raised-button (click)="openAddVacancy()">Add New Vacancy</button>
-<button class="crudButton" mat-raised-button (click)="openEditVacancy()">Edit Vacancy</button>
+    <button class="crudButton" mat-raised-button (click)="openAddVacancy()">Add New Vacancy</button>
+    <button class="crudButton" mat-raised-button (click)="openEditVacancy()">Edit Vacancy</button>
 </span>
 <br>
 <app-vacancy-dashboard-data-table> </app-vacancy-dashboard-data-table>
