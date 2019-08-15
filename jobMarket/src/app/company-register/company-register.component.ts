@@ -60,7 +60,9 @@ export class CompanyRegisterComponent implements OnInit{
 
   createNewCompany() {
     this.companySvc.updateCompanyOnServer({
-      companyId: this.companyId, companyName: this.newCompanyName, hqLocation: this.hqLocation, linkedIn: this.linkedIn, companyUsername: this.newUsername, companyPassword: this.newPassword, email: this.email}).subscribe(
+      companyId: this.companyId, companyName: this.newCompanyName, 
+      hqLocation: this.hqLocation, linkedIn: this.linkedIn, companyUsername: this.newUsername, 
+      companyPassword: this.newPassword, email: this.email}).subscribe(
         response=>{
           this.companyId = response.companyId
           this.newCompanyName = response.companyName
