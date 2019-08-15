@@ -24,22 +24,19 @@ export class AdminLoginComponent implements OnInit {
 
   ngOnInit() {
     // check lockoutdate against todays date. if not matching, remove lockout
-    if(localStorage.getItem("lockOutDate")!=String(new Date().getDate())){
       localStorage.setItem("lockOut","false")
-      localStorage.removeItem("lockOutDate")
     }
 
-  }
+  
 
   checkCredentials() {
     // check passwords match, badCOunt not zero, lockoutdate not today
-    if(this.inputPassword==this.adminPassword && this.badCountLeft>0 && localStorage.getItem("lockOutDate")!=String(new Date().getDate())){
+    if(this.inputPassword==this.adminPassword && this.badCountLeft>0){
       console.log("passed")
       this.isLoginValid=true
       localStorage.setItem("lockOut","false")
     } else if(this.badCountLeft<=0){
       localStorage.setItem("lockOut","true")
-      localStorage.setItem("lockOutDate",String(new Date().getDate()))
     } else{
       this.badCountLeft-=1
       this.isLoginValid=false
