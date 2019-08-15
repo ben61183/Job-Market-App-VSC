@@ -49,7 +49,7 @@ export class UserComponent implements OnInit {
   currentPassword:string
   // new password
   newPassword:string
-
+  // if password is acceptable
   passwordError:boolean
 
   constructor(private useSvc: UserService, private skiSvc: SkillService, private route: ActivatedRoute,
@@ -80,6 +80,7 @@ export class UserComponent implements OnInit {
     }
   }
 
+  // find user by id from url
   findUser(userId){
     this.useSvc.findUserByUserId(this.userId).subscribe(
       response=>{
@@ -95,6 +96,7 @@ export class UserComponent implements OnInit {
     )
   }
 
+  // display edit component popup on click
   displayEditUser() {
     this.dialog.open(UserEditComponent)
   }
@@ -150,22 +152,16 @@ export class UserComponent implements OnInit {
   skillsCheck(){
     this.antiSkills=this.skills
     console.log("anti:"+this.antiSkills+this.antiSkills.length)
-
+    // separate skills into those assigned to user and not
     this.antiSkills.forEach((aSkill,i) => {
       for(let uSkill of this.userSkills){
         if(aSkill.skillId==uSkill.skillId){
           delete this.antiSkills[i]
         }
-    }})
-    }
-
-  toggleEdits(){
-    this.isEditable = !this.isEditable
-    if(!this.isEditable){
-      this.updateUserInService()
-    }
+  }})
   }
 
+  // update user via backend
   updateUserInService(){
     if(this.password==this.currentPassword){
       this.passwordError = false
@@ -179,9 +175,6 @@ export class UserComponent implements OnInit {
           for(let skill of this.userSkills){
             this.useSvc.updateUserSkillsInService(this.userId,skill.skillId).subscribe()
           }
-          // for(let vacancy of this.savedVacancies){
-          //   this.useSvc.
-          // }
           window.location.reload()
         }
       )
@@ -191,6 +184,7 @@ export class UserComponent implements OnInit {
     }
   }
 
+  // open vacancy popup on click
   openVacancy(vacancyId){
     console.log(vacancyId)
     this.vidSvc.changeVacancyId(vacancyId)

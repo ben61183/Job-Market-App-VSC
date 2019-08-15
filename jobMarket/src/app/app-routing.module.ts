@@ -12,7 +12,6 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { CompanyComponent } from './company/company.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
-import { componentFactoryName } from '@angular/compiler';
 
 const routes: Routes = [
   {path: "role-dashboard", component: RoleDashboardComponent},
@@ -27,9 +26,7 @@ const routes: Routes = [
   {path: "vacancy/:vacancyId", component: VacancyComponent},
   {path: "company/:companyId",component:CompanyComponent},
   {path: "user-login", component:UserloginComponent}
-  
-  // {path: "login", component: UserComponent}
-];
+  ];
 
 
 @NgModule({

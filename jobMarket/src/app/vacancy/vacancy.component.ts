@@ -4,11 +4,12 @@ import { VacancyService } from '../vacancy.service';
 import { Vacancy } from '../vacancy';
 import { Skill } from '../skill';
 import { SkillService } from '../skill.service';
-import { MatDialog } from '@angular/material';
-import { NewListingComponent } from '../new-listing/new-listing.component';
 import { Company } from '../company';
 import { UserIdService } from '../user-id.service';
 import { CompanyIdService } from '../company-id.service';
+
+
+// component no longer used
 
 @Component({
   selector: 'app-vacancy',
@@ -19,7 +20,7 @@ import { CompanyIdService } from '../company-id.service';
 })
 export class VacancyComponent implements OnInit {
   
-  
+  // variables of vacancy
   vacancyId:number;
   company:Company;
   description:string;
@@ -30,14 +31,14 @@ export class VacancyComponent implements OnInit {
   salary:number;
   title: string;
   uploadYear: number;
+  thisRole: Role;
   // skills associated with a vacancy
   vacancySkills: Skill[];
   // all skills
   skills: Skill[] = [];
-
-  thisRole: Role;
+  // editable toggle
   isEditable: Boolean;
-
+  // role selected (for admin only)
   selectedRole:number;
  
   allVacancies: Vacancy[];
@@ -68,7 +69,7 @@ export class VacancyComponent implements OnInit {
   this.uploadYear=2015;
   this.vacancySkills = [];
 
-
+  // empty role object
   this.thisRole={
     roleId:2,
     category:"deafulat catagory",
@@ -85,8 +86,6 @@ export class VacancyComponent implements OnInit {
     sumSalaryNow: 1000, 
     sumSalaryPrev:700,
     rankChange: 0
-    // sum salaries this year
-
    }
   }
 
@@ -94,13 +93,13 @@ export class VacancyComponent implements OnInit {
     this.fetchCurrentVacancyFromService()
     this.loadAllVacancies()
     this.loadAllSkills()
+    // get my ids from local
     this.myUserId = this.uidSer.getUserId()
     this.myCompanyId = this.cidSer.getCompanyId()
 
   }
 
-
-
+  // fetch the vacancy
   fetchCurrentVacancyFromService(){
     this.vacSvc.findVacancybyVacancyId(this.vacancyId).subscribe(
   
@@ -120,12 +119,12 @@ export class VacancyComponent implements OnInit {
     )
   }
 
-
+  // update selected role
   updateSelection(roleId){
     this.selectedRole=roleId;
-
   }
 
+  // update vacancy details
   updateVacancyDetails(){
     this.vacSvc.updateVacancyOnServer({
       vacancyId:this.vacancyId, description:this.description,job_type:this.job_type,link:this.link,
@@ -136,15 +135,15 @@ export class VacancyComponent implements OnInit {
             this.fetchCurrentVacancyFromService();
         }
         )
-      
   }
 
+  // delete a vacancy
   deleteVacancy(vacancyId){
     console.log("delete:"+vacancyId);
     this.vacSvc.deleteVacancybyVacancyId(vacancyId)
-    
   }
 
+  // load all vacancies
   loadAllVacancies(){
     this.vacSvc.loadAllVacanciesFromServer().subscribe(
       response =>
@@ -156,13 +155,14 @@ export class VacancyComponent implements OnInit {
     )
   }
 
+  // toggle editable
   toggleEdits(){
     this.isEditable=!this.isEditable
     this.updateVacancyDetails()
     this.loadAllVacancies()
-     
   }
 
+  // load all skills from db
   loadAllSkills(){
     this.skiSvc.loadAllSkillsFromServer().subscribe(
       response => {
@@ -171,13 +171,12 @@ export class VacancyComponent implements OnInit {
     )
   }
 
+  // load skills of vacancy
   loadVacancySkills(vacancyId){
     this.vacSvc.loadVacancySkillsFromServer(vacancyId).subscribe(
       response => {
         this.vacancySkills = response
       }
     )
-  }
-
-  
+  }  
 }
