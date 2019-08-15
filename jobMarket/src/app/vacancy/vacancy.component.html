@@ -36,7 +36,7 @@
     </tr>
     <tr>
         <td>Salary:</td>
-        <td *ngIf="!isEditable">{{v.salary}}</td>
+        <td *ngIf="!isEditable">£{{v.salary}}</td>
         <td *ngIf="isEditable"><input [(ngModel)]="v.salary"></td>  
     </tr>
 
@@ -47,4 +47,3 @@
     </tr>
     <tr>&nbsp;</tr>
 </table>
-

@@ -1,8 +1,7 @@
 <div id="back">
     <br>
-    <h2 style="text-align: center">Your Profile</h2>
+    <h2 style="text-align: center; border-color: white">Your Profile</h2>
     <h4>Hello {{companyName}}</h4>
-    <br>
 </div>
 <br>
 <h3>{{hqLocation}}</h3>
@@ -12,8 +11,9 @@
 <button mat-raised-button (click)="editCompany()">Edit Details</button>
 </div>
 
-<hr>
+<hr style="width: 80%">
 <h2>My Current Vacancies</h2>
+<br>
 <div class="flex-container">
 <span *ngFor="let vacancy of companyVacancies">
 <table class="vacancyTable"><td>
