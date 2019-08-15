@@ -26,6 +26,7 @@ export class AddRoleComponent {
     this.validError=""
   }
 
+  //create new role
   createNewRole() {
     this.valid=true
     this.validError=""

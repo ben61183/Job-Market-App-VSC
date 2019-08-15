@@ -40,6 +40,7 @@ export class CompanyComponent implements OnInit {
     this.companyId = this.route.snapshot.params.companyId
   }
 
+  //get company by id
   ngOnInit() {
     console.log(this.companyId)
     this.fetchCompanyFromService(this.companyId)
@@ -51,6 +52,7 @@ export class CompanyComponent implements OnInit {
     }
   }
 
+  //fetch company by id
   fetchCompanyFromService(companyId){
     this.comSvc.fetchCompanyFromService(companyId).subscribe(
       response=>{
@@ -62,6 +64,7 @@ export class CompanyComponent implements OnInit {
         this.password=response.password
       }
     )
+    //fetch related vacancies from company
     this.comSvc.fetchVacanciesOfCompanyFromService(companyId).subscribe(
       response=>{
         this.companyVacancies=response
@@ -69,12 +72,14 @@ export class CompanyComponent implements OnInit {
     )
   }
 
+  //loads vacancy as a pop up
   openVacancy(vacancyId){
     console.log(vacancyId)
     this.vidSvc.changeVacancyId(vacancyId)
     this.dialog.open(VacancyDetailsComponent);
   }
   
+  //shows if position is filled
   setFilled(vacancyId){
     this.vacSvc.findVacancybyVacancyId(vacancyId).subscribe(response=>
       {
@@ -95,11 +100,13 @@ export class CompanyComponent implements OnInit {
         )})
   }
 
+  //delete a vacancy by id
   setDeleted(vacancyId){
     this.vacSvc.deleteVacancybyVacancyId(vacancyId).subscribe()
     window.location.reload()
   }
   
+  //update company details
   editCompany() {
     this.dialog.open(CompanyEditComponent)
   }

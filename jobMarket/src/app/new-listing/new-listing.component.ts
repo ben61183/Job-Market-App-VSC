@@ -106,7 +106,7 @@ export class NewListingComponent implements OnInit {
 
     }
 
-     
+     // load list of skills, roles and companies and get locally stored company and user id
     ngOnInit() {
     this.loadAllSkills()
     this.loadAllRoles()
@@ -115,6 +115,7 @@ export class NewListingComponent implements OnInit {
     this.myUserId = this.uidSer.getUserId()
   }
 
+  //load list of skills
   loadAllSkills(){
     this.skiSvc.loadAllSkillsFromServer().subscribe(
       response => {
@@ -123,6 +124,7 @@ export class NewListingComponent implements OnInit {
     )
   }
 
+  //load list of roles
   loadAllRoles(){
     this.rolSvc.loadAllRolesFromService().subscribe(
     response => {
@@ -130,6 +132,7 @@ export class NewListingComponent implements OnInit {
     })
   }
 
+  //create a new vacancy
   createNewVacancy(){
     console.log(this.newJobType)
     this.dateAndTime()
@@ -137,6 +140,7 @@ export class NewListingComponent implements OnInit {
     this.valid=true
     this.validError=""
 
+    //validation checks + update if valid
     this.validationChecks()
     if(this.valid){
     this.vacSvc.updateVacancyOnServer({vacancyId:this.newVacancyId,title:this.newTitle,description:this.newDescription,job_type:this.newJobType,link:this.newLink,location:this.newLocation,postTime:this.newPostTime,salary:this.newSalary,uploadYear:this.newUploadYear,skills:this.newVacancySkills,role:this.newRole}).subscribe(
@@ -153,6 +157,7 @@ export class NewListingComponent implements OnInit {
             this.newPostTime = response.postTime
             this.newSalary = response.salary
 
+            // allows admin to chose which company to assign a new vacancy too
             if(this.myUserId==0){
               this.newCompany.companyId=this.selectedCompanyId
               console.log("admin. company id:"+this.newCompany.companyId)
@@ -233,22 +238,24 @@ export class NewListingComponent implements OnInit {
     }
   }
 
-  
+  //add a new skill to the list of skills
   addToSkills(skill){
     this.newVacancySkills.push(skill)
     console.log(this.newVacancySkills)
   }
 
+  //update role
   updateRole(roleId){
     this.selectedRoleId = roleId
   }
 
+  //update company
   updateCompany(companyId){
-    // this.comSvc.fetchCompanyFromService(companyId).subscribe(response=>{this.newCompany=response})
     this.selectedCompanyId=companyId
     console.log(this.selectedCompanyId)
   }
 
+  // set job type (done via radio buttons)
   setJobType(result){
     if(result){
       this.newJobType=true

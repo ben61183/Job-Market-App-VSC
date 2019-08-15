@@ -31,12 +31,14 @@ export class CompanyLoginComponent implements OnInit {
     this.companyPassword="";
   }
 
+  // get locally stored company id and load list of all companies
   ngOnInit() {
     // this.myUserId = this.uidSer.getUserId()
     this.myCompanyId = this.cidSer.getCompanyId()
     this.loadAllCompanys() 
   }
 
+  //load list of all companies
   loadAllCompanys() {
     this.compSvc.loadAllCompanysFromServer().subscribe(
       response => {
@@ -45,6 +47,7 @@ export class CompanyLoginComponent implements OnInit {
     )
   }
 
+  //validations
   checkCredentials() {
     for(let company of this.allCompanys){
       if (company.username==this.companyUsername && company.password==this.companyPassword){
@@ -58,6 +61,7 @@ export class CompanyLoginComponent implements OnInit {
     }
   }
 
+  //log in function
   companyLogIn() {
     this.checkCredentials() 
     if(this.isLoginValid==true) {

@@ -64,12 +64,14 @@ export class RegisterComponent implements OnInit {
     
    }
   
+   //load all users in list
   ngOnInit() {
     // this.myUserId = this.uidSer.getUserId()
     this.loadAllUsers()    
     console.log(this.allUsers)
   }
 
+  //add user details to db
   addUserDetails(){
   this.regSvc.updateUserOnServer({userId:this.userId,username:this.username,password:this.password,email:this.email}).subscribe(
     response => {
@@ -81,6 +83,7 @@ export class RegisterComponent implements OnInit {
           })
   } 
   
+  //check password and confirm password match
   passwordCheck(){
     if (this.confirmPassword==this.password){
          this.isError=false;
@@ -90,6 +93,7 @@ export class RegisterComponent implements OnInit {
         }
   }
 
+  //check password length
   passLengthCheck(){
     if (this.password.length <6){
       this.isErrorShort=true
@@ -99,6 +103,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  //load list of all users
   loadAllUsers(){
     this.regSvc.loadAllUsersFromServer().subscribe(
       response =>
@@ -109,7 +114,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-
+  //get user by username
   fetchCurrentUserByUsername(username){
     this.regSvc.findUserByUsername(this.username).subscribe(
   
@@ -122,6 +127,7 @@ export class RegisterComponent implements OnInit {
     )
   }
 
+  //check username does not match others in database
   uniqueUsernameCheck(){
       // this.loadAllUsers()
       console.log(this.allUsers.length)
@@ -137,6 +143,7 @@ export class RegisterComponent implements OnInit {
   }
 }
 
+//username length check
   usernameLengthCheck(){
     if (this.username.length <8){
       this.isUserErrorShort=true;
@@ -145,6 +152,7 @@ export class RegisterComponent implements OnInit {
     }
   }
   
+  //check email doesn't match others in database
   uniqueEmailCheck(){
     // this.loadAllUsers()
     for(let user of this.allUsers){
@@ -160,6 +168,7 @@ export class RegisterComponent implements OnInit {
     }
 }
 
+//check email contains '@' for some validity
   checkEmailIsValid(){
     if(this.email.includes("@")==true){
       console.log(this.email.includes("@"))
@@ -169,7 +178,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-
+//check validities and then register new user
   signUp(){
    this.isErrorShort=null
     this.isError=null

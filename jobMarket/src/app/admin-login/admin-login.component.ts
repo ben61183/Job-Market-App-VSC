@@ -45,6 +45,7 @@ export class AdminLoginComponent implements OnInit {
     }
   }
 
+  //login for company
   adminLogIn() {
     console.log("admin login")
     this.useSvc.findUserByUserId(0).subscribe(response=>{
