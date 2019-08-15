@@ -7,8 +7,10 @@
 <br>
 <h3>{{hqLocation}}</h3>
 <a href="{{linkedIn}}"><img id="linkedIn" src="https://www.shareicon.net/data/512x512/2015/09/23/106002_logo_512x512.png"></a>
-<br> 
-<button mat-raised-button (click)="editCompany()">Edit</button>
+<br>
+<div id="button" *ngIf="priveledge">
+<button mat-raised-button (click)="editCompany()">Edit Details</button>
+</div>
 
 <hr>
 <h2>My Current Vacancies</h2>
@@ -21,7 +23,7 @@
     <tr>{{vacancy.postTime}} | {{vacancy.uploadYear}}</tr>
     <tr><a href="{{vacancy.link}}">View site</a></tr>
     
-        <tr><span *ngIf="vacancy.description != 'POSITION NOW FILLED.'">
+        <tr><span *ngIf="vacancy.description != 'POSITION NOW FILLED.' && priveledge">
             <button class="optionButtons" mat-raised-button (click)="setFilled(vacancy.vacancyId)" color="accent">Filled</button>&nbsp;
         </span>
             <button class="optionButtons" mat-raised-button (click)="setDeleted(vacancy.vacancyId)" color="warn">Delete</button></tr>

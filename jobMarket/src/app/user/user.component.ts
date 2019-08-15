@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material';
 import { VacancyIdService } from '../vacancy-id.service';
 import { VacancyDetailsComponent } from '../vacancy-details/vacancy-details.component';
 import { UserEditComponent } from '../user-edit/user-edit.component';
+import { privateEncrypt } from 'crypto';
 
 @Component({
   selector: 'app-user',
@@ -44,7 +45,7 @@ export class UserComponent implements OnInit {
   myUserId:number
 
   // used to ensure user can edit their page
-  userPrivilege:boolean
+  priveledge:boolean
   // current password for verification
   currentPassword:string
   // new password
@@ -61,7 +62,6 @@ export class UserComponent implements OnInit {
     this.num=0
     this.numSkills=[]
     this.skills=[]
-    this.userPrivilege=false
     this.isEditable = false
 
     this.currentPassword = this.password
@@ -75,7 +75,9 @@ export class UserComponent implements OnInit {
     this.myUserId = this.uidSer.getUserId()
     // compare logged in id with id in url
     if(this.myUserId==this.userId){
-      this.userPrivilege=true
+      this.priveledge=true
+    } else{
+      this.priveledge=false
     }
   }
 

@@ -53,3 +53,12 @@ img{
 hr{
     border-color: bisque
 }
+
+h4,h3,h2,h1{
+    text-align: center
+}
+
+#button{
+    text-align: center;
+    margin:auto
+}

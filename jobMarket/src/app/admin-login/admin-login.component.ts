@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyIdService } from '../company-id.service';
 import { UserIdService } from '../user-id.service';
+import { UserService } from '../user.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-admin-login',
@@ -14,9 +16,9 @@ export class AdminLoginComponent implements OnInit {
   isLoginValid: boolean 
   noError: boolean 
   badCountLeft:number
+  adminUser:User
 
-  constructor(private cidSer:CompanyIdService, private uidSer:UserIdService) {
-    this.adminPassword="4dmin!0Ytas182%e"
+  constructor(private cidSer:CompanyIdService, private uidSer:UserIdService,private useSvc:UserService) {
     this.isLoginValid=null
     this.badCountLeft=2
     this.inputPassword=null
@@ -45,12 +47,17 @@ export class AdminLoginComponent implements OnInit {
 
   adminLogIn() {
     console.log("admin login")
-    this.checkCredentials() 
-    if(this.isLoginValid==true) {
-      console.log("Company ID saved locally")
-      this.cidSer.logOutCompany()
-      this.uidSer.logInAdmin()
-      window.location.reload()
-    } 
+    this.useSvc.findUserByUserId(0).subscribe(response=>{
+      this.adminUser=response, 
+      this.adminPassword=response.password
+      this.checkCredentials() 
+      if(this.isLoginValid==true) {
+        console.log("Company ID saved locally")
+        this.cidSer.logOutCompany()
+        this.uidSer.logInAdmin()
+        window.location.reload()
+      } 
+    })
+    
   }
 }
