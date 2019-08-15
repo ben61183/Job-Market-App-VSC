@@ -30,8 +30,9 @@
 <hr>
         <button mat-raised-button color="accent" (click)="signUp()">Register Company</button>
 </div>
+<br>
 
-<div *ngIf="!isError">Passwords do no match</div>
+<div *ngIf="!isError">Passwords do not match</div>
 <div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
-
+<div *ngIf="isUniqueEmail == false">Email is already registered. Please enter a new email</div>
  

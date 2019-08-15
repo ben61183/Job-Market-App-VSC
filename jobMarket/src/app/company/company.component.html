@@ -1,17 +1,19 @@
-<div id="back">
+<div class="center">
     <br>
-    <h2 style="text-align: center">Your Profile</h2>
+    <h2>Your Profile</h2>
     <h4>Hello {{companyName}}</h4>
+
     <br>
+    <br>
+
+    <h3>{{hqLocation}}</h3>
+    <a href="{{linkedIn}}"><img id="linkedIn" src="https://www.shareicon.net/data/512x512/2015/09/23/106002_logo_512x512.png"></a>
+    <br> 
+    <button mat-raised-button (click)="editCompany()">Edit</button>
 </div>
-<br>
-<h3>{{hqLocation}}</h3>
-<a href="{{linkedIn}}"><img id="linkedIn" src="https://www.shareicon.net/data/512x512/2015/09/23/106002_logo_512x512.png"></a>
-<br> 
-<button mat-raised-button (click)="editCompany()">Edit</button>
 
 <hr>
-<h2>My Current Vacancies</h2>
+<h2 style="margin-left: 15px;">My Current Vacancies</h2>
 <div class="flex-container">
 <span *ngFor="let vacancy of companyVacancies">
 <table class="vacancyTable"><td>

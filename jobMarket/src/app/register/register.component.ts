@@ -187,7 +187,7 @@ export class RegisterComponent implements OnInit {
     if(this.isUniqueEmail==true && this.isUniqueUsername==true && this.isEmailError==false
       && this.isErrorShort==false && this.isError==false && this.isUserErrorShort==false){
       this.addUserDetails();
-      // window.location.reload();
+      window.location.reload();
     }
     
   }
