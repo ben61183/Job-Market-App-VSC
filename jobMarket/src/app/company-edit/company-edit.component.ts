@@ -24,12 +24,13 @@ export class CompanyEditComponent implements OnInit {
 
   constructor(private compSvc: CompanyService, private idsvc: CompanyIdService) { }
 
+  //display company
   ngOnInit() {
     this.displayCompany() 
     this.passwordsMatch = true; 
   }
 
-
+//fetch company from locally stored company id
   displayCompany() {
     this.compSvc.fetchCompanyFromService(this.idsvc.getCompanyId()).subscribe(
       response => {
@@ -45,6 +46,7 @@ export class CompanyEditComponent implements OnInit {
     )
   }
 
+  //validity
   clickSave() {
     if (this.checkPassword == this.old_password && this.new_password == this.confirm_new_password) {
       console.log("Passwords Match!")
@@ -57,6 +59,7 @@ export class CompanyEditComponent implements OnInit {
     }
   }
 
+  //update this company details
   saveCompany() {
     this.compSvc.updateCompanyOnServer({
       companyId: this.companyId,

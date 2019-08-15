@@ -28,15 +28,18 @@ export class EditRoleComponent implements OnInit {
     this.validError=""
   }
 
+  //load list of all roles
   ngOnInit() {
     this.loadAllRoles() 
   }
 
+  //select new role
   selected() {
     this.newRoleId=this.selectedRole.roleId
     console.log("selected: " + this.newRoleId)
   }
 
+  //load all roles
   loadAllRoles() {
     this.roleSvc.loadAllRolesFromService().subscribe(
       response => {
@@ -45,6 +48,7 @@ export class EditRoleComponent implements OnInit {
     )
   }
 
+  //get rold by role id
   showUpdateRoleForm() {
     this.isEditRoleFormVisible = true; 
     this.roleSvc.findRoleByRoleId(this.newRoleId).subscribe(
@@ -57,6 +61,7 @@ export class EditRoleComponent implements OnInit {
     )
   }
 
+  // update role upon validation checks
   updateRole() {
     this.valid=true
     this.validError=""

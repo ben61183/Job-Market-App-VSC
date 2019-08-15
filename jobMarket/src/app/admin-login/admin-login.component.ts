@@ -46,6 +46,7 @@ export class AdminLoginComponent implements OnInit {
     }
   }
 
+  //login for company
   adminLogIn() {
     console.log("admin login")
     this.checkCredentials() 
