@@ -11,7 +11,6 @@ import { MatDialog } from '@angular/material';
 import { VacancyIdService } from '../vacancy-id.service';
 import { VacancyDetailsComponent } from '../vacancy-details/vacancy-details.component';
 import { UserEditComponent } from '../user-edit/user-edit.component';
-import { privateEncrypt } from 'crypto';
 
 @Component({
   selector: 'app-user',

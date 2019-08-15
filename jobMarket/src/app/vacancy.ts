@@ -1,6 +1,6 @@
 import { Skill } from './skill' 
 import { Company } from './company';
-
+// declare the vacancy interface
 export interface Vacancy {
     vacancyId:number;
     thisCompany:Company;

@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { UserIdService } from '../user-id.service';
 import { CompanyIdService } from '../company-id.service';
-import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-nav-bar', 
@@ -26,7 +25,7 @@ export class NavBarComponent {
   dark:boolean
   
   constructor(private breakpointObserver: BreakpointObserver, private uidSer:UserIdService,
-    private cidSer:CompanyIdService, private theSer:ThemeService) {}
+    private cidSer:CompanyIdService) {}
   
   ngOnInit() {
     this.myUserId = this.uidSer.getUserId()

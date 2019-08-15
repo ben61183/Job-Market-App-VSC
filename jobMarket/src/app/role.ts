@@ -1,12 +1,13 @@
 import { Vacancy } from './vacancy';
 
+// role interface
 export interface Role {
-    // tabulated
+  // db variables
   roleId: number
   category: String
   roleName: String
 
-  // calculated
+  // calculated variables
   vacCount: number
   vacancies: Vacancy[]
   medChange: number
@@ -18,7 +19,7 @@ export interface Role {
   medSalaryNow: number // med salary this year
   numVacanciesNow: number // num salaries this year
   
-  // values for last (previous year)
+  // values for previous (previous year)
   rankPrev: number
   sumSalaryPrev: number
   medSalaryPrev: number
