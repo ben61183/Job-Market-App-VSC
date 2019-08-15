@@ -5,43 +5,16 @@
     <br>
 </div>
 <br>
-<div id="editDiv">
+<div id="editDiv" *ngIf="priveledge">
 <table id="details">
     <tr>
-    <td *ngIf="!isEditable">Username:</td>
-    <td *ngIf="!isEditable">{{username}}</td>
-    <td *ngIf="isEditable">
-        <mat-form-field class="example-full-width">
-        <mat-label>Username</mat-label> 
-        <input matInput [(ngModel)]="username" name="username"> 
-        </mat-form-field>
-    </td>
+    <td >Username:</td>
+    <td >{{username}}</td>
+
     </tr>
     <tr>
-    <td *ngIf="!isEditable">Email:</td>
-    <td *ngIf="!isEditable">{{email}}</td>
-    <td *ngIf="isEditable">
-        <mat-form-field class="example-full-width">
-        <mat-label>Email</mat-label> 
-        <input matInput [(ngModel)]="email" name="email"> 
-        </mat-form-field>
-    </td>
-    </tr>
-    <tr>
-        <td *ngIf="isEditable">
-            <mat-form-field class="example-full-width">
-            <mat-label>Current Password</mat-label> 
-            <input matInput [(ngModel)]="currentPassword" name="currentPassword"> 
-            </mat-form-field>
-        </td>
-        </tr>
-    <tr>
-    <td *ngIf="isEditable">
-        <mat-form-field class="example-full-width">
-        <mat-label>New Password</mat-label> 
-        <input matInput [(ngModel)]="newPassword" name="newPassword"> 
-        </mat-form-field>
-    </td>
+    <td>Email:</td>
+    <td>{{email}}</td>
     </tr>
    
 </table>
@@ -52,7 +25,7 @@
 <hr width="80%">
 
 <h3>Skills</h3>
-<div id="skillTable">
+<div id="skillTable" *ngIf="priveledge">
         <mat-chip-list #chipList>
         <span *ngFor="let aS of antiSkills; let i = index">
         <div class="unapplied">
@@ -65,6 +38,25 @@
             <span skillApplied *ngIf="(userSkills[i]!=undefined)">
                 <mat-chip color="primary" class="applied" value="userSkills[i].skillId">
                     {{userSkills[i].skill}}<mat-icon matChipRemove (click)="deleteFromSkills(userSkills[i])">cancel</mat-icon></mat-chip>  
+            </span>
+        </div>
+        </span>
+    </mat-chip-list>
+</div>
+
+<div id="skillTable" *ngIf="!priveledge">
+        <mat-chip-list #chipList>
+        <span *ngFor="let aS of antiSkills; let i = index">
+        <div class="unapplied">
+            <span id="skillButtons" *ngIf="(aS!=undefined);else skillApplied">
+                <mat-chip value="aS.skillId" color="accent"  
+                    >{{aS.skill}}</mat-chip>  
+            </span>
+        </div>
+        <div class="applied">
+            <span skillApplied *ngIf="(userSkills[i]!=undefined)">
+                <mat-chip color="primary" class="applied" value="userSkills[i].skillId">
+                    {{userSkills[i].skill}}</mat-chip>  
             </span>
         </div>
         </span>
@@ -96,7 +88,7 @@
                 </span>
             </span>
         </tr>
-        <tr><button mat-raised-button (click)="deleteFromVacancies(vacancy.vacancyId)">Drop</button></tr>
+        <tr *ngIf="priveledge"><button mat-raised-button (click)="deleteFromVacancies(vacancy.vacancyId)">Drop</button></tr>
     </td>
     </table>
     </div>

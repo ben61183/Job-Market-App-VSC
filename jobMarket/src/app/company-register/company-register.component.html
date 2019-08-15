@@ -1,38 +1,50 @@
 <div class="companyRegister"> 
- 
+    <table>
+        <tr>
+        <td>
             <mat-form-field class="example-full-width">
                 <input matInput [(ngModel)]="newCompanyName"  placeholder="Company Name"  name="newCompanyName" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
-
+        </td>  
+        <td>
             <mat-form-field class="example-full-width">
                 <input matInput [(ngModel)]="newUsername" placeholder="Username"  name="newUsername" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
-
+        </td>
+        <td>
             <mat-form-field class="example-full-width">
                 <input matInput [(ngModel)]="newPassword" type="password" placeholder="Password"  name="newPassword" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
-            
+        </td>
+        <td>
             <mat-form-field class="example-full-width">
                 <input matInput [(ngModel)]="confirmPassword" type="password" placeholder="Confirm Password"  name="confirmPassword" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
-
+        </td>
+        </tr>
+        <tr>
+        <td>
             <mat-form-field class="example-full-width">
                 <input matInput [(ngModel)]="email" placeholder="Email Address"  name="email" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-                <input matInput [(ngModel)]="hqLocation" placeholder="Location"  name="hqLocation" [ngModelOptions]="{standalone: true}" >
-        </mat-form-field>
-                
-        <mat-form-field class="example-full-width">
-                <input matInput [(ngModel)]="linkedIn" placeholder="Linked In"  name="linkedIn" [ngModelOptions]="{standalone: true}" >
-        </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="hqLocation" placeholder="Location"  name="hqLocation" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="linkedIn" placeholder="Linked In"  name="linkedIn" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>
+        </td>
+        </tr>
+    </table>
+</div>
 <hr>
         <button mat-raised-button color="accent" (click)="signUp()">Register Company</button>
-</div>
-<br>
 
-<div *ngIf="!isError">Passwords do not match</div>
-<div *ngIf="!isUniqueUsername">Username is taken. Please enter a new username</div>
-<div *ngIf="isUniqueEmail == false">Email is already registered. Please enter a new email</div>
+<div *ngIf="!isError">Passwords do no match</div>
+<div *ngIf="!isUniqueUsername">Username is taken or is too short. Please enter a new username</div>
+<div *ngIf="!isEmailCheck">Email is not valid. Please enter a new email</div>
  

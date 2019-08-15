@@ -33,6 +33,8 @@ export class CompanyComponent implements OnInit {
   oneVacancy:Vacancy
   myCompanyId:number
 
+  priveledge:boolean
+
   constructor(private route: ActivatedRoute, private comSvc:CompanyService, public dialog: MatDialog,
     public vidSvc:VacancyIdService, private vacSvc:VacancyService, private cidSer:CompanyIdService) {
     this.companyId = this.route.snapshot.params.companyId
@@ -42,6 +44,11 @@ export class CompanyComponent implements OnInit {
     console.log(this.companyId)
     this.fetchCompanyFromService(this.companyId)
     this.myCompanyId = this.cidSer.getCompanyId()
+    if(this.myCompanyId==this.companyId){
+      this.priveledge=true
+    } else{
+      this.priveledge=false
+    }
   }
 
   fetchCompanyFromService(companyId){
@@ -66,7 +73,6 @@ export class CompanyComponent implements OnInit {
     console.log(vacancyId)
     this.vidSvc.changeVacancyId(vacancyId)
     this.dialog.open(VacancyDetailsComponent);
-
   }
   
   setFilled(vacancyId){

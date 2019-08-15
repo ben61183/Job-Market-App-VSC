@@ -17,7 +17,7 @@
 <br>
 <table id="customers">
     <tr>
-        <th>Vacancy</th>
+        <th>This Years Vacancies</th>
         <th>Salary</th>
         <!-- <th>Year</th> -->
         <!-- <th>Skills</th> -->
@@ -26,7 +26,7 @@
     <ng-container *ngFor = "let vac of role.vacancies">
         <tr *ngIf = "vac.uploadYear == 2019">
             <td><button mat-button (click)="openVacancy(vac.vacancyId)">{{vac.title}}</button></td>
-            <td>{{vac.salary}}</td>
+            <td>£{{vac.salary}}</td>
             <!-- <td>{{vac.uploadYear}}</td>  -->
             <!-- <td *ngIf="vac.vacancySkills.length>0">{{vac.vacancySkills[0].skill}}</td>
             <td *ngIf="vac.vacancySkills.length>1">{{vac.vacancySkills[1].skill}}</td> -->

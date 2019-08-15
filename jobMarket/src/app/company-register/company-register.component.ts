@@ -36,7 +36,7 @@ export class CompanyRegisterComponent implements OnInit{
 
     this.isPassCheck=false;
     this.isUsernameCheck=false;
-    this.isEmailCheck=false;
+    this.isEmailCheck=true;
 
     this.companyId = 0; 
     this.newCompanyName = "";
@@ -95,10 +95,22 @@ export class CompanyRegisterComponent implements OnInit{
   uniqueEmailCheck() {
     for (let company of this.allCompanys){
       if (company.email!=this.email){
+      if (company.username!=this.newUsername && this.newUsername.length>=8){
         return this.isUsernameCheck=true
       } else {
         return this.isUniqueUsername=false
       }
+    }
+  }
+}
+
+  emailCheck(){
+    if(!this.email.includes("@")){
+      this.isEmailCheck=false
+      console.log("em false")
+    } else{
+      this.isEmailCheck=true
+      console.log("em true")
     }
   }
 
@@ -106,15 +118,18 @@ export class CompanyRegisterComponent implements OnInit{
     this.isError=true
     this.isUniqueEmail=true
     this.isUniqueUsername=true
+    this.isEmailCheck=true
     this.passwordCheck() 
     this.uniqueUsernameCheck()
     this.uniqueEmailCheck() 
     console.log(this.isUsernameCheck)
     if(this.isPassCheck==true && this.isUsernameCheck==true && this.isUniqueEmail == true) {
+    this.emailCheck()
+    if(this.isPassCheck==true && this.isUsernameCheck==true && this.isEmailCheck==true) {
       this.createNewCompany();
     }
     
   }
   
-
+  }
 }

@@ -5,6 +5,7 @@ import { VacancyService } from '../vacancy.service';
 import { Vacancy } from '../vacancy';
 import { Company } from '../company';
 import { CompanyIdService } from '../company-id.service';
+import { CompanyService } from '../company.service';
 
 @Component({
   selector: 'app-role-admin',
@@ -49,7 +50,8 @@ export class RoleAdminComponent implements OnInit {
   myVacancies:Vacancy[]=[]
 
 
-  constructor(private roleSvc:RoleService, private vacSvc:VacancyService, private cidSer:CompanyIdService) { 
+  constructor(private roleSvc:RoleService, private vacSvc:VacancyService, private cidSer:CompanyIdService,
+    private comSvc:CompanyService) { 
     this.roleID = 1
     this.category = "Programming Languages"
     this.role_name = "Python"
@@ -154,7 +156,6 @@ export class RoleAdminComponent implements OnInit {
     }).subscribe(     
       response => {
         this.vacancyId=response.vacancyId
-        this.company=response.thisCompany
         this.description=response.description
         this.job_type=response.job_type
         this.link=response.link
@@ -163,7 +164,11 @@ export class RoleAdminComponent implements OnInit {
         this.salary=response.salary
         this.title=response.title
         this.uploadYear=response.uploadYear;
-        console.log(response)
+        this.comSvc.addVacancyToCompanyOnService(this.myCompanyId,this.vacancyId).subscribe(
+          response=>{
+            this.company=response
+          }
+        )
       }
       )
     

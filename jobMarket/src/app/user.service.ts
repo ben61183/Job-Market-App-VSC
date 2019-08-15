@@ -15,11 +15,12 @@ export class UserService {
     this.rootUrl="http://localhost:7750/user"
   }
 
-
+  // find user via backend
   findUserByUserId(userId):Observable<UserComponent>{
     return this.httpsvc.get<UserComponent>(this.rootUrl+"/find/"+userId)
   }
 
+  // update skills of user via backend
   updateUserSkillsInService(userId,skillId):Observable<UserComponent>{
     const httpOptions = {// declare the headers for the content type
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
@@ -28,6 +29,7 @@ export class UserService {
     return this.httpsvc.post<UserComponent>(this.rootUrl+"/assign/skill",reqBody,httpOptions)
   }
   
+  // update vacancies of user via backend
   updateUserVacanciesInService(userId,vacancyId):Observable<UserComponent>{
     const httpOptions = {// declare the headers for the content type
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
@@ -36,6 +38,7 @@ export class UserService {
     return this.httpsvc.post<UserComponent>(this.rootUrl+"/assign/vacancy",reqBody,httpOptions)
   }
 
+  // delete user skills via backend
   deleteUserSkillsFromService(userId,skillId):Observable<UserComponent>{
     const httpOptions = {// declare the headers for the content type
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
@@ -44,7 +47,7 @@ export class UserService {
     return this.httpsvc.post<UserComponent>(this.rootUrl+"/delete/skill",reqBody,httpOptions)
   }
 
-  // doesnt work?
+  // delete user vacancy via backend
   deleteVacancyFromService(userId,vacancyId):Observable<UserComponent>{
     const httpOptions = {// declare the headers for the content type
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
@@ -55,6 +58,7 @@ export class UserService {
     return this.httpsvc.post<UserComponent>(this.rootUrl+"/delete/vacancy",reqBody,httpOptions)
   }
 
+  // update user via backend
   updateUserOnServer(user):Observable<UserComponent>{
     const httpOptions = {// declare the headers for the content type
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
