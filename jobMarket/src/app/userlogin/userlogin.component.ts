@@ -17,19 +17,19 @@ import { CompanyService } from '../company.service';
 })
 export class UserloginComponent implements OnInit {
 
+  // user params
   userId:number
   username:string
   password:string
-
+  // error/validity checks
   isLoginValid: boolean
   noError: boolean
 
   allUsers: User[];
 
-
+  // my login details
   myUserId:number
   myUsername:string
-
   myCompanyId:number
   myCompanyName:string
 
@@ -45,22 +45,25 @@ export class UserloginComponent implements OnInit {
   }
 
   ngOnInit() {
+    // get my ids from login
     this.myUserId = this.uidSer.getUserId()
     this.myCompanyId = this.cidSer.getCompanyId()
     this.loadAllUsers()
   }
 
+  // load all users from db
   loadAllUsers(){
     this.usrSvc.loadAllUsersFromServer().subscribe(
       response =>
       {this.allUsers=response
-       console.log(response)
       })
   }
 
+  // check input password and username against each in db
   credentialCheck(){
     for(let user of this.allUsers){
       if (user.username==this.username && user.password==this.password){
+        // idLoginValid is true if match
         this.userId=user.userId
         console.log(this.userId)
         this.isLoginValid=true
@@ -83,6 +86,7 @@ export class UserloginComponent implements OnInit {
     }
   }
 
+  // change company id in cid service, will effect whole application
   logInCompany(companyId){
     this.uidSer.logOutUser()
     this.cidSer.changeCompanyId(companyId)

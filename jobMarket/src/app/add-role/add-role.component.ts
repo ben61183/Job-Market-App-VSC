@@ -33,14 +33,7 @@ export class AddRoleComponent {
     this.validationChecks()
     if(this.valid){
     this.rolSvc.updateRoleOnServer({
-      roleid:this.newRoleId, roleName:this.newRoleName, category:this.newCategory}).subscribe(
-        response=>{
-          console.log(response)
-          // this.newRoleId = response.roleId
-          // this.newRoleName = response.roleName
-          // this.newCategory = response.category
-        }
-      )
+      roleid:this.newRoleId, roleName:this.newRoleName, category:this.newCategory}).subscribe()
       window.location.reload(); //reload the page once a new roles added
     }
   }

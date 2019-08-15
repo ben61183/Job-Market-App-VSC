@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { RoleComponent } from './role/role.component';
 import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import { Role } from './role';
-import { VacancyComponent } from './vacancy/vacancy.component';
 import { Vacancy } from './vacancy';
 
 
@@ -54,5 +53,3 @@ export class RoleService {
     return this.httpsvc.delete<RoleComponent>(this.rootUrl+"/delete/"+roleId)
   }
 }
-
-  

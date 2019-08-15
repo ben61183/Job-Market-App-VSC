@@ -14,29 +14,33 @@ export class CompanyService {
     this.rootUrl="http://localhost:7750/company"
   }
 
+  // get all companies via backend
   getAllCompanies():Observable<Company[]>{
     return this.httpsvc.get<Company[]>(this.rootUrl+"/list/")
   }
 
+  // update company details via backend
   updateCompanyOnServer(company):Observable<CompanyComponent>{
     const httpOptions = {// declare the headers for the content type
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
     }
-
-    var reqBody = "companyName="+company.companyName+"&hqLocation="+ company.hqLocation+"&linkedIn=" + company.linkedIn + "&companyUsername=" + company.companyUsername + "&companyPassword=" + company.companyPassword + "&companyEmail=" + company.email + "&companyId=" + company.companyId 
-
-
+    var reqBody = "companyName="+company.companyName+"&hqLocation="+ company.hqLocation+"&linkedIn=" + 
+    company.linkedIn + "&companyUsername=" + company.companyUsername + "&companyPassword=" + company.companyPassword + 
+    "&companyEmail=" + company.email + "&companyId=" + company.companyId;
     return this.httpsvc.post<CompanyComponent>(this.rootUrl+"/register", reqBody, httpOptions)
   }
 
+  // fetch company via backend
   fetchCompanyFromService(companyId):Observable<Company>{
     return this.httpsvc.get<Company>(this.rootUrl+"/find/"+companyId)
   }
 
+  // fetch company vacancies via backend
   fetchVacanciesOfCompanyFromService(companyId):Observable<Vacancy[]>{
     return this.httpsvc.get<Vacancy[]>(this.rootUrl+"/thesevacancies/"+companyId)
   }
 
+  // add vacancy to a company via backend
   addVacancyToCompanyOnService(companyId,vacancyId):Observable<Company>{
     const httpOptions = {// declare the headers for the content type
       headers: new HttpHeaders({"Content-Type":"application/x-www-form-urlencoded"})
@@ -45,7 +49,7 @@ export class CompanyService {
     return this.httpsvc.post<Company>(this.rootUrl+"/assign/vacancy",reqBody,httpOptions)
   }
 
-
+  // load list of companies via backend
   loadAllCompanysFromServer(): Observable<Company[]> {
     return this.httpsvc.get<Company[]>(
       this.rootUrl + "/list"

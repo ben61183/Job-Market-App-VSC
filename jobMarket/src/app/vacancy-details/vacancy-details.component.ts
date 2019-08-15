@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Skill } from '../skill';
 import { VacancyService } from '../vacancy.service';
 import { SkillService } from '../skill.service';
 import { ActivatedRoute } from '@angular/router';
 import { VacancyIdService } from '../vacancy-id.service';
-import { Company } from '../company';
 import { Vacancy } from '../vacancy';
-import { MatDialog } from '@angular/material';
 import { UserIdService } from '../user-id.service';
 import { CompanyIdService } from '../company-id.service';
 import { UserService } from '../user.service';
@@ -29,10 +26,10 @@ export class VacancyDetailsComponent implements OnInit {
   
   saved:boolean
 
-
   constructor(private vacSvc: VacancyService, private skiSvc: SkillService, private route: ActivatedRoute,
     private vidSvc:VacancyIdService, private uidSer:UserIdService, private cidSer:CompanyIdService,
     private useSvc:UserService) {
+      // empty vacancy object
       this.vacancy={
         vacancyId: this.route.snapshot.params.vacancyId,
         thisCompany: {companyId:0,linkedIn:"",hqLocation:"",companyName:"", password:"", username:"", email: ""},
@@ -46,45 +43,45 @@ export class VacancyDetailsComponent implements OnInit {
         uploadYear: 2019,
         vacancySkills: [], 
       }
+      // set vacancy as unsaved to user
       this.saved=false
       this.myUserVacancies=[]
   }
 
   ngOnInit() {
-    console.log("vacancy clicked")
     this.saved=false
+    // find id of vacancy
     this.vidSvc.currentVacancyId.subscribe(myVacancyId=>this.vacancy.vacancyId=myVacancyId)
     this.fetchCurrentVacancyFromService()
+    // get the user and company ids saved locally
     this.myUserId = this.uidSer.getUserId()
     this.myCompanyId = this.cidSer.getCompanyId()
+    // fetch logged in user details
     this.useSvc.findUserByUserId(this.myUserId).subscribe(
       response=>{
         this.myUserVacancies=response.savedVacancies
         for(let uVac of this.myUserVacancies){
           if(uVac.vacancyId==this.vacancy.vacancyId){
-            console.log("already saved")
             this.saved=true
           } else{
             this.saved=false
           }
         }})
-    
   }
 
+  // fetch the vacancy via backend
   fetchCurrentVacancyFromService(){
-    console.log("inside details:"+this.vacancy.vacancyId)
     this.vacSvc.findVacancybyVacancyId(this.vacancy.vacancyId).subscribe(
   
       response => {
         this.vacancy=response;
         this.vacancy.link = "http://"+response.link
-        // this.vacancy.company=response.thisCompany
         this.loadVacancySkills(this.vacancy.vacancyId)
-        console.log("company:"+response.thisCompany)
       }
     )
   }
 
+  // load skills of vacancy
   loadVacancySkills(vacancyId){
     this.vacSvc.loadVacancySkillsFromServer(vacancyId).subscribe(
       response => {
@@ -93,10 +90,10 @@ export class VacancyDetailsComponent implements OnInit {
     )
   }
 
+  // save vacancy to users watch list
   saveVacancyToUser(vacancyId){
     this.useSvc.updateUserVacanciesInService(this.myUserId,vacancyId).subscribe()
     this.saved=true
-    // window.location.reload()
   }
   
 }

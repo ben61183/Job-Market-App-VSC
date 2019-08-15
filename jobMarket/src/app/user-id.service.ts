@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+// user service to maintain logged in user id throughout app and after refreshes
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +13,14 @@ export class UserIdService {
 
   constructor() { }
 
+  // get user id to load correct data/priveledges
   getUserId(){
     console.log("user local store:"+localStorage.getItem("userId"))
     // return the userId as a number
     return Number(localStorage.getItem("userId"))
   }
 
+  // change user id based on login
   changeUserId(myUserId: number) {
     console.log("userId passed:"+myUserId)
     this.userIdSource.next(myUserId)
