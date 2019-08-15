@@ -220,6 +220,22 @@ export class NewListingComponent implements OnInit {
       this.valid = false
       this.validError+=" Choose Contract/Permanent."
     }
+    if(this.newTitle.length < 5 || this.newTitle.length > 20) {
+      this.valid = false
+      this.validError+= " Job Title Must Be Between 5 and 20 Characters."
+    }
+    if(this.newDescription.length < 10 || this.newDescription.length > 100) {
+      this.valid = false
+      this.validError+= " Description Must Be Between 10 and 100 Characters."
+    }
+    if(this.newLocation.length < 5 || this.newLocation.length > 20) {
+      this.valid = false
+      this.validError+= " Location Must Be Between 5 and 20 Characters."
+    } 
+    if(this.newLink.length < 10 || this.newLink.length > 75) {
+      this.valid = false
+      this.validError+= " Site URL Must Be Between 10 and 75 Characters."
+    }
   }
 
   //add a new skill to the list of skills
@@ -243,7 +259,7 @@ export class NewListingComponent implements OnInit {
   setJobType(result){
     if(result){
       this.newJobType=true
-    }
+    } 
     else if(!result){
       this.newJobType=false
     }

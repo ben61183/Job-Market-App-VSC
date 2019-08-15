@@ -80,7 +80,7 @@ export class CompanyRegisterComponent implements OnInit{
   //check password and confirm password match
   passwordCheck() {
     if (this.confirmPassword==this.newPassword){
-      return this.isPassCheck=true;
+      this.isPassCheck=true;
     } else{
       this.isError=false;
     } 
@@ -89,6 +89,17 @@ export class CompanyRegisterComponent implements OnInit{
   //check username is unique
   uniqueUsernameCheck() {
     for (let company of this.allCompanys){
+      if (company.email == this.email){
+        this.isUniqueEmail = false
+      } else {
+        this.isUniqueEmail = true
+      }
+    }
+  }
+
+  uniqueEmailCheck() {
+    for (let company of this.allCompanys){
+      if (company.email!=this.email){
       if (company.username!=this.newUsername && this.newUsername.length>=8){
         return this.isUsernameCheck=true
       } else {
@@ -96,6 +107,7 @@ export class CompanyRegisterComponent implements OnInit{
       }
     }
   }
+}
 
   emailCheck(){
     if(!this.email.includes("@")){
@@ -114,12 +126,15 @@ export class CompanyRegisterComponent implements OnInit{
     this.isEmailCheck=true
     this.passwordCheck() 
     this.uniqueUsernameCheck()
+    this.uniqueEmailCheck() 
+    console.log(this.isUsernameCheck)
+    if(this.isPassCheck==true && this.isUsernameCheck==true && this.isUniqueEmail == true) {
     this.emailCheck()
     if(this.isPassCheck==true && this.isUsernameCheck==true && this.isEmailCheck==true) {
       this.createNewCompany();
-      console.log("create company")
     }
     
   }
-
+  
+  }
 }
