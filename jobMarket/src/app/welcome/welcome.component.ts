@@ -7,6 +7,7 @@ import { CompanyRegisterLoginComponent } from '../company-register-login/company
 import { CompanyService } from '../company.service';
 import { UserService } from '../user.service';
 import { AdminLoginComponent } from '../admin-login/admin-login.component';
+import { UserDatatableComponent } from '../user-datatable/user-datatable.component';
 
 @Component({
   selector: 'app-welcome',
@@ -35,6 +36,10 @@ export class WelcomeComponent implements OnInit {
   // open login for user
   openUser() {
     this.dialog.open(UserRegisterLoginComponent);
+  }
+
+  openUserDatatabe() {
+    this.dialog.open(UserDatatableComponent);
   }
 
   // open login for company

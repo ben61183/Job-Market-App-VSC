@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource, MatTable} from '@angular/material';
 
 
 import { Role } from '../role';
@@ -18,7 +18,6 @@ import { CompanyIdService } from '../company-id.service';
 export class RoleDashboardDataTableComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-
   dataSource: MatTableDataSource<Role>;
   
   

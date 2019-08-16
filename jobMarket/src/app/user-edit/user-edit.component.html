@@ -9,6 +9,8 @@
     <input matInput [(ngModel)]="email " name="email"> 
 </mat-form-field>
 
+<div *ngIf = "myUserId == 0"> 
+
 <mat-form-field class="example-full-width">
     <mat-label>Old Password</mat-label> 
     <input matInput [(ngModel)]="old_password" name="old_password" type="password"> 
@@ -23,6 +25,8 @@
     <mat-label>Confirm New Password</mat-label> 
     <input matInput [(ngModel)]="confirm_new_password" name="confirm_new_password" type="password"> 
 </mat-form-field>
+
+</div>
 
 <button mat-raised-button (click)="clickSave()"> Save </button>
 <br> 

@@ -98,6 +98,7 @@ export class UserComponent implements OnInit {
 
   // display edit component popup on click
   displayEditUser() {
+    localStorage.setItem("editUserId", String(this.userId))
     this.dialog.open(UserEditComponent)
   }
 

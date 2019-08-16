@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { CompanyComponent } from './company/company.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
+import { UserDatatableComponent } from './user-datatable/user-datatable.component';
 
 const routes: Routes = [
   {path: "role-dashboard", component: RoleDashboardComponent},
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: "user/:userId", component: UserComponent},
   {path: "vacancy/:vacancyId", component: VacancyComponent},
   {path: "company/:companyId",component:CompanyComponent},
-  {path: "user-login", component:UserloginComponent}
+  {path: "user-login", component:UserloginComponent},
+  {path: "viewUsers", component:UserDatatableComponent}
   ];
 
 

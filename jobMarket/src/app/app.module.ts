@@ -57,6 +57,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserDatatableComponent } from './user-datatable/user-datatable.component';
 
 
 @NgModule({
@@ -86,10 +87,11 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     CompanyLoginComponent,
     AdminLoginComponent,
     CompanyEditComponent,
-    UserEditComponent
+    UserEditComponent,
+    UserDatatableComponent
   ],
   entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent, UserRegisterLoginComponent, CompanyRegisterLoginComponent,
-    AdminLoginComponent, CompanyEditComponent, UserEditComponent],
+    AdminLoginComponent, CompanyEditComponent, UserEditComponent, UserDatatableComponent],
   imports: [
     MatMenuModule,
     MatCheckboxModule,
