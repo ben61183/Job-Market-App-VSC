@@ -89,6 +89,7 @@ export class RoleComponent implements OnInit {
 
 
   ngOnInit() {
+    //load roles,vanacies and calculation on page load. also ler user id and company id be stored locally
     this.role.roleId = this.oneRoleId
     this.findOneRole(this.oneRoleId)
     this.findVacanciesOfRole(this.oneRoleId)

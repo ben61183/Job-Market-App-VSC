@@ -32,18 +32,21 @@ export class CompanyComponent implements OnInit {
 
   oneVacancy:Vacancy
   myCompanyId:number
+  myUserId:number
 
   priveledge:boolean
 
   constructor(private route: ActivatedRoute, private comSvc:CompanyService, public dialog: MatDialog,
-    public vidSvc:VacancyIdService, private vacSvc:VacancyService, private cidSer:CompanyIdService) {
+    public vidSvc:VacancyIdService, private vacSvc:VacancyService, private cidSer:CompanyIdService,
+    private uidSvc:UserIdService) {
     this.companyId = this.route.snapshot.params.companyId
   }
 
+  //get company by id
   ngOnInit() {
-    console.log(this.companyId)
     this.fetchCompanyFromService(this.companyId)
     this.myCompanyId = this.cidSer.getCompanyId()
+    this.myUserId = this.uidSvc.getUserId()
     if(this.myCompanyId==this.companyId){
       this.priveledge=true
     } else{
@@ -51,6 +54,7 @@ export class CompanyComponent implements OnInit {
     }
   }
 
+  //fetch company by id
   fetchCompanyFromService(companyId){
     this.comSvc.fetchCompanyFromService(companyId).subscribe(
       response=>{
@@ -62,6 +66,7 @@ export class CompanyComponent implements OnInit {
         this.password=response.password
       }
     )
+    //fetch related vacancies from company
     this.comSvc.fetchVacanciesOfCompanyFromService(companyId).subscribe(
       response=>{
         this.companyVacancies=response
@@ -69,12 +74,14 @@ export class CompanyComponent implements OnInit {
     )
   }
 
+  //loads vacancy as a pop up
   openVacancy(vacancyId){
     console.log(vacancyId)
     this.vidSvc.changeVacancyId(vacancyId)
     this.dialog.open(VacancyDetailsComponent);
   }
   
+  //shows if position is filled
   setFilled(vacancyId){
     this.vacSvc.findVacancybyVacancyId(vacancyId).subscribe(response=>
       {
@@ -95,13 +102,24 @@ export class CompanyComponent implements OnInit {
         )})
   }
 
+  //delete a vacancy by id
   setDeleted(vacancyId){
     this.vacSvc.deleteVacancybyVacancyId(vacancyId).subscribe()
     window.location.reload()
   }
   
+  //update company details
   editCompany() {
+    localStorage.setItem("editCompanyId",String(this.companyId))
     this.dialog.open(CompanyEditComponent)
+  }
+
+  deleteCompany(){
+    for(let vac of this.companyVacancies){
+      this.vacSvc.deleteVacancybyVacancyId(vac.vacancyId).subscribe()
+    }
+    this.comSvc.deleteCompanyFromService(this.companyId).subscribe()
+    this.cidSer.logOutCompany()
   }
 
 }

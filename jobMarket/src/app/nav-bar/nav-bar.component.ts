@@ -30,20 +30,19 @@ export class NavBarComponent {
   ngOnInit() {
     this.myUserId = this.uidSer.getUserId()
     this.myCompanyId = this.cidSer.getCompanyId()
-    console.log(this.myCompanyId)
+
+    // set or change the light/dark mode
     if(this.dark==undefined || this.dark==null){
       localStorage.setItem("dark","false")
     }
-    
     if(localStorage.getItem("dark")=="true"){
       this.dark=true
     } else if(localStorage.getItem("dark")=="false"){
       this.dark=false
     }
-    console.log("dark"+this.dark)
-    localStorage.setItem("one","twothree")
   }
 
+  // log out of both accounts by setting my id=-1
   logOut(){
     this.uidSer.changeUserId(-1)
     this.cidSer.changeCompanyId(-1)
@@ -64,6 +63,5 @@ export class NavBarComponent {
       localStorage.setItem("dark","false")
     }
     
-    console.log("STORE:"+localStorage.getItem("dark"))
   }
 }

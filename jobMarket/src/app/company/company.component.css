@@ -30,13 +30,16 @@ img{
 }
 
 .flex-container{
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
     flex-wrap: wrap;
     text-align: justify;
     width: 80%;
+    margin:auto
     
+}
+
+#flex-center{
+    margin: auto
 }
 
 .vacancyTable{
@@ -67,5 +70,10 @@ h4,h3,h2,h1{
 
 #button{
     text-align: center;
-    margin:auto
+    margin:auto;
+    
+}
+
+.delBut{
+    margin:10px;
 }

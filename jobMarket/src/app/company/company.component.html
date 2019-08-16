@@ -1,19 +1,20 @@
 <div class="center">
     <br>
     <h2 style="text-align: center; border-color: white">Your Profile</h2>
-    <h4>Hello {{companyName}}</h4>
+    <h4>Hello {{companyName}}!</h4>
 </div>
 <br>    
 <br>
-<div id="button" *ngIf="priveledge">
-<button mat-raised-button (click)="editCompany()">Edit Details</button>
+<div id="button" *ngIf="priveledge || myUserId==0">
+<button class="delBut" mat-raised-button (click)="editCompany()">Edit Details</button>
+<button class="delBut" mat-raised-button routerLink="/" color="warn" (click)="deleteCompany()">Delete</button>
 </div>
 
 <hr style="width: 80%">
 <h2>My Current Vacancies</h2>
 <br>
 <div class="flex-container">
-<span *ngFor="let vacancy of companyVacancies">
+<span *ngFor="let vacancy of companyVacancies" id="flex-center">
 <table class="vacancyTable"><td>
     <tr><h3><button class="mainB" mat-raised-button (click)="openVacancy(vacancy.vacancyId)">{{vacancy.title}}</button></h3></tr>
     <tr>{{vacancy.location}}</tr>
@@ -21,10 +22,12 @@
     <tr>{{vacancy.postTime}} | {{vacancy.uploadYear}}</tr>
     <tr><a href="{{vacancy.link}}">View site</a></tr>
     
-        <tr><span *ngIf="vacancy.description != 'POSITION NOW FILLED.' && priveledge">
+    <span *ngIf="myCompanyId==companyId || myUserId==0">
+        <tr><span *ngIf="vacancy.description != 'POSITION NOW FILLED.' && (priveledge || myUserId==0)">
             <button class="optionButtons" mat-raised-button (click)="setFilled(vacancy.vacancyId)" color="accent">Filled</button>&nbsp;
         </span>
-            <button class="optionButtons" mat-raised-button (click)="setDeleted(vacancy.vacancyId)" color="warn">Delete</button></tr>
+            <button class="optionButtons" mat-raised-button color="warn" (click)="setDeleted(vacancy.vacancyId)">Delete</button></tr>
+    </span>
 </td></table>
 </span>
 </div>

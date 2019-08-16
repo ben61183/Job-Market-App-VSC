@@ -47,10 +47,12 @@ export class CompanyRegisterComponent implements OnInit{
     this.email = "";
   }
 
+  //load all companies
   ngOnInit() {
     this.loadAllCompanys()
   }
 
+  //load lst of all companies
   loadAllCompanys() {
     this.companySvc.loadAllCompanysFromServer().subscribe(
       response => 
@@ -58,9 +60,12 @@ export class CompanyRegisterComponent implements OnInit{
     )
   }
 
+  //create new company
   createNewCompany() {
     this.companySvc.updateCompanyOnServer({
-      companyId: this.companyId, companyName: this.newCompanyName, hqLocation: this.hqLocation, linkedIn: this.linkedIn, companyUsername: this.newUsername, companyPassword: this.newPassword, email: this.email}).subscribe(
+      companyId: this.companyId, companyName: this.newCompanyName, 
+      hqLocation: this.hqLocation, linkedIn: this.linkedIn, companyUsername: this.newUsername, 
+      companyPassword: this.newPassword, email: this.email}).subscribe(
         response=>{
           this.companyId = response.companyId
           this.newCompanyName = response.companyName
@@ -74,6 +79,7 @@ export class CompanyRegisterComponent implements OnInit{
       window.location.reload();
   }
 
+  //check password and confirm password match
   passwordCheck() {
     if (this.confirmPassword==this.newPassword){
       this.isPassCheck=true;
@@ -82,6 +88,7 @@ export class CompanyRegisterComponent implements OnInit{
     } 
   }
 
+  //check username is unique
   uniqueUsernameCheck() {
     for (let company of this.allCompanys){
       if (company.email == this.email){

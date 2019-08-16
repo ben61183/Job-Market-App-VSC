@@ -43,7 +43,7 @@
             <mat-form-field>
                 <mat-label>Role</mat-label>
                     <mat-select id="role-select" [(ngModel)]="selectedRoleId">
-                            <mat-option *ngFor="let role of roles" value="{{role.roleId}}" (change)="updateRole(selectedRole.value)">
+                            <mat-option *ngFor="let role of roles" value="{{role.roleId}}" (change)="updateRole(selectedRoleId.value)">
                                     {{role.roleName}}
                             </mat-option>
                     </mat-select>

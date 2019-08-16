@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../company.service';
 import { Company } from '../company';
 import { CompanyIdService } from '../company-id.service';
+import { UserIdService } from '../user-id.service';
 
 @Component({
   selector: 'app-company-edit',
@@ -19,19 +20,25 @@ export class CompanyEditComponent implements OnInit {
   old_password: string 
   new_password: string 
   confirm_new_password: string 
+  
+  myUserId:number
 
   passwordsMatch: boolean 
 
-  constructor(private compSvc: CompanyService, private idsvc: CompanyIdService) { }
+  constructor(private compSvc: CompanyService, private idsvc: CompanyIdService,
+    private uidSvc:UserIdService) { }
 
+  //display company
   ngOnInit() {
+    this.myUserId = this.uidSvc.getUserId()
+    this.companyId=Number(localStorage.getItem("editCompanyId"))
     this.displayCompany() 
     this.passwordsMatch = true; 
   }
 
-
+//fetch company from locally stored company id
   displayCompany() {
-    this.compSvc.fetchCompanyFromService(this.idsvc.getCompanyId()).subscribe(
+    this.compSvc.fetchCompanyFromService(this.companyId).subscribe(
       response => {
         this.companyId = response.companyId
         this.name = response.companyName
@@ -40,11 +47,14 @@ export class CompanyEditComponent implements OnInit {
         this.linkedIn = response.linkedIn
         this.checkPassword = response.password
         this.newUsername = response.username
-        
+        if(this.myUserId==0){
+          this.old_password = this.checkPassword
+        }
       }
     )
   }
 
+  //validity
   clickSave() {
     if (this.checkPassword == this.old_password && this.new_password == this.confirm_new_password) {
       console.log("Passwords Match!")
@@ -57,6 +67,7 @@ export class CompanyEditComponent implements OnInit {
     }
   }
 
+  //update this company details
   saveCompany() {
     this.compSvc.updateCompanyOnServer({
       companyId: this.companyId,

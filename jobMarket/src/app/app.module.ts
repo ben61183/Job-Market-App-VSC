@@ -58,6 +58,8 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserDatatableComponent } from './user-datatable/user-datatable.component';
+import { CompanyDashboardComponent } from './company-dashboard/company-dashboard.component';
+import { CompanyDashComponent } from './company-dash/company-dash.component';
 
 
 @NgModule({
@@ -88,7 +90,9 @@ import { UserDatatableComponent } from './user-datatable/user-datatable.componen
     AdminLoginComponent,
     CompanyEditComponent,
     UserEditComponent,
-    UserDatatableComponent
+    UserDatatableComponent,
+    CompanyDashboardComponent,
+    CompanyDashComponent
   ],
   entryComponents: [NewListingComponent, AddRoleComponent, EditRoleComponent, UserRegisterLoginComponent, CompanyRegisterLoginComponent,
     AdminLoginComponent, CompanyEditComponent, UserEditComponent, UserDatatableComponent],

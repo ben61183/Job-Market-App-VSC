@@ -1,0 +1,9 @@
+.full-width-table {
+  width: 100%;
+}
+#filter{
+  padding-left: 20px;
+  font-size: 14px;
+  width: 100%;
+  padding-right: 20px;
+}

@@ -56,4 +56,8 @@ export class CompanyService {
     )
   }
 
+  deleteCompanyFromService(companyId){
+    return this.httpsvc.delete<Company>(this.rootUrl+"/delete/"+companyId)
+  }
+
 }
