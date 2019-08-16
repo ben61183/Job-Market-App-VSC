@@ -158,7 +158,7 @@ export class NewListingComponent implements OnInit {
             this.newSalary = response.salary
 
             // allows admin to chose which company to assign a new vacancy too
-            if(this.myUserId==0){
+            if(this.myUserId==1){
               this.newCompany.companyId=this.selectedCompanyId
               console.log("admin. company id:"+this.newCompany.companyId)
             } else{

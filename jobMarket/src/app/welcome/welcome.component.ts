@@ -49,7 +49,7 @@ export class WelcomeComponent implements OnInit {
   
   // load the name of the company/user logged in for greeting
   loadNames(){
-    if(this.myUserId!=-1 && this.myUserId!=0){
+    if(this.myUserId!=-1 && this.myUserId!=1){
       this.useSer.findUserByUserId(this.myUserId).subscribe(response=>this.myUsername=response.username)
       console.log(this.myUsername)
     }

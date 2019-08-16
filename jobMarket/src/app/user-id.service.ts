@@ -32,10 +32,10 @@ export class UserIdService {
     // console.log(this.currentUserId)
   }
 
-  // admin given userId = 0
+  // admin given userId = 1
   logInAdmin(){
     console.log("admin login")
-    this.changeUserId(0)
+    this.changeUserId(1)
   }
 
   logOutUser(){

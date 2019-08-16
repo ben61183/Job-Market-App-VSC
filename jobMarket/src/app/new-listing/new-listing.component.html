@@ -14,7 +14,7 @@
                 <input matInput readonly [(ngModel)]="newCompany.companyId" name="newCompanyName" [ngModelOptions]="{standalone: true}" placeholder="{{newCompany.companyName}}">
                 </mat-form-field>&nbsp;&nbsp;
             </span> -->
-            <span *ngIf="myUserId==0">
+            <span *ngIf="myUserId==1">
                 <mat-form-field>
                         <mat-label>Company</mat-label>
                             <mat-select id="company-select" [(ngModel)]="selectedCompanyId">

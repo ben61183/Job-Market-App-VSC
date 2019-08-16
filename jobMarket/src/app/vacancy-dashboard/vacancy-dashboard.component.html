@@ -4,7 +4,7 @@
     <br>
 </div>
 <!-- only show add/edit vacancy to admins and companies -->
-<span *ngIf="myCompanyId!=-1 || myUserId==0">
+<span *ngIf="myCompanyId!=-1 || myUserId==1">
     <button class="crudButton" mat-raised-button (click)="openAddVacancy()">Add New Vacancy</button>
     <button class="crudButton" mat-raised-button (click)="openEditVacancy()">Edit Vacancy</button>
 </span>

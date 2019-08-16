@@ -5,7 +5,7 @@
 </div>
 <br>    
 <br>
-<div id="button" *ngIf="priveledge || myUserId==0">
+<div id="button" *ngIf="priveledge || myUserId==1">
 <button class="delBut" mat-raised-button (click)="editCompany()">Edit Details</button>
 <button class="delBut" mat-raised-button routerLink="/" color="warn" (click)="deleteCompany()">Delete</button>
 </div>
@@ -22,8 +22,8 @@
     <tr>{{vacancy.postTime}} | {{vacancy.uploadYear}}</tr>
     <tr><a href="{{vacancy.link}}">View site</a></tr>
     
-    <span *ngIf="myCompanyId==companyId || myUserId==0">
-        <tr><span *ngIf="vacancy.description != 'POSITION NOW FILLED.' && (priveledge || myUserId==0)">
+    <span *ngIf="myCompanyId==companyId || myUserId==1">
+        <tr><span *ngIf="vacancy.description != 'POSITION NOW FILLED.' && (priveledge || myUserId==1)">
             <button class="optionButtons" mat-raised-button (click)="setFilled(vacancy.vacancyId)" color="accent">Filled</button>&nbsp;
         </span>
             <button class="optionButtons" mat-raised-button color="warn" (click)="setDeleted(vacancy.vacancyId)">Delete</button></tr>

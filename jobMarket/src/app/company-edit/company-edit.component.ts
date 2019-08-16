@@ -47,7 +47,7 @@ export class CompanyEditComponent implements OnInit {
         this.linkedIn = response.linkedIn
         this.checkPassword = response.password
         this.newUsername = response.username
-        if(this.myUserId==0){
+        if(this.myUserId==1){
           this.old_password = this.checkPassword
         }
       }

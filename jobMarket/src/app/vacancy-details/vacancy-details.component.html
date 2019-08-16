@@ -12,7 +12,7 @@
 <table id="skillTable"><td *ngFor="let skill of vacancy.vacancySkills">{{skill.skill}}</td></table>
 <div id="buttons">
 <!-- show savable button only if vacancy not currently saved to user -->
-<span *ngIf="myUserId!=-1 && myUserId!=0">
+<span *ngIf="myUserId!=-1 && myUserId!=1">
     <span *ngIf="!saved"><button mat-raised-button (click)="saveVacancyToUser(vacancy.vacancyId)">
         <mat-icon>favorite_border</mat-icon></button>
     </span>

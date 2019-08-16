@@ -31,7 +31,7 @@ export class AdminLoginComponent implements OnInit {
   //login for company
   adminLogIn() {
     console.log("admin login")
-    this.useSvc.findUserByUserId(0).subscribe(response=>{
+    this.useSvc.findUserByUserId(1).subscribe(response=>{
       this.adminUser=response, 
       this.adminPassword=response.password
       this.checkCredentials() 

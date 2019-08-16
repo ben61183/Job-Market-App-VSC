@@ -65,8 +65,6 @@ export class UserloginComponent implements OnInit {
       if (user.username==this.username && user.password==this.password){
         // idLoginValid is true if match
         this.userId=user.userId
-        console.log(this.userId)
-        this.isLoginValid=true
         this.noError=true
       } else if(this.noError==null){
         this.noError=false
@@ -77,7 +75,7 @@ export class UserloginComponent implements OnInit {
   // change user id in uid service, will effect whole application
   logInUser(){
     this.credentialCheck()
-    if(this.isLoginValid==true){
+    if(this.noError==true){
       this.cidSer.logOutCompany()
       this.uidSer.changeUserId(this.userId)
       console.log("logged in as userId:"+this.userId)
