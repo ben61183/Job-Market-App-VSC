@@ -21,15 +21,12 @@ export class ChartComponent implements OnInit {
   };
 
   //line chart labels
-  public lineChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011']
+  public lineChartLabels = []
   public lineChartType = "line"
   public lineChartLegend = true
   
   //lince chart data
-  public lineChartData = [
-    {data: [100, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [34, 53, 67, 19, 27, 90, 28], label: 'Series B'}
-  ]
+  public lineChartData = []
 
   @Input('roleId') roleId: number
 
@@ -53,13 +50,6 @@ export class ChartComponent implements OnInit {
         this.role.roleName = response.roleName
         this.role.category = response.category
 
-        
-        // this.role.medSalaryNow = response.medSalaryNow
-        // this.role.numVacanciesNow = response.numVacanciesNow
-        // this.role.rankNow = response.rankNow
-        // this.role.medSalaryPrev = response.medSalaryPrev
-        // this.role.numVacanciesPrev = response.numVacanciesPrev
-        // this.role.rankPrev = response.rankPrev
       }
     )
   }

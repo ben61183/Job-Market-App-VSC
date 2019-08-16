@@ -66,7 +66,6 @@ export class RegisterComponent implements OnInit {
   
    //load all users in list
   ngOnInit() {
-    // this.myUserId = this.uidSer.getUserId()
     this.loadAllUsers()    
     console.log(this.allUsers)
   }

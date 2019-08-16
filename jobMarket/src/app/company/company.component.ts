@@ -32,19 +32,21 @@ export class CompanyComponent implements OnInit {
 
   oneVacancy:Vacancy
   myCompanyId:number
+  myUserId:number
 
   priveledge:boolean
 
   constructor(private route: ActivatedRoute, private comSvc:CompanyService, public dialog: MatDialog,
-    public vidSvc:VacancyIdService, private vacSvc:VacancyService, private cidSer:CompanyIdService) {
+    public vidSvc:VacancyIdService, private vacSvc:VacancyService, private cidSer:CompanyIdService,
+    private uidSvc:UserIdService) {
     this.companyId = this.route.snapshot.params.companyId
   }
 
   //get company by id
   ngOnInit() {
-    console.log(this.companyId)
     this.fetchCompanyFromService(this.companyId)
     this.myCompanyId = this.cidSer.getCompanyId()
+    this.myUserId = this.uidSvc.getUserId()
     if(this.myCompanyId==this.companyId){
       this.priveledge=true
     } else{
@@ -108,7 +110,16 @@ export class CompanyComponent implements OnInit {
   
   //update company details
   editCompany() {
+    localStorage.setItem("editCompanyId",String(this.companyId))
     this.dialog.open(CompanyEditComponent)
+  }
+
+  deleteCompany(){
+    for(let vac of this.companyVacancies){
+      this.vacSvc.deleteVacancybyVacancyId(vac.vacancyId).subscribe()
+    }
+    this.comSvc.deleteCompanyFromService(this.companyId).subscribe()
+    this.cidSer.logOutCompany()
   }
 
 }

@@ -41,10 +41,14 @@
           <span *ngIf="myCompanyId!=-1">
               <button mat-menu-item routerLink="/company/{{myCompanyId}}"><mat-icon>account_circle</mat-icon>Company Details</button>
           </span>
+          <span *ngIf="myUserId==0">
+            <button mat-menu-item routerLink="/company-dashboard"><mat-icon>people</mat-icon>Company Dashboard</button>
+          </span>
           <button mat-menu-item disabled><mat-icon>brightness_6</mat-icon>Darkmode<mat-slide-toggle (change)="changeTheme()" checked="dark" [(ngModel)]="dark"></mat-slide-toggle></button>
           <button mat-menu-item (click)="logOut()" routerLink="/"><mat-icon>power_settings_new</mat-icon>Log Out</button>
         </mat-menu>
     </mat-toolbar>
+    <!-- Ng-Content contains all other compoennts inside the navbar -->
     <ng-content> 
     </ng-content>
   </mat-sidenav-content>

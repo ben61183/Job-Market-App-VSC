@@ -25,25 +25,8 @@ export class AdminLoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    // check lockoutdate against todays date. if not matching, remove lockout
       localStorage.setItem("lockOut","false")
-    }
-
-  
-
-  checkCredentials() {
-    // check passwords match, badCOunt not zero, lockoutdate not today
-    if(this.inputPassword==this.adminPassword && this.badCountLeft>0){
-      console.log("passed")
-      this.isLoginValid=true
-      localStorage.setItem("lockOut","false")
-    } else if(this.badCountLeft<=0){
-      localStorage.setItem("lockOut","true")
-    } else{
-      this.badCountLeft-=1
-      this.isLoginValid=false
-    }
-  }
+    }  
 
   //login for company
   adminLogIn() {
@@ -60,5 +43,19 @@ export class AdminLoginComponent implements OnInit {
       } 
     })
     
+  }
+
+  checkCredentials() {
+    // check passwords match, badCOunt not zero
+    if(this.inputPassword==this.adminPassword && this.badCountLeft>0){
+      console.log("passed")
+      this.isLoginValid=true
+      localStorage.setItem("lockOut","false")
+    } else if(this.badCountLeft<=0){
+      localStorage.setItem("lockOut","true")
+    } else{
+      this.badCountLeft-=1
+      this.isLoginValid=false
+    }
   }
 }

@@ -171,8 +171,7 @@ export class NewListingComponent implements OnInit {
                 this.vacSvc.updateVacancyRoleOnServer(this.newVacancyId,this.selectedRoleId).subscribe( 
                   responseVac =>{
                   this.newRole = responseVac.thisRole
-                  console.log("response role:"+responseVac.thisRole.roleName)
-                  console.log("this.newrole"+this.newRole.roleName)
+                  console.log(this.newRole)
     
                   for(let skill of this.newVacancySkills)
                   this.vacSvc.updateVacancySkillsOnServer(this.newVacancyId,skill.skillId).subscribe(
