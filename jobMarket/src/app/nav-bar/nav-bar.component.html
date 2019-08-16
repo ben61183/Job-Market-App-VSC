@@ -13,6 +13,10 @@
       <span *ngIf="myCompanyId!=-1">
         <a mat-list-item routerLink="/company/{{myCompanyId}}"><mat-icon>account_circle</mat-icon>User Details</a>
       </span>
+      <span *ngIf="myUserId==0">
+          <button mat-menu-item routerLink="/company-dashboard"><mat-icon>work</mat-icon>Company Dashboard</button>
+          <button mat-menu-item routerLink="/user-dashboard"><mat-icon>people</mat-icon>User Dashboard</button> 
+      </span>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -42,7 +46,8 @@
               <button mat-menu-item routerLink="/company/{{myCompanyId}}"><mat-icon>account_circle</mat-icon>Company Details</button>
           </span>
           <span *ngIf="myUserId==0">
-            <button mat-menu-item routerLink="/company-dashboard"><mat-icon>people</mat-icon>Company Dashboard</button>
+            <button mat-menu-item routerLink="/company-dashboard"><mat-icon>work</mat-icon>Company Dashboard</button>
+            <button mat-menu-item routerLink="/user-dashboard"><mat-icon>people</mat-icon>User Dashboard</button> 
           </span>
           <button mat-menu-item disabled><mat-icon>brightness_6</mat-icon>Darkmode<mat-slide-toggle (change)="changeTheme()" checked="dark" [(ngModel)]="dark"></mat-slide-toggle></button>
           <button mat-menu-item (click)="logOut()" routerLink="/"><mat-icon>power_settings_new</mat-icon>Log Out</button>

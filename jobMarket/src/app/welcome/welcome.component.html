@@ -13,9 +13,9 @@
 <!-- only show login buttons if logged out -->
 <span *ngIf="myUserId==-1 && myCompanyId==-1">
 <div color="primary" class="front-button"> 
-    <button mat-raised-button (click)="openUser()">User</button><br><br>  
-    <button mat-raised-button (click)="openCompany()">Company</button><br><br>  
-    <button mat-raised-button (click)="openAsAdmin()">Admin</button>
+    <button mat-raised-button (click)="openUser()"><mat-icon>people</mat-icon>&nbsp;&nbsp;User</button><br><br>  
+    <button mat-raised-button (click)="openCompany()"><mat-icon>work</mat-icon>&nbsp;&nbsp;Company</button><br><br>  
+    <button mat-raised-button (click)="openAsAdmin()"><mat-icon>face</mat-icon>&nbsp;&nbsp;Admin</button>
 </div>
 </span>
 <!-- if logged in as company -->
